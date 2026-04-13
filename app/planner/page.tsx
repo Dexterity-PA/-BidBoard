@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { eq, and, isNotNull } from "drizzle-orm";
+import { eq, and, isNotNull, isNull, gte, or } from "drizzle-orm";
 import { db } from "@/db";
 import { scholarshipMatches, scholarships } from "@/db/schema";
 import { PlannerClient } from "./PlannerClient";
@@ -9,6 +9,8 @@ import type { KnapsackItem } from "@/lib/knapsack";
 export default async function PlannerPage() {
   const { userId } = await auth();
   if (!userId) redirect("/sign-in");
+
+  const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
 
   const rows = await db
     .select({
@@ -29,7 +31,8 @@ export default async function PlannerPage() {
         eq(scholarshipMatches.userId, userId),
         eq(scholarshipMatches.isDismissed, false),
         eq(scholarships.isActive, true),
-        isNotNull(scholarshipMatches.scholarshipId)
+        isNotNull(scholarshipMatches.scholarshipId),
+        or(isNull(scholarships.deadline), gte(scholarships.deadline, today))
       )
     );
 
