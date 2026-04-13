@@ -18,6 +18,11 @@ export async function GET() {
     return NextResponse.json({ error: "No billing account found" }, { status: 400 });
   }
 
-  const url = await getPortalSession(user.stripeCustomerId);
-  return NextResponse.json({ url });
+  try {
+    const url = await getPortalSession(user.stripeCustomerId);
+    return NextResponse.json({ url });
+  } catch (err) {
+    console.error("Stripe portal error:", err);
+    return NextResponse.json({ error: "Failed to create portal session" }, { status: 500 });
+  }
 }
