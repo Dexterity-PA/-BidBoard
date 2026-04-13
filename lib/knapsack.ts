@@ -22,11 +22,13 @@ export function solveKnapsack(
   items: KnapsackItem[],
   budgetHours: number
 ): KnapsackItem[] {
-  const budgetSlots = Math.round(budgetHours * 2); // e.g. 15 hrs → 30 slots
+  const budgetSlots = Math.max(0, Math.round(budgetHours * 2)); // e.g. 15 hrs → 30 slots
   const n = items.length;
 
   // Integer weights: minimum 1 slot (30 min) to avoid degenerate zero-weight items
   const weights = items.map((item) => Math.max(1, Math.round(item.estimatedHours * 2)));
+  // evPerHour is carried in KnapsackItem for UI display but intentionally not used by DP,
+  // which optimizes evScore (dollars). evPerHour ranking only works for fractional knapsack.
   const values = items.map((item) => item.evScore);
 
   // 2D DP table: dp[i][j] = max EV using the first i items with j slots of budget
