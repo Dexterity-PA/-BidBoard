@@ -1,5 +1,5 @@
-// app/planner/PlannerClient.tsx
 "use client";
+// app/planner/PlannerClient.tsx
 
 import { useState, useMemo } from "react";
 import { solveKnapsack } from "@/lib/knapsack";
@@ -199,7 +199,7 @@ export function PlannerClient({ matches }: { matches: KnapsackItem[] }) {
 
                       {/* Hours */}
                       <td className="px-4 py-3.5 text-right text-slate-300 tabular-nums">
-                        {row.estimatedHours}h
+                        {row.estimatedHours.toFixed(1)}h
                       </td>
 
                       {/* EV */}

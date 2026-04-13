@@ -22,7 +22,7 @@ export function solveKnapsack(
   items: KnapsackItem[],
   budgetHours: number
 ): KnapsackItem[] {
-  const budgetSlots = Math.max(0, Math.round(budgetHours * 2)); // e.g. 15 hrs → 30 slots
+  const budgetSlots = Math.max(0, Math.round((isFinite(budgetHours) ? budgetHours : 0) * 2)); // e.g. 15 hrs → 30 slots
   const n = items.length;
 
   // Integer weights: minimum 1 slot (30 min) to avoid degenerate zero-weight items
