@@ -12,6 +12,7 @@ interface PricingButtonsProps {
 
 export function PricingButtons({ priceId, currentTier, planTier }: PricingButtonsProps) {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   if (currentTier === planTier) {
     return (
@@ -23,6 +24,7 @@ export function PricingButtons({ priceId, currentTier, planTier }: PricingButton
 
   async function handleClick() {
     setLoading(true);
+    setError(null);
     try {
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
@@ -30,26 +32,39 @@ export function PricingButtons({ priceId, currentTier, planTier }: PricingButton
         body: JSON.stringify({ priceId }),
       });
       const data = await res.json();
-      if (data.url) window.location.href = data.url;
+      if (!res.ok) {
+        setError(data.error ?? "Failed to initialize checkout");
+        return;
+      }
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setError("No checkout URL received");
+      }
+    } catch {
+      setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <Button
-      onClick={handleClick}
-      disabled={loading}
-      className="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-semibold"
-    >
-      {loading ? (
-        <span className="flex items-center gap-2">
-          <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-          Redirecting…
-        </span>
-      ) : (
-        "Get Started"
-      )}
-    </Button>
+    <div className="space-y-2">
+      <Button
+        onClick={handleClick}
+        disabled={loading}
+        className="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-semibold"
+      >
+        {loading ? (
+          <span className="flex items-center gap-2">
+            <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+            Redirecting…
+          </span>
+        ) : (
+          "Get Started"
+        )}
+      </Button>
+      {error && <p className="text-xs text-red-400 text-center">{error}</p>}
+    </div>
   );
 }
