@@ -68,10 +68,7 @@ export async function runScraper(config: FrameworkConfig): Promise<ScrapeResult>
   let rawItems: { rawText: string; html: string }[] = [];
   for (let attempt = 1; attempt <= retry.maxPageAttempts; attempt++) {
     try {
-      await engine.scrape(async (rawText, html) => {
-        rawItems.push({ rawText, html });
-        return null; // collect only; normalize below
-      });
+      rawItems = await engine.scrape(async (rawText, html) => ({ rawText, html }));
       break;
     } catch (err) {
       if (attempt === retry.maxPageAttempts) {
@@ -80,7 +77,6 @@ export async function runScraper(config: FrameworkConfig): Promise<ScrapeResult>
       }
       console.warn(`[Framework] Scrape threw (attempt ${attempt}/${retry.maxPageAttempts}), retrying...`);
       await sleep(retry.backoffMs * Math.pow(2, attempt - 1));
-      rawItems = [];
     }
   }
 
