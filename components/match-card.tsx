@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { KnapsackItem } from "@/lib/knapsack";
 
@@ -109,6 +108,7 @@ export function MatchCard({ scholarship, showRecycle = false }: MatchCardProps) 
     showRecycle && scholarship.requiresEssay && scholarship.essayPrompt;
 
   async function handleRecycleClick() {
+    if (!scholarship.essayPrompt) return;
     // If we already have results, just toggle open/closed — no re-fetch
     if (recycleResults !== null) {
       setRecycleOpen((prev) => !prev);
@@ -116,10 +116,10 @@ export function MatchCard({ scholarship, showRecycle = false }: MatchCardProps) 
     }
     // First click: fetch and cache
     setRecycleLoading(true);
-    setRecycleError(null);
+    setRecycleError(null); // Clear previous error on retry
     try {
       const res = await fetch(
-        `/api/essays/recycle?prompt=${encodeURIComponent(scholarship.essayPrompt!)}`
+        `/api/essays/recycle?prompt=${encodeURIComponent(scholarship.essayPrompt)}`
       );
       if (!res.ok) throw new Error("Request failed");
       const data: RecycleResult[] = await res.json();

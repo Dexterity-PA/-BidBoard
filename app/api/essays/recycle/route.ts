@@ -34,7 +34,11 @@ export async function GET(req: NextRequest) {
       LIMIT 5
     `);
 
-    return NextResponse.json(result.rows, { status: 200 });
+    const rows = (result.rows as Array<Record<string, unknown>>).map((r) => ({
+      ...r,
+      similarity: Number(r.similarity),
+    }));
+    return NextResponse.json(rows, { status: 200 });
   } catch (err) {
     console.error("[GET /api/essays/recycle]", err);
     return NextResponse.json({ error: "Failed to search essays" }, { status: 500 });
