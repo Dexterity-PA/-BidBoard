@@ -1,10 +1,11 @@
+// app/planner/page.tsx
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { eq, and, isNotNull, isNull, gte, or } from "drizzle-orm";
 import { db } from "@/db";
 import { scholarshipMatches, scholarships } from "@/db/schema";
 import { PlannerClient } from "./PlannerClient";
-import type { KnapsackItem } from "@/lib/knapsack";
+import type { MatchCardScholarship } from "@/components/match-card";
 
 export default async function PlannerPage() {
   const { userId } = await auth();
@@ -14,15 +15,19 @@ export default async function PlannerPage() {
 
   const rows = await db
     .select({
-      scholarshipId: scholarshipMatches.scholarshipId,
-      matchScore:    scholarshipMatches.matchScore,
-      evScore:       scholarshipMatches.evScore,
-      evPerHour:     scholarshipMatches.evPerHour,
+      scholarshipId:  scholarshipMatches.scholarshipId,
+      matchScore:     scholarshipMatches.matchScore,
+      evScore:        scholarshipMatches.evScore,
+      evPerHour:      scholarshipMatches.evPerHour,
       estimatedHours: scholarshipMatches.estimatedHours,
-      name:          scholarships.name,
-      provider:      scholarships.provider,
-      localityLevel: scholarships.localityLevel,
-      deadline:      scholarships.deadline,
+      name:           scholarships.name,
+      provider:       scholarships.provider,
+      localityLevel:  scholarships.localityLevel,
+      deadline:       scholarships.deadline,
+      amountMin:      scholarships.amountMin,
+      amountMax:      scholarships.amountMax,
+      requiresEssay:  scholarships.requiresEssay,
+      essayPrompt:    scholarships.essayPrompt,
     })
     .from(scholarshipMatches)
     .innerJoin(scholarships, eq(scholarshipMatches.scholarshipId, scholarships.id))
@@ -36,7 +41,6 @@ export default async function PlannerPage() {
       )
     );
 
-  // Empty state — no matches have been computed yet
   if (rows.length === 0) {
     return (
       <main className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
@@ -45,8 +49,6 @@ export default async function PlannerPage() {
           <p className="text-slate-400 mb-6">
             Run the scholarship matcher to score scholarships against your profile first.
           </p>
-          {/* Linking to the GET route triggers matching and redirects back.
-              A more polished flow would use a Server Action — fine for later. */}
           <a
             href="/api/scholarships/matches"
             className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg px-6 py-2.5 transition-colors duration-150"
@@ -58,19 +60,20 @@ export default async function PlannerPage() {
     );
   }
 
-  // Drizzle returns decimal columns as strings — parse to numbers here
-  // so the client component receives plain serialisable props.
-  const matches: KnapsackItem[] = rows.map((r) => ({
+  const matches: MatchCardScholarship[] = rows.map((r) => ({
     scholarshipId:  r.scholarshipId as number,
     name:           r.name,
     provider:       r.provider,
     evScore:        parseFloat(r.evScore        ?? "0"),
     evPerHour:      parseFloat(r.evPerHour      ?? "0"),
-    // Default 0.5 h so knapsack weight ≥ 1 slot (Math.max guard in knapsack.ts handles 0)
     estimatedHours: parseFloat(r.estimatedHours ?? "0.5"),
     matchScore:     parseFloat(r.matchScore     ?? "0"),
     localityLevel:  r.localityLevel,
     deadline:       r.deadline,
+    amountMin:      r.amountMin ?? null,
+    amountMax:      r.amountMax ?? null,
+    requiresEssay:  r.requiresEssay ?? false,
+    essayPrompt:    r.essayPrompt ?? null,
   }));
 
   return <PlannerClient matches={matches} />;
