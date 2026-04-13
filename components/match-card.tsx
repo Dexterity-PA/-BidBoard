@@ -246,7 +246,7 @@ export function MatchCard({ scholarship, showRecycle = false }: MatchCardProps) 
                           </span>
                         </div>
                         <span className="text-xs font-semibold text-emerald-400 shrink-0">
-                          {Math.round(Number(essay.similarity) * 100)}% match
+                          {Math.round(essay.similarity * 100)}% match
                         </span>
                       </div>
                     );
