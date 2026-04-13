@@ -28,7 +28,7 @@ export async function createCheckoutSession(
     customer_email: stripeCustomerId ? undefined : email,
     client_reference_id: userId,
     line_items: [{ price: priceId, quantity: 1 }],
-    success_url: `${requireEnv("NEXT_PUBLIC_APP_URL")}/dashboard?upgraded=true`,
+    success_url: `${requireEnv("NEXT_PUBLIC_APP_URL")}/planner?upgraded=true`,
     cancel_url:  `${requireEnv("NEXT_PUBLIC_APP_URL")}/pricing`,
   });
   if (!session.url) throw new Error("Stripe checkout session has no URL");
