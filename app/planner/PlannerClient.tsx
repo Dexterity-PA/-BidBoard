@@ -40,8 +40,8 @@ function formatDeadline(dateStr: string | null): { label: string; urgent: boolea
 
 /** Format a dollar amount concisely: $142, $14.2, $1.42 */
 function fmt$(n: number): string {
-  if (n >= 100) return `$${Math.round(n)}`;
-  if (n >= 10)  return `$${n.toFixed(1)}`;
+  if (n >= 99.95) return `$${Math.round(n)}`;  // guard rounding boundary at 100
+  if (n >= 10)    return `$${n.toFixed(1)}`;
   return `$${n.toFixed(2)}`;
 }
 
