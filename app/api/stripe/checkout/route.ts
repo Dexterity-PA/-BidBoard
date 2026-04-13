@@ -17,27 +17,39 @@ export async function POST(req: Request) {
   }
 
   const clerkUser = await currentUser();
-  const email = clerkUser?.emailAddresses[0]?.emailAddress ?? "";
+  if (!clerkUser) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
-  let user = await db.query.users.findFirst({
+  const email = clerkUser.emailAddresses[0]?.emailAddress;
+  if (!email) {
+    return NextResponse.json({ error: "No email on account" }, { status: 400 });
+  }
+
+  const user = await db.query.users.findFirst({
     where: eq(users.id, userId),
     columns: { stripeCustomerId: true },
   });
 
   let stripeCustomerId = user?.stripeCustomerId ?? null;
 
-  if (!stripeCustomerId) {
-    const customer = await stripe.customers.create({
-      email,
-      metadata: { clerkUserId: userId },
-    });
-    stripeCustomerId = customer.id;
-    await db
-      .update(users)
-      .set({ stripeCustomerId })
-      .where(eq(users.id, userId));
-  }
+  try {
+    if (!stripeCustomerId) {
+      const customer = await stripe.customers.create({
+        email,
+        metadata: { clerkUserId: userId },
+      });
+      stripeCustomerId = customer.id;
+      await db
+        .update(users)
+        .set({ stripeCustomerId })
+        .where(eq(users.id, userId));
+    }
 
-  const url = await createCheckoutSession(userId, email, priceId, stripeCustomerId);
-  return NextResponse.json({ url });
+    const url = await createCheckoutSession(userId, email, priceId, stripeCustomerId);
+    return NextResponse.json({ url });
+  } catch (err) {
+    console.error("Stripe checkout error:", err);
+    return NextResponse.json({ error: "Failed to initialize checkout" }, { status: 500 });
+  }
 }
