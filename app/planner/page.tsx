@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { eq, and } from "drizzle-orm";
+import { eq, and, isNotNull } from "drizzle-orm";
 import { db } from "@/db";
 import { scholarshipMatches, scholarships } from "@/db/schema";
 import { PlannerClient } from "./PlannerClient";
@@ -27,7 +27,9 @@ export default async function PlannerPage() {
     .where(
       and(
         eq(scholarshipMatches.userId, userId),
-        eq(scholarshipMatches.isDismissed, false)
+        eq(scholarshipMatches.isDismissed, false),
+        eq(scholarships.isActive, true),
+        isNotNull(scholarshipMatches.scholarshipId)
       )
     );
 
@@ -40,6 +42,8 @@ export default async function PlannerPage() {
           <p className="text-slate-400 mb-6">
             Run the scholarship matcher to score scholarships against your profile first.
           </p>
+          {/* Linking to the GET route triggers matching and redirects back.
+              A more polished flow would use a Server Action — fine for later. */}
           <a
             href="/api/scholarships/matches"
             className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg px-6 py-2.5 transition-colors duration-150"
@@ -54,11 +58,12 @@ export default async function PlannerPage() {
   // Drizzle returns decimal columns as strings — parse to numbers here
   // so the client component receives plain serialisable props.
   const matches: KnapsackItem[] = rows.map((r) => ({
-    scholarshipId:  r.scholarshipId!,
+    scholarshipId:  r.scholarshipId as number,
     name:           r.name,
     provider:       r.provider,
     evScore:        parseFloat(r.evScore        ?? "0"),
     evPerHour:      parseFloat(r.evPerHour      ?? "0"),
+    // Default 0.5 h so knapsack weight ≥ 1 slot (Math.max guard in knapsack.ts handles 0)
     estimatedHours: parseFloat(r.estimatedHours ?? "0.5"),
     matchScore:     parseFloat(r.matchScore     ?? "0"),
     localityLevel:  r.localityLevel,
