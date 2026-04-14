@@ -1,13 +1,12 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { currentUser } from "@clerk/nextjs/server";
 import { db } from "@/db";
 import { scholarships, scholarshipMatches } from "@/db/schema";
 import { eq, count } from "drizzle-orm";
 import Link from "next/link";
+import { requireOnboarding } from "@/lib/requireOnboarding";
 
 export default async function DashboardPage() {
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
+  const userId = await requireOnboarding();
 
   const clerkUser = await currentUser();
   const firstName = clerkUser?.firstName ?? clerkUser?.emailAddresses?.[0]?.emailAddress?.split("@")[0] ?? "there";
@@ -71,22 +70,6 @@ export default async function DashboardPage() {
             </Link>
           ))}
         </div>
-
-        {/* CTA if no matches yet */}
-        {matchCount === 0 && (
-          <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-6 text-center">
-            <p className="text-emerald-300 font-semibold mb-1">No matches yet</p>
-            <p className="text-slate-400 text-sm mb-4">
-              Complete your profile then run the matcher to find scholarships tailored to you.
-            </p>
-            <Link
-              href="/onboarding"
-              className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg px-5 py-2.5 text-sm transition-colors duration-150"
-            >
-              Set Up Profile
-            </Link>
-          </div>
-        )}
 
       </div>
     </main>

@@ -1,6 +1,5 @@
 // app/essays/page.tsx
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { requireOnboarding } from "@/lib/requireOnboarding";
 import { db } from "@/db";
 import { studentEssays } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
@@ -18,8 +17,7 @@ const ARCHETYPE_STYLES: Record<string, string> = {
 };
 
 export default async function EssaysPage() {
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
+  const userId = await requireOnboarding();
 
   const essays = await db
     .select({

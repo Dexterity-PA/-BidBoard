@@ -117,7 +117,8 @@ export function OnboardingForm() {
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? "Something went wrong. Please try again.");
+        const detail = data.detail ? `: ${data.detail}` : "";
+        throw new Error((data.error ?? "Something went wrong. Please try again.") + detail);
       }
       router.push("/dashboard");
     } catch (err) {

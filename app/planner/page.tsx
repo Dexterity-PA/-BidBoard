@@ -1,6 +1,5 @@
 // app/planner/page.tsx
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { requireOnboarding } from "@/lib/requireOnboarding";
 import { eq, and, isNotNull, isNull, gte, or } from "drizzle-orm";
 import { db } from "@/db";
 import { scholarshipMatches, scholarships } from "@/db/schema";
@@ -8,8 +7,7 @@ import { PlannerClient } from "./PlannerClient";
 import type { MatchCardScholarship } from "@/components/match-card";
 
 export default async function PlannerPage() {
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
+  const userId = await requireOnboarding();
 
   const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
 

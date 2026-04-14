@@ -74,7 +74,7 @@ export function Step1BasicInfo({ form }: Props) {
             <FormLabel className="text-sm font-medium text-slate-200">
               Grade Level
             </FormLabel>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <Select onValueChange={field.onChange} value={field.value}>
               <FormControl>
                 <SelectTrigger className="bg-slate-800 border-slate-700 text-white focus:ring-emerald-500 transition-colors duration-150">
                   <SelectValue placeholder="Select your grade level" />
