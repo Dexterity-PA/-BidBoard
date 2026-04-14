@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { stripe, createCheckoutSession, VALID_PRICE_IDS } from "@/lib/stripe";
+import { getStripe, createCheckoutSession, getValidPriceIds } from "@/lib/stripe";
 
 export async function POST(req: Request) {
   const { userId } = await auth();
@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const body = await req.json();
   const { priceId } = body as { priceId: string };
 
-  if (!priceId || !VALID_PRICE_IDS.has(priceId)) {
+  if (!priceId || !getValidPriceIds().has(priceId)) {
     return NextResponse.json({ error: "Invalid price ID" }, { status: 400 });
   }
 
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
   try {
     if (!stripeCustomerId) {
-      const customer = await stripe.customers.create({
+      const customer = await getStripe().customers.create({
         email,
         metadata: { clerkUserId: userId },
       });

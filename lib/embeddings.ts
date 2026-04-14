@@ -1,18 +1,18 @@
-// lib/embeddings.ts
-import { VoyageAIClient } from "voyageai";
+import OpenAI from "openai";
 
-const voyageClient = new VoyageAIClient({ apiKey: process.env.VOYAGE_API_KEY! });
+let _openai: OpenAI | undefined;
+function getOpenAI(): OpenAI {
+  if (!_openai) _openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+  return _openai;
+}
 
-/**
- * Generate a 1536-dimensional embedding for the given text using Voyage AI.
- * Uses the voyage-3-lite model — fast and cost-effective for semantic search.
- */
 export async function getEmbedding(text: string): Promise<number[]> {
-  const response = await voyageClient.embed({
-    input: [text],
-    model: "voyage-3-lite",
+  const response = await getOpenAI().embeddings.create({
+    model: "text-embedding-3-small",
+    input: text,
+    dimensions: 1536,
   });
-  const embedding = response.data?.[0]?.embedding;
-  if (!embedding) throw new Error("Voyage AI returned no embedding");
+  const embedding = response.data[0]?.embedding;
+  if (!embedding) throw new Error("OpenAI returned no embedding");
   return embedding;
 }

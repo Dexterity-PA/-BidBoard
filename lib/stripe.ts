@@ -6,15 +6,27 @@ function requireEnv(name: string): string {
   return val;
 }
 
-const stripe = new Stripe(requireEnv("STRIPE_SECRET_KEY"));
+let _stripe: Stripe | undefined;
+export function getStripe(): Stripe {
+  if (!_stripe) _stripe = new Stripe(requireEnv("STRIPE_SECRET_KEY"));
+  return _stripe;
+}
 
-export const PRICE_TO_TIER: Record<string, string> = {
-  [requireEnv("STRIPE_PREMIUM_PRICE_ID")]:   "premium",
-  [requireEnv("STRIPE_ULTRA_PRICE_ID")]:     "ultra",
-  [requireEnv("STRIPE_COUNSELOR_PRICE_ID")]: "counselor",
-};
+let _priceToTier: Record<string, string> | undefined;
+export function getPriceToTier(): Record<string, string> {
+  if (!_priceToTier) {
+    _priceToTier = {
+      [requireEnv("STRIPE_PREMIUM_PRICE_ID")]:   "premium",
+      [requireEnv("STRIPE_ULTRA_PRICE_ID")]:     "ultra",
+      [requireEnv("STRIPE_COUNSELOR_PRICE_ID")]: "counselor",
+    };
+  }
+  return _priceToTier;
+}
 
-export const VALID_PRICE_IDS = new Set(Object.keys(PRICE_TO_TIER));
+export function getValidPriceIds(): Set<string> {
+  return new Set(Object.keys(getPriceToTier()));
+}
 
 export async function createCheckoutSession(
   userId: string,
@@ -22,7 +34,7 @@ export async function createCheckoutSession(
   priceId: string,
   stripeCustomerId?: string | null
 ): Promise<string> {
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     mode: "subscription",
     customer: stripeCustomerId ?? undefined,
     customer_email: stripeCustomerId ? undefined : email,
@@ -36,11 +48,9 @@ export async function createCheckoutSession(
 }
 
 export async function getPortalSession(stripeCustomerId: string): Promise<string> {
-  const session = await stripe.billingPortal.sessions.create({
+  const session = await getStripe().billingPortal.sessions.create({
     customer:   stripeCustomerId,
     return_url: `${requireEnv("NEXT_PUBLIC_APP_URL")}/settings`,
   });
   return session.url;
 }
-
-export { stripe };

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { stripe, PRICE_TO_TIER } from "@/lib/stripe";
+import { getStripe, getPriceToTier } from "@/lib/stripe";
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+    event = getStripe().webhooks.constructEvent(body, sig, webhookSecret);
   } catch {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
@@ -34,11 +34,11 @@ export async function POST(req: Request) {
         if (!customerId || typeof customerId !== "string") break;
         if (!subscriptionId || typeof subscriptionId !== "string") break;
 
-        const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
+        const fullSession = await getStripe().checkout.sessions.retrieve(session.id, {
           expand: ["line_items"],
         });
         const priceId = fullSession.line_items?.data[0]?.price?.id;
-        const tier = PRICE_TO_TIER[priceId ?? ""] ?? "free";
+        const tier = getPriceToTier()[priceId ?? ""] ?? "free";
 
         await db
           .update(users)
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
       case "customer.subscription.updated": {
         const subscription = event.data.object as Stripe.Subscription;
         const priceId = subscription.items.data[0]?.price.id;
-        const tier = PRICE_TO_TIER[priceId ?? ""] ?? "free";
+        const tier = getPriceToTier()[priceId ?? ""] ?? "free";
         const customerId = subscription.customer as string;
 
         await db
