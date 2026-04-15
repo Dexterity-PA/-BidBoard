@@ -1,7 +1,8 @@
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 import { db } from "@/db";
-import { sql } from "drizzle-orm";
+import { users } from "@/db/schema";
+import { eq, sql } from "drizzle-orm";
 
 type ClerkUserEvent = {
   type: "user.created" | "user.updated";
@@ -55,18 +56,31 @@ export async function POST(req: Request) {
     return new Response("No email found on user", { status: 400 });
   }
 
-  // Raw SQL intentionally: Drizzle 0.45.x inserts ALL schema columns (using
-  // DEFAULT for unset ones). Columns not yet migrated (e.g. stripe_customer_id)
-  // would cause "column does not exist". Only touch signup-time columns here.
-  await db.execute(sql`
-    INSERT INTO "users" ("id", "email", "first_name", "last_name")
-    VALUES (${id}, ${primaryEmail}, ${first_name ?? null}, ${last_name ?? null})
-    ON CONFLICT ("id") DO UPDATE SET
-      "email"      = EXCLUDED."email",
-      "first_name" = EXCLUDED."first_name",
-      "last_name"  = EXCLUDED."last_name",
-      "updated_at" = NOW()
-  `);
+  // Check-then-insert/update to avoid hitting the email unique constraint.
+  // ON CONFLICT (id) would fail when a stale row exists with the same email
+  // but a different id (e.g. user deleted and re-signed up).
+  const [existingUser] = await db
+    .select({ id: users.id })
+    .from(users)
+    .where(eq(users.id, id))
+    .limit(1);
+
+  if (existingUser) {
+    await db.execute(sql`
+      UPDATE "users"
+      SET "email"      = ${primaryEmail},
+          "first_name" = ${first_name ?? null},
+          "last_name"  = ${last_name ?? null},
+          "updated_at" = NOW()
+      WHERE "id" = ${id}
+    `);
+  } else {
+    await db.execute(sql`DELETE FROM "users" WHERE "email" = ${primaryEmail}`);
+    await db.execute(sql`
+      INSERT INTO "users" ("id", "email", "first_name", "last_name")
+      VALUES (${id}, ${primaryEmail}, ${first_name ?? null}, ${last_name ?? null})
+    `);
+  }
 
   return new Response("OK", { status: 200 });
 }

@@ -2,7 +2,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { eq, sql } from "drizzle-orm";
 import { db } from "@/db";
-import { studentProfiles } from "@/db/schema";
+import { users, studentProfiles } from "@/db/schema";
 import { onboardingSchema } from "@/lib/onboarding-schema";
 
 export async function POST(req: Request) {
@@ -87,21 +87,41 @@ export async function POST(req: Request) {
   };
 
   try {
-    // Upsert the users row (PK conflict is safe here).
-    // Raw SQL is used intentionally: Drizzle 0.45.x includes ALL schema columns
-    // in every INSERT (using DEFAULT for those not provided). Columns like
-    // stripe_customer_id / stripe_subscription_id may not exist in the DB yet,
-    // causing a "column does not exist" error. This explicit insert touches only
-    // the four columns that are present at signup time.
-    await db.execute(sql`
-      INSERT INTO "users" ("id", "email", "first_name", "last_name")
-      VALUES (${userId}, ${primaryEmail}, ${clerkUser.firstName ?? null}, ${clerkUser.lastName ?? null})
-      ON CONFLICT ("id") DO UPDATE SET
-        "email"      = EXCLUDED."email",
-        "first_name" = EXCLUDED."first_name",
-        "last_name"  = EXCLUDED."last_name",
-        "updated_at" = NOW()
-    `);
+    // Ensure a users row exists with the correct Clerk ID.
+    //
+    // We use check-then-insert/update (same pattern as studentProfiles) instead
+    // of ON CONFLICT because there are two separate unique constraints: PK (id)
+    // and UNIQUE (email). In dev the Clerk webhook often never fires (webhooks
+    // need a public URL), so the row may not exist yet. If a prior test run left
+    // a stale row under the same email but a different id, ON CONFLICT (id)
+    // won't help — the INSERT would hit the email unique constraint instead,
+    // producing a DrizzleQueryError whose message is the SQL text.
+    const [existingUser] = await db
+      .select({ id: users.id })
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1);
+
+    if (existingUser) {
+      // Row already exists for this Clerk ID — update contact info only.
+      await db.execute(sql`
+        UPDATE "users"
+        SET "email"      = ${primaryEmail},
+            "first_name" = ${clerkUser.firstName ?? null},
+            "last_name"  = ${clerkUser.lastName ?? null},
+            "updated_at" = NOW()
+        WHERE "id" = ${userId}
+      `);
+    } else {
+      // No row for this Clerk ID yet. Remove any stale row sharing the email
+      // (e.g. leftover from a deleted account or a failed webhook) so the
+      // INSERT can't hit the email unique constraint.
+      await db.execute(sql`DELETE FROM "users" WHERE "email" = ${primaryEmail}`);
+      await db.execute(sql`
+        INSERT INTO "users" ("id", "email", "first_name", "last_name")
+        VALUES (${userId}, ${primaryEmail}, ${clerkUser.firstName ?? null}, ${clerkUser.lastName ?? null})
+      `);
+    }
 
     // For student_profiles we use an explicit check-then-insert/update instead
     // of ON CONFLICT, because ON CONFLICT requires the unique index to exist in
