@@ -25,10 +25,16 @@ const isOnboardingGated = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
-  if (!isProtectedRoute(req)) return;
+  // Always let Clerk process the session before any early returns.
+  // Returning early from clerkMiddleware before touching `auth` prevents Clerk
+  // from injecting auth headers into the request chain, so auth() in route
+  // handlers would always return { userId: null }. Conditional logic here
+  // instead of an early return keeps the auth context alive for all routes.
 
-  // Enforce authentication on all protected routes.
-  await auth.protect();
+  // Enforce authentication on protected page routes.
+  if (isProtectedRoute(req)) {
+    await auth.protect();
+  }
 
   // After auth: if the user hasn't completed onboarding (no __ob cookie),
   // redirect to /onboarding so they can finish their profile.
