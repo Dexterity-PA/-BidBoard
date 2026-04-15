@@ -1,8 +1,7 @@
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 import { db } from "@/db";
-import { users } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 
 type ClerkUserEvent = {
   type: "user.created" | "user.updated";
@@ -56,23 +55,18 @@ export async function POST(req: Request) {
     return new Response("No email found on user", { status: 400 });
   }
 
-  await db
-    .insert(users)
-    .values({
-      id,
-      email: primaryEmail,
-      firstName: first_name ?? null,
-      lastName: last_name ?? null,
-    })
-    .onConflictDoUpdate({
-      target: users.id,
-      set: {
-        email: primaryEmail,
-        firstName: first_name ?? null,
-        lastName: last_name ?? null,
-        updatedAt: new Date(),
-      },
-    });
+  // Raw SQL intentionally: Drizzle 0.45.x inserts ALL schema columns (using
+  // DEFAULT for unset ones). Columns not yet migrated (e.g. stripe_customer_id)
+  // would cause "column does not exist". Only touch signup-time columns here.
+  await db.execute(sql`
+    INSERT INTO "users" ("id", "email", "first_name", "last_name")
+    VALUES (${id}, ${primaryEmail}, ${first_name ?? null}, ${last_name ?? null})
+    ON CONFLICT ("id") DO UPDATE SET
+      "email"      = EXCLUDED."email",
+      "first_name" = EXCLUDED."first_name",
+      "last_name"  = EXCLUDED."last_name",
+      "updated_at" = NOW()
+  `);
 
   return new Response("OK", { status: 200 });
 }

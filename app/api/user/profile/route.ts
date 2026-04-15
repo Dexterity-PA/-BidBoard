@@ -1,8 +1,8 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { db } from "@/db";
-import { users, studentProfiles } from "@/db/schema";
+import { studentProfiles } from "@/db/schema";
 import { onboardingSchema } from "@/lib/onboarding-schema";
 
 export async function POST(req: Request) {
@@ -88,23 +88,20 @@ export async function POST(req: Request) {
 
   try {
     // Upsert the users row (PK conflict is safe here).
-    await db
-      .insert(users)
-      .values({
-        id:        userId,
-        email:     primaryEmail,
-        firstName: clerkUser.firstName ?? null,
-        lastName:  clerkUser.lastName  ?? null,
-      })
-      .onConflictDoUpdate({
-        target: users.id,
-        set: {
-          email:     primaryEmail,
-          firstName: clerkUser.firstName ?? null,
-          lastName:  clerkUser.lastName  ?? null,
-          updatedAt: new Date(),
-        },
-      });
+    // Raw SQL is used intentionally: Drizzle 0.45.x includes ALL schema columns
+    // in every INSERT (using DEFAULT for those not provided). Columns like
+    // stripe_customer_id / stripe_subscription_id may not exist in the DB yet,
+    // causing a "column does not exist" error. This explicit insert touches only
+    // the four columns that are present at signup time.
+    await db.execute(sql`
+      INSERT INTO "users" ("id", "email", "first_name", "last_name")
+      VALUES (${userId}, ${primaryEmail}, ${clerkUser.firstName ?? null}, ${clerkUser.lastName ?? null})
+      ON CONFLICT ("id") DO UPDATE SET
+        "email"      = EXCLUDED."email",
+        "first_name" = EXCLUDED."first_name",
+        "last_name"  = EXCLUDED."last_name",
+        "updated_at" = NOW()
+    `);
 
     // For student_profiles we use an explicit check-then-insert/update instead
     // of ON CONFLICT, because ON CONFLICT requires the unique index to exist in
