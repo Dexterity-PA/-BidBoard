@@ -1,0 +1,192 @@
+import { db } from "@/db";
+import { applications, scholarships, scholarshipMatches } from "@/db/schema";
+import { eq, and, gte, lte, desc, sql, count, not, inArray } from "drizzle-orm";
+
+// ── Cycle Progress ────────────────────────────────────────────────────────────
+
+/**
+ * Sum of award amounts for all submitted applications (status = 'submitted').
+ * Award amounts are in cents; goal is stored in dollars.
+ */
+export async function getCycleProgress(userId: string) {
+  const [result] = await db
+    .select({
+      totalCents: sql<string>`COALESCE(SUM(COALESCE(${applications.awardAmount}, ${scholarships.amountMax}, ${scholarships.amountMin})), 0)`,
+      submittedCount: count(),
+    })
+    .from(applications)
+    .innerJoin(scholarships, eq(applications.scholarshipId, scholarships.id))
+    .where(
+      and(
+        eq(applications.userId, userId),
+        eq(applications.status, "submitted")
+      )
+    );
+
+  return {
+    appliedCents: Number(result?.totalCents ?? 0),
+    submittedCount: Number(result?.submittedCount ?? 0),
+  };
+}
+
+// ── Next Action ───────────────────────────────────────────────────────────────
+
+export type NextAction =
+  | { type: "urgent_in_progress"; label: string; href: string; scholarshipId: number }
+  | { type: "start_saved"; label: string; href: string; scholarshipId: number }
+  | { type: "high_ev_match"; label: string; href: string; scholarshipId: number }
+  | { type: "new_user"; label: string; href: string; scholarshipId: null }
+  | { type: "browse"; label: string; href: string; scholarshipId: null };
+
+/**
+ * Format an evScore value the same way the Top Matches table does:
+ * evScore is stored as a raw decimal (not cents), so no division by 100.
+ * Mirrors fmtEvScore() in app/dashboard/page.tsx.
+ */
+function fmtEvScore(raw: string | null): string {
+  if (!raw) return "$0";
+  const n = parseFloat(raw);
+  if (isNaN(n)) return "$0";
+  if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `$${(n / 1_000).toFixed(0)}K`;
+  return `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+}
+
+
+export async function getNextAction(userId: string): Promise<NextAction> {
+  const now = new Date();
+  const today = now.toISOString().slice(0, 10);
+  const in3days = new Date(now.getTime() + 3 * 86_400_000).toISOString().slice(0, 10);
+  const in7days = new Date(now.getTime() + 7 * 86_400_000).toISOString().slice(0, 10);
+
+  // Priority 1: in_progress with scholarship deadline within 3 days
+  const [urgentItem] = await db
+    .select({
+      scholarshipId: applications.scholarshipId,
+      scholarshipName: scholarships.name,
+      deadline: scholarships.deadline,
+    })
+    .from(applications)
+    .innerJoin(scholarships, eq(applications.scholarshipId, scholarships.id))
+    .where(
+      and(
+        eq(applications.userId, userId),
+        eq(applications.status, "in_progress"),
+        gte(scholarships.deadline, today),
+        lte(scholarships.deadline, in3days)
+      )
+    )
+    .orderBy(scholarships.deadline)
+    .limit(1);
+
+  if (urgentItem) {
+    const days = urgentItem.deadline
+      ? Math.ceil(
+          (new Date(urgentItem.deadline + "T12:00:00").getTime() - now.getTime()) /
+            86_400_000
+        )
+      : 1;
+    return {
+      type: "urgent_in_progress",
+      label: `Finish ${urgentItem.scholarshipName} — due in ${days} day${days === 1 ? "" : "s"}`,
+      href: `/tracker`,
+      scholarshipId: urgentItem.scholarshipId!,
+    };
+  }
+
+  // Priority 2: saved with scholarship deadline within 7 days
+  const [savedItem] = await db
+    .select({
+      scholarshipId: applications.scholarshipId,
+      scholarshipName: scholarships.name,
+      deadline: scholarships.deadline,
+    })
+    .from(applications)
+    .innerJoin(scholarships, eq(applications.scholarshipId, scholarships.id))
+    .where(
+      and(
+        eq(applications.userId, userId),
+        eq(applications.status, "saved"),
+        gte(scholarships.deadline, today),
+        lte(scholarships.deadline, in7days)
+      )
+    )
+    .orderBy(scholarships.deadline)
+    .limit(1);
+
+  if (savedItem) {
+    const days = savedItem.deadline
+      ? Math.ceil(
+          (new Date(savedItem.deadline + "T12:00:00").getTime() - now.getTime()) /
+            86_400_000
+        )
+      : 1;
+    return {
+      type: "start_saved",
+      label: `Start application: ${savedItem.scholarshipName} — due in ${days} day${days === 1 ? "" : "s"}`,
+      href: `/tracker`,
+      scholarshipId: savedItem.scholarshipId!,
+    };
+  }
+
+  // Priority 3: highest-EV match not yet in tracker.
+  // No minimum EV threshold — whatever the user's best untracked match is,
+  // that's what we surface. The .limit(5) fetches a small window so we can
+  // pick topMatches[0] (best by evScore); the extra rows are unused today
+  // but leave room to add tie-breaking logic later.
+  const trackedRows = await db
+    .select({ scholarshipId: applications.scholarshipId })
+    .from(applications)
+    .where(eq(applications.userId, userId));
+
+  const trackedIds = trackedRows
+    .map((r) => r.scholarshipId)
+    .filter((id): id is number => id !== null);
+
+  const topMatches = await db
+    .select({
+      scholarshipId: scholarshipMatches.scholarshipId,
+      scholarshipName: scholarships.name,
+      evScore: scholarshipMatches.evScore,
+    })
+    .from(scholarshipMatches)
+    .innerJoin(scholarships, eq(scholarshipMatches.scholarshipId, scholarships.id))
+    .where(
+      trackedIds.length > 0
+        ? and(
+            eq(scholarshipMatches.userId, userId),
+            eq(scholarships.isActive, true),
+            not(inArray(scholarshipMatches.scholarshipId, trackedIds))
+          )
+        : and(eq(scholarshipMatches.userId, userId), eq(scholarships.isActive, true))
+    )
+    .orderBy(desc(scholarshipMatches.evScore))
+    .limit(5);
+
+  // New user: no tracker items and no matches
+  if (trackedIds.length === 0 && topMatches.length === 0) {
+    return {
+      type: "new_user",
+      label: "Find your first scholarship",
+      href: "/scholarships",
+      scholarshipId: null,
+    };
+  }
+
+  if (topMatches.length > 0) {
+    const m = topMatches[0];
+    return {
+      type: "high_ev_match",
+      label: `Add ${m.scholarshipName} to tracker — ${fmtEvScore(m.evScore)} expected value`,
+      href: `/scholarship/${m.scholarshipId}`,
+      scholarshipId: m.scholarshipId!,
+    };
+  }
+
+  return {
+    type: "browse",
+    label: "Browse new matches",
+    href: "/scholarships",
+    scholarshipId: null,
+  };
+}

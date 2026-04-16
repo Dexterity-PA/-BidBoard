@@ -41,6 +41,7 @@ export const users = pgTable("users", {
   tier:                   text("tier").default("free"),
   stripeCustomerId:       text("stripe_customer_id"),
   stripeSubscriptionId:   text("stripe_subscription_id"),
+  applicationGoal:        integer("application_goal").default(50000),
   createdAt:              timestamp("created_at").defaultNow(),
   updatedAt:              timestamp("updated_at").defaultNow(),
 });
@@ -71,6 +72,28 @@ export const studentProfiles = pgTable(
     interests:            text("interests").array(),
     disabilities:         boolean("disabilities").default(false),
     militaryFamily:       boolean("military_family").default(false),
+    // Settings page columns
+    graduationYear:           integer("graduation_year"),
+    schoolName:               text("school_name"),
+    minAwardAmount:           integer("min_award_amount"),
+    categoriesOfInterest:     text("categories_of_interest").array(),
+    maxHoursWilling:          integer("max_hours_willing"),
+    preferredDeadlineRange:   text("preferred_deadline_range"),
+    notificationPreferences:  jsonb("notification_preferences")
+      .$type<{
+        deadlines_7d: boolean;
+        deadlines_3d: boolean;
+        deadlines_1d: boolean;
+        weekly_digest: boolean;
+        product_updates: boolean;
+      }>()
+      .default({
+        deadlines_7d: true,
+        deadlines_3d: true,
+        deadlines_1d: false,
+        weekly_digest: true,
+        product_updates: true,
+      }),
     createdAt:            timestamp("created_at").defaultNow(),
     updatedAt:            timestamp("updated_at").defaultNow(),
   },
@@ -245,7 +268,7 @@ export const applications = pgTable(
   "applications",
   {
     id:            serial("id").primaryKey(),
-    userId:        text("user_id").notNull(),
+    userId:        text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
     scholarshipId: integer("scholarship_id").notNull().references(() => scholarships.id, { onDelete: "cascade" }),
     status:        text("status").notNull().default("saved"),
     appliedAt:     timestamp("applied_at"),
@@ -282,3 +305,60 @@ export type ActivityType =
   | "status_changed"
   | "essay_created"
   | "application_submitted";
+
+// ---------------------------------------------------------------------------
+// user_email_preferences
+// ---------------------------------------------------------------------------
+export const userEmailPreferences = pgTable("user_email_preferences", {
+  userId:            text("user_id").primaryKey().references(() => users.id, { onDelete: "cascade" }),
+  welcome:           boolean("welcome").default(true).notNull(),
+  deadlineReminders: boolean("deadline_reminders").default(true).notNull(),
+  newMatches:        boolean("new_matches").default(true).notNull(),
+  statusChanges:     boolean("status_changes").default(true).notNull(),
+  weeklyDigest:      boolean("weekly_digest").default(true).notNull(),
+  paymentEvents:     boolean("payment_events").default(true).notNull(),
+  createdAt:         timestamp("created_at").defaultNow(),
+  updatedAt:         timestamp("updated_at").defaultNow(),
+});
+
+// ---------------------------------------------------------------------------
+// sent_notifications  (dedupe — prevents re-sending the same reminder)
+// ---------------------------------------------------------------------------
+export const sentNotifications = pgTable(
+  "sent_notifications",
+  {
+    id:            serial("id").primaryKey(),
+    userId:        text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+    scholarshipId: integer("scholarship_id").references(() => scholarships.id, { onDelete: "cascade" }),
+    type:          text("type").notNull(),
+    sentAt:        timestamp("sent_at").defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("sent_notifs_with_scholarship")
+      .on(t.userId, t.scholarshipId, t.type)
+      .where(sql`${t.scholarshipId} IS NOT NULL`),
+    uniqueIndex("sent_notifs_without_scholarship")
+      .on(t.userId, t.type)
+      .where(sql`${t.scholarshipId} IS NULL`),
+    index("idx_sent_notifs_user").on(t.userId),
+  ]
+);
+
+// ---------------------------------------------------------------------------
+// notifications_log  (audit — every send attempt)
+// ---------------------------------------------------------------------------
+export const notificationsLog = pgTable(
+  "notifications_log",
+  {
+    id:       serial("id").primaryKey(),
+    userId:   text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+    type:     text("type").notNull(),
+    status:   text("status").notNull(),
+    error:    text("error"),
+    metadata: jsonb("metadata").$type<Record<string, unknown>>(),
+    sentAt:   timestamp("sent_at").defaultNow(),
+  },
+  (t) => [
+    index("idx_notifications_log_user_sent").on(t.userId, t.sentAt),
+  ]
+);

@@ -2,9 +2,10 @@ export const dynamic = "force-dynamic";
 
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "@/db";
-import { scholarships, scholarshipMatches, studentEssays, applications } from "@/db/schema";
+import { scholarships, scholarshipMatches, studentEssays, applications, users } from "@/db/schema";
 import { eq, count, and, gte, lte, lt, desc, asc, sql, notInArray } from "drizzle-orm";
 import Link from "next/link";
+import { Suspense } from "react";
 import { requireOnboarding } from "@/lib/requireOnboarding";
 import { SaveToTrackerButton } from "@/app/tracker/_components/save-to-tracker-button";
 import { fmtAmount, evScoreBadge } from "./_components/dashboard-utils";
@@ -12,6 +13,10 @@ import { DeadlineTimeline } from "./_components/DeadlineTimeline";
 import { NewMatchesFeed, type NewMatchItem } from "./_components/NewMatchesFeed";
 import { ActivityHeatmap } from "./_components/ActivityHeatmap";
 import { WinRateCard } from "./_components/WinRateCard";
+import { getCycleProgress, getNextAction } from "@/lib/dashboard/queries";
+import { CycleProgressRing } from "./_components/cycle-progress-ring";
+import { NextActionCard } from "./_components/next-action-card";
+import { WidgetsSkeleton } from "./_components/widgets-skeleton";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -159,6 +164,9 @@ export default async function DashboardPage() {
     topMatches,
     deadlineTimelineItems,
     recentMatchesResult,
+    cycleProgress,
+    nextAction,
+    userGoalResult,
   ] = await Promise.all([
     db.select({ count: count() })
       .from(scholarshipMatches)
@@ -278,13 +286,45 @@ export default async function DashboardPage() {
       )
       .orderBy(desc(scholarshipMatches.matchScore))
       .limit(5),
+    // New widgets
+    getCycleProgress(userId),
+    getNextAction(userId),
+    db.select({ applicationGoal: users.applicationGoal })
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1),
   ]);
 
-  const matchCount        = matchCountResult[0]?.count ?? 0;
-  const totalCents        = totalEvResult[0]?.total ?? null;
-  const essayCount        = essayCountResult[0]?.count ?? 0;
+  const matchCount         = matchCountResult[0]?.count ?? 0;
+  const totalCents         = totalEvResult[0]?.total ?? null;
+  const essayCount         = essayCountResult[0]?.count ?? 0;
   const deadlinesThisMonth = deadlinesThisMonthResult[0]?.count ?? 0;
-  const hasMatches        = matchCount > 0;
+  const hasMatches         = matchCount > 0;
+  const applicationGoal    = userGoalResult[0]?.applicationGoal ?? 50_000;
+
+  // Shape timeline items
+  const timelineItems = deadlineTimelineItems.map((r) => ({
+    id:            r.id,
+    scholarshipId: r.scholarshipId!,
+    name:          r.name,
+    deadline:      r.deadline ?? "",
+    status:        r.status,
+    awardCents:    r.awardAmount ?? r.amountMax ?? r.amountMin ?? 0,
+  }));
+
+  // Shape new matches items
+  const recentMatches: NewMatchItem[] = recentMatchesResult.map((r) => ({
+    id:         r.id,
+    name:       r.name,
+    amountMin:  r.amountMin,
+    amountMax:  r.amountMax,
+    matchScore: r.matchScore,
+    evScore:    r.evScore,
+    createdAt:  r.createdAt ?? now,
+    isSaved:    r.isSaved ?? false,
+  }));
+
+  const recentMatchCount = recentMatchesResult.length;
 
   // Shape timeline items
   const timelineItems = deadlineTimelineItems.map((r) => ({
@@ -402,6 +442,35 @@ export default async function DashboardPage() {
 
   return (
     <div className="p-6 lg:p-8 space-y-6">
+
+      {/* ── Cycle progress + Next action ── */}
+      <Suspense fallback={<WidgetsSkeleton />}>
+        <div className="flex flex-col gap-4 sm:flex-row">
+
+          {/* Cycle Progress Ring */}
+          <div className="flex-1 rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+            <div className="border-b border-gray-100 px-5 py-4">
+              <h2 className="text-sm font-semibold text-gray-900">Cycle Progress</h2>
+              <p className="mt-0.5 text-xs text-gray-500">Total applied for this cycle</p>
+            </div>
+            <CycleProgressRing
+              appliedCents={cycleProgress.appliedCents}
+              submittedCount={cycleProgress.submittedCount}
+              goal={applicationGoal}
+            />
+          </div>
+
+          {/* Next Action */}
+          <div className="flex-1 rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+            <div className="border-b border-gray-100 px-5 py-4">
+              <h2 className="text-sm font-semibold text-gray-900">Next Action</h2>
+              <p className="mt-0.5 text-xs text-gray-500">Your most important task right now</p>
+            </div>
+            <NextActionCard action={nextAction} />
+          </div>
+
+        </div>
+      </Suspense>
 
       {/* ── Stats row ── */}
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
@@ -568,6 +637,12 @@ export default async function DashboardPage() {
         <ActivityHeatmap userId={userId} />
         <WinRateCard userId={userId} />
         </div>
+      </div>
+
+      {/* ── New widgets: timeline + recent matches ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <DeadlineTimeline items={timelineItems} today={today} />
+        <NewMatchesFeed matches={recentMatches} totalCount={recentMatchCount} now={now} />
       </div>
 
       {/* ── New widgets: timeline + recent matches ── */}

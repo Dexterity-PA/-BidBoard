@@ -6,6 +6,7 @@ import { applications, scholarships, scholarshipMatches } from "@/db/schema";
 import type { StatusHistoryEntry } from "@/db/schema";
 import { eq, and, inArray } from "drizzle-orm";
 import { logActivity } from "@/lib/activity";
+import { sendStatusChangeEmail } from "@/lib/email/send/status-change";
 
 const STATUS_LABELS: Record<string, string> = {
   saved:       "Added to Tracker",
@@ -125,6 +126,13 @@ export async function updateApplicationStatus(id: number, status: string) {
   await logActivity(userId, "status_changed", id);
   if (status === "submitted") {
     await logActivity(userId, "application_submitted", id);
+  // Fire status-change email for notable transitions only — void to keep UI fast
+  if (status === "submitted" || status === "won" || status === "lost") {
+    void sendStatusChangeEmail({
+      userId,
+      applicationId: id,
+      newStatus: status as "submitted" | "won" | "lost",
+    });
   }
 }
 
