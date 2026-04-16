@@ -25,13 +25,13 @@ const TOKENS = [
 
 // Each token fades in over a scroll window [start, end] within [0, 1]
 const TOKEN_WINDOWS: [number, number][] = [
-  [0.08, 0.20],
-  [0.22, 0.32],
-  [0.34, 0.44],
-  [0.46, 0.56],
-  [0.58, 0.68],
-  [0.70, 0.78],
-  [0.80, 0.92],
+  [0.05, 0.15],
+  [0.15, 0.25],
+  [0.25, 0.35],
+  [0.35, 0.45],
+  [0.45, 0.55],
+  [0.55, 0.63],
+  [0.63, 0.75],
 ]
 
 function Token({
