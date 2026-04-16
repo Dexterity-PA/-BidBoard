@@ -151,6 +151,7 @@ export const scholarships = pgTable(
     opensDate:                date("opens_date"),
     winnersAnnouncedDate:     date("winners_announced_date"),
     category:                 text("category"),
+    slug:                     text("slug").notNull(),
   },
   (t) => [
     // idx_scholarships_deadline — partial index on active scholarships
@@ -161,6 +162,7 @@ export const scholarships = pgTable(
     index("idx_scholarships_state").using("gin", t.eligibleStates),
     index("idx_scholarships_majors").using("gin", t.eligibleMajors),
     index("idx_scholarships_archetype").on(t.essayArchetype),
+    uniqueIndex("idx_scholarships_slug").on(t.slug),
   ]
 );
 
