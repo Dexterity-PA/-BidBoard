@@ -64,6 +64,16 @@ export async function getScholarshipBySlug(slug: string) {
 ```
 Single indexed SELECT. Returns `undefined` if not found.
 
+### `lib/scholarships/format.ts`
+Moves shared helpers out of the (soon-deleted) `app/scholarship/[id]/page.tsx`:
+- `formatAmount(amountMin, amountMax): string`
+- `daysUntil(dateStr): number | null`
+- `formatDate(dateStr): string`
+
+Also exports shared types: `ScholarshipRow`, `MatchData`, `SimilarScholarship`.
+
+The old `/scholarship/[id]/` route (Option A deletion target) will lose these exports when deleted — keeping them in `lib/` ensures no other file has a doomed import dependency.
+
 ---
 
 ## Route Files
@@ -72,7 +82,7 @@ Single indexed SELECT. Returns `undefined` if not found.
 
 - **Server component** — no `"use client"`
 - `export const revalidate = 3600` (ISR, 1-hour TTL)
-- `generateStaticParams`: SELECT top 100 scholarships by ID (proxy for most-viewed until real view tracking exists) and return their slugs
+- `generateStaticParams`: SELECT top 100 scholarships by ID (proxy for most-viewed — TODO: swap to view-count column once view tracking is implemented) and return their slugs
 - `generateMetadata`: title `"{Name} Scholarship — {Award} | BidBoard"`, description from scholarship summary
 
 **Param handling:**
@@ -88,9 +98,7 @@ if param is string  → SELECT by slug → if not found: notFound()
 
 **Closed scholarship handling**: `isActive === false` → render page with a `<ClosedBanner />` and no Apply CTA.
 
-**Imports reused from existing page** (avoid duplication):
-- `formatAmount`, `daysUntil`, `formatDate` from `app/scholarship/[id]/page.tsx`
-- `MatchData`, `SimilarScholarship`, `ScholarshipRow` types from the same
+**Imports** — all helpers and types come from `lib/scholarships/format.ts`, not the old page (which is being deleted).
 
 ### `app/scholarships/[slug]/loading.tsx`
 Skeleton that matches the two-column layout: a tall left-column skeleton + a narrow right sidebar skeleton. Tailwind `animate-pulse` divs, no external deps.
@@ -148,7 +156,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 }
 ```
 
-Static pages (home, pricing, etc.) are added as hardcoded entries. The canonical domain string should live in an `env` var (`NEXT_PUBLIC_SITE_URL`) — fall back to `https://bidboard.app` if unset.
+Static pages (home, pricing, etc.) are added as hardcoded entries. The canonical domain string reads from `process.env.NEXT_PUBLIC_SITE_URL`, falling back to `https://bidboard.app`. Implementation plan includes adding `NEXT_PUBLIC_SITE_URL=https://bidboard.app` to `.env.example`.
 
 ---
 
