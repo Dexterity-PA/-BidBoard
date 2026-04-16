@@ -145,7 +145,27 @@ Build a `Map<string, number>` keyed by ISO date string (`YYYY-MM-DD`).
 
 ### 2.6 Tooltip
 
-Each cell gets `title="N actions on Mon, Apr 14"`. Native browser tooltip — no JavaScript, component stays a pure server component.
+**Not** a native `title` attribute — too slow (500ms delay), inconsistent styling, cheap feel.
+
+**Approach**: split the heatmap into two files:
+- `ActivityHeatmap.tsx` — async server component: fetches data + computes streak, passes serialized `dayCounts: Record<string, number>` and `dates: string[]` as props to the grid
+- `ActivityHeatmapGrid.tsx` — `"use client"` component: renders the 84-cell grid with CSS tooltips
+
+Each cell is `relative group`:
+```jsx
+<div className="relative group h-[12px] w-[12px] rounded-sm {colorClass}">
+  <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-1 -translate-x-1/2
+                   whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-[10px] text-white
+                   opacity-0 transition-opacity duration-100 group-hover:opacity-100">
+    {count} action{count !== 1 ? 's' : ''} on {formatted date}
+    <span className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+  </span>
+</div>
+```
+
+- Tooltip appears above cell by default (always-above is fine — the heatmap sits low in the right column)
+- `z-50` ensures it renders above siblings; the heatmap card must **not** have `overflow-hidden`
+- Date format: `"Apr 14, 2026"` via `toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })`
 
 ### 2.7 Rendered structure
 
@@ -272,7 +292,8 @@ The `w-full lg:w-64 shrink-0` sizing moves from the Quick Actions div to the out
 | `lib/activity.ts` | New file — `logActivity` helper |
 | `app/actions/tracker.ts` | Call `logActivity` in `addApplication` + `updateApplicationStatus` |
 | `app/api/essays/route.ts` | Call `logActivity` in POST handler |
-| `app/dashboard/_components/ActivityHeatmap.tsx` | New server component |
+| `app/dashboard/_components/ActivityHeatmap.tsx` | New async server component (fetches data, renders wrapper) |
+| `app/dashboard/_components/ActivityHeatmapGrid.tsx` | New client component (renders grid + CSS tooltips) |
 | `app/dashboard/_components/WinRateCard.tsx` | New server component |
 | `app/dashboard/page.tsx` | Wrap right column, add data queries, render new components |
 
