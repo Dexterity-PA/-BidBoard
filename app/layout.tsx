@@ -23,6 +23,21 @@ export const metadata: Metadata = {
   title: "BidBoard — Scholarship strategy, engineered.",
   description:
     "BidBoard scores every scholarship by expected value — award × win probability ÷ hours. Stop guessing. Start winning.",
+  icons: { icon: "/icon.svg" },
+  openGraph: {
+    title: "BidBoard — Scholarship strategy, engineered.",
+    description:
+      "BidBoard scores every scholarship by expected value — award × win probability ÷ hours. Stop guessing. Start winning.",
+    url: "https://bidboard.app",
+    siteName: "BidBoard",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BidBoard — Scholarship strategy, engineered.",
+    description:
+      "BidBoard scores every scholarship by expected value — award × win probability ÷ hours. Stop guessing. Start winning.",
+  },
 };
 
 export default function RootLayout({
