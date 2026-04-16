@@ -107,7 +107,7 @@ export default function FormulaSection() {
   return (
     <div
       ref={outerRef}
-      style={{ height: reduced ? 'auto' : '400vh', position: 'relative' }}
+      style={{ height: reduced ? 'auto' : '200vh', position: 'relative' }}
     >
       {/* Dot grid fades in as scroll progresses */}
       <motion.div
