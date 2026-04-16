@@ -326,30 +326,6 @@ export default async function DashboardPage() {
 
   const recentMatchCount = recentMatchesResult.length;
 
-  // Shape timeline items
-  const timelineItems = deadlineTimelineItems.map((r) => ({
-    id:            r.id,
-    scholarshipId: r.scholarshipId!,
-    name:          r.name,
-    deadline:      r.deadline ?? "",
-    status:        r.status,
-    awardCents:    r.awardAmount ?? r.amountMax ?? r.amountMin ?? 0,
-  }));
-
-  // Shape new matches items
-  const recentMatches: NewMatchItem[] = recentMatchesResult.map((r) => ({
-    id:         r.id,
-    name:       r.name,
-    amountMin:  r.amountMin,
-    amountMax:  r.amountMax,
-    matchScore: r.matchScore,
-    evScore:    r.evScore,
-    createdAt:  r.createdAt ?? now,
-    isSaved:    r.isSaved ?? false,
-  }));
-
-  const recentMatchCount = recentMatchesResult.length;
-
   // ── Stats ─────────────────────────────────────────────────────────────────
 
   const stats = [

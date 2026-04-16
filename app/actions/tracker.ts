@@ -126,6 +126,7 @@ export async function updateApplicationStatus(id: number, status: string) {
   await logActivity(userId, "status_changed", id);
   if (status === "submitted") {
     await logActivity(userId, "application_submitted", id);
+  }
   // Fire status-change email for notable transitions only — void to keep UI fast
   if (status === "submitted" || status === "won" || status === "lost") {
     void sendStatusChangeEmail({
