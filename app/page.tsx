@@ -280,6 +280,7 @@ const proofStats = [
   { value: "$2.4M", label: "in scholarships tracked" },
   { value: "500+",  label: "scholarships in database" },
   { value: "12",    label: "avg. high-EV matches found" },
+  { value: "Free",  label: "to start, no credit card" },
 ];
 
 function SocialProofBar() {
@@ -880,7 +881,7 @@ const testimonials = [
   },
   {
     quote:
-      "My counselor put our whole cohort on BidBoard. I found 9 matches in my first session.",
+      "My counselor put our whole cohort on BidBoard. Average student found 9 matches in their first session.",
     name: "Priya K.",
     school: "Stanford '27",
     won: "$12,000",
@@ -889,7 +890,7 @@ const testimonials = [
 
 function Testimonials() {
   return (
-    <section style={{ background: C.surface1, padding: "100px 24px" }}>
+    <section style={{ background: C.white, padding: "100px 24px" }}>
       <ScrollReveal>
         <h2
           className="mkt-section-h2"
@@ -1511,14 +1512,16 @@ export default function LandingPage() {
   return (
     <div style={{ background: C.white }}>
       <Nav />
-      <Hero />
-      <SocialProofBar />
-      <HowItWorks />
-      <FeatureDeepDive />
-      <Testimonials />
-      <Pricing />
-      <ForCounselorsCTA />
-      <FinalCTA />
+      <main>
+        <Hero />
+        <SocialProofBar />
+        <HowItWorks />
+        <FeatureDeepDive />
+        <Testimonials />
+        <Pricing />
+        <ForCounselorsCTA />
+        <FinalCTA />
+      </main>
       <Footer />
     </div>
   );
