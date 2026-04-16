@@ -6,6 +6,7 @@ import { scholarships, scholarshipMatches, studentEssays } from "@/db/schema";
 import { eq, count, and, gte, lt, desc, asc, sql } from "drizzle-orm";
 import Link from "next/link";
 import { requireOnboarding } from "@/lib/requireOnboarding";
+import { SaveToTrackerButton } from "@/app/tracker/_components/save-to-tracker-button";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -217,6 +218,7 @@ export default async function DashboardPage() {
         evPerHour:      scholarshipMatches.evPerHour,
         estimatedHours: scholarshipMatches.estimatedHours,
         matchScore:     scholarshipMatches.matchScore,
+        isSaved:        scholarshipMatches.isSaved,
       })
       .from(scholarshipMatches)
       .innerJoin(scholarships, eq(scholarshipMatches.scholarshipId, scholarships.id))
@@ -418,23 +420,29 @@ export default async function DashboardPage() {
                           )}
                         </td>
                         <td className="px-4 py-3.5 text-right">
-                          {m.applicationUrl ? (
-                            <a
-                              href={m.applicationUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-indigo-100"
-                            >
-                              Apply
-                            </a>
-                          ) : (
-                            <Link
-                              href={`/scholarships/${m.id}`}
-                              className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-100"
-                            >
-                              View
-                            </Link>
-                          )}
+                          <div className="flex items-center justify-end gap-1.5">
+                            <SaveToTrackerButton
+                              scholarshipId={m.id}
+                              isSaved={m.isSaved ?? false}
+                            />
+                            {m.applicationUrl ? (
+                              <a
+                                href={m.applicationUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-indigo-100"
+                              >
+                                Apply
+                              </a>
+                            ) : (
+                              <Link
+                                href={`/scholarships/${m.id}`}
+                                className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-100"
+                              >
+                                View
+                              </Link>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     );

@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { SaveToTrackerButton } from "@/app/tracker/_components/save-to-tracker-button";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -487,14 +488,20 @@ export default function MyScholarshipsPage() {
                         </span>
                       </td>
 
-                      {/* Apply button */}
+                      {/* Actions: Save to Tracker + View */}
                       <td className="px-4 py-3.5 text-right">
-                        <Link
-                          href={`/scholarships/${m.scholarshipId}`}
-                          className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-indigo-100"
-                        >
-                          View →
-                        </Link>
+                        <div className="flex items-center justify-end gap-1.5">
+                          <SaveToTrackerButton
+                            scholarshipId={parseInt(m.scholarshipId, 10)}
+                            isSaved={m.isSaved ?? false}
+                          />
+                          <Link
+                            href={`/scholarships/${m.scholarshipId}`}
+                            className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-indigo-100"
+                          >
+                            View →
+                          </Link>
+                        </div>
                       </td>
                     </tr>
                   );

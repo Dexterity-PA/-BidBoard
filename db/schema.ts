@@ -224,3 +224,38 @@ export const deadlineReminders = pgTable("deadline_reminders", {
   isSent:       boolean("is_sent").default(false),
   createdAt:    timestamp("created_at").defaultNow(),
 });
+
+// ---------------------------------------------------------------------------
+// applications  (tracker feature)
+// ---------------------------------------------------------------------------
+export type StatusHistoryEntry = {
+  status: string;
+  at: string;   // ISO timestamp
+  label: string;
+};
+
+export const applications = pgTable(
+  "applications",
+  {
+    id:            serial("id").primaryKey(),
+    userId:        text("user_id").notNull(),
+    scholarshipId: integer("scholarship_id").notNull().references(() => scholarships.id, { onDelete: "cascade" }),
+    status:        text("status").notNull().default("saved"),
+    appliedAt:     timestamp("applied_at"),
+    deadline:      date("deadline"),
+    awardAmount:   integer("award_amount"),
+    notes:         text("notes"),
+    essayDraftIds: text("essay_draft_ids").array(),
+    reminderSent:  boolean("reminder_sent").notNull().default(false),
+    statusHistory: jsonb("status_history").notNull().default(sql`'[]'::jsonb`),
+    createdAt:     timestamp("created_at").notNull().defaultNow(),
+    updatedAt:     timestamp("updated_at").notNull().defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("applications_user_scholarship_unique").on(t.userId, t.scholarshipId),
+    index("idx_applications_user_id").on(t.userId),
+  ]
+);
+
+export type Application = typeof applications.$inferSelect;
+export type NewApplication = typeof applications.$inferInsert;
