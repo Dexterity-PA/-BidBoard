@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import ParticleCanvas from './ParticleCanvas'
 
@@ -99,26 +100,26 @@ export default function FinalCTASection() {
         </p>
 
         {/* CTA button */}
-        <a href="/sign-up" style={{ textDecoration: 'none' }}>
-          <button
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            style={{
-              background: hovered ? '#4338CA' : INDIGO,
-              color: '#FFFFFF',
-              fontFamily: SANS,
-              fontSize: 16,
-              fontWeight: 600,
-              padding: '14px 32px',
-              borderRadius: 10,
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'background 0.15s ease',
-            }}
-          >
-            Get started free
-          </button>
-        </a>
+        <Link
+          href="/sign-up"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={{
+            display: 'inline-block',
+            textDecoration: 'none',
+            background: hovered ? '#4338CA' : INDIGO,
+            color: '#FFFFFF',
+            fontFamily: SANS,
+            fontSize: 16,
+            fontWeight: 600,
+            padding: '14px 32px',
+            borderRadius: 10,
+            cursor: 'pointer',
+            transition: 'background 0.15s ease',
+          }}
+        >
+          Get started free
+        </Link>
       </motion.div>
     </section>
   )
