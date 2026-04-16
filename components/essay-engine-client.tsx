@@ -115,7 +115,7 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
   if (essays.length === 0) {
     return (
       <div className="p-6 lg:p-8">
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-300 bg-white py-24 text-center">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white shadow-sm py-24 text-center">
           <IconEmpty className="h-14 w-14 text-gray-300 mb-5" />
           <h2 className="text-base font-semibold text-gray-900 mb-1">No essays yet</h2>
           <p className="text-sm text-gray-500 mb-6 max-w-xs">
@@ -142,12 +142,12 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
         {/* Header + Add button */}
         <div className="border-b border-gray-100 px-4 py-3.5">
           <div className="flex items-center justify-between mb-3">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
               Library ({essays.length})
             </p>
             <Link
               href="/essays/new"
-              className="flex items-center gap-1 rounded-md bg-indigo-600 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-indigo-700"
+              className="flex items-center gap-1 rounded-lg bg-indigo-600 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-indigo-700"
             >
               <span className="text-lg leading-none">+</span> Add
             </Link>
@@ -227,7 +227,7 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
         {selected ? (
           <>
             {/* Essay header */}
-            <div className="border-b border-gray-200 bg-white px-8 py-5">
+            <div className="border-b border-gray-100 bg-white px-5 py-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
                   <h1 className="text-lg font-bold text-gray-900 leading-snug">{selected.title ?? "Untitled"}</h1>
@@ -263,7 +263,7 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
               {/* Prompt snippet */}
               {selected.prompt && (
                 <div className="mt-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-gray-400 mb-1">
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-500 mb-1">
                     Original Prompt
                   </p>
                   <p className="text-sm text-gray-700 leading-relaxed">{selected.prompt}</p>
@@ -272,7 +272,7 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
             </div>
 
             {/* Essay body */}
-            <div className="flex-1 overflow-auto px-8 py-6">
+            <div className="flex-1 overflow-auto px-5 py-6">
               {selected.content ? (
                 <div className="prose prose-sm prose-gray max-w-none">
                   {selected.content.split("\n\n").map((para, i) => (
