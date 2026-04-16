@@ -913,7 +913,7 @@ function Testimonials() {
         }}
       >
         {testimonials.map((t, i) => (
-          <ScrollReveal key={t.name} delay={i * 80}>
+          <ScrollReveal key={i} delay={i * 80}>
             <div
               style={{
                 background: C.white,
@@ -1105,7 +1105,7 @@ function Pricing() {
               )}
 
               {/* Tier name */}
-              <p
+              <h3
                 style={{
                   fontFamily: sans,
                   fontSize: 12,
@@ -1117,7 +1117,7 @@ function Pricing() {
                 }}
               >
                 {tier.name}
-              </p>
+              </h3>
 
               {/* Price */}
               <div
