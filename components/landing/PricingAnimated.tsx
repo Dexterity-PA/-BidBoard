@@ -65,7 +65,7 @@ const pricingTiers: PricingTier[] = [
 ];
 
 export default function PricingAnimated() {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotion() ?? false;
 
   return (
     <section id="pricing" style={{ background: C.white, padding: "100px 24px" }}>
@@ -82,8 +82,8 @@ export default function PricingAnimated() {
           textAlign: "center",
           marginBottom: 64,
         }}
-        initial={reduced ? {} : { opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={reduced ? false : { opacity: 0, y: 20 }}
+        whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
