@@ -15,7 +15,7 @@ import Link from 'next/link'
 // ── Design tokens ──────────────────────────────────────────────
 const INDIGO    = '#4F46E5'
 const INDIGO_LT = '#818CF8'   // lighter indigo — readable on dark card
-const BG        = '#FFFFFF'
+const BG        = '#F5F4FF'
 const CARD_BG   = '#1c1c1e'   // dark card for contrast on white hero
 const SANS      = "var(--font-dm-sans), -apple-system, sans-serif"
 const SERIF     = "var(--font-instrument-serif), Georgia, serif"
@@ -49,8 +49,7 @@ function ParticleCanvas({ reduced }: { reduced: boolean }) {
       r:  Math.random() * 1.4 + 0.5,
       vx: (Math.random() - 0.5) * 0.2,
       vy: (Math.random() - 0.5) * 0.2,
-      // Low alpha — barely visible on white
-      a:  Math.random() * 0.12 + 0.04,
+      a:  Math.random() * 0.2 + 0.2,
     }))
 
     let raf: number
@@ -359,15 +358,16 @@ export default function HeroSection() {
         padding: 'clamp(100px,11vh,130px) 24px clamp(80px,9vh,100px)',
       }}
     >
-      {/* Subtle indigo/lavender radial gradients */}
+      {/* Indigo/violet radial gradient blobs */}
       <div
         aria-hidden
         style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
           background: `
-            radial-gradient(ellipse 80% 50% at 50% -8%,  rgba(79,70,229,0.06) 0%, transparent 65%),
-            radial-gradient(ellipse 50% 40% at 10% 90%, rgba(99,102,241,0.04) 0%, transparent 60%)
+            radial-gradient(ellipse 700px 500px at 55% -5%,  rgba(99,102,241,0.42) 0%, transparent 65%),
+            radial-gradient(ellipse 500px 450px at 8% 88%, rgba(139,92,246,0.35) 0%, transparent 60%)
           `,
+          filter: 'blur(90px)',
         }}
       />
 
@@ -377,14 +377,14 @@ export default function HeroSection() {
           aria-hidden
           animate={{
             scale:   [1, 1.14, 1],
-            opacity: [0.04, 0.09, 0.04],
+            opacity: [0.3, 0.45, 0.3],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           style={{
             position: 'absolute',
             top: '-20%', left: '50%', translateX: '-50%',
             width: 900, height: 700,
-            background: 'radial-gradient(ellipse, rgba(79,70,229,0.12) 0%, transparent 55%)',
+            background: 'radial-gradient(ellipse, rgba(79,70,229,0.5) 0%, transparent 55%)',
             pointerEvents: 'none',
             willChange: 'transform, opacity',
           }}
