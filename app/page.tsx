@@ -418,6 +418,446 @@ function HowItWorks() {
   );
 }
 
+/* ─── Feature Deep-Dive helpers ────────────────────────────────── */
+function FeatureText({
+  overline,
+  headline,
+  body: bodyText,
+}: {
+  overline: string;
+  headline: string;
+  body: string;
+}) {
+  return (
+    <div>
+      <p
+        style={{
+          fontFamily: sans,
+          fontSize: 12,
+          fontWeight: 700,
+          color: C.indigo,
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+          margin: "0 0 12px",
+        }}
+      >
+        {overline}
+      </p>
+      <h2
+        className="mkt-feature-h2"
+        style={{ ...displayH(C.textPrimary, 40), marginBottom: 20 }}
+      >
+        {headline}
+      </h2>
+      <p style={{ ...body(C.textMuted), maxWidth: 440, lineHeight: 1.65 }}>{bodyText}</p>
+    </div>
+  );
+}
+
+/* Mockup A — Rankings list */
+function EVScoringMockup() {
+  const rows = [
+    { name: "Gates Millennium Scholars",    ev: "1,200", award: "$40K", win: "18%", hi: true },
+    { name: "Jack Kent Cooke Foundation",   ev: "940",   award: "$30K", win: "12%", hi: false },
+    { name: "Coca-Cola Scholars Program",   ev: "720",   award: "$20K", win: "15%", hi: false },
+  ];
+  return (
+    <div
+      style={{
+        border: `1px solid ${C.border}`,
+        borderRadius: 16,
+        background: C.white,
+        padding: 24,
+        boxShadow: "0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+      }}
+    >
+      <div
+        style={{
+          fontFamily: sans,
+          fontSize: 11,
+          fontWeight: 700,
+          color: C.textFaint,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          marginBottom: 16,
+        }}
+      >
+        Your Matches — sorted by EV Score
+      </div>
+      {rows.map((r) => (
+        <div
+          key={r.name}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "10px 12px",
+            borderRadius: 10,
+            marginBottom: 6,
+            background: r.hi ? "#EEF2FF" : "transparent",
+            border: r.hi ? "1px solid #C7D2FE" : `1px solid ${C.border}`,
+          }}
+        >
+          <div>
+            <div
+              style={{
+                fontFamily: sans,
+                fontSize: 13,
+                fontWeight: 500,
+                color: C.textPrimary,
+              }}
+            >
+              {r.name}
+            </div>
+            <div style={{ fontFamily: sans, fontSize: 12, color: C.textMuted, marginTop: 2 }}>
+              {r.award} award · {r.win} win rate
+            </div>
+          </div>
+          <div
+            style={{
+              fontFamily: sans,
+              fontSize: 22,
+              fontWeight: 700,
+              color: C.indigo,
+              fontVariantNumeric: "tabular-nums",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {r.ev}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* Mockup B — Essay adapter */
+function EssayMockup() {
+  return (
+    <div
+      style={{
+        border: `1px solid ${C.border}`,
+        borderRadius: 16,
+        background: C.white,
+        padding: 24,
+        boxShadow: "0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          gap: 12,
+          alignItems: "center",
+        }}
+      >
+        {/* Source */}
+        <div
+          style={{
+            background: C.surface1,
+            borderRadius: 10,
+            padding: 14,
+            border: `1px solid ${C.border}`,
+          }}
+        >
+          <div
+            style={{
+              fontFamily: sans,
+              fontSize: 10,
+              fontWeight: 700,
+              color: C.textFaint,
+              textTransform: "uppercase",
+              letterSpacing: "0.07em",
+              marginBottom: 8,
+            }}
+          >
+            Source Essay
+          </div>
+          <div
+            style={{
+              fontFamily: sans,
+              fontSize: 12,
+              color: "#374151",
+              lineHeight: 1.65,
+            }}
+          >
+            &ldquo;Growing up in a small town, I learned that opportunity
+            doesn&apos;t come to you — you build it...&rdquo;
+          </div>
+        </div>
+
+        {/* Arrow */}
+        <div style={{ color: C.indigo, fontSize: 22, fontWeight: 300 }}>→</div>
+
+        {/* Adapted */}
+        <div
+          style={{
+            background: "#EEF2FF",
+            borderRadius: 10,
+            padding: 14,
+            border: "1px solid #C7D2FE",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: sans,
+              fontSize: 10,
+              fontWeight: 700,
+              color: C.indigo,
+              textTransform: "uppercase",
+              letterSpacing: "0.07em",
+              marginBottom: 8,
+            }}
+          >
+            Adapted for Gates
+          </div>
+          <div
+            style={{
+              fontFamily: sans,
+              fontSize: 12,
+              color: "#374151",
+              lineHeight: 1.65,
+            }}
+          >
+            &ldquo;The Gates Foundation&apos;s mission resonates. Growing up in
+            a small town, I learned that access to opportunity is never
+            guaranteed...&rdquo;
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Mockup C — Local scholarship discovery */
+function LongTailMockup() {
+  const items = [
+    { name: "Arizona Community Foundation",  badge: "Local",    bColor: "#10B981", bBg: "#ECFDF5", ev: "680" },
+    { name: "Southwest STEM Initiative",      badge: "Regional", bColor: "#F59E0B", bBg: "#FFFBEB", ev: "540" },
+    { name: "Maricopa County Arts Grant",     badge: "Local",    bColor: "#10B981", bBg: "#ECFDF5", ev: "420" },
+  ];
+  return (
+    <div
+      style={{
+        border: `1px solid ${C.border}`,
+        borderRadius: 16,
+        background: C.white,
+        padding: 24,
+        boxShadow: "0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+      }}
+    >
+      <div
+        style={{
+          fontFamily: sans,
+          fontSize: 11,
+          fontWeight: 700,
+          color: C.textFaint,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          marginBottom: 16,
+        }}
+      >
+        Discovered for you
+      </div>
+      {items.map((item, i) => (
+        <div
+          key={item.name}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "10px 0",
+            borderBottom: i < items.length - 1 ? `1px solid ${C.surface2}` : "none",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <span
+              style={{
+                background: item.bBg,
+                color: item.bColor,
+                fontFamily: sans,
+                fontSize: 11,
+                fontWeight: 600,
+                padding: "2px 8px",
+                borderRadius: 980,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {item.badge}
+            </span>
+            <span style={{ fontFamily: sans, fontSize: 13, color: C.textPrimary }}>
+              {item.name}
+            </span>
+          </div>
+          <span
+            style={{
+              fontFamily: sans,
+              fontSize: 16,
+              fontWeight: 700,
+              color: C.indigo,
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            {item.ev}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* Mockup D — Deadline calendar list */
+function DeadlineMockup() {
+  const deadlines = [
+    { date: "Apr 30", name: "Gates Millennium Scholars",   label: "Due soon",  labelBg: "#FEE2E2", labelColor: "#EF4444" },
+    { date: "May 15", name: "Jack Kent Cooke Foundation",  label: "2 weeks",   labelBg: "#FEF3C7", labelColor: "#F59E0B" },
+    { date: "Jun 1",  name: "Coca-Cola Scholars Program",  label: "7 weeks",   labelBg: "#ECFDF5", labelColor: "#10B981" },
+  ];
+  return (
+    <div
+      style={{
+        border: `1px solid ${C.border}`,
+        borderRadius: 16,
+        background: C.white,
+        padding: 24,
+        boxShadow: "0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+      }}
+    >
+      <div
+        style={{
+          fontFamily: sans,
+          fontSize: 11,
+          fontWeight: 700,
+          color: C.textFaint,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          marginBottom: 16,
+        }}
+      >
+        Upcoming Deadlines
+      </div>
+      {deadlines.map((d, i) => (
+        <div
+          key={d.name}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "10px 0",
+            borderBottom: i < deadlines.length - 1 ? `1px solid ${C.surface2}` : "none",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <div
+              style={{
+                fontFamily: sans,
+                fontSize: 12,
+                fontWeight: 600,
+                color: C.textFaint,
+                width: 42,
+                flexShrink: 0,
+              }}
+            >
+              {d.date}
+            </div>
+            <div style={{ fontFamily: sans, fontSize: 13, color: C.textPrimary }}>
+              {d.name}
+            </div>
+          </div>
+          <span
+            style={{
+              background: d.labelBg,
+              color: d.labelColor,
+              fontFamily: sans,
+              fontSize: 11,
+              fontWeight: 600,
+              padding: "3px 10px",
+              borderRadius: 980,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {d.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ─── Feature Deep-Dive ─────────────────────────────────────────── */
+function FeatureDeepDive() {
+  const sharedSection: React.CSSProperties = { padding: "90px 24px" };
+  const sharedInner: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: 80,
+    maxWidth: 1100,
+    margin: "0 auto",
+    alignItems: "center",
+  };
+
+  return (
+    <>
+      {/* A: EV Scoring — text left, mockup right, white */}
+      <section style={{ ...sharedSection, background: C.white }}>
+        <ScrollReveal>
+          <div className="mkt-2col" style={sharedInner}>
+            <FeatureText
+              overline="EV Scoring"
+              headline="Stop guessing. Start calculating."
+              body="Every scholarship gets an EV Score: award amount × estimated win probability ÷ hours to apply. One number. Every tradeoff visible."
+            />
+            <EVScoringMockup />
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* B: Essay Engine — mockup left, text right, surface1 */}
+      <section style={{ ...sharedSection, background: C.surface1 }}>
+        <ScrollReveal>
+          {/* mkt-2col-flip reverses column order on mobile so text stays on top */}
+          <div className="mkt-2col-flip" style={sharedInner}>
+            <EssayMockup />
+            <FeatureText
+              overline="Essay Engine"
+              headline="Write once. Apply everywhere."
+              body="Paste in your best essay. Our AI adapts it to each new prompt while preserving your voice. Less rewriting, more winning."
+            />
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* C: Long-Tail — text left, mockup right, white */}
+      <section style={{ ...sharedSection, background: C.white }}>
+        <ScrollReveal>
+          <div className="mkt-2col" style={sharedInner}>
+            <FeatureText
+              overline="Discovery"
+              headline="The ones Google can't find."
+              body="Local scholarships. Regional foundations. Niche awards. We surface high-win-rate opportunities that most students never know exist."
+            />
+            <LongTailMockup />
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* D: Deadline Tracker — mockup left, text right, surface1 */}
+      <section style={{ ...sharedSection, background: C.surface1 }}>
+        <ScrollReveal>
+          <div className="mkt-2col-flip" style={sharedInner}>
+            <DeadlineMockup />
+            <FeatureText
+              overline="Calendar"
+              headline="Never miss a deadline."
+              body="Your entire scholarship calendar in one place. Urgency-coded, sorted by EV Score. Auto-updated when new scholarships are added."
+            />
+          </div>
+        </ScrollReveal>
+      </section>
+    </>
+  );
+}
+
 export default function LandingPage() {
   return (
     <div style={{ background: C.white }}>
@@ -425,6 +865,7 @@ export default function LandingPage() {
       <Hero />
       <SocialProofBar />
       <HowItWorks />
+      <FeatureDeepDive />
     </div>
   );
 }
