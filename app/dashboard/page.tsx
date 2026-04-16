@@ -2,12 +2,15 @@ export const dynamic = "force-dynamic";
 
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "@/db";
-import { scholarships, scholarshipMatches, studentEssays, users } from "@/db/schema";
-import { eq, count, and, gte, lt, desc, asc, sql } from "drizzle-orm";
+import { scholarships, scholarshipMatches, studentEssays, applications, users } from "@/db/schema";
+import { eq, count, and, gte, lte, lt, desc, asc, sql, notInArray } from "drizzle-orm";
 import Link from "next/link";
 import { Suspense } from "react";
 import { requireOnboarding } from "@/lib/requireOnboarding";
 import { SaveToTrackerButton } from "@/app/tracker/_components/save-to-tracker-button";
+import { fmtAmount, evScoreBadge } from "./_components/dashboard-utils";
+import { DeadlineTimeline } from "./_components/DeadlineTimeline";
+import { NewMatchesFeed, type NewMatchItem } from "./_components/NewMatchesFeed";
 import { getCycleProgress, getNextAction } from "@/lib/dashboard/queries";
 import { CycleProgressRing } from "./_components/cycle-progress-ring";
 import { NextActionCard } from "./_components/next-action-card";
@@ -21,12 +24,6 @@ function fmtDollars(cents: number): string {
   return `$${(cents / 100).toLocaleString()}`;
 }
 
-function fmtAmount(min: number | null, max: number | null): string {
-  if (!min && !max) return "—";
-  const fmt = (n: number) => `$${(n / 100).toLocaleString()}`;
-  if (min && max && min !== max) return `${fmt(min)}–${fmt(max)}`;
-  return fmt(min ?? max!);
-}
 
 function fmtEvHr(raw: string | null): string {
   if (!raw) return "—";
@@ -55,12 +52,6 @@ function deadlinePill(dateStr: string): { label: string; bg: string; text: strin
   return              { label: `${days}d left`,    bg: "bg-emerald-50", text: "text-emerald-700", dot: "bg-emerald-500" };
 }
 
-function evScoreBadge(raw: string | null): { bg: string; text: string } {
-  const n = parseFloat(raw ?? "0");
-  if (n >= 5000_00) return { bg: "bg-emerald-50", text: "text-emerald-700" };
-  if (n >= 1000_00) return { bg: "bg-blue-50",    text: "text-blue-700"   };
-  return                    { bg: "bg-gray-100",   text: "text-gray-600"   };
-}
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 
@@ -151,6 +142,13 @@ export default async function DashboardPage() {
 
   const now          = new Date();
   const today        = now.toISOString().slice(0, 10);
+
+  const todayPlus14Date = new Date(now);
+  todayPlus14Date.setDate(todayPlus14Date.getDate() + 14);
+  const todayPlus14 = todayPlus14Date.toISOString().slice(0, 10);
+
+  const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
   const monthStart   = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-01`;
   const nextMonthDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
   const monthEnd     = `${nextMonthDate.getFullYear()}-${String(nextMonthDate.getMonth() + 1).padStart(2, "0")}-01`;
@@ -162,6 +160,8 @@ export default async function DashboardPage() {
     deadlinesThisMonthResult,
     upcomingDeadlines,
     topMatches,
+    deadlineTimelineItems,
+    recentMatchesResult,
     cycleProgress,
     nextAction,
     userGoalResult,
@@ -239,6 +239,51 @@ export default async function DashboardPage() {
       .orderBy(desc(scholarshipMatches.evScore))
       .limit(8),
 
+    // 14-day deadline timeline: from tracker applications
+    db.select({
+        id:            applications.id,
+        scholarshipId: applications.scholarshipId,
+        name:          scholarships.name,
+        deadline:      applications.deadline,
+        status:        applications.status,
+        awardAmount:   applications.awardAmount,
+        amountMin:     scholarships.amountMin,
+        amountMax:     scholarships.amountMax,
+      })
+      .from(applications)
+      .innerJoin(scholarships, eq(applications.scholarshipId, scholarships.id))
+      .where(
+        and(
+          eq(applications.userId, userId),
+          notInArray(applications.status, ["submitted", "won", "lost", "skipped"]),
+          gte(applications.deadline, today),
+          lte(applications.deadline, todayPlus14),
+        )
+      )
+      .orderBy(asc(applications.deadline)),
+
+    // New matches: scholarships added in last 7 days matching this user
+    db.select({
+        id:          scholarships.id,
+        name:        scholarships.name,
+        amountMin:   scholarships.amountMin,
+        amountMax:   scholarships.amountMax,
+        matchScore:  scholarshipMatches.matchScore,
+        evScore:     scholarshipMatches.evScore,
+        createdAt:   scholarships.createdAt,
+        isSaved:     scholarshipMatches.isSaved,
+      })
+      .from(scholarshipMatches)
+      .innerJoin(scholarships, eq(scholarshipMatches.scholarshipId, scholarships.id))
+      .where(
+        and(
+          eq(scholarshipMatches.userId, userId),
+          gte(scholarships.createdAt, sevenDaysAgo),
+          eq(scholarships.isActive, true),
+        )
+      )
+      .orderBy(desc(scholarshipMatches.matchScore))
+      .limit(5),
     // New widgets
     getCycleProgress(userId),
     getNextAction(userId),
@@ -254,6 +299,30 @@ export default async function DashboardPage() {
   const deadlinesThisMonth = deadlinesThisMonthResult[0]?.count ?? 0;
   const hasMatches         = matchCount > 0;
   const applicationGoal    = userGoalResult[0]?.applicationGoal ?? 50_000;
+
+  // Shape timeline items
+  const timelineItems = deadlineTimelineItems.map((r) => ({
+    id:            r.id,
+    scholarshipId: r.scholarshipId!,
+    name:          r.name,
+    deadline:      r.deadline ?? "",
+    status:        r.status,
+    awardCents:    r.awardAmount ?? r.amountMax ?? r.amountMin ?? 0,
+  }));
+
+  // Shape new matches items
+  const recentMatches: NewMatchItem[] = recentMatchesResult.map((r) => ({
+    id:         r.id,
+    name:       r.name,
+    amountMin:  r.amountMin,
+    amountMax:  r.amountMax,
+    matchScore: r.matchScore,
+    evScore:    r.evScore,
+    createdAt:  r.createdAt ?? now,
+    isSaved:    r.isSaved ?? false,
+  }));
+
+  const recentMatchCount = recentMatchesResult.length;
 
   // ── Stats ─────────────────────────────────────────────────────────────────
 
@@ -482,7 +551,7 @@ export default async function DashboardPage() {
                               </a>
                             ) : (
                               <Link
-                                href={`/scholarships/${m.id}`}
+                                href={`/scholarship/${m.id}`}
                                 className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-100"
                               >
                                 View
@@ -538,6 +607,12 @@ export default async function DashboardPage() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* ── New widgets: timeline + recent matches ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <DeadlineTimeline items={timelineItems} today={today} />
+        <NewMatchesFeed matches={recentMatches} totalCount={recentMatchCount} now={now} />
       </div>
 
       {/* ── Deadline calendar strip ── */}
