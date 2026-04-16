@@ -55,23 +55,30 @@ export default clerkMiddleware(async (auth, req) => {
     if (!hasObCookie) {
       const { userId } = await auth();
 
-      if (userId) {
-        // Fall back to DB to check whether this user actually has a profile.
-        const sql = neon(process.env.DATABASE_URL!);
-        const rows = await sql(
-          `SELECT id FROM "student_profiles" WHERE "user_id" = $1 LIMIT 1`,
-          [userId]
-        );
-
-        if (rows.length > 0) {
-          // Profile exists — backfill the cookie and let the request through.
-          const res = NextResponse.next();
-          res.cookies.set("__ob", "1", OB_COOKIE_OPTS);
-          return res;
-        }
+      // If userId is null here, Clerk is mid-handshake (token refresh / session
+      // revalidation). auth.protect() above already handles genuine
+      // unauthentication by redirecting to /sign-in. A null userId at this
+      // point does NOT mean the user has no profile — it means Clerk hasn't
+      // resolved the session yet. Pass through and let Clerk finish.
+      if (!userId) {
+        return NextResponse.next();
       }
 
-      // No profile found (or unauthenticated) — send to onboarding.
+      // Fall back to DB to check whether this user actually has a profile.
+      const sql = neon(process.env.DATABASE_URL!);
+      const rows = await sql(
+        `SELECT id FROM "student_profiles" WHERE "user_id" = $1 LIMIT 1`,
+        [userId]
+      );
+
+      if (rows.length > 0) {
+        // Profile exists — backfill the cookie and let the request through.
+        const res = NextResponse.next();
+        res.cookies.set("__ob", "1", OB_COOKIE_OPTS);
+        return res;
+      }
+
+      // userId is valid but no profile row — genuine new user, send to onboarding.
       return NextResponse.redirect(new URL("/onboarding", req.url));
     }
   }
