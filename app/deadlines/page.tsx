@@ -1,71 +1,52 @@
-// app/deadlines/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
-// ── Types ──────────────────────────────────────────────────────────────────
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 type DeadlineItem = {
-  id: number;
-  name: string;
-  provider: string;
-  amountMin: number | null;
-  amountMax: number | null;
-  deadline: string; // "YYYY-MM-DD"
+  id:             string;
+  name:           string;
+  provider:       string | null;
+  amountMin:      number | null;
+  amountMax:      number | null;
+  deadline:       string;
   applicationUrl: string | null;
 };
 
-// ── Helpers ────────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
-function formatAmount(amountMin: number | null, amountMax: number | null): string {
-  if (amountMin == null && amountMax == null) return "—";
-  const min = amountMin ?? 0;
-  const max = amountMax ?? min;
-  const fmt = (cents: number) => {
-    const dollars = cents / 100;
-    return dollars >= 1000
-      ? `$${(dollars / 1000).toFixed(1)}k`
-      : `$${dollars.toLocaleString()}`;
-  };
-  return min === max ? fmt(min) : `${fmt(min)}–${fmt(max)}`;
+function formatAmount(min: number | null, max: number | null): string {
+  const fmt = (n: number) => `$${(n / 100).toLocaleString()}`;
+  if (!min && !max) return "—";
+  if (min && max && min !== max) return `${fmt(min)}–${fmt(max)}`;
+  return fmt(min ?? max!);
 }
 
 function daysUntil(dateStr: string): number {
-  const [year, month, day] = dateStr.split("-").map(Number);
-  const deadline = new Date(year, month - 1, day);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return Math.ceil((deadline.getTime() - today.getTime()) / 86_400_000);
+  const d = new Date(dateStr + "T12:00:00");
+  return Math.ceil((d.getTime() - Date.now()) / 86_400_000);
 }
 
-function urgencyStyle(days: number): { className: string; label: string } {
-  if (days < 7) {
-    return {
-      className: "bg-red-500/15 text-red-300 border-red-500/30",
-      label: days === 0 ? "Today" : days === 1 ? "Tomorrow" : `${days}d left`,
-    };
-  }
-  if (days < 14) {
-    return {
-      className: "bg-yellow-500/15 text-yellow-300 border-yellow-500/30",
-      label: `${days}d left`,
-    };
-  }
-  return {
-    className: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-    label: `${days}d left`,
-  };
+function urgencyStyle(days: number): {
+  badge:    string;
+  row:      string;
+  dot:      string;
+  label:    string;
+} {
+  if (days < 0)   return { badge: "bg-gray-100 text-gray-500",    row: "",                dot: "bg-gray-300",   label: "Past due"         };
+  if (days <= 7)  return { badge: "bg-red-50 text-red-700",       row: "bg-red-50/30",    dot: "bg-red-500",    label: `${days}d left`    };
+  if (days <= 14) return { badge: "bg-amber-50 text-amber-700",   row: "bg-amber-50/20",  dot: "bg-amber-500",  label: `${days}d left`    };
+  return               { badge: "bg-emerald-50 text-emerald-700", row: "",                dot: "bg-emerald-500", label: `${days}d left`   };
 }
 
 function monthLabel(dateStr: string): string {
-  const [year, month] = dateStr.split("-").map(Number);
-  return new Date(year, month - 1, 1).toLocaleString("en-US", {
+  return new Date(dateStr + "T12:00:00").toLocaleDateString("en-US", {
     month: "long",
-    year: "numeric",
+    year:  "numeric",
   });
 }
 
@@ -73,55 +54,64 @@ function groupByMonth(items: DeadlineItem[]): Map<string, DeadlineItem[]> {
   const map = new Map<string, DeadlineItem[]>();
   for (const item of items) {
     const key = monthLabel(item.deadline);
-    const group = map.get(key) ?? [];
-    group.push(item);
-    map.set(key, group);
+    map.set(key, [...(map.get(key) ?? []), item]);
   }
   return map;
 }
 
-// ── Skeleton ───────────────────────────────────────────────────────────────
+// ── Skeleton ──────────────────────────────────────────────────────────────────
 
 function DeadlineSkeleton() {
   return (
-    <div className="space-y-3 animate-pulse">
-      <div className="h-4 bg-slate-800 rounded w-32" />
-      {[1, 2].map((i) => (
-        <div key={i} className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between">
-          <div className="space-y-2 flex-1">
-            <div className="h-4 bg-slate-800 rounded w-3/4" />
-            <div className="h-3 bg-slate-800 rounded w-1/2" />
+    <div className="animate-pulse space-y-2">
+      <div className="h-4 w-24 rounded bg-gray-200" />
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-4">
+          <div className="h-2 w-2 rounded-full bg-gray-200" />
+          <div className="flex-1 space-y-2">
+            <div className="h-4 w-48 rounded bg-gray-200" />
+            <div className="h-3 w-32 rounded bg-gray-100" />
           </div>
-          <div className="h-5 bg-slate-800 rounded-full w-16 ml-4 self-center" />
+          <div className="h-6 w-16 rounded-full bg-gray-100" />
         </div>
       ))}
     </div>
   );
 }
 
-// ── Page ───────────────────────────────────────────────────────────────────
+// ── Icons ─────────────────────────────────────────────────────────────────────
+
+function IconCalendar({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 20 20" fill="currentColor">
+      <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+    </svg>
+  );
+}
+
+function IconEmpty({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
+      <path d="M18 24h12M24 18v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+// ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function DeadlinesPage() {
-  const router = useRouter();
+  const router  = useRouter();
   const [deadlines, setDeadlines] = useState<DeadlineItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [loading,   setLoading]   = useState(true);
+  const [error,     setError]     = useState<string | null>(null);
 
   useEffect(() => {
-    async function loadDeadlines() {
+    async function load() {
       try {
         const res = await fetch("/api/scholarships/deadlines");
-
-        if (res.status === 401) {
-          router.push("/sign-in");
-          return;
-        }
-
-        if (!res.ok) {
-          setError("Failed to load deadlines. Please try again.");
-          return;
-        }
-
+        if (res.status === 401) { router.push("/sign-in"); return; }
+        if (!res.ok) { setError("Failed to load deadlines. Please try again."); return; }
         const data: { deadlines: DeadlineItem[]; total: number } = await res.json();
         setDeadlines(data.deadlines);
       } catch {
@@ -130,133 +120,144 @@ export default function DeadlinesPage() {
         setLoading(false);
       }
     }
-
-    loadDeadlines();
+    load();
   }, [router]);
 
   const grouped = groupByMonth(deadlines);
+  const urgentCount = deadlines.filter((d) => daysUntil(d.deadline) <= 7 && daysUntil(d.deadline) >= 0).length;
 
   return (
-    <main className="min-h-screen bg-slate-950 px-4 py-12">
-      <div className="max-w-2xl mx-auto space-y-8">
+    <div className="p-6 lg:p-8 space-y-6">
 
-        {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Deadlines</h1>
-          <p className="text-slate-400 mt-1 text-sm">
-            {loading
-              ? "Loading your saved scholarships…"
-              : error
-              ? "Unable to load deadlines"
-              : deadlines.length === 0
-              ? "No upcoming deadlines"
-              : `${deadlines.length} upcoming deadline${deadlines.length === 1 ? "" : "s"} from saved scholarships`}
-          </p>
+      {/* Summary strip */}
+      {!loading && !error && deadlines.length > 0 && (
+        <div className="flex flex-wrap gap-3">
+          <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-gray-400" />
+            <span className="text-sm font-medium text-gray-700">
+              {deadlines.length} upcoming deadline{deadlines.length !== 1 ? "s" : ""}
+            </span>
+          </div>
+          {urgentCount > 0 && (
+            <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2.5">
+              <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+              <span className="text-sm font-semibold text-red-700">
+                {urgentCount} due within 7 days
+              </span>
+            </div>
+          )}
         </div>
+      )}
 
-        {/* Error */}
-        {error && !loading && (
-          <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 text-center">
-            <p className="text-red-300 font-semibold mb-1">Error</p>
-            <p className="text-slate-400 text-sm">{error}</p>
-          </div>
-        )}
+      {/* Error */}
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-5 py-4">
+          <p className="text-sm font-semibold text-red-700">{error}</p>
+        </div>
+      )}
 
-        {/* Loading skeletons */}
-        {loading && (
-          <div className="space-y-8">
-            <DeadlineSkeleton />
-            <DeadlineSkeleton />
-          </div>
-        )}
+      {/* Loading */}
+      {loading && (
+        <div className="max-w-2xl space-y-8">
+          <DeadlineSkeleton />
+          <DeadlineSkeleton />
+        </div>
+      )}
 
-        {/* Empty state */}
-        {!loading && !error && deadlines.length === 0 && (
-          <Card className="bg-slate-900 border-slate-800">
-            <CardContent className="p-10 text-center">
-              <p className="text-white font-semibold text-lg mb-2">No saved scholarships yet</p>
-              <p className="text-slate-400 text-sm mb-6">
-                Save scholarships from your matches to track their deadlines here.
-              </p>
-              <Link
-                href="/matches"
-                className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg px-5 py-2.5 text-sm transition-colors duration-150"
-              >
-                Browse Matches
-              </Link>
-            </CardContent>
-          </Card>
-        )}
+      {/* Empty state */}
+      {!loading && !error && deadlines.length === 0 && (
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-300 bg-white py-24 text-center">
+          <IconEmpty className="h-12 w-12 text-gray-300 mb-4" />
+          <h2 className="text-base font-semibold text-gray-900 mb-1">No deadlines yet</h2>
+          <p className="text-sm text-gray-500 mb-6 max-w-xs">
+            Save scholarships from your matches to start tracking their deadlines here.
+          </p>
+          <Link
+            href="/matches"
+            className="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700"
+          >
+            Browse My Scholarships
+          </Link>
+        </div>
+      )}
 
-        {/* Grouped deadline list */}
-        {!loading && !error && deadlines.length > 0 && (
-          <div className="space-y-8">
-            {Array.from(grouped.entries()).map(([month, items]) => (
-              <section key={month}>
-                <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">
-                  {month}
-                </h2>
-                <div className="space-y-2">
-                  {items.map((item) => {
-                    const days = daysUntil(item.deadline);
-                    const urgency = urgencyStyle(days);
-                    return (
-                      <Card key={item.id} className="bg-slate-900 border-slate-800">
-                        <CardContent className="p-4 flex items-center gap-4">
-                          {/* Info */}
-                          <div className="flex-1 min-w-0">
-                            <p className="text-white font-medium truncate">{item.name}</p>
-                            <p className="text-slate-400 text-sm truncate">{item.provider}</p>
-                            <div className="flex items-center gap-2 mt-1.5">
-                              <span className="text-slate-300 text-xs">
-                                {formatAmount(item.amountMin, item.amountMax)}
-                              </span>
-                              <span className="text-slate-600 text-xs">·</span>
-                              <span className="text-slate-400 text-xs">
-                                {new Date(
-                                  Number(item.deadline.split("-")[0]),
-                                  Number(item.deadline.split("-")[1]) - 1,
-                                  Number(item.deadline.split("-")[2])
-                                ).toLocaleDateString("en-US", {
-                                  month: "short",
-                                  day: "numeric",
-                                })}
-                              </span>
-                            </div>
-                          </div>
+      {/* Grouped deadline list */}
+      {!loading && !error && deadlines.length > 0 && (
+        <div className="max-w-2xl space-y-8">
+          {Array.from(grouped.entries()).map(([month, items]) => (
+            <section key={month}>
+              {/* Month header */}
+              <h2 className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-400">
+                <IconCalendar className="h-3.5 w-3.5" />
+                {month}
+                <span className="rounded-full bg-gray-100 px-1.5 py-0.5 text-[10px] font-semibold text-gray-500">
+                  {items.length}
+                </span>
+              </h2>
 
-                          {/* Right side: urgency badge + apply link */}
-                          <div className="flex flex-col items-end gap-2 shrink-0">
-                            <Badge
-                              variant="outline"
-                              className={`text-xs font-medium border ${urgency.className}`}
-                            >
-                              {urgency.label}
-                            </Badge>
-                            {item.applicationUrl ? (
-                              <a
-                                href={item.applicationUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors duration-150"
-                              >
-                                Apply →
-                              </a>
-                            ) : (
-                              <span className="text-xs text-slate-600">No link</span>
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
-          </div>
-        )}
+              <div className="space-y-2">
+                {items.map((item) => {
+                  const days    = daysUntil(item.deadline);
+                  const urgency = urgencyStyle(days);
+                  const dateStr = new Date(item.deadline + "T12:00:00").toLocaleDateString("en-US", {
+                    month: "short",
+                    day:   "numeric",
+                  });
 
-      </div>
-    </main>
+                  return (
+                    <div
+                      key={item.id}
+                      className={cn(
+                        "group flex items-center gap-4 rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm transition-colors duration-100 hover:border-gray-300",
+                        urgency.row
+                      )}
+                    >
+                      {/* Urgency dot */}
+                      <span className={cn("h-2.5 w-2.5 shrink-0 rounded-full", urgency.dot)} />
+
+                      {/* Info */}
+                      <div className="min-w-0 flex-1">
+                        <p className="font-semibold text-gray-900 truncate">{item.name}</p>
+                        <div className="mt-0.5 flex items-center gap-2 text-xs text-gray-500">
+                          <span className="truncate">{item.provider ?? "—"}</span>
+                          <span>·</span>
+                          <span className="shrink-0 font-medium text-gray-700">
+                            {formatAmount(item.amountMin, item.amountMax)}
+                          </span>
+                          <span>·</span>
+                          <span className="shrink-0">{dateStr}</span>
+                        </div>
+                      </div>
+
+                      {/* Urgency badge */}
+                      <span className={cn(
+                        "shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold",
+                        urgency.badge
+                      )}>
+                        {urgency.label}
+                      </span>
+
+                      {/* Apply link */}
+                      {item.applicationUrl ? (
+                        <a
+                          href={item.applicationUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-indigo-100"
+                        >
+                          Apply →
+                        </a>
+                      ) : (
+                        <span className="w-16 shrink-0 opacity-0 group-hover:opacity-0" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
