@@ -2,6 +2,7 @@ import { db } from "../../db";
 import { scholarships } from "../../db/schema";
 import { NormalizedScholarship } from "./normalizer";
 import { and, eq } from "drizzle-orm";
+import { generateSlug } from "../scholarships/slug";
 
 /**
  * Upserts a scholarship record into the database.
@@ -54,6 +55,7 @@ export async function upsertScholarship(data: NormalizedScholarship, sourceUrl: 
           lastVerified: new Date(),
           isVerified: false, // For manual review later
           isActive: true,
+          slug: generateSlug(name),
         })
         .returning({ id: scholarships.id });
       return inserted.id;

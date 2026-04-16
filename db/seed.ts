@@ -1,18 +1,7 @@
 import "dotenv/config";
 import { db } from "./index";
 import { scholarships } from "./schema";
-
-function slugify(name: string): string {
-  return name
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-{2,}/g, "-")
-    .replace(/^-|-$/g, "")
-    .slice(0, 80);
-}
+import { generateSlug } from "../lib/scholarships/slug";
 
 async function seed() {
   console.log("Seeding scholarships…");
@@ -1099,7 +1088,7 @@ async function seed() {
   // Generate slugs and resolve collisions by appending -2, -3, etc.
   const slugCounts: Record<string, number> = {};
   const withSlugs = seedData.map((entry) => {
-    const base = slugify(entry.name);
+    const base = generateSlug(entry.name);
     slugCounts[base] = (slugCounts[base] ?? 0) + 1;
     const slug = slugCounts[base] === 1 ? base : `${base}-${slugCounts[base]}`;
     return { ...entry, slug };
