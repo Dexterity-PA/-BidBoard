@@ -621,12 +621,6 @@ export default async function DashboardPage() {
         <NewMatchesFeed matches={recentMatches} totalCount={recentMatchCount} now={now} />
       </div>
 
-      {/* ── New widgets: timeline + recent matches ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <DeadlineTimeline items={timelineItems} today={today} />
-        <NewMatchesFeed matches={recentMatches} totalCount={recentMatchCount} now={now} />
-      </div>
-
       {/* ── Deadline calendar strip ── */}
       <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
         <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
