@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import type Stripe from "stripe";
+import { sendPaymentEmail } from "@/lib/email/send/payment";
 
 export async function POST(req: Request) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -44,6 +45,8 @@ export async function POST(req: Request) {
           .update(users)
           .set({ tier, stripeCustomerId: customerId, stripeSubscriptionId: subscriptionId })
           .where(eq(users.id, userId));
+
+        void sendPaymentEmail({ stripeCustomerId: customerId, event: "subscription_started", tier });
         break;
       }
 
@@ -68,6 +71,53 @@ export async function POST(req: Request) {
           .update(users)
           .set({ tier: "free" })
           .where(eq(users.stripeCustomerId, customerId));
+
+        void sendPaymentEmail({ stripeCustomerId: customerId, event: "subscription_canceled" });
+        break;
+      }
+
+      case "invoice.payment_succeeded": {
+        const invoice = event.data.object as Stripe.Invoice;
+        // Skip first invoice — checkout.session.completed already sent subscription_started
+        if (invoice.billing_reason === "subscription_create") break;
+        const customerId = invoice.customer as string;
+        const amount = invoice.amount_paid
+          ? `$${(invoice.amount_paid / 100).toFixed(2)}`
+          : null;
+        const nextDate = invoice.next_payment_attempt
+          ? new Date(invoice.next_payment_attempt * 1000).toLocaleDateString("en-US", {
+              month: "long", day: "numeric", year: "numeric",
+            })
+          : null;
+        void sendPaymentEmail({
+          stripeCustomerId: customerId,
+          event: "subscription_renewed",
+          amount,
+          nextBillingDate: nextDate,
+        });
+        break;
+      }
+
+      case "invoice.payment_failed": {
+        const invoice = event.data.object as Stripe.Invoice;
+        const customerId = invoice.customer as string;
+        void sendPaymentEmail({ stripeCustomerId: customerId, event: "payment_failed" });
+        break;
+      }
+
+      case "customer.subscription.trial_will_end": {
+        const subscription = event.data.object as Stripe.Subscription;
+        const customerId = subscription.customer as string;
+        const trialEnd = subscription.trial_end
+          ? new Date(subscription.trial_end * 1000).toLocaleDateString("en-US", {
+              month: "long", day: "numeric", year: "numeric",
+            })
+          : null;
+        void sendPaymentEmail({
+          stripeCustomerId: customerId,
+          event: "trial_ending",
+          trialEndDate: trialEnd,
+        });
         break;
       }
     }
