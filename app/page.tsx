@@ -16,6 +16,7 @@ const C = {
   textFaint:   "#9CA3AF",
   border:      "#E5E7EB",
   dark:        "#0F172A",
+  textOnDark:  "#94A3B8",
 } as const;
 
 const serif = "var(--font-instrument-serif), Georgia, serif";
@@ -1226,12 +1227,13 @@ function Pricing() {
 }
 
 /* ─── For Counselors CTA ───────────────────────────────────────── */
+const counselorBullets = [
+  "50 student seats per license",
+  "ROI tracking dashboard",
+  "CSV export + reporting",
+];
+
 function ForCounselorsCTA() {
-  const bullets = [
-    "50 student seats per license",
-    "ROI tracking dashboard",
-    "CSV export + reporting",
-  ];
   return (
     <section
       id="counselors"
@@ -1303,7 +1305,7 @@ function ForCounselorsCTA() {
               gap: 20,
             }}
           >
-            {bullets.map((b) => (
+            {counselorBullets.map((b) => (
               <div
                 key={b}
                 style={{
@@ -1399,7 +1401,7 @@ function FinalCTA() {
           </h2>
           <p
             style={{
-              ...body("#94A3B8", 17),
+              ...body(C.textOnDark, 17),
               marginBottom: 40,
             }}
           >
@@ -1464,7 +1466,7 @@ function Footer() {
           >
             BidBoard
           </div>
-          <div style={{ fontFamily: sans, fontSize: 13, color: "#64748B" }}>
+          <div style={{ fontFamily: sans, fontSize: 13, color: C.textOnDark }}>
             Scholarship strategy, engineered.
           </div>
         </div>
@@ -1478,23 +1480,25 @@ function Footer() {
             flexWrap: "wrap",
           }}
         >
-          {["Privacy", "Terms", "Contact"].map((label) => (
-            <Link
-              key={label}
-              href={`/${label.toLowerCase()}`}
-              className="footer-link"
-              style={{
-                fontFamily: sans,
-                fontSize: 13,
-                color: "#64748B",
-                textDecoration: "none",
-                transition: "color 0.15s",
-              }}
-            >
-              {label}
-            </Link>
-          ))}
-          <span style={{ fontFamily: sans, fontSize: 12, color: "#475569" }}>
+          <nav aria-label="Footer" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+            {["Privacy", "Terms", "Contact"].map((label) => (
+              <Link
+                key={label}
+                href={`/${label.toLowerCase()}`}
+                className="footer-link"
+                style={{
+                  fontFamily: sans,
+                  fontSize: 13,
+                  color: C.textOnDark,
+                  textDecoration: "none",
+                  transition: "color 0.15s",
+                }}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <span style={{ fontFamily: sans, fontSize: 12, color: C.textOnDark }}>
             © 2026 BidBoard
           </span>
         </div>
