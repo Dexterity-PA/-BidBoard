@@ -18,7 +18,7 @@ interface Props {
 
 export function DeadlineTimeline({ items, today }: Props) {
   const days = buildTimelineDays(today, items);
-  const hasItems = items.length > 0;
+  const hasItems = days.some((d) => d.items.length > 0);
 
   return (
     // NOTE: no overflow-hidden here — intentional, so dot tooltips are not clipped
