@@ -54,13 +54,12 @@ export function NewMatchesFeed({ matches, totalCount, now }: Props) {
               : null;
 
             return (
-              <Link
+              <div
                 key={m.id}
-                href={`/scholarship/${m.id}`}
                 className="group flex items-center gap-3 px-5 py-3.5 hover:bg-gray-50 transition-colors duration-100"
               >
-                {/* Left: name + award */}
-                <div className="min-w-0 flex-1">
+                {/* Left: name + award — wrapped in Link for navigation */}
+                <Link href={`/scholarship/${m.id}`} className="min-w-0 flex-1 block">
                   <div className="flex items-center gap-1.5 flex-wrap">
                     <p className="text-sm font-semibold text-gray-900 truncate">{m.name}</p>
                     {isNew && (
@@ -72,9 +71,9 @@ export function NewMatchesFeed({ matches, totalCount, now }: Props) {
                   <p className="text-xs text-gray-500 mt-0.5">
                     {fmtAmount(m.amountMin, m.amountMax)}
                   </p>
-                </div>
+                </Link>
 
-                {/* Right: EV badge + match % + relative time + save */}
+                {/* Right: EV badge + match % + relative time + save — outside the Link */}
                 <div className="flex items-center gap-2 shrink-0">
                   {m.evScore && (
                     <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${evBadge.bg} ${evBadge.text}`}>
@@ -90,7 +89,7 @@ export function NewMatchesFeed({ matches, totalCount, now }: Props) {
                   />
                   <SaveToTrackerButton scholarshipId={m.id} isSaved={m.isSaved} />
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>
