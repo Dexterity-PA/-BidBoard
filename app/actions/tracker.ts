@@ -5,6 +5,7 @@ import { db } from "@/db";
 import { applications, scholarships, scholarshipMatches } from "@/db/schema";
 import type { StatusHistoryEntry } from "@/db/schema";
 import { eq, and, inArray } from "drizzle-orm";
+import { logActivity } from "@/lib/activity";
 import { sendStatusChangeEmail } from "@/lib/email/send/status-change";
 
 const STATUS_LABELS: Record<string, string> = {
@@ -94,6 +95,8 @@ export async function saveToTracker(scholarshipId: number) {
         eq(scholarshipMatches.scholarshipId, scholarshipId),
       ),
     );
+
+  await logActivity(userId, "scholarship_added", scholarshipId);
 }
 
 export async function updateApplicationStatus(id: number, status: string) {
@@ -120,6 +123,9 @@ export async function updateApplicationStatus(id: number, status: string) {
     .set({ status, statusHistory: [...history, newEntry], updatedAt: new Date() })
     .where(and(eq(applications.id, id), eq(applications.userId, userId)));
 
+  await logActivity(userId, "status_changed", id);
+  if (status === "submitted") {
+    await logActivity(userId, "application_submitted", id);
   // Fire status-change email for notable transitions only — void to keep UI fast
   if (status === "submitted" || status === "won" || status === "lost") {
     void sendStatusChangeEmail({

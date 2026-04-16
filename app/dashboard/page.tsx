@@ -11,6 +11,8 @@ import { SaveToTrackerButton } from "@/app/tracker/_components/save-to-tracker-b
 import { fmtAmount, evScoreBadge } from "./_components/dashboard-utils";
 import { DeadlineTimeline } from "./_components/DeadlineTimeline";
 import { NewMatchesFeed, type NewMatchItem } from "./_components/NewMatchesFeed";
+import { ActivityHeatmap } from "./_components/ActivityHeatmap";
+import { WinRateCard } from "./_components/WinRateCard";
 import { getCycleProgress, getNextAction } from "@/lib/dashboard/queries";
 import { CycleProgressRing } from "./_components/cycle-progress-ring";
 import { NextActionCard } from "./_components/next-action-card";
@@ -324,6 +326,30 @@ export default async function DashboardPage() {
 
   const recentMatchCount = recentMatchesResult.length;
 
+  // Shape timeline items
+  const timelineItems = deadlineTimelineItems.map((r) => ({
+    id:            r.id,
+    scholarshipId: r.scholarshipId!,
+    name:          r.name,
+    deadline:      r.deadline ?? "",
+    status:        r.status,
+    awardCents:    r.awardAmount ?? r.amountMax ?? r.amountMin ?? 0,
+  }));
+
+  // Shape new matches items
+  const recentMatches: NewMatchItem[] = recentMatchesResult.map((r) => ({
+    id:         r.id,
+    name:       r.name,
+    amountMin:  r.amountMin,
+    amountMax:  r.amountMax,
+    matchScore: r.matchScore,
+    evScore:    r.evScore,
+    createdAt:  r.createdAt ?? now,
+    isSaved:    r.isSaved ?? false,
+  }));
+
+  const recentMatchCount = recentMatchesResult.length;
+
   // ── Stats ─────────────────────────────────────────────────────────────────
 
   const stats = [
@@ -583,8 +609,9 @@ export default async function DashboardPage() {
           )}
         </div>
 
-        {/* Quick Actions panel */}
-        <div className="w-full lg:w-64 shrink-0 rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+        {/* Quick Actions + widgets column */}
+        <div className="w-full lg:w-64 shrink-0 flex flex-col gap-4">
+        <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
           <div className="border-b border-gray-100 px-5 py-4">
             <h2 className="text-sm font-semibold text-gray-900">Quick Actions</h2>
           </div>
@@ -607,6 +634,15 @@ export default async function DashboardPage() {
             ))}
           </div>
         </div>
+        <ActivityHeatmap userId={userId} />
+        <WinRateCard userId={userId} />
+        </div>
+      </div>
+
+      {/* ── New widgets: timeline + recent matches ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <DeadlineTimeline items={timelineItems} today={today} />
+        <NewMatchesFeed matches={recentMatches} totalCount={recentMatchCount} now={now} />
       </div>
 
       {/* ── New widgets: timeline + recent matches ── */}

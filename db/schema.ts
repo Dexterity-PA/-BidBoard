@@ -299,6 +299,7 @@ export const activityLog = pgTable("activity_log", {
   createdAt:   timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
+// Hand-authored application-level enum (not a Drizzle-inferred type)
 export type ActivityType =
   | "scholarship_added"
   | "status_changed"
