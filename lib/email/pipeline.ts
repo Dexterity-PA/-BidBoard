@@ -1,7 +1,7 @@
 import * as React from "react";
 import { db } from "@/db";
 import { notificationsLog } from "@/db/schema";
-import { checkPreference } from "./preferences";
+import { canSend } from "./preferences";
 import { canSendToday } from "./rate-limit";
 import { FROM_EMAIL, getResend, type NotificationType } from "./client";
 
@@ -20,7 +20,7 @@ export async function sendEmail(
   const { userId, type, to, subject, react, metadata } = params;
 
   // 1. Preference check
-  const prefAllowed = await checkPreference(userId, type);
+  const prefAllowed = await canSend(userId, type);
   if (!prefAllowed) {
     await logNotification(userId, type, "skipped", "preference_disabled", metadata);
     return { success: false, reason: "preference_disabled" };
