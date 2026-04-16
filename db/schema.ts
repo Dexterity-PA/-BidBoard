@@ -85,7 +85,14 @@ export const studentProfiles = pgTable(
         deadlines_1d: boolean;
         weekly_digest: boolean;
         product_updates: boolean;
-      }>(),
+      }>()
+      .default({
+        deadlines_7d: true,
+        deadlines_3d: true,
+        deadlines_1d: false,
+        weekly_digest: true,
+        product_updates: true,
+      }),
     createdAt:            timestamp("created_at").defaultNow(),
     updatedAt:            timestamp("updated_at").defaultNow(),
   },
