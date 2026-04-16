@@ -22,22 +22,27 @@ const SCHOOLS = [
 
 const QUOTES = [
   {
+    id: 'ut-austin-engineering',
     text: 'I applied to 3 scholarships last cycle. Won one. BidBoard showed me I\'d been ignoring a $15K local grant the whole time.',
     attribution: 'Engineering junior, UT Austin',
   },
   {
+    id: 'unc-premed',
     text: 'Spent 20 hours on a scholarship with a 0.8% win rate. Never again.',
     attribution: 'Pre-med sophomore, UNC',
   },
   {
+    id: 'gatech-cs',
     text: 'The EV score clicked immediately. It\'s just math.',
     attribution: 'CS senior, Georgia Tech',
   },
   {
+    id: 'asu-firstgen',
     text: 'My counselor didn\'t know half these scholarships existed. BidBoard did.',
     attribution: 'First-gen freshman, ASU',
   },
   {
+    id: 'ucb-econ',
     text: 'Applied to 4, won 2. The formula works.',
     attribution: 'Economics junior, UC Berkeley',
   },
@@ -140,12 +145,13 @@ function QuoteCard({
   const xInitial = isOdd ? -60 : 60
 
   return (
-    <motion.div
+    <motion.li
       initial={reduced ? false : { opacity: 0, x: xInitial }}
       whileInView={reduced ? undefined : { opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.65, ease: EASE, delay: index * 0.1 }}
       style={{
+        listStyle: 'none',
         background: '#FFFFFF',
         border: '1px solid #E5E7EB',
         borderRadius: 16,
@@ -154,30 +160,36 @@ function QuoteCard({
         width: '100%',
       }}
     >
-      <p
+      <blockquote
         style={{
-          fontFamily: SERIF,
-          fontSize: 'clamp(16px, 2vw, 19px)',
-          color: '#111827',
-          lineHeight: 1.6,
-          margin: '0 0 16px',
-          fontWeight: 400,
-        }}
-      >
-        &ldquo;{text}&rdquo;
-      </p>
-      <p
-        style={{
-          fontFamily: SANS,
-          fontSize: 13,
-          color: '#6B7280',
           margin: 0,
-          fontWeight: 500,
+          padding: 0,
         }}
       >
-        — {attribution}
-      </p>
-    </motion.div>
+        <p
+          style={{
+            fontFamily: SERIF,
+            fontSize: 'clamp(16px, 2vw, 19px)',
+            color: '#111827',
+            lineHeight: 1.6,
+            margin: '0 0 16px',
+            fontWeight: 400,
+          }}
+        >
+          &ldquo;{text}&rdquo;
+        </p>
+        <footer
+          style={{
+            fontFamily: SANS,
+            fontSize: '13px',
+            color: '#6B7280',
+            fontWeight: 500,
+          }}
+        >
+          — {attribution}
+        </footer>
+      </blockquote>
+    </motion.li>
   )
 }
 
@@ -238,25 +250,28 @@ export default function SocialProofSection() {
         <SchoolBar reduced={reduced} />
 
         {/* Subsection 3: Quote cards */}
-        <div
+        <ul
+          aria-label="Student testimonials"
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             gap: 20,
             width: '100%',
+            margin: 0,
+            padding: 0,
           }}
         >
           {QUOTES.map((quote, i) => (
             <QuoteCard
-              key={i}
+              key={quote.id}
               text={quote.text}
               attribution={quote.attribution}
               index={i}
               reduced={reduced}
             />
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )
