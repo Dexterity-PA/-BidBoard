@@ -50,25 +50,20 @@ const PREF_ROWS: { type: NotificationType; label: string; description: string }[
   },
 ];
 
-export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: UserEmailPrefs }) {
-  const [prefs, setPrefs] = useState<BoolPrefs>({
-    welcome:           initialPrefs.welcome,
-    deadlineReminders: initialPrefs.deadlineReminders,
-    newMatches:        initialPrefs.newMatches,
-    statusChanges:     initialPrefs.statusChanges,
-    weeklyDigest:      initialPrefs.weeklyDigest,
-    paymentEvents:     initialPrefs.paymentEvents,
-  });
+export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
+  const [prefs, setPrefs] = useState<BoolPrefs>(initialPrefs);
   const [errors, setErrors] = useState<Partial<Record<NotificationType, string>>>({});
   const [unsubError, setUnsubError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [pendingTypes, setPendingTypes] = useState<Set<NotificationType>>(new Set());
 
   function toggle(type: NotificationType) {
     const key = PREF_KEY_MAP[type];
     const newValue = !prefs[key];
     // Optimistic update
     setPrefs((prev) => ({ ...prev, [key]: newValue }));
-    startTransition(async () => {
+    setPendingTypes((prev) => new Set(prev).add(type));
+    void (async () => {
       try {
         await saveEmailPref(type, newValue);
         setErrors((prev) => ({ ...prev, [type]: undefined }));
@@ -76,8 +71,14 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: UserEmailPrefs 
         // Revert on failure
         setPrefs((prev) => ({ ...prev, [key]: !newValue }));
         setErrors((prev) => ({ ...prev, [type]: "Failed to save. Try again." }));
+      } finally {
+        setPendingTypes((prev) => {
+          const next = new Set(prev);
+          next.delete(type);
+          return next;
+        });
       }
-    });
+    })();
   }
 
   function handleUnsubscribeAll() {
@@ -121,7 +122,7 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: UserEmailPrefs 
                 aria-checked={checked}
                 aria-label={label}
                 onClick={() => toggle(type)}
-                disabled={isPending}
+                disabled={pendingTypes.has(type)}
                 className={`relative inline-flex h-5 w-9 shrink-0 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 disabled:opacity-60 ${
                   checked ? "bg-indigo-600" : "bg-gray-200"
                 }`}

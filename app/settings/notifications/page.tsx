@@ -7,7 +7,7 @@ import { EmailPrefsForm } from "./_components/EmailPrefsForm";
 
 function formatUpdatedAt(date: Date | null): string {
   if (!date) return "Never";
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -17,10 +17,13 @@ function formatUpdatedAt(date: Date | null): string {
 }
 
 export default async function NotificationsSettingsPage() {
+  // Middleware protects /settings routes, but we also guard here so the
+  // page can't be invoked directly as a server action without auth context.
   const { userId } = await auth();
   if (!userId) redirect("/sign-in");
 
   const prefs = await getUserPrefs(userId);
+  const { updatedAt, ...boolPrefs } = prefs;
 
   return (
     <div className="max-w-2xl mx-auto py-10 px-4">
@@ -38,11 +41,11 @@ export default async function NotificationsSettingsPage() {
         Manage which emails BidBoard sends you.
       </p>
       <p className="text-xs text-gray-400 mb-8">
-        Last updated: {formatUpdatedAt(prefs.updatedAt)}
+        Last updated: {formatUpdatedAt(updatedAt)}
       </p>
 
       <div className="border border-gray-200 rounded-xl overflow-hidden mb-8">
-        <EmailPrefsForm prefs={prefs} />
+        <EmailPrefsForm prefs={boolPrefs} />
       </div>
     </div>
   );
