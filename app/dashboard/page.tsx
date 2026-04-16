@@ -7,6 +7,7 @@ import { eq, count, and, gte, lt, desc, asc, sql } from "drizzle-orm";
 import Link from "next/link";
 import { requireOnboarding } from "@/lib/requireOnboarding";
 import { SaveToTrackerButton } from "@/app/tracker/_components/save-to-tracker-button";
+import { fmtAmount, evScoreBadge } from "./_components/dashboard-utils";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -16,12 +17,6 @@ function fmtDollars(cents: number): string {
   return `$${(cents / 100).toLocaleString()}`;
 }
 
-function fmtAmount(min: number | null, max: number | null): string {
-  if (!min && !max) return "—";
-  const fmt = (n: number) => `$${(n / 100).toLocaleString()}`;
-  if (min && max && min !== max) return `${fmt(min)}–${fmt(max)}`;
-  return fmt(min ?? max!);
-}
 
 function fmtEvHr(raw: string | null): string {
   if (!raw) return "—";
@@ -50,12 +45,6 @@ function deadlinePill(dateStr: string): { label: string; bg: string; text: strin
   return              { label: `${days}d left`,    bg: "bg-emerald-50", text: "text-emerald-700", dot: "bg-emerald-500" };
 }
 
-function evScoreBadge(raw: string | null): { bg: string; text: string } {
-  const n = parseFloat(raw ?? "0");
-  if (n >= 5000_00) return { bg: "bg-emerald-50", text: "text-emerald-700" };
-  if (n >= 1000_00) return { bg: "bg-blue-50",    text: "text-blue-700"   };
-  return                    { bg: "bg-gray-100",   text: "text-gray-600"   };
-}
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 
