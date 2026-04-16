@@ -38,6 +38,21 @@ export type NextAction =
   | { type: "new_user"; label: string; href: string; scholarshipId: null }
   | { type: "browse"; label: string; href: string; scholarshipId: null };
 
+/**
+ * Format an evScore value the same way the Top Matches table does:
+ * evScore is stored as a raw decimal (not cents), so no division by 100.
+ * Mirrors fmtEvScore() in app/dashboard/page.tsx.
+ */
+function fmtEvScore(raw: string | null): string {
+  if (!raw) return "$0";
+  const n = parseFloat(raw);
+  if (isNaN(n)) return "$0";
+  if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `$${(n / 1_000).toFixed(0)}K`;
+  return `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+}
+
+
 export async function getNextAction(userId: string): Promise<NextAction> {
   const now = new Date();
   const today = now.toISOString().slice(0, 10);
@@ -160,16 +175,9 @@ export async function getNextAction(userId: string): Promise<NextAction> {
 
   if (topMatches.length > 0) {
     const m = topMatches[0];
-    const ev = m.evScore ? parseFloat(m.evScore) : 0;
-    const evFmt =
-      ev >= 10_000_000
-        ? `$${(ev / 10_000_000).toFixed(0)}M`
-        : ev >= 100_000
-        ? `$${(ev / 100_000).toFixed(0)}K`
-        : `$${(ev / 100).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
     return {
       type: "high_ev_match",
-      label: `Add ${m.scholarshipName} to tracker — ${evFmt} expected value`,
+      label: `Add ${m.scholarshipName} to tracker — ${fmtEvScore(m.evScore)} expected value`,
       href: `/scholarship/${m.scholarshipId}`,
       scholarshipId: m.scholarshipId!,
     };
