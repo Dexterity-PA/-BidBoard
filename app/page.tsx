@@ -6,6 +6,8 @@ import ScrollReveal from "./_components/ScrollReveal";
 const C = {
   indigo:      "#4F46E5",
   indigoDark:  "#4338CA",
+  indigoTint:  "#EEF2FF",
+  indigoRing:  "#C7D2FE",
   white:       "#FFFFFF",
   surface1:    "#F9FAFB",
   surface2:    "#F3F4F6",
@@ -494,8 +496,8 @@ function EVScoringMockup() {
             padding: "10px 12px",
             borderRadius: 10,
             marginBottom: 6,
-            background: r.hi ? "#EEF2FF" : "transparent",
-            border: r.hi ? "1px solid #C7D2FE" : `1px solid ${C.border}`,
+            background: r.hi ? C.indigoTint : "transparent",
+            border: r.hi ? `1px solid ${C.indigoRing}` : `1px solid ${C.border}`,
           }}
         >
           <div>
@@ -577,7 +579,7 @@ function EssayMockup() {
             style={{
               fontFamily: sans,
               fontSize: 12,
-              color: "#374151",
+              color: C.textMuted,
               lineHeight: 1.65,
             }}
           >
@@ -592,10 +594,10 @@ function EssayMockup() {
         {/* Adapted */}
         <div
           style={{
-            background: "#EEF2FF",
+            background: C.indigoTint,
             borderRadius: 10,
             padding: 14,
-            border: "1px solid #C7D2FE",
+            border: `1px solid ${C.indigoRing}`,
           }}
         >
           <div
@@ -615,7 +617,7 @@ function EssayMockup() {
             style={{
               fontFamily: sans,
               fontSize: 12,
-              color: "#374151",
+              color: C.textMuted,
               lineHeight: 1.65,
             }}
           >
@@ -784,17 +786,18 @@ function DeadlineMockup() {
   );
 }
 
+const sharedSection: React.CSSProperties = { padding: "90px 24px" };
+const sharedInner: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: 80,
+  maxWidth: 1100,
+  margin: "0 auto",
+  alignItems: "center",
+};
+
 /* ─── Feature Deep-Dive ─────────────────────────────────────────── */
 function FeatureDeepDive() {
-  const sharedSection: React.CSSProperties = { padding: "90px 24px" };
-  const sharedInner: React.CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: 80,
-    maxWidth: 1100,
-    margin: "0 auto",
-    alignItems: "center",
-  };
 
   return (
     <>
