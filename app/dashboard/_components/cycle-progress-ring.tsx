@@ -53,7 +53,7 @@ export function CycleProgressRing({ appliedCents, submittedCount, goal }: Props)
 
   function commitEdit() {
     const parsed = parseInt(inputVal.replace(/[^0-9]/g, ""), 10);
-    if (!isNaN(parsed) && parsed !== goal) {
+    if (!isNaN(parsed) && parsed >= 1 && parsed !== goal) {
       startTransition(async () => {
         await updateApplicationGoal(parsed);
       });

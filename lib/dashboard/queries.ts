@@ -114,7 +114,11 @@ export async function getNextAction(userId: string): Promise<NextAction> {
     };
   }
 
-  // Priority 3: high-EV match not yet in tracker
+  // Priority 3: highest-EV match not yet in tracker.
+  // No minimum EV threshold — whatever the user's best untracked match is,
+  // that's what we surface. The .limit(5) fetches a small window so we can
+  // pick topMatches[0] (best by evScore); the extra rows are unused today
+  // but leave room to add tie-breaking logic later.
   const trackedRows = await db
     .select({ scholarshipId: applications.scholarshipId })
     .from(applications)
