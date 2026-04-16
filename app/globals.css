@@ -174,3 +174,33 @@ html {
   color: #111827 !important;
   background: #F3F4F6 !important;
 }
+
+/* ── Hero CTA buttons ─────────────────────────────────────────── */
+@keyframes indigo-glow-pulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(79,70,229,0.35), 0 4px 14px rgba(79,70,229,0.15); }
+  50%       { box-shadow: 0 0 26px rgba(79,70,229,0.6),  0 4px 20px rgba(79,70,229,0.25); }
+}
+
+.hero-cta-primary {
+  animation: indigo-glow-pulse 2.6s ease-in-out infinite;
+  transition: filter 0.2s, transform 0.15s !important;
+}
+
+.hero-cta-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.hero-cta-ghost:hover {
+  border-color: #C7D2FE !important;
+  color: #111827 !important;
+  background: #EEF2FF !important;
+}
+
+/* ── Reduced motion: disable particle/flip animations ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta-primary {
+    animation: none;
+    box-shadow: 0 0 10px rgba(79,70,229,0.2), 0 2px 8px rgba(0,0,0,0.1);
+  }
+}
