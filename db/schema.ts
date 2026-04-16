@@ -41,6 +41,7 @@ export const users = pgTable("users", {
   tier:                   text("tier").default("free"),
   stripeCustomerId:       text("stripe_customer_id"),
   stripeSubscriptionId:   text("stripe_subscription_id"),
+  applicationGoal:        integer("application_goal").default(50000),
   createdAt:              timestamp("created_at").defaultNow(),
   updatedAt:              timestamp("updated_at").defaultNow(),
 });

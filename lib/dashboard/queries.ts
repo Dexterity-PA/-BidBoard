@@ -52,6 +52,7 @@ function fmtEvScore(raw: string | null): string {
   return `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 }
 
+
 export async function getNextAction(userId: string): Promise<NextAction> {
   const now = new Date();
   const today = now.toISOString().slice(0, 10);
