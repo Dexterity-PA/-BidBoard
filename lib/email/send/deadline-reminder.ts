@@ -12,6 +12,7 @@ import {
   type DeadlineScholarship,
 } from "@/emails/deadline-reminder";
 import { sendEmail } from "../pipeline";
+import { canSend } from "../preferences";
 
 const REMINDER_DAYS = [1, 3, 7, 14] as const;
 type ReminderDay = (typeof REMINDER_DAYS)[number];
@@ -97,6 +98,10 @@ export async function runDeadlineReminderCron(): Promise<{
   let skipped = 0;
 
   for (const [userId, reminders] of byUser) {
+    if (!await canSend(userId, "deadline_reminders")) {
+      skipped++;
+      continue;
+    }
     // Filter out already-sent dedupe records
     const notSent: PendingReminder[] = [];
     for (const r of reminders) {

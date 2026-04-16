@@ -16,6 +16,7 @@ import {
   type DigestMatch,
 } from "@/emails/weekly-digest";
 import { sendEmail } from "../pipeline";
+import { canSend } from "../preferences";
 
 function getWeekKey(): string {
   const now = new Date();
@@ -47,6 +48,11 @@ export async function runWeeklyDigestCron(): Promise<{
 
   for (const { userId, email } of profileRows) {
     if (!userId) continue;
+
+    if (!await canSend(userId, "weekly_digest")) {
+      skipped++;
+      continue;
+    }
 
     // Already sent this week?
     const [existing] = await db

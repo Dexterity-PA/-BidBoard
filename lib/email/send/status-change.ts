@@ -4,6 +4,7 @@ import { applications, scholarships, users } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 import { StatusChangeEmail } from "@/emails/status-change";
 import { sendEmail } from "../pipeline";
+import { canSend } from "../preferences";
 
 type TriggerStatus = "submitted" | "won" | "lost";
 
@@ -19,6 +20,8 @@ export async function sendStatusChangeEmail(params: {
   newStatus: TriggerStatus;
 }): Promise<void> {
   const { userId, applicationId, newStatus } = params;
+
+  if (!await canSend(userId, "status_changes")) return;
 
   const [row] = await db
     .select({

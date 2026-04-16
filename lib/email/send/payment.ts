@@ -4,6 +4,7 @@ import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { PaymentEmail, type PaymentEventType } from "@/emails/payment";
 import { sendEmail } from "../pipeline";
+import { canSend } from "../preferences";
 
 const SUBJECTS: Record<PaymentEventType, string> = {
   subscription_started:  "🎉 Welcome to BidBoard Premium",
@@ -40,6 +41,8 @@ export async function sendPaymentEmail(
     );
     return;
   }
+
+  if (!await canSend(user.id, "payment_events")) return;
 
   await sendEmail({
     userId: user.id,

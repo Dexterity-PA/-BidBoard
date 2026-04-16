@@ -10,6 +10,7 @@ import { and, eq, gte, sql } from "drizzle-orm";
 import { computeMatchScore } from "@/lib/matching";
 import { NewMatchesEmail, type MatchedScholarship } from "@/emails/new-matches";
 import { sendEmail } from "../pipeline";
+import { canSend } from "../preferences";
 
 function todayKey(): string {
   return new Date().toISOString().slice(0, 10);
@@ -56,6 +57,11 @@ export async function runNewMatchesCron(): Promise<{
 
   for (const { userId, email, profile } of profileRows) {
     if (!userId) continue;
+
+    if (!await canSend(userId, "new_matches")) {
+      skipped++;
+      continue;
+    }
 
     // Already sent today?
     const [existing] = await db
