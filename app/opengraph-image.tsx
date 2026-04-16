@@ -63,6 +63,8 @@ export default function OGImage() {
         {/* Headline */}
         <div
           style={{
+            display: "flex",
+            flexDirection: "column",
             fontSize: 72,
             fontWeight: 700,
             color: "#FFFFFF",
