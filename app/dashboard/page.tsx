@@ -10,6 +10,8 @@ import { SaveToTrackerButton } from "@/app/tracker/_components/save-to-tracker-b
 import { fmtAmount, evScoreBadge } from "./_components/dashboard-utils";
 import { DeadlineTimeline } from "./_components/DeadlineTimeline";
 import { NewMatchesFeed, type NewMatchItem } from "./_components/NewMatchesFeed";
+import { ActivityHeatmap } from "./_components/ActivityHeatmap";
+import { WinRateCard } from "./_components/WinRateCard";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -538,8 +540,9 @@ export default async function DashboardPage() {
           )}
         </div>
 
-        {/* Quick Actions panel */}
-        <div className="w-full lg:w-64 shrink-0 rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+        {/* Quick Actions + widgets column */}
+        <div className="w-full lg:w-64 shrink-0 flex flex-col gap-4">
+        <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
           <div className="border-b border-gray-100 px-5 py-4">
             <h2 className="text-sm font-semibold text-gray-900">Quick Actions</h2>
           </div>
@@ -561,6 +564,9 @@ export default async function DashboardPage() {
               </Link>
             ))}
           </div>
+        </div>
+        <ActivityHeatmap userId={userId} />
+        <WinRateCard userId={userId} />
         </div>
       </div>
 
