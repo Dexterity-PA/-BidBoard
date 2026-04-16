@@ -271,12 +271,159 @@ function Hero() {
   );
 }
 
-/* placeholder — remaining sections added in Tasks 3–6 */
+/* ─── Social Proof Bar ─────────────────────────────────────────── */
+const proofStats = [
+  { value: "500+",  label: "students trust BidBoard" },
+  { value: "$2.4M", label: "in scholarships tracked" },
+  { value: "500+",  label: "scholarships in database" },
+  { value: "12",    label: "avg. high-EV matches found" },
+];
+
+function SocialProofBar() {
+  return (
+    <section
+      style={{
+        background: C.surface1,
+        borderTop: `1px solid ${C.border}`,
+        borderBottom: `1px solid ${C.border}`,
+        padding: "20px 24px",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1000,
+          margin: "0 auto",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "16px 48px",
+        }}
+      >
+        {proofStats.map((s) => (
+          <div key={s.label} style={{ textAlign: "center" }}>
+            <div
+              style={{
+                fontFamily: sans,
+                fontSize: 17,
+                fontWeight: 700,
+                color: C.textPrimary,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              {s.value}
+            </div>
+            <div style={{ fontFamily: sans, fontSize: 13, color: C.textMuted, marginTop: 2 }}>
+              {s.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── How It Works ─────────────────────────────────────────────── */
+const steps = [
+  {
+    n: "01",
+    title: "Build your profile",
+    desc: "Complete your GPA, interests, demographics, and extracurriculars. Takes 5 minutes. Gets smarter over time.",
+  },
+  {
+    n: "02",
+    title: "Get ranked matches",
+    desc: "Every scholarship in our database scored by your personal EV Score. Highest ROI rises to the top.",
+  },
+  {
+    n: "03",
+    title: "Apply with AI-assisted essays",
+    desc: "Our recycling engine adapts your existing essays to each new prompt. Less rewriting, more submitting.",
+  },
+];
+
+function HowItWorks() {
+  return (
+    <section id="how-it-works" style={{ background: C.white, padding: "100px 24px" }}>
+      <ScrollReveal>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
+          <h2
+            className="mkt-section-h2"
+            style={{ ...displayH(C.textPrimary, 48), marginBottom: 16 }}
+          >
+            Three steps. Zero guesswork.
+          </h2>
+          <p style={{ ...body(C.textMuted), maxWidth: 480, margin: "0 auto" }}>
+            From profile to personalized scholarship list in minutes.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <div
+        className="mkt-3col"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 40,
+          maxWidth: 960,
+          margin: "0 auto",
+        }}
+      >
+        {steps.map((step, i) => (
+          <ScrollReveal key={step.n} delay={i * 100}>
+            <div>
+              {/* Step number circle */}
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: "50%",
+                  background: C.indigo,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 20,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: sans,
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: "#fff",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  {step.n}
+                </span>
+              </div>
+              <h3
+                style={{
+                  fontFamily: sans,
+                  fontSize: 18,
+                  fontWeight: 600,
+                  color: C.textPrimary,
+                  margin: "0 0 10px",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {step.title}
+              </h3>
+              <p style={{ ...body(C.textMuted, 15), lineHeight: 1.65 }}>{step.desc}</p>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function LandingPage() {
   return (
     <div style={{ background: C.white }}>
       <Nav />
       <Hero />
+      <SocialProofBar />
+      <HowItWorks />
     </div>
   );
 }
