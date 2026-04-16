@@ -147,3 +147,8 @@
   .mkt-feature-h2 { font-size: 28px !important; }
   .mkt-cta-h2 { font-size: 34px !important; }
 }
+
+/* ── Footer link hover (dark bg) ─────────────────────────────── */
+.footer-link:hover {
+  color: #ffffff !important;
+}
