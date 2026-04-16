@@ -861,6 +861,370 @@ function FeatureDeepDive() {
   );
 }
 
+/* ─── Testimonials ─────────────────────────────────────────────── */
+const testimonials = [
+  {
+    quote:
+      "BidBoard found me 3 scholarships I'd never heard of. I won $8,500 my freshman year.",
+    name: "Aisha T.",
+    school: "UCLA '27",
+    won: "$8,500",
+  },
+  {
+    quote:
+      "I stopped applying to $50K scholarships with 0.2% odds. The EV score changed everything.",
+    name: "Marcus L.",
+    school: "UT Austin '26",
+    won: "$6,200",
+  },
+  {
+    quote:
+      "My counselor put our whole cohort on BidBoard. I found 9 matches in my first session.",
+    name: "Priya K.",
+    school: "Stanford '27",
+    won: "$12,000",
+  },
+];
+
+function Testimonials() {
+  return (
+    <section style={{ background: C.surface1, padding: "100px 24px" }}>
+      <ScrollReveal>
+        <h2
+          className="mkt-section-h2"
+          style={{
+            ...displayH(C.textPrimary, 48),
+            textAlign: "center",
+            marginBottom: 64,
+          }}
+        >
+          Real students. Real wins.
+        </h2>
+      </ScrollReveal>
+
+      <div
+        className="mkt-3col"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 24,
+          maxWidth: 1000,
+          margin: "0 auto",
+        }}
+      >
+        {testimonials.map((t, i) => (
+          <ScrollReveal key={t.name} delay={i * 80}>
+            <div
+              style={{
+                background: C.white,
+                border: `1px solid ${C.border}`,
+                borderRadius: 14,
+                padding: 28,
+                boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
+                display: "flex",
+                flexDirection: "column",
+                gap: 16,
+              }}
+            >
+              {/* Quote */}
+              <p
+                style={{
+                  fontFamily: sans,
+                  fontSize: 15,
+                  lineHeight: 1.65,
+                  color: C.textPrimary,
+                  margin: 0,
+                  flexGrow: 1,
+                }}
+              >
+                &ldquo;{t.quote}&rdquo;
+              </p>
+
+              {/* Attribution */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontFamily: sans,
+                      fontSize: 14,
+                      fontWeight: 600,
+                      color: C.textPrimary,
+                    }}
+                  >
+                    {t.name}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: sans,
+                      fontSize: 13,
+                      color: C.textMuted,
+                      marginTop: 2,
+                    }}
+                  >
+                    {t.school}
+                  </div>
+                </div>
+                <span
+                  style={{
+                    background: C.indigoTint,
+                    color: C.indigo,
+                    fontFamily: sans,
+                    fontSize: 13,
+                    fontWeight: 700,
+                    padding: "4px 12px",
+                    borderRadius: 980,
+                  }}
+                >
+                  {t.won}
+                </span>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── Pricing ──────────────────────────────────────────────────── */
+interface PricingTier {
+  name: string;
+  price: string;
+  period?: string;
+  features: string[];
+  popular?: boolean;
+  cta: string;
+}
+
+const pricingTiers: PricingTier[] = [
+  {
+    name: "Free",
+    price: "$0",
+    features: [
+      "25 scholarship matches",
+      "Basic EV scoring",
+      "3 saved searches",
+    ],
+    cta: "Get started",
+  },
+  {
+    name: "Premium",
+    price: "$9.99",
+    period: "/mo",
+    features: [
+      "Unlimited matches",
+      "Full EV scoring",
+      "Essay recycling engine",
+      "Priority scholarships",
+    ],
+    popular: true,
+    cta: "Get started free",
+  },
+  {
+    name: "Counselor",
+    price: "$199",
+    period: "/yr",
+    features: [
+      "Everything in Premium",
+      "Up to 50 student seats",
+      "ROI dashboard",
+      "CSV export",
+    ],
+    cta: "Get started",
+  },
+];
+
+function Pricing() {
+  return (
+    <section id="pricing" style={{ background: C.white, padding: "100px 24px" }}>
+      <ScrollReveal>
+        <h2
+          className="mkt-section-h2"
+          style={{
+            ...displayH(C.textPrimary, 48),
+            textAlign: "center",
+            marginBottom: 64,
+          }}
+        >
+          Simple pricing.
+        </h2>
+      </ScrollReveal>
+
+      <div
+        className="mkt-3col"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 24,
+          maxWidth: 980,
+          margin: "0 auto",
+          alignItems: "start",
+        }}
+      >
+        {pricingTiers.map((tier, i) => (
+          <ScrollReveal key={tier.name} delay={i * 80}>
+            <div
+              style={{
+                background: C.white,
+                borderRadius: 16,
+                padding: "32px 28px",
+                border: tier.popular
+                  ? `2px solid ${C.indigo}`
+                  : `1px solid ${C.border}`,
+                boxShadow: tier.popular
+                  ? "0 8px 40px rgba(79,70,229,0.14), 0 2px 8px rgba(79,70,229,0.08)"
+                  : "0 1px 3px rgba(0,0,0,0.06)",
+                transform: tier.popular ? "scale(1.03)" : "none",
+                position: "relative",
+              }}
+            >
+              {/* Most popular badge */}
+              {tier.popular && (
+                <div style={{ textAlign: "center", marginBottom: 20 }}>
+                  <span
+                    style={{
+                      background: C.indigo,
+                      color: C.white,
+                      fontFamily: sans,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      padding: "4px 14px",
+                      borderRadius: 980,
+                      letterSpacing: "0.02em",
+                    }}
+                  >
+                    Most popular
+                  </span>
+                </div>
+              )}
+
+              {/* Tier name */}
+              <p
+                style={{
+                  fontFamily: sans,
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: C.textFaint,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  margin: "0 0 8px",
+                }}
+              >
+                {tier.name}
+              </p>
+
+              {/* Price */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  gap: 2,
+                  marginBottom: 24,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: sans,
+                    fontSize: 40,
+                    fontWeight: 700,
+                    color: C.textPrimary,
+                    lineHeight: 1,
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  {tier.price}
+                </span>
+                {tier.period && (
+                  <span
+                    style={{
+                      fontFamily: sans,
+                      fontSize: 15,
+                      color: C.textMuted,
+                      marginBottom: 4,
+                    }}
+                  >
+                    {tier.period}
+                  </span>
+                )}
+              </div>
+
+              {/* Features */}
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "0 0 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
+                }}
+              >
+                {tier.features.map((f) => (
+                  <li
+                    key={f}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: 8,
+                      fontFamily: sans,
+                      fontSize: 14,
+                      color: C.textPrimary,
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: C.indigo,
+                        flexShrink: 0,
+                        marginTop: 1,
+                        fontWeight: 700,
+                      }}
+                    >
+                      ✓
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              {/* CTA */}
+              <Link
+                href="/sign-up"
+                className={tier.popular ? "btn-indigo" : "btn-indigo-outline"}
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  fontFamily: sans,
+                  fontSize: 15,
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  padding: "11px 20px",
+                  borderRadius: 8,
+                  transition: "background 0.15s",
+                  ...(tier.popular
+                    ? { background: C.indigo, color: C.white, border: "none" }
+                    : {
+                        background: "transparent",
+                        color: C.indigo,
+                        border: `1px solid ${C.indigo}`,
+                      }),
+                }}
+              >
+                {tier.cta}
+              </Link>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function LandingPage() {
   return (
     <div style={{ background: C.white }}>
@@ -869,6 +1233,8 @@ export default function LandingPage() {
       <SocialProofBar />
       <HowItWorks />
       <FeatureDeepDive />
+      <Testimonials />
+      <Pricing />
     </div>
   );
 }

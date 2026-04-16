@@ -490,7 +490,7 @@ export default function MyScholarshipsPage() {
                       {/* Apply button */}
                       <td className="px-4 py-3.5 text-right">
                         <Link
-                          href={`/scholarships/${m.scholarshipId}`}
+                          href={`/scholarship/${m.scholarshipId}`}
                           className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-indigo-100"
                         >
                           View →
