@@ -71,6 +71,21 @@ export const studentProfiles = pgTable(
     interests:            text("interests").array(),
     disabilities:         boolean("disabilities").default(false),
     militaryFamily:       boolean("military_family").default(false),
+    // Settings page columns
+    graduationYear:           integer("graduation_year"),
+    schoolName:               text("school_name"),
+    minAwardAmount:           integer("min_award_amount"),
+    categoriesOfInterest:     text("categories_of_interest").array(),
+    maxHoursWilling:          integer("max_hours_willing"),
+    preferredDeadlineRange:   text("preferred_deadline_range"),
+    notificationPreferences:  jsonb("notification_preferences")
+      .$type<{
+        deadlines_7d: boolean;
+        deadlines_3d: boolean;
+        deadlines_1d: boolean;
+        weekly_digest: boolean;
+        product_updates: boolean;
+      }>(),
     createdAt:            timestamp("created_at").defaultNow(),
     updatedAt:            timestamp("updated_at").defaultNow(),
   },
