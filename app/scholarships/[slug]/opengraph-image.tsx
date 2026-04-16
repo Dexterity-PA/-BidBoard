@@ -70,7 +70,7 @@ export default async function Image({
               background: "rgba(255,255,255,0.15)",
               borderRadius: 16,
               padding: "20px 32px",
-              display: "inline-flex",
+              display: "flex",
               alignSelf: "flex-start",
             }}
           >

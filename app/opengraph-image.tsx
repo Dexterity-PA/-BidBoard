@@ -51,7 +51,7 @@ export default function OGImage() {
           </div>
           <span
             style={{
-              display: "inline-flex",
+              display: "flex",
               fontSize: 36,
               fontWeight: 700,
               color: "#FFFFFF",
