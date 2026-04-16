@@ -32,21 +32,21 @@ export function DeadlineTimelineDots({ days, today }: Props) {
                 <span className="text-[9px] text-gray-400 leading-none">+{overflow}</span>
               )}
               {visible.map((item) => (
-                <div key={item.id} className="relative group">
+                <div key={item.id} className="relative group" tabIndex={0}>
                   <div
                     className={`rounded-full ${dotSizeClass(item.awardCents)} ${dotColorClass(item.deadline, today)} cursor-default`}
                   />
                   {/* Tooltip — card must NOT have overflow-hidden */}
-                  <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50
+                  <div className="pointer-events-none group-hover:pointer-events-auto absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50
                                   w-max max-w-[200px] rounded-lg bg-gray-900 px-3 py-2
-                                  opacity-0 group-hover:opacity-100 transition-opacity duration-100">
+                                  opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-100">
                     <p className="text-xs font-semibold text-white leading-snug">{item.name}</p>
                     <p className="text-[10px] text-gray-300 mt-0.5">
-                      {fmtAwardCents(item.awardCents)} · <span className="capitalize">{item.status.replace("_", " ")}</span>
+                      {fmtAwardCents(item.awardCents)} · <span className="capitalize">{item.status.replace(/_/g, " ")}</span>
                     </p>
                     <Link
                       href="/tracker"
-                      className="pointer-events-auto text-[10px] text-indigo-300 hover:text-indigo-200 mt-1 inline-block"
+                      className="text-[10px] text-indigo-300 hover:text-indigo-200 mt-1 inline-block"
                     >
                       Open in tracker →
                     </Link>
