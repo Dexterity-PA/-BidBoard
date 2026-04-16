@@ -175,7 +175,7 @@ interface DetailViewProps {
 function ScholarshipDetailView({
   scholarship,
   matchData: _matchData, // used in Task 6 sidebar
-  similarScholarships: _similarScholarships, // used in Task 6 SimilarScholarshipsSection
+  similarScholarships,
   isLoggedIn,
 }: DetailViewProps) {
   return (
@@ -241,7 +241,7 @@ function ScholarshipDetailView({
             <EssayPromptsSection scholarship={scholarship} scholarshipId={scholarship.id} />
             <TimelineSection scholarship={scholarship} />
             <TipsSection scholarship={scholarship} />
-            {/* SimilarScholarshipsSection added in Task 6 */}
+            <SimilarScholarshipsSection similarScholarships={similarScholarships} />
           </div>
 
           {/* ── Right sidebar ── */}
@@ -670,5 +670,57 @@ function TipsSection({ scholarship }: { scholarship: ScholarshipRow }) {
         ))}
       </ul>
     </SectionCard>
+  );
+}
+
+function SimilarScholarshipsSection({
+  similarScholarships,
+}: {
+  similarScholarships: SimilarScholarship[];
+}) {
+  if (similarScholarships.length === 0) return null;
+
+  return (
+    <div>
+      <h2 className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-500">
+        Similar Scholarships
+      </h2>
+      <div className="flex gap-4 overflow-x-auto pb-2 -mx-1 px-1">
+        {similarScholarships.map((s) => {
+          const days = daysUntil(s.deadline);
+          const urgencyClass =
+            days === null
+              ? "text-gray-400"
+              : days <= 7
+              ? "text-red-600"
+              : days <= 30
+              ? "text-amber-600"
+              : "text-emerald-600";
+
+          return (
+            <Link
+              key={s.id}
+              href={`/scholarship/${s.id}`}
+              className="flex-shrink-0 w-52 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <p className="font-semibold text-gray-900 text-sm leading-snug line-clamp-2 mb-1">
+                {s.name}
+              </p>
+              <p className="text-xs text-gray-500 truncate mb-3">{s.provider}</p>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-bold text-emerald-600">
+                  {formatAmount(s.amountMin, s.amountMax)}
+                </span>
+                {s.deadline && days !== null && (
+                  <span className={`text-xs font-medium ${urgencyClass}`}>
+                    {days < 0 ? "Closed" : `${days}d`}
+                  </span>
+                )}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
   );
 }
