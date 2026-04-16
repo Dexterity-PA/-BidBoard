@@ -1225,6 +1225,284 @@ function Pricing() {
   );
 }
 
+/* ─── For Counselors CTA ───────────────────────────────────────── */
+function ForCounselorsCTA() {
+  const bullets = [
+    "50 student seats per license",
+    "ROI tracking dashboard",
+    "CSV export + reporting",
+  ];
+  return (
+    <section
+      id="counselors"
+      style={{ background: C.surface1, padding: "100px 24px" }}
+    >
+      <ScrollReveal>
+        <div
+          className="mkt-2col"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 64,
+            maxWidth: 1000,
+            margin: "0 auto",
+            alignItems: "center",
+          }}
+        >
+          {/* Left: copy */}
+          <div>
+            <p
+              style={{
+                fontFamily: sans,
+                fontSize: 12,
+                fontWeight: 700,
+                color: C.indigo,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                margin: "0 0 12px",
+              }}
+            >
+              For Counselors
+            </p>
+            <h2
+              className="mkt-section-h2"
+              style={{
+                ...displayH(C.textPrimary, 40),
+                marginBottom: 20,
+              }}
+            >
+              Running a college counseling practice?
+            </h2>
+            <p style={{ ...body(C.textMuted), marginBottom: 32, maxWidth: 420 }}>
+              BidBoard&apos;s Counselor plan gives you one seat for up to 50
+              students. ROI dashboards, CSV export, and priority matching — all
+              for $199/year.
+            </p>
+            <Link
+              href="#pricing"
+              style={{
+                fontFamily: sans,
+                fontSize: 15,
+                fontWeight: 500,
+                color: C.indigo,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              See Counselor pricing →
+            </Link>
+          </div>
+
+          {/* Right: bullet cards */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 20,
+            }}
+          >
+            {bullets.map((b) => (
+              <div
+                key={b}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 16,
+                  background: C.white,
+                  border: `1px solid ${C.border}`,
+                  borderRadius: 12,
+                  padding: "16px 20px",
+                }}
+              >
+                <div
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50%",
+                    background: C.indigoTint,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <span
+                    style={{
+                      color: C.indigo,
+                      fontSize: 14,
+                      fontWeight: 700,
+                    }}
+                  >
+                    ✓
+                  </span>
+                </div>
+                <span
+                  style={{
+                    fontFamily: sans,
+                    fontSize: 15,
+                    fontWeight: 500,
+                    color: C.textPrimary,
+                  }}
+                >
+                  {b}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+/* ─── Final CTA (dark) ─────────────────────────────────────────── */
+function FinalCTA() {
+  return (
+    <section
+      style={{
+        background: C.dark,
+        padding: "120px 24px",
+        textAlign: "center",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Subtle indigo glow */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: "30%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 600,
+          height: 300,
+          background:
+            "radial-gradient(ellipse at center, rgba(79,70,229,0.25) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
+      <ScrollReveal>
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <h2
+            className="mkt-cta-h2"
+            style={{
+              ...displayH(C.white, 64),
+              marginBottom: 20,
+            }}
+          >
+            Your next scholarship
+            <br />
+            starts here.
+          </h2>
+          <p
+            style={{
+              ...body("#94A3B8", 17),
+              marginBottom: 40,
+            }}
+          >
+            Get started free — no credit card required.
+          </p>
+          <Link
+            href="/sign-up"
+            className="btn-indigo"
+            style={{
+              display: "inline-block",
+              fontFamily: sans,
+              fontSize: 17,
+              fontWeight: 500,
+              color: C.white,
+              textDecoration: "none",
+              background: C.indigo,
+              padding: "14px 32px",
+              borderRadius: 8,
+              transition: "background 0.15s",
+            }}
+          >
+            Get started free
+          </Link>
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+/* ─── Footer ───────────────────────────────────────────────────── */
+function Footer() {
+  return (
+    <footer
+      style={{
+        background: C.dark,
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+        padding: "32px 24px",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 16,
+        }}
+      >
+        {/* Logo + tagline */}
+        <div>
+          <div
+            style={{
+              fontFamily: sans,
+              fontWeight: 600,
+              fontSize: 15,
+              color: C.white,
+              letterSpacing: "-0.01em",
+              marginBottom: 4,
+            }}
+          >
+            BidBoard
+          </div>
+          <div style={{ fontFamily: sans, fontSize: 13, color: "#64748B" }}>
+            Scholarship strategy, engineered.
+          </div>
+        </div>
+
+        {/* Links + copyright */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 24,
+            flexWrap: "wrap",
+          }}
+        >
+          {["Privacy", "Terms", "Contact"].map((label) => (
+            <Link
+              key={label}
+              href={`/${label.toLowerCase()}`}
+              className="footer-link"
+              style={{
+                fontFamily: sans,
+                fontSize: 13,
+                color: "#64748B",
+                textDecoration: "none",
+                transition: "color 0.15s",
+              }}
+            >
+              {label}
+            </Link>
+          ))}
+          <span style={{ fontFamily: sans, fontSize: 12, color: "#475569" }}>
+            © 2026 BidBoard
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function LandingPage() {
   return (
     <div style={{ background: C.white }}>
@@ -1235,6 +1513,9 @@ export default function LandingPage() {
       <FeatureDeepDive />
       <Testimonials />
       <Pricing />
+      <ForCounselorsCTA />
+      <FinalCTA />
+      <Footer />
     </div>
   );
 }
