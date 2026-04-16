@@ -111,3 +111,39 @@
     transition: none;
   }
 }
+
+/* ── Light-mode nav link hover ───────────────────────────────── */
+.nav-link-light:hover {
+  color: #111827 !important;
+}
+
+/* ── Marketing button hovers ─────────────────────────────────── */
+.btn-indigo:hover {
+  background: #4338ca !important;
+}
+.btn-ghost:hover {
+  background: #f3f4f6 !important;
+}
+.btn-indigo-outline:hover {
+  background: #eef2ff !important;
+}
+
+/* ── Responsive grid overrides (override inline styles) ──────── */
+@media (max-width: 768px) {
+  .mkt-hide-mobile { display: none !important; }
+  .mkt-2col {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .mkt-2col-flip {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    gap: 32px !important;
+  }
+  .mkt-3col { grid-template-columns: 1fr !important; }
+  .mkt-hero-h1  { font-size: 42px !important; }
+  .mkt-hero-sub { font-size: 17px !important; }
+  .mkt-section-h2 { font-size: 32px !important; }
+  .mkt-feature-h2 { font-size: 28px !important; }
+  .mkt-cta-h2 { font-size: 40px !important; }
+}
