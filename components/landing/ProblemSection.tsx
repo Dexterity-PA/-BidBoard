@@ -76,7 +76,7 @@ function DecimalBlock({
     <motion.div
       ref={ref}
       initial={reduced ? false : { opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      animate={!reduced && inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.65, ease: EASE }}
       style={{ marginBottom: 72 }}
     >
@@ -110,6 +110,9 @@ function DecimalBlock({
 export default function ProblemSection() {
   const reduced = useReducedMotion() ?? false
 
+  const headlineRef = useRef<HTMLHeadingElement>(null)
+  const headlineInView = useInView(headlineRef, { once: true })
+
   return (
     <section
       style={{
@@ -131,9 +134,9 @@ export default function ProblemSection() {
         {/* Left: sticky headline */}
         <div style={{ position: 'sticky', top: '20vh' }}>
           <motion.h2
+            ref={headlineRef}
             initial={reduced ? false : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={!reduced && headlineInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: EASE }}
             style={{
               fontFamily: SERIF,
@@ -157,7 +160,7 @@ export default function ProblemSection() {
             label="Average student applies to 7 scholarships"
             reduced={reduced}
           />
-          <DecimalBlock value="0.3" label="Wins 0.3" reduced={reduced} />
+          <DecimalBlock value="0.3" label="Wins 0.3 scholarships on average" reduced={reduced} />
           <StatBlock
             number={40}
             suffix="+"
