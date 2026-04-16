@@ -2,14 +2,13 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { savePref, setAllPrefs } from "@/lib/email/preferences";
 import type { NotificationType } from "@/lib/email/client";
 
 async function getVerifiedUserId(): Promise<string> {
   const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
+  if (!userId) throw new Error("Unauthorized");
   return userId;
 }
 
