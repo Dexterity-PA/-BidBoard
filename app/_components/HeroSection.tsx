@@ -30,7 +30,7 @@ const CARDS = [
 ] as const
 
 // ── Count-up animation hook ─────────────────────────────────────
-function useCountUp(target: number, duration = 720) {
+function useAutoCountUp(target: number, duration = 720) {
   const [count, setCount] = useState(target)
 
   useEffect(() => {
@@ -89,7 +89,7 @@ function CardStack({ reduced }: { reduced: boolean }) {
   }, [rotX, rotY])
 
   const card = CARDS[active]
-  const ev   = useCountUp(card.ev, reduced ? 0 : 720)
+  const ev   = useAutoCountUp(card.ev, reduced ? 0 : 720)
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 28 }}>

@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 export function useCountUp(target: number, duration: number, trigger: boolean): number {
@@ -5,6 +7,7 @@ export function useCountUp(target: number, duration: number, trigger: boolean): 
 
   useEffect(() => {
     if (!trigger) return
+    setCount(0)   // reset so re-triggers always animate from zero
     let raf: number
     const start = performance.now()
     const tick = (now: number) => {
