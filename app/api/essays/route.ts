@@ -6,6 +6,7 @@ import { studentEssays } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { classifyEssayPrompt } from "@/lib/essay-classifier";
 import { getEmbedding } from "@/lib/embeddings";
+import { logActivity } from "@/lib/activity";
 
 // ── POST /api/essays ──────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
@@ -55,6 +56,8 @@ export async function POST(req: NextRequest) {
         scholarshipId: scholarshipId ?? null,
       })
       .returning({ id: studentEssays.id, createdAt: studentEssays.createdAt });
+
+    await logActivity(userId, "essay_created", inserted.id);
 
     return NextResponse.json(inserted, { status: 200 });
   } catch (err) {

@@ -5,6 +5,7 @@ import { db } from "@/db";
 import { applications, scholarships, scholarshipMatches } from "@/db/schema";
 import type { StatusHistoryEntry } from "@/db/schema";
 import { eq, and, inArray } from "drizzle-orm";
+import { logActivity } from "@/lib/activity";
 
 const STATUS_LABELS: Record<string, string> = {
   saved:       "Added to Tracker",
@@ -93,6 +94,8 @@ export async function saveToTracker(scholarshipId: number) {
         eq(scholarshipMatches.scholarshipId, scholarshipId),
       ),
     );
+
+  await logActivity(userId, "scholarship_added", scholarshipId);
 }
 
 export async function updateApplicationStatus(id: number, status: string) {
@@ -118,6 +121,11 @@ export async function updateApplicationStatus(id: number, status: string) {
     .update(applications)
     .set({ status, statusHistory: [...history, newEntry], updatedAt: new Date() })
     .where(and(eq(applications.id, id), eq(applications.userId, userId)));
+
+  await logActivity(userId, "status_changed", id);
+  if (status === "submitted") {
+    await logActivity(userId, "application_submitted", id);
+  }
 }
 
 export async function updateApplicationNotes(id: number, notes: string) {

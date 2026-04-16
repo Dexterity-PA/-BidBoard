@@ -266,3 +266,19 @@ export const applications = pgTable(
 
 export type Application = typeof applications.$inferSelect;
 export type NewApplication = typeof applications.$inferInsert;
+
+// ── Activity log ──────────────────────────────────────────────────────────────
+export const activityLog = pgTable("activity_log", {
+  id:          serial("id").primaryKey(),
+  userId:      text("user_id").notNull(),
+  actionType:  text("action_type").notNull(),
+  referenceId: integer("reference_id"),
+  createdAt:   timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+// Hand-authored application-level enum (not a Drizzle-inferred type)
+export type ActivityType =
+  | "scholarship_added"
+  | "status_changed"
+  | "essay_created"
+  | "application_submitted";
