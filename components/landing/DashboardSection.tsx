@@ -33,7 +33,7 @@ const SHUFFLED_IDS = ['questbridge', 'coca-cola', 'ron-brown', 'gates', 'jack-ke
 const SORTED_IDS   = ['gates', 'jack-kent', 'coca-cola', 'ron-brown', 'questbridge']
 
 function getOrdered(ids: string[]): Scholarship[] {
-  return ids.map(id => SCHOLARSHIPS.find(s => s.id === id)!)
+  return ids.map(id => SCHOLARSHIPS.find(s => s.id === id)).filter((s): s is Scholarship => s !== undefined)
 }
 
 function ScholarshipCard({ item, isTop }: { item: Scholarship; isTop: boolean }) {
@@ -99,7 +99,10 @@ export default function DashboardSection() {
   })
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    if (!reduced) setSorted(v > 0.35)
+    if (!reduced) {
+      const next = v > 0.35
+      setSorted(prev => prev === next ? prev : next)
+    }
   })
 
   const activeIds = (reduced || sorted) ? SORTED_IDS : SHUFFLED_IDS
