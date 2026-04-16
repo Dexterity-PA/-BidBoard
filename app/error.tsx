@@ -1,19 +1,33 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 
 /* ─── Design tokens (mirrors landing page) ─────────────────────── */
 const C = {
   indigo:      "#4F46E5",
-  indigoDark:  "#4338CA",
   white:       "#FFFFFF",
   textPrimary: "#111827",
   textMuted:   "#6B7280",
+  textFaint:   "#9CA3AF",
   border:      "#E5E7EB",
 } as const;
 
 const serif = "var(--font-instrument-serif), Georgia, serif";
 const sans  = "var(--font-dm-sans), -apple-system, sans-serif";
+const mono  = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
-export default function NotFound() {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    console.error("[BidBoard] Runtime error:", error);
+  }, [error]);
+
   return (
     <div
       style={{
@@ -91,26 +105,11 @@ export default function NotFound() {
             maxWidth: 520,
           }}
         >
-          {/* Big 404 */}
-          <p
-            style={{
-              fontFamily: serif,
-              fontSize: 96,
-              fontWeight: 400,
-              color: C.indigo,
-              lineHeight: 1,
-              letterSpacing: "-0.04em",
-              margin: "0 0 16px",
-            }}
-          >
-            404
-          </p>
-
           {/* Headline */}
           <h1
             style={{
               fontFamily: serif,
-              fontSize: 40,
+              fontSize: 48,
               fontWeight: 400,
               color: C.textPrimary,
               lineHeight: 1.1,
@@ -118,7 +117,7 @@ export default function NotFound() {
               margin: "0 0 16px",
             }}
           >
-            This scholarship doesn&apos;t exist.
+            Something broke.
           </h1>
 
           {/* Subtext */}
@@ -128,12 +127,29 @@ export default function NotFound() {
               fontSize: 17,
               lineHeight: 1.6,
               color: C.textMuted,
-              margin: "0 0 40px",
+              margin: "0 0 12px",
             }}
           >
-            The page you&apos;re looking for isn&apos;t in our database.
-            Try searching for what you need.
+            We&apos;ve logged it. Try again, or head back to safety.
           </p>
+
+          {/* Error digest for support */}
+          {error.digest && (
+            <p
+              style={{
+                fontFamily: mono,
+                fontSize: 12,
+                color: C.textFaint,
+                margin: "0 0 36px",
+                letterSpacing: "0.02em",
+              }}
+            >
+              ref: {error.digest}
+            </p>
+          )}
+          {!error.digest && (
+            <div style={{ marginBottom: 36 }} />
+          )}
 
           {/* CTAs */}
           <div
@@ -144,8 +160,8 @@ export default function NotFound() {
               flexWrap: "wrap",
             }}
           >
-            <Link
-              href="/dashboard"
+            <button
+              onClick={reset}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -163,10 +179,10 @@ export default function NotFound() {
                 cursor: "pointer",
               }}
             >
-              Back to dashboard
-            </Link>
+              Try again
+            </button>
             <Link
-              href="/scholarships"
+              href="/"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -184,7 +200,7 @@ export default function NotFound() {
                 cursor: "pointer",
               }}
             >
-              Browse scholarships
+              Go home
             </Link>
           </div>
         </div>
