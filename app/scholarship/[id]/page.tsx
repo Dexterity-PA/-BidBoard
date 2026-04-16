@@ -6,6 +6,7 @@ import Link from "next/link";
 import { db } from "@/db";
 import { scholarships, scholarshipMatches } from "@/db/schema";
 import { SaveButton } from "./SaveButton";
+import { ShareButton } from "./ShareButton";
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -174,7 +175,7 @@ interface DetailViewProps {
 
 function ScholarshipDetailView({
   scholarship,
-  matchData: _matchData, // used in Task 6 sidebar
+  matchData,
   similarScholarships,
   isLoggedIn,
 }: DetailViewProps) {
@@ -246,7 +247,11 @@ function ScholarshipDetailView({
 
           {/* ── Right sidebar ── */}
           <aside className="w-full shrink-0 lg:w-80 lg:sticky lg:top-20 lg:self-start space-y-4">
-            {/* TODO: SidebarCard */}
+            <SidebarCard
+              scholarship={scholarship}
+              matchData={matchData}
+              isLoggedIn={isLoggedIn}
+            />
           </aside>
 
         </div>
@@ -670,6 +675,178 @@ function TipsSection({ scholarship }: { scholarship: ScholarshipRow }) {
         ))}
       </ul>
     </SectionCard>
+  );
+}
+
+function SidebarCard({
+  scholarship,
+  matchData,
+  isLoggedIn,
+}: {
+  scholarship: ScholarshipRow;
+  matchData: MatchData;
+  isLoggedIn: boolean;
+}) {
+  const days = daysUntil(scholarship.deadline);
+  const countdown =
+    days === null
+      ? null
+      : days < 0
+      ? "Deadline passed"
+      : days === 0
+      ? "Due today"
+      : `${days} day${days === 1 ? "" : "s"} left`;
+
+  const evRaw = parseFloat(matchData?.evScore ?? "0");
+  const evColor =
+    evRaw >= 500_000
+      ? "text-emerald-600"
+      : evRaw >= 100_000
+      ? "text-blue-600"
+      : evRaw > 0
+      ? "text-gray-700"
+      : "text-gray-400";
+
+  const matchPct =
+    matchData?.matchScore ? Math.round(parseFloat(matchData.matchScore)) : null;
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-5">
+
+      {/* EV Score */}
+      {matchData?.evScore ? (
+        <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">
+            EV Score
+          </p>
+          <p className={`text-3xl font-bold ${evColor}`}>
+            ${parseFloat(matchData.evScore).toLocaleString("en-US", {
+              maximumFractionDigits: 0,
+            })}
+          </p>
+          <p className="text-xs text-gray-500 mt-0.5">expected value</p>
+        </div>
+      ) : (
+        <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">
+            EV Score
+          </p>
+          <p className="text-sm text-gray-400 italic">
+            {isLoggedIn ? "No match data yet" : "Sign in to see your EV Score"}
+          </p>
+        </div>
+      )}
+
+      <div className="h-px bg-gray-100" />
+
+      {/* Award */}
+      <div>
+        <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Award</p>
+        <p className="text-lg font-bold text-gray-900">
+          {formatAmount(scholarship.amountMin, scholarship.amountMax)}
+        </p>
+      </div>
+
+      {/* Deadline */}
+      <div>
+        <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Deadline</p>
+        <p className="text-sm font-semibold text-gray-900">{formatDate(scholarship.deadline)}</p>
+        {countdown && (
+          <p
+            className={`text-xs mt-0.5 font-medium ${
+              days !== null && days <= 7
+                ? "text-red-600"
+                : days !== null && days <= 30
+                ? "text-amber-600"
+                : "text-gray-500"
+            }`}
+          >
+            {countdown}
+          </p>
+        )}
+      </div>
+
+      {/* Win probability bar */}
+      {matchPct !== null && (
+        <div>
+          <div className="flex items-center justify-between mb-1.5">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+              Win Probability
+            </p>
+            <p className="text-xs font-semibold text-gray-700">{matchPct}%</p>
+          </div>
+          <div className="h-2 w-full rounded-full bg-gray-100 overflow-hidden">
+            <div
+              className={`h-2 rounded-full transition-all ${
+                matchPct >= 70
+                  ? "bg-emerald-500"
+                  : matchPct >= 40
+                  ? "bg-blue-500"
+                  : "bg-amber-500"
+              }`}
+              style={{ width: `${Math.min(matchPct, 100)}%` }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Hours to apply */}
+      {matchData?.estimatedHours && (
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+            Hours to Apply
+          </p>
+          <p className="text-sm font-semibold text-gray-700">
+            ~{parseFloat(matchData.estimatedHours).toFixed(1)}h
+          </p>
+        </div>
+      )}
+
+      {/* Category tags */}
+      {(scholarship.category || scholarship.localityLevel) && (
+        <div className="flex flex-wrap gap-1.5">
+          {scholarship.category && (
+            <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600">
+              {scholarship.category}
+            </span>
+          )}
+          {scholarship.localityLevel && (
+            <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs text-indigo-600">
+              {scholarship.localityLevel.charAt(0).toUpperCase() +
+                scholarship.localityLevel.slice(1)}
+            </span>
+          )}
+        </div>
+      )}
+
+      <div className="h-px bg-gray-100" />
+
+      {/* CTA buttons */}
+      <div className="space-y-2.5">
+        <SaveButton
+          scholarshipId={scholarship.id}
+          initialSaved={matchData?.isSaved ?? false}
+          isLoggedIn={isLoggedIn}
+        />
+
+        {scholarship.applicationUrl ? (
+          <a
+            href={scholarship.applicationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-indigo-700"
+          >
+            Start Application →
+          </a>
+        ) : (
+          <p className="text-center text-xs text-gray-400 italic">
+            No application link available
+          </p>
+        )}
+
+        <ShareButton />
+      </div>
+    </div>
   );
 }
 
