@@ -2,8 +2,10 @@ import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { eq, and, ne } from "drizzle-orm";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { db } from "@/db";
 import { scholarships, scholarshipMatches } from "@/db/schema";
+import { SaveButton } from "./SaveButton";
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -161,12 +163,94 @@ export default async function ScholarshipDetailPage({
   );
 }
 
-// Placeholder — wired up in Task 4
-function ScholarshipDetailView(_props: {
+// ── Layout shell ──────────────────────────────────────────────────────────
+
+interface DetailViewProps {
   scholarship: ScholarshipRow;
   matchData: MatchData;
   similarScholarships: SimilarScholarship[];
   isLoggedIn: boolean;
-}) {
-  return <div>Loading detail page…</div>;
+}
+
+function ScholarshipDetailView({
+  scholarship,
+  matchData: _matchData,
+  similarScholarships: _similarScholarships,
+  isLoggedIn,
+}: DetailViewProps) {
+  return (
+    <div className="min-h-screen bg-gray-50 font-sans">
+      {/* ── Public header ── */}
+      <header className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+          <Link href="/" className="text-sm font-bold text-indigo-600 tracking-tight">
+            BidBoard
+          </Link>
+          <div className="flex items-center gap-3">
+            {isLoggedIn ? (
+              <Link
+                href="/dashboard"
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                Dashboard →
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/sign-in"
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/sign-up"
+                  className="rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-700"
+                >
+                  Get started
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {/* ── Page body ── */}
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+
+        {/* Breadcrumb */}
+        <div className="mb-6 flex items-center gap-1.5 text-sm text-gray-500">
+          <Link href="/scholarships" className="hover:text-gray-700 transition-colors">
+            Browse
+          </Link>
+          <span>›</span>
+          <span className="text-gray-700 font-medium truncate max-w-[280px]">
+            {scholarship.name}
+          </span>
+        </div>
+
+        {/* Two-column grid */}
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+
+          {/* ── Left column (main content) ── */}
+          <div className="min-w-0 flex-1 space-y-6">
+            {/* TODO: HeaderBlock */}
+            {/* TODO: AboutSection */}
+            {/* TODO: EligibilitySection */}
+            {/* TODO: WhatTheyWantSection */}
+            {/* TODO: ApplicationRequirementsSection */}
+            {/* TODO: EssayPromptsSection */}
+            {/* TODO: TimelineSection */}
+            {/* TODO: TipsSection */}
+            {/* TODO: SimilarScholarshipsSection */}
+          </div>
+
+          {/* ── Right sidebar ── */}
+          <aside className="w-full shrink-0 lg:w-80 lg:sticky lg:top-20 lg:self-start space-y-4">
+            {/* TODO: SidebarCard */}
+          </aside>
+
+        </div>
+      </main>
+    </div>
+  );
 }
