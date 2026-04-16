@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check } from "lucide-react";
@@ -60,7 +59,6 @@ function StepIndicator({ current }: { current: number }) {
 }
 
 export function OnboardingForm() {
-  const router = useRouter();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -120,7 +118,11 @@ export function OnboardingForm() {
         const detail = data.detail ? `: ${data.detail}` : "";
         throw new Error((data.error ?? "Something went wrong. Please try again.") + detail);
       }
-      router.push("/dashboard");
+      // Hard navigation bypasses the Next.js client-side router cache.
+      // router.push("/dashboard") would serve the cached redirect
+      // (/dashboard → /onboarding) that middleware wrote before the profile
+      // existed, looping the user back even though the profile is now saved.
+      window.location.href = "/dashboard";
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
       setSubmitting(false);
