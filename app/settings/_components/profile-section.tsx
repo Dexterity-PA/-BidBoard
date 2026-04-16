@@ -29,7 +29,13 @@ const GRADE_LEVELS = [
 const schema = z.object({
   firstName:      z.string().min(1, "Required"),
   lastName:       z.string().min(1, "Required"),
-  graduationYear: z.string().optional(),
+  graduationYear: z
+    .string()
+    .optional()
+    .refine(
+      (v) => !v || (Number.isInteger(Number(v)) && Number(v) >= 2024 && Number(v) <= 2035),
+      { message: "Must be between 2024 and 2035" }
+    ),
   schoolName:     z.string().optional(),
   gpa:            z.string().regex(/^([0-3](\.\d{0,2})?|4(\.0{0,2})?)$/, "0.0–4.0").or(z.literal("")).optional(),
   intendedMajor:  z.string().optional(),
