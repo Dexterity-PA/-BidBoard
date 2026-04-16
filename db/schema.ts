@@ -121,6 +121,13 @@ export const scholarships = pgTable(
     isActive:                 boolean("is_active").default(true),
     createdAt:                timestamp("created_at").defaultNow(),
     updatedAt:                timestamp("updated_at").defaultNow(),
+    essayPrompts:             jsonb("essay_prompts").$type<Array<{ prompt: string; word_limit: number | null }>>(),
+    applicationRequirements:  jsonb("application_requirements").$type<string[]>(),
+    whatTheyWant:             text("what_they_want"),
+    tips:                     jsonb("tips").$type<string[]>(),
+    opensDate:                date("opens_date"),
+    winnersAnnouncedDate:     date("winners_announced_date"),
+    category:                 text("category"),
   },
   (t) => [
     // idx_scholarships_deadline — partial index on active scholarships
