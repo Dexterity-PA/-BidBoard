@@ -7,6 +7,7 @@ import ProblemSection from "@/components/landing/ProblemSection";
 import FormulaSection from "@/components/landing/FormulaSection";
 import EVCalculator from "@/components/landing/EVCalculator";
 import DashboardSection from "@/components/landing/DashboardSection";
+import ComparisonSection from "@/components/landing/ComparisonSection";
 import SocialProofSection from "@/components/landing/SocialProofSection";
 import FinalCTASection from "@/components/landing/FinalCTASection";
 
@@ -266,6 +267,7 @@ export default function LandingPage() {
         <FormulaSection />
         <EVCalculator />
         <DashboardSection />
+        <ComparisonSection />
         <SocialProofSection />
         <TestimonialsAnimated />
         <PricingAnimated />
