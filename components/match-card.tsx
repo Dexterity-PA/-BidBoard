@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { KnapsackItem } from "@/lib/knapsack";
@@ -137,9 +138,12 @@ export function MatchCard({ scholarship, showRecycle = false }: MatchCardProps) 
       <CardHeader className="pb-3 pt-5 px-5">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-white text-base leading-snug truncate">
+            <Link
+              href={`/scholarship/${scholarship.scholarshipId}`}
+              className="font-semibold text-white text-base leading-snug truncate hover:text-indigo-300 transition-colors"
+            >
               {scholarship.name}
-            </h3>
+            </Link>
             <p className="text-sm text-slate-400 mt-0.5">{scholarship.provider}</p>
           </div>
           <span

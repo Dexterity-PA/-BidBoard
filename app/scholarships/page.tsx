@@ -131,7 +131,7 @@ function ScholarshipCard({ scholarship }: { scholarship: ScholarshipRow }) {
 
         {/* View link */}
         <Link
-          href={`/scholarships/${scholarship.id}`}
+          href={`/scholarship/${scholarship.id}`}
           className="block text-center text-sm text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg py-1.5 transition-colors duration-150"
         >
           View Details →

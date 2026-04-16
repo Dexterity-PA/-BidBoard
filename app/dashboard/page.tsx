@@ -429,7 +429,7 @@ export default async function DashboardPage() {
                             </a>
                           ) : (
                             <Link
-                              href={`/scholarships/${m.id}`}
+                              href={`/scholarship/${m.id}`}
                               className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-100"
                             >
                               View
