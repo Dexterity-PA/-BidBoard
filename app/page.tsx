@@ -282,6 +282,7 @@ const proofStats = [
 function SocialProofBar() {
   return (
     <section
+      aria-label="Trust statistics"
       style={{
         background: C.surface1,
         borderTop: `1px solid ${C.border}`,
@@ -304,7 +305,7 @@ function SocialProofBar() {
             <div
               style={{
                 fontFamily: sans,
-                fontSize: 17,
+                fontSize: 28,
                 fontWeight: 700,
                 color: C.textPrimary,
                 letterSpacing: "-0.02em",
@@ -389,7 +390,7 @@ function HowItWorks() {
                     fontFamily: sans,
                     fontSize: 13,
                     fontWeight: 700,
-                    color: "#fff",
+                    color: C.white,
                     letterSpacing: "0.02em",
                   }}
                 >
