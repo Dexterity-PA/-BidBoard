@@ -21,6 +21,7 @@ export default function OGImage() {
         {/* Top-right indigo accent bar */}
         <div
           style={{
+            display: "flex",
             position: "absolute",
             top: 0,
             right: 0,
@@ -50,6 +51,7 @@ export default function OGImage() {
           </div>
           <span
             style={{
+              display: "inline-flex",
               fontSize: 36,
               fontWeight: 700,
               color: "#FFFFFF",
@@ -79,7 +81,7 @@ export default function OGImage() {
         </div>
 
         {/* Subtext */}
-        <div style={{ fontSize: 28, color: "#94A3B8", lineHeight: 1.4 }}>
+        <div style={{ display: "flex", fontSize: 28, color: "#94A3B8", lineHeight: 1.4 }}>
           Score every scholarship by expected value. Stop guessing. Start winning.
         </div>
       </div>

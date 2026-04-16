@@ -20,6 +20,7 @@ export default function OGImage() {
       >
         <div
           style={{
+            display: "flex",
             position: "absolute",
             top: 0,
             right: 0,
@@ -47,7 +48,7 @@ export default function OGImage() {
           >
             B
           </div>
-          <span style={{ fontSize: 30, fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em" }}>
+          <span style={{ display: "inline-flex", fontSize: 30, fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em" }}>
             BidBoard
           </span>
         </div>
