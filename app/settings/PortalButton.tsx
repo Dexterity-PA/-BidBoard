@@ -31,7 +31,7 @@ export function PortalButton() {
         onClick={handleClick}
         disabled={loading}
         variant="outline"
-        className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white"
+        className="border-gray-300 text-gray-700 hover:bg-gray-50"
       >
         {loading ? (
           <span className="flex items-center gap-2">

@@ -3,12 +3,9 @@
 import { useState, useTransition } from "react";
 import { ExternalLink } from "lucide-react";
 import { exportUserData, deleteAccount } from "../actions";
-import type { SettingsData } from "../types";
 
 interface Props {
-  data: SettingsData;
   showToast: (type: "success" | "error", msg: string) => void;
-  onSaved: () => void;
 }
 
 export function AccountSection({ showToast }: Props) {

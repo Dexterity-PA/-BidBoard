@@ -32,7 +32,6 @@ export async function saveProfile(data: {
   gpa: string;
   intendedMajor: string;
   state: string;
-  gradeLevel: string;
 }) {
   const userId = await getVerifiedUserId();
 
@@ -46,17 +45,26 @@ export async function saveProfile(data: {
     .where(eq(users.id, userId));
 
   await db
-    .update(studentProfiles)
-    .set({
+    .insert(studentProfiles)
+    .values({
+      userId,
       graduationYear: data.graduationYear,
       schoolName: data.schoolName || null,
       gpa: data.gpa || null,
       intendedMajor: data.intendedMajor || null,
       state: data.state || null,
-      gradeLevel: data.gradeLevel || null,
-      updatedAt: new Date(),
     })
-    .where(eq(studentProfiles.userId, userId));
+    .onConflictDoUpdate({
+      target: studentProfiles.userId,
+      set: {
+        graduationYear: data.graduationYear,
+        schoolName: data.schoolName || null,
+        gpa: data.gpa || null,
+        intendedMajor: data.intendedMajor || null,
+        state: data.state || null,
+        updatedAt: new Date(),
+      },
+    });
 
   revalidatePath("/settings");
 }
@@ -73,16 +81,26 @@ export async function savePreferences(data: {
   const userId = await getVerifiedUserId();
 
   await db
-    .update(studentProfiles)
-    .set({
+    .insert(studentProfiles)
+    .values({
+      userId,
       minAwardAmount: data.minAwardAmount,
       categoriesOfInterest: data.categoriesOfInterest,
       maxHoursWilling: data.maxHoursWilling,
       preferredDeadlineRange: data.preferredDeadlineRange || null,
       gradeLevel: data.gradeLevel || null,
-      updatedAt: new Date(),
     })
-    .where(eq(studentProfiles.userId, userId));
+    .onConflictDoUpdate({
+      target: studentProfiles.userId,
+      set: {
+        minAwardAmount: data.minAwardAmount,
+        categoriesOfInterest: data.categoriesOfInterest,
+        maxHoursWilling: data.maxHoursWilling,
+        preferredDeadlineRange: data.preferredDeadlineRange || null,
+        gradeLevel: data.gradeLevel || null,
+        updatedAt: new Date(),
+      },
+    });
 
   revalidatePath("/settings");
 }
@@ -99,12 +117,18 @@ export async function saveNotifications(prefs: {
   const userId = await getVerifiedUserId();
 
   await db
-    .update(studentProfiles)
-    .set({
+    .insert(studentProfiles)
+    .values({
+      userId,
       notificationPreferences: prefs,
-      updatedAt: new Date(),
     })
-    .where(eq(studentProfiles.userId, userId));
+    .onConflictDoUpdate({
+      target: studentProfiles.userId,
+      set: {
+        notificationPreferences: prefs,
+        updatedAt: new Date(),
+      },
+    });
 
   revalidatePath("/settings");
 }

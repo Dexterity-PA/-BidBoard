@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect, useTransition, useRef } from "react";
 import { saveNotifications } from "../actions";
 import type { SettingsData, NotificationPrefs } from "../types";
 
@@ -21,10 +21,10 @@ interface Props {
 
 export function NotificationsSection({ data, showToast, onSaved, onDirty }: Props) {
   const [isPending, startTransition] = useTransition();
-  const initial: NotificationPrefs = { ...DEFAULT_PREFS, ...data.notificationPreferences };
-  const [prefs, setPrefs] = useState<NotificationPrefs>(initial);
+  const initialRef = useRef<NotificationPrefs>({ ...DEFAULT_PREFS, ...data.notificationPreferences });
+  const [prefs, setPrefs] = useState<NotificationPrefs>(initialRef.current);
 
-  const isDirty = JSON.stringify(prefs) !== JSON.stringify(initial);
+  const isDirty = JSON.stringify(prefs) !== JSON.stringify(initialRef.current);
   useEffect(() => { onDirty(isDirty); }, [isDirty, onDirty]);
 
   function toggle(key: keyof NotificationPrefs) {
@@ -36,6 +36,7 @@ export function NotificationsSection({ data, showToast, onSaved, onDirty }: Prop
     startTransition(async () => {
       try {
         await saveNotifications(prefs);
+        initialRef.current = { ...prefs };
         onSaved();
         showToast("success", "Notification preferences saved.");
       } catch {

@@ -56,7 +56,7 @@ export function SettingsShell({ data }: { data: SettingsData }) {
       case "billing":
         return <BillingSection {...props} />;
       case "account":
-        return <AccountSection {...props} />;
+        return <AccountSection showToast={showToast} />;
     }
   })();
 

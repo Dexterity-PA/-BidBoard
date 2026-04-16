@@ -267,7 +267,7 @@ export const applications = pgTable(
   "applications",
   {
     id:            serial("id").primaryKey(),
-    userId:        text("user_id").notNull(),
+    userId:        text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
     scholarshipId: integer("scholarship_id").notNull().references(() => scholarships.id, { onDelete: "cascade" }),
     status:        text("status").notNull().default("saved"),
     appliedAt:     timestamp("applied_at"),

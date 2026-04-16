@@ -15,16 +15,6 @@ const US_STATES = [
   "TX","UT","VT","VA","WA","WV","WI","WY","DC",
 ];
 
-const GRADE_LEVELS = [
-  { value: "freshman",          label: "Freshman (HS)" },
-  { value: "sophomore",         label: "Sophomore (HS)" },
-  { value: "junior",            label: "Junior (HS)" },
-  { value: "senior",            label: "Senior (HS)" },
-  { value: "college_freshman",  label: "College Freshman" },
-  { value: "college_sophomore", label: "College Sophomore" },
-  { value: "college_junior",    label: "College Junior" },
-  { value: "college_senior",    label: "College Senior" },
-];
 
 const schema = z.object({
   firstName:      z.string().min(1, "Required"),
@@ -40,7 +30,6 @@ const schema = z.object({
   gpa:            z.string().regex(/^([0-3](\.\d{0,2})?|4(\.0{0,2})?)$/, "0.0–4.0").or(z.literal("")).optional(),
   intendedMajor:  z.string().optional(),
   state:          z.string().optional(),
-  gradeLevel:     z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -70,7 +59,6 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
       gpa:            data.gpa ?? "",
       intendedMajor:  data.intendedMajor ?? "",
       state:          data.state ?? "",
-      gradeLevel:     data.gradeLevel ?? "",
     },
   });
 
@@ -87,7 +75,6 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
           gpa:            values.gpa ?? "",
           intendedMajor:  values.intendedMajor ?? "",
           state:          values.state ?? "",
-          gradeLevel:     values.gradeLevel ?? "",
         });
         reset(values);
         onSaved();
@@ -200,25 +187,15 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
         </Field>
       </div>
 
-      {/* State + grade level */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Field label="State">
-          <select {...register("state")} className={inputCls(false)}>
-            <option value="">— Select state —</option>
-            {US_STATES.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
-        </Field>
-        <Field label="Year in school">
-          <select {...register("gradeLevel")} className={inputCls(false)}>
-            <option value="">— Select —</option>
-            {GRADE_LEVELS.map(({ value, label }) => (
-              <option key={value} value={value}>{label}</option>
-            ))}
-          </select>
-        </Field>
-      </div>
+      {/* State */}
+      <Field label="State">
+        <select {...register("state")} className={inputCls(false)}>
+          <option value="">— Select state —</option>
+          {US_STATES.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
+      </Field>
 
       <div className="pt-2">
         <button
