@@ -1,9 +1,24 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import type { MotionValue } from 'framer-motion'
 
-export default function ParticleCanvas({ reduced }: { reduced: boolean }) {
+export default function ParticleCanvas({
+  reduced,
+  velocity,
+}: {
+  reduced: boolean
+  velocity?: MotionValue<number>
+}) {
   const ref = useRef<HTMLCanvasElement>(null)
+  const velRef = useRef(0)
+
+  useEffect(() => {
+    if (!velocity) return
+    return velocity.on('change', (v) => {
+      velRef.current = v
+    })
+  }, [velocity])
 
   useEffect(() => {
     if (reduced) return
@@ -26,10 +41,11 @@ export default function ParticleCanvas({ reduced }: { reduced: boolean }) {
 
     let raf: number
     const draw = () => {
+      const boost = 1 + Math.min(Math.abs(velRef.current) / 1500, 2)
       ctx.clearRect(0, 0, w, h)
       for (const p of pts) {
-        p.x = (p.x + p.vx + w) % w
-        p.y = (p.y + p.vy + h) % h
+        p.x = (p.x + p.vx * boost + w) % w
+        p.y = (p.y + p.vy * boost + h) % h
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(99,102,241,${p.a})`

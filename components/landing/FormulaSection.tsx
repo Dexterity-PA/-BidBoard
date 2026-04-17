@@ -5,6 +5,8 @@ import {
   motion,
   useScroll,
   useTransform,
+  useMotionValueEvent,
+  useAnimationControls,
   useReducedMotion,
   type MotionValue,
 } from 'framer-motion'
@@ -23,17 +25,15 @@ const TOKENS = [
   { label: 'EV Score',        color: INDIGO,    size: 64, isResult: true  },
 ] as const
 
-// Each token fades in over a scroll window [start, end] within [0, 1].
-// With offset ['start start', 'end start'] on a 200vh container, the sticky pin
-// holds for progress 0–0.5. All windows must complete before 0.5.
+// Windows end at 0.90, leaving 0.90→1.0 as dwell before unsticking.
 const TOKEN_WINDOWS: [number, number][] = [
-  [0.03, 0.09],
-  [0.09, 0.15],
-  [0.15, 0.21],
-  [0.21, 0.27],
-  [0.27, 0.33],
-  [0.33, 0.37],
-  [0.37, 0.43],
+  [0.08, 0.20], // Award
+  [0.22, 0.27], // ×
+  [0.29, 0.44], // Win Probability
+  [0.46, 0.51], // ÷
+  [0.53, 0.68], // Hours
+  [0.70, 0.75], // =
+  [0.77, 0.90], // EV Score
 ]
 
 function Token({
@@ -54,7 +54,31 @@ function Token({
   reduced: boolean
 }) {
   const opacity = useTransform(scrollYProgress, win, [0, 1])
-  const scale = useTransform(scrollYProgress, win, isResult ? [0.7, 1] : [1, 1])
+  const y = useTransform(scrollYProgress, win, [20, 0])
+  const blur = useTransform(scrollYProgress, win, [12, 0])
+  const filter = useTransform(blur, (v) => `blur(${v}px)`)
+
+  const controls = useAnimationControls()
+  const firedRef = useRef(false)
+
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    if (!isResult || reduced) return
+    if (v > win[0] && !firedRef.current) {
+      firedRef.current = true
+      controls.start({
+        scale: [1, 1.08, 1],
+        boxShadow: [
+          '0 0 0 rgba(76,29,149,0)',
+          '0 0 38px rgba(76,29,149,0.55)',
+          '0 0 0 rgba(76,29,149,0)',
+        ],
+        transition: {
+          scale: { type: 'spring', stiffness: 200, damping: 12, duration: 0.6 },
+          boxShadow: { duration: 0.8, ease: [0.22, 1, 0.36, 1], times: [0, 0.4, 1] },
+        },
+      })
+    }
+  })
 
   if (reduced) {
     return (
@@ -72,18 +96,43 @@ function Token({
     )
   }
 
+  if (isResult) {
+    return (
+      <motion.span
+        animate={controls}
+        style={{
+          opacity,
+          y,
+          filter,
+          fontFamily: SANS,
+          fontSize: size,
+          fontWeight: 700,
+          color,
+          lineHeight: 1,
+          display: 'inline-block',
+          borderRadius: 10,
+          padding: '0 4px',
+          willChange: 'transform, opacity, filter, box-shadow',
+        }}
+      >
+        {label}
+      </motion.span>
+    )
+  }
+
   return (
     <motion.span
       style={{
         opacity,
-        scale,
+        y,
+        filter,
         fontFamily: SANS,
         fontSize: size,
-        fontWeight: isResult ? 700 : 600,
+        fontWeight: 600,
         color,
         lineHeight: 1,
         display: 'inline-block',
-        willChange: 'transform, opacity',
+        willChange: 'transform, opacity, filter',
       }}
     >
       {label}
@@ -102,16 +151,19 @@ export default function FormulaSection() {
 
   const gridOpacity = useTransform(
     scrollYProgress,
-    [0.05, 0.30],
-    reduced ? [0, 0] : [0, 0.05],
+    [0.05, 0.50],
+    reduced ? [0, 0] : [0, 0.06],
   )
+
+  // Underline drawn across the formula, bound to overall reveal window.
+  const underlineScale = useTransform(scrollYProgress, [0.08, 0.90], [0, 1])
 
   return (
     <div
       ref={outerRef}
       style={{ height: reduced ? 'auto' : '200vh', position: 'relative' }}
     >
-      {/* Dot grid fades in as scroll progresses */}
+      {/* Dot grid */}
       <motion.div
         aria-hidden
         style={{
@@ -169,28 +221,48 @@ export default function FormulaSection() {
           We score every scholarship by expected value.
         </h2>
 
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '20px 24px',
-            justifyContent: 'center',
-            alignItems: 'center',
-            maxWidth: 860,
-          }}
-        >
-          {TOKENS.map((token, i) => (
-            <Token
-              key={token.label}
-              label={token.label}
-              color={token.color}
-              size={token.size}
-              isResult={token.isResult}
-              scrollYProgress={scrollYProgress}
-              win={TOKEN_WINDOWS[i]}
-              reduced={reduced}
+        <div style={{ position: 'relative', maxWidth: 880, width: '100%' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '20px 24px',
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingBottom: 18,
+            }}
+          >
+            {TOKENS.map((token, i) => (
+              <Token
+                key={token.label}
+                label={token.label}
+                color={token.color}
+                size={token.size}
+                isResult={token.isResult}
+                scrollYProgress={scrollYProgress}
+                win={TOKEN_WINDOWS[i]}
+                reduced={reduced}
+              />
+            ))}
+          </div>
+
+          {/* Underline — draws left-to-right with overall reveal */}
+          {!reduced && (
+            <motion.div
+              aria-hidden
+              style={{
+                position: 'absolute',
+                left: '10%',
+                right: '10%',
+                bottom: 0,
+                height: 1,
+                background:
+                  'linear-gradient(to right, transparent, rgba(79,70,229,0.35), transparent)',
+                transformOrigin: 'left',
+                scaleX: underlineScale,
+              }}
             />
-          ))}
+          )}
         </div>
       </div>
     </div>

@@ -1,17 +1,19 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   motion,
+  useAnimationControls,
   useScroll,
   useMotionValueEvent,
   useReducedMotion,
 } from 'framer-motion'
+import { useCountUp } from './useCountUp'
 
 const SANS = "var(--font-dm-sans), -apple-system, sans-serif"
 const SERIF = "var(--font-instrument-serif), Georgia, serif"
 const INDIGO = '#4F46E5'
-const EASE = [0.16, 1, 0.3, 1] as const
+const EASE = [0.22, 1, 0.36, 1] as const
 
 interface Scholarship {
   id: string
@@ -19,29 +21,67 @@ interface Scholarship {
   award: string
   winRate: string
   ev: number
+  deadline: string
 }
 
 const SCHOLARSHIPS: Scholarship[] = [
-  { id: 'gates',       name: 'Gates Millennium Scholars', award: '$40K', winRate: '18%', ev: 1200 },
-  { id: 'jack-kent',   name: 'Jack Kent Cooke Foundation', award: '$30K', winRate: '12%', ev: 940  },
-  { id: 'coca-cola',   name: 'Coca-Cola Scholars Program', award: '$20K', winRate: '15%', ev: 720  },
-  { id: 'ron-brown',   name: 'Ron Brown Scholar Program',  award: '$40K', winRate: '8%',  ev: 580  },
-  { id: 'questbridge', name: 'Questbridge',                award: '$25K', winRate: '6%',  ev: 340  },
+  { id: 'gates',       name: 'Gates Millennium Scholars', award: '$40K', winRate: '18%', ev: 1200, deadline: 'Due Jan 12' },
+  { id: 'jack-kent',   name: 'Jack Kent Cooke Foundation', award: '$30K', winRate: '12%', ev: 940,  deadline: 'Due Feb 04' },
+  { id: 'coca-cola',   name: 'Coca-Cola Scholars Program', award: '$20K', winRate: '15%', ev: 720,  deadline: 'Due Oct 30' },
+  { id: 'ron-brown',   name: 'Ron Brown Scholar Program',  award: '$40K', winRate: '8%',  ev: 580,  deadline: 'Due Jan 09' },
+  { id: 'questbridge', name: 'Questbridge',                award: '$25K', winRate: '6%',  ev: 340,  deadline: 'Due Sep 26' },
 ]
 
 const SHUFFLED_IDS = ['questbridge', 'coca-cola', 'ron-brown', 'gates', 'jack-kent']
 const SORTED_IDS   = ['gates', 'jack-kent', 'coca-cola', 'ron-brown', 'questbridge']
 
 function getOrdered(ids: string[]): Scholarship[] {
-  return ids.map(id => SCHOLARSHIPS.find(s => s.id === id)).filter((s): s is Scholarship => s !== undefined)
+  return ids
+    .map((id) => SCHOLARSHIPS.find((s) => s.id === id))
+    .filter((s): s is Scholarship => s !== undefined)
 }
 
-function ScholarshipCard({ item, isTop }: { item: Scholarship; isTop: boolean }) {
+function AmountText({ award, reveal, reduced }: { award: string; reveal: boolean; reduced: boolean }) {
+  // award like "$40K" → 40
+  const target = Number(award.replace(/[^0-9.]/g, ''))
+  const count = useCountUp(target, 900, !reduced && reveal)
+  return <>${reduced ? target : count}K award</>
+}
+
+function ScholarshipCard({
+  item,
+  isTop,
+  reveal,
+  reduced,
+}: {
+  item: Scholarship
+  isTop: boolean
+  reveal: boolean
+  reduced: boolean
+}) {
+  const controls = useAnimationControls()
+  const firedRef = useRef(false)
+
+  useEffect(() => {
+    if (!isTop || reduced) return
+    if (firedRef.current) return
+    firedRef.current = true
+    controls.start({
+      boxShadow: [
+        '0 4px 16px rgba(79,70,229,0.12)',
+        '0 0 44px rgba(79,70,229,0.55), 0 4px 16px rgba(79,70,229,0.22)',
+        '0 4px 16px rgba(79,70,229,0.12)',
+      ],
+      transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1], times: [0, 0.35, 1] },
+    })
+  }, [isTop, reduced, controls])
+
   return (
     <motion.div
       layout
       layoutId={item.id}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      animate={controls}
+      transition={{ layout: { type: 'spring', stiffness: 300, damping: 30 } }}
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -53,10 +93,10 @@ function ScholarshipCard({ item, isTop }: { item: Scholarship; isTop: boolean })
         boxShadow: isTop
           ? '0 4px 16px rgba(79,70,229,0.12)'
           : '0 1px 3px rgba(0,0,0,0.05)',
-        willChange: 'transform',
+        willChange: 'transform, box-shadow',
       }}
     >
-      <div>
+      <div style={{ minWidth: 0 }}>
         <div
           style={{
             fontFamily: SANS,
@@ -68,8 +108,47 @@ function ScholarshipCard({ item, isTop }: { item: Scholarship; isTop: boolean })
         >
           {item.name}
         </div>
-        <div style={{ fontFamily: SANS, fontSize: 12, color: '#6B7280' }}>
-          {item.award} award · {item.winRate} win rate
+        <div
+          style={{
+            fontFamily: SANS,
+            fontSize: 12,
+            color: '#6B7280',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            flexWrap: 'wrap',
+          }}
+        >
+          <span style={{ fontVariantNumeric: 'tabular-nums' }}>
+            <AmountText award={item.award} reveal={reveal} reduced={reduced} />
+          </span>
+          <motion.span
+            aria-hidden
+            initial={reduced ? false : { opacity: 0, y: 4 }}
+            animate={reveal ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.35, ease: EASE, delay: reduced ? 0 : 0.2 }}
+            style={{
+              display: 'inline-block',
+              fontSize: 11,
+              fontWeight: 700,
+              color: INDIGO,
+              background: '#EEF2FF',
+              border: '1px solid #C7D2FE',
+              padding: '2px 8px',
+              borderRadius: 999,
+              letterSpacing: '0.04em',
+            }}
+          >
+            EV {item.ev.toLocaleString()}
+          </motion.span>
+          <motion.span
+            initial={reduced ? false : { opacity: 0, y: 4 }}
+            animate={reveal ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.35, ease: EASE, delay: reduced ? 0 : 0.3 }}
+            style={{ color: '#9CA3AF' }}
+          >
+            · {item.deadline}
+          </motion.span>
         </div>
       </div>
       <div
@@ -80,6 +159,7 @@ function ScholarshipCard({ item, isTop }: { item: Scholarship; isTop: boolean })
           color: INDIGO,
           letterSpacing: '-0.02em',
           fontVariantNumeric: 'tabular-nums',
+          marginLeft: 14,
         }}
       >
         {item.ev.toLocaleString()}
@@ -101,11 +181,11 @@ export default function DashboardSection() {
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     if (!reduced) {
       const next = v > 0.35
-      setSorted(prev => prev === next ? prev : next)
+      setSorted((prev) => (prev === next ? prev : next))
     }
   })
 
-  const activeIds = (reduced || sorted) ? SORTED_IDS : SHUFFLED_IDS
+  const activeIds = reduced || sorted ? SORTED_IDS : SHUFFLED_IDS
   const items = getOrdered(activeIds)
 
   return (
@@ -166,7 +246,6 @@ export default function DashboardSection() {
         </motion.div>
 
         <div style={{ width: '100%', maxWidth: 560 }}>
-          {/* Column header */}
           <div
             style={{
               display: 'flex',
@@ -201,15 +280,19 @@ export default function DashboardSection() {
             </span>
           </div>
 
-          {/* Cards animate to new positions via Framer Motion layout */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {items.map((item, idx) => (
-              <ScholarshipCard
-                key={item.id}
-                item={item}
-                isTop={sorted && idx === 0}
-              />
-            ))}
+            {items.map((item, idx) => {
+              const isTop = sorted && idx === 0
+              return (
+                <ScholarshipCard
+                  key={item.id}
+                  item={item}
+                  isTop={isTop}
+                  reveal={sorted || reduced}
+                  reduced={reduced}
+                />
+              )
+            })}
           </div>
         </div>
 
