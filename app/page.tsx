@@ -260,18 +260,18 @@ function Footer() {
 }
 
 export default function LandingPage() {
-  const sections = [
-    <HeroSection key="hero" />,
-    <ProblemSection key="problem" />,
-    <FormulaSection key="formula" />,
-    <EVCalculator key="ev" />,
-    <DashboardSection key="dashboard" />,
-    <ComparisonSection key="comparison" />,
-    <SocialProofSection key="social" />,
-    <TestimonialsAnimated key="testimonials" />,
-    <PricingAnimated key="pricing" />,
-    <ForCounselorsCTA key="counselors" />,
-    <FinalCTASection key="cta" />,
+  const sections: { key: string; node: React.ReactNode; wrapperId?: string }[] = [
+    { key: "hero", node: <HeroSection /> },
+    { key: "problem", node: <ProblemSection /> },
+    { key: "formula", node: <FormulaSection />, wrapperId: "how-it-works" },
+    { key: "ev", node: <EVCalculator /> },
+    { key: "dashboard", node: <DashboardSection /> },
+    { key: "comparison", node: <ComparisonSection /> },
+    { key: "social", node: <SocialProofSection /> },
+    { key: "testimonials", node: <TestimonialsAnimated /> },
+    { key: "pricing", node: <PricingAnimated /> },
+    { key: "counselors", node: <ForCounselorsCTA /> },
+    { key: "cta", node: <FinalCTASection /> },
   ];
 
   return (
@@ -280,9 +280,13 @@ export default function LandingPage() {
       <ScrollProgressBar />
       <SiteNav />
       <main>
-        {sections.map((node, i) => (
-          <div key={node.key} data-section-index={i + 1}>
-            {node}
+        {sections.map((s, i) => (
+          <div
+            key={s.key}
+            id={s.wrapperId}
+            data-section-index={i + 1}
+          >
+            {s.node}
           </div>
         ))}
       </main>
