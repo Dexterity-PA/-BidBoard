@@ -23,15 +23,17 @@ const TOKENS = [
   { label: 'EV Score',        color: INDIGO,    size: 64, isResult: true  },
 ] as const
 
-// Each token fades in over a scroll window [start, end] within [0, 1]
+// Each token fades in over a scroll window [start, end] within [0, 1].
+// With offset ['start start', 'end start'] on a 200vh container, the sticky pin
+// holds for progress 0–0.5. All windows must complete before 0.5.
 const TOKEN_WINDOWS: [number, number][] = [
-  [0.05, 0.15],
-  [0.15, 0.25],
-  [0.25, 0.35],
-  [0.35, 0.45],
-  [0.45, 0.55],
-  [0.55, 0.63],
-  [0.63, 0.75],
+  [0.03, 0.09],
+  [0.09, 0.15],
+  [0.15, 0.21],
+  [0.21, 0.27],
+  [0.27, 0.33],
+  [0.33, 0.37],
+  [0.37, 0.43],
 ]
 
 function Token({
@@ -95,12 +97,12 @@ export default function FormulaSection() {
 
   const { scrollYProgress } = useScroll({
     target: outerRef,
-    offset: ['start start', 'end end'],
+    offset: ['start start', 'end start'],
   })
 
   const gridOpacity = useTransform(
     scrollYProgress,
-    [0.1, 0.5],
+    [0.05, 0.30],
     reduced ? [0, 0] : [0, 0.05],
   )
 
