@@ -50,9 +50,9 @@ export default function SectionNumbers() {
       className="mkt-hide-mobile"
       style={{
         position: 'fixed',
-        top: 56,
+        top: 112,
         left: 24,
-        zIndex: 30,
+        zIndex: 60,
         mixBlendMode: 'difference',
         fontFamily: SANS,
         fontSize: 12,

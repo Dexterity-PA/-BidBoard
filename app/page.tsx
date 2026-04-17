@@ -207,7 +207,6 @@ export default function LandingPage() {
     <div style={{ background: "var(--bb-surface)" }}>
       <PageIntroWipe />
       <ScrollProgressBar />
-      <SectionNumbers />
       <SiteNav />
       <main>
         <HeroProblemGroup>

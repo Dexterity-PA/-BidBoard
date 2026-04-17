@@ -253,14 +253,45 @@ export default function SiteNav() {
 
     if (!targets.length) return
 
+    const intersecting = new Set<string>()
+
+    const pickBest = () => {
+      if (intersecting.size === 0) {
+        setActiveId(null)
+        if (process.env.NODE_ENV !== 'production') {
+          // eslint-disable-next-line no-console
+          console.log('[SiteNav] activeSection = null')
+        }
+        return
+      }
+      const centerY = window.innerHeight / 2
+      let best: { id: string; dist: number } | null = null
+      for (const id of intersecting) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        const sectionMid = rect.top + rect.height / 2
+        const dist = Math.abs(sectionMid - centerY)
+        if (!best || dist < best.dist) best = { id, dist }
+      }
+      if (best) {
+        setActiveId(best.id)
+        if (process.env.NODE_ENV !== 'production') {
+          // eslint-disable-next-line no-console
+          console.log('[SiteNav] activeSection =', best.id, '(dist:', Math.round(best.dist), 'px)')
+        }
+      }
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-        if (visible) setActiveId(visible.target.id)
+        for (const e of entries) {
+          if (e.isIntersecting) intersecting.add(e.target.id)
+          else intersecting.delete(e.target.id)
+        }
+        pickBest()
       },
-      { threshold: [0.35, 0.6] },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 },
     )
 
     targets.forEach((t) => io.observe(t))
@@ -268,20 +299,27 @@ export default function SiteNav() {
   }, [])
 
   useEffect(() => {
-    if (!activeId) {
-      setDotStyle((s) => ({ ...s, visible: false }))
-      return
+    const recompute = () => {
+      if (!activeId) {
+        setDotStyle((s) => ({ ...s, visible: false }))
+        return
+      }
+      const el = linkRefs.current[activeId]
+      // Link <a> sits directly inside the center-links flex container,
+      // which is the dot's positioned ancestor — go up exactly one level.
+      const parent = el?.parentElement
+      if (!el || !parent) return
+      const linkRect = el.getBoundingClientRect()
+      const parentRect = parent.getBoundingClientRect()
+      setDotStyle({
+        x: linkRect.left - parentRect.left + linkRect.width / 2 - 2,
+        width: 4,
+        visible: true,
+      })
     }
-    const el = linkRefs.current[activeId]
-    const parent = el?.parentElement?.parentElement // nav center container
-    if (!el || !parent) return
-    const linkRect = el.getBoundingClientRect()
-    const parentRect = parent.getBoundingClientRect()
-    setDotStyle({
-      x: linkRect.left - parentRect.left + linkRect.width / 2 - 2,
-      width: 4,
-      visible: true,
-    })
+    recompute()
+    window.addEventListener('resize', recompute)
+    return () => window.removeEventListener('resize', recompute)
   }, [activeId, scrolled])
 
   return (

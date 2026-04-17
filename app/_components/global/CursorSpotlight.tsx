@@ -54,17 +54,17 @@ export default function CursorSpotlight() {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: 500,
-        height: 500,
+        width: 250,
+        height: 250,
         x: sx,
         y: sy,
         translateX: '-50%',
         translateY: '-50%',
         borderRadius: '50%',
         background:
-          'radial-gradient(circle, rgba(79,70,229,0.08) 0%, rgba(79,70,229,0) 60%)',
+          'radial-gradient(circle, rgba(79,70,229,0.10) 0%, rgba(79,70,229,0) 65%)',
         pointerEvents: 'none',
-        mixBlendMode: 'soft-light',
+        mixBlendMode: 'multiply',
         zIndex: 30,
       }}
     />

@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import CursorSpotlight from "./_components/global/CursorSpotlight";
 import GradientWash from "./_components/global/GradientWash";
+import SectionNumbers from "./_components/global/SectionNumbers";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function RootLayout({
         <body>
           <GradientWash />
           <CursorSpotlight />
+          <SectionNumbers />
           {children}
         </body>
       </html>
