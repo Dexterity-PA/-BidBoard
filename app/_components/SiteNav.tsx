@@ -299,20 +299,27 @@ export default function SiteNav() {
   }, [])
 
   useEffect(() => {
-    if (!activeId) {
-      setDotStyle((s) => ({ ...s, visible: false }))
-      return
+    const recompute = () => {
+      if (!activeId) {
+        setDotStyle((s) => ({ ...s, visible: false }))
+        return
+      }
+      const el = linkRefs.current[activeId]
+      // Link <a> sits directly inside the center-links flex container,
+      // which is the dot's positioned ancestor — go up exactly one level.
+      const parent = el?.parentElement
+      if (!el || !parent) return
+      const linkRect = el.getBoundingClientRect()
+      const parentRect = parent.getBoundingClientRect()
+      setDotStyle({
+        x: linkRect.left - parentRect.left + linkRect.width / 2 - 2,
+        width: 4,
+        visible: true,
+      })
     }
-    const el = linkRefs.current[activeId]
-    const parent = el?.parentElement?.parentElement // nav center container
-    if (!el || !parent) return
-    const linkRect = el.getBoundingClientRect()
-    const parentRect = parent.getBoundingClientRect()
-    setDotStyle({
-      x: linkRect.left - parentRect.left + linkRect.width / 2 - 2,
-      width: 4,
-      visible: true,
-    })
+    recompute()
+    window.addEventListener('resize', recompute)
+    return () => window.removeEventListener('resize', recompute)
   }, [activeId, scrolled])
 
   return (
