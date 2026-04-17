@@ -3,7 +3,6 @@ import HeroSection from "./_components/HeroSection";
 import SiteNav from "./_components/SiteNav";
 import PageIntroWipe from "./_components/global/PageIntroWipe";
 import ScrollProgressBar from "./_components/global/ScrollProgressBar";
-import SectionNumbers from "./_components/global/SectionNumbers";
 import TestimonialsAnimated from "@/components/landing/TestimonialsAnimated";
 import PricingAnimated from "@/components/landing/PricingAnimated";
 import ProblemSection from "@/components/landing/ProblemSection";
@@ -279,7 +278,6 @@ export default function LandingPage() {
     <div style={{ background: "var(--bb-surface)" }}>
       <PageIntroWipe />
       <ScrollProgressBar />
-      <SectionNumbers />
       <SiteNav />
       <main>
         {sections.map((node, i) => (

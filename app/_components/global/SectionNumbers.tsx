@@ -52,7 +52,7 @@ export default function SectionNumbers() {
         position: 'fixed',
         top: 56,
         left: 24,
-        zIndex: 30,
+        zIndex: 60,
         mixBlendMode: 'difference',
         fontFamily: SANS,
         fontSize: 12,
