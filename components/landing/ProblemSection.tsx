@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { useCountUp } from './useCountUp'
 
@@ -14,25 +14,27 @@ function StatBlock({
   suffix,
   label,
   reduced,
+  layoutId,
 }: {
   number: number
   suffix: string
   label: string
   reduced: boolean
+  layoutId: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const count = useCountUp(number, 900, !reduced && inView)
+  const [trigger, setTrigger] = useState(false)
+  const count = useCountUp(number, 900, !reduced && trigger)
+
+  // Fire count-up on either path: layout-animation settle, or inView fallback.
+  if (!trigger && (inView || reduced)) setTrigger(true)
 
   return (
-    <motion.div
-      ref={ref}
-      initial={reduced ? false : { opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, ease: EASE }}
-      style={{ marginBottom: 72 }}
-    >
-      <div
+    <div ref={ref} style={{ marginBottom: 72 }}>
+      <motion.div
+        layoutId={layoutId}
+        onLayoutAnimationComplete={() => setTrigger(true)}
         style={{
           fontFamily: SANS,
           fontSize: 'clamp(72px, 13vw, 120px)',
@@ -41,10 +43,11 @@ function StatBlock({
           lineHeight: 1,
           letterSpacing: '-0.04em',
           fontVariantNumeric: 'tabular-nums',
+          display: 'inline-block',
         }}
       >
         {reduced ? number : count}{suffix}
-      </div>
+      </motion.div>
       <div
         style={{
           fontFamily: SANS,
@@ -56,7 +59,7 @@ function StatBlock({
       >
         {label}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -159,6 +162,7 @@ export default function ProblemSection() {
             suffix=""
             label="Average student applies to 7 scholarships"
             reduced={reduced}
+            layoutId="hero-card-0"
           />
           <DecimalBlock value="0.3" label="Wins 0.3 scholarships on average" reduced={reduced} />
           <StatBlock
@@ -166,6 +170,7 @@ export default function ProblemSection() {
             suffix="+"
             label="Wastes 40+ hours"
             reduced={reduced}
+            layoutId="hero-card-2"
           />
         </div>
       </div>

@@ -1,28 +1,198 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 const SANS = "var(--font-dm-sans), -apple-system, sans-serif"
 const SERIF = "var(--font-instrument-serif), Georgia, serif"
-const INDIGO = '#4F46E5'
-const INDIGO_TINT = '#EEF2FF'
-const EASE = [0.16, 1, 0.3, 1] as const
+const EASE = [0.22, 1, 0.36, 1] as const
 
-const ROWS = [
-  { feature: 'Search', traditional: 'Generic keyword search', bidboard: 'EV-based matching' },
-  { feature: 'Strategy', traditional: 'No strategy layer', bidboard: 'Knapsack optimization' },
-  { feature: 'Essays', traditional: 'One-size-fits-all essays', bidboard: 'AI essay recycling engine' },
-  { feature: 'Tracking', traditional: 'Manual spreadsheet tracking', bidboard: 'Built-in application tracker' },
+type Competitor = 'bidboard' | 'goingmerry' | 'fastweb' | 'scholarshipscom'
+
+type Cell =
+  | { kind: 'yes'; note?: string }
+  | { kind: 'no'; note?: string }
+  | { kind: 'text'; value: string; tone?: 'neutral' | 'accent' | 'warn' }
+
+type Row = {
+  feature: string
+  bidboard: Cell
+  goingmerry: Cell
+  fastweb: Cell
+  scholarshipscom: Cell
+}
+
+const TABS: { id: Competitor; label: string }[] = [
+  { id: 'bidboard', label: 'BidBoard' },
+  { id: 'goingmerry', label: 'Going Merry' },
+  { id: 'fastweb', label: 'Fastweb' },
+  { id: 'scholarshipscom', label: 'Scholarships.com' },
 ]
+
+const ROWS: Row[] = [
+  {
+    feature: 'EV-based matching',
+    bidboard: { kind: 'yes', note: 'Every scholarship scored by expected value.' },
+    goingmerry: { kind: 'no', note: 'Generic keyword matching only.' },
+    fastweb: { kind: 'no', note: 'Profile-based, no EV ranking.' },
+    scholarshipscom: { kind: 'no', note: 'Directory listings, no ranking.' },
+  },
+  {
+    feature: 'AI essay help',
+    bidboard: { kind: 'yes', note: 'Essay recycling + tailored drafts.' },
+    goingmerry: { kind: 'no' },
+    fastweb: { kind: 'no' },
+    scholarshipscom: { kind: 'no' },
+  },
+  {
+    feature: 'Unlimited scholarships',
+    bidboard: { kind: 'yes' },
+    goingmerry: { kind: 'yes' },
+    fastweb: { kind: 'yes' },
+    scholarshipscom: { kind: 'yes' },
+  },
+  {
+    feature: 'Verified amounts',
+    bidboard: { kind: 'yes', note: 'Award figures verified against source.' },
+    goingmerry: { kind: 'no' },
+    fastweb: { kind: 'no', note: 'Often outdated.' },
+    scholarshipscom: { kind: 'no' },
+  },
+  {
+    feature: 'Live updates',
+    bidboard: { kind: 'yes', note: 'Daily scrape + drift detection.' },
+    goingmerry: { kind: 'no' },
+    fastweb: { kind: 'no' },
+    scholarshipscom: { kind: 'no' },
+  },
+  {
+    feature: 'Counselor tools',
+    bidboard: { kind: 'yes', note: '50-seat plan + ROI dashboards.' },
+    goingmerry: { kind: 'yes', note: 'Counselor portal (defunct).' },
+    fastweb: { kind: 'no' },
+    scholarshipscom: { kind: 'no' },
+  },
+  {
+    feature: 'Price',
+    bidboard: { kind: 'text', value: '$9/mo', tone: 'accent' },
+    goingmerry: { kind: 'text', value: 'Free', tone: 'neutral' },
+    fastweb: { kind: 'text', value: 'Free (ad-funded)', tone: 'neutral' },
+    scholarshipscom: { kind: 'text', value: 'Free (ad-funded)', tone: 'neutral' },
+  },
+  {
+    feature: 'Status',
+    bidboard: { kind: 'text', value: 'Active', tone: 'accent' },
+    goingmerry: { kind: 'text', value: 'Shut down Mar 2026', tone: 'warn' },
+    fastweb: { kind: 'text', value: 'Active', tone: 'neutral' },
+    scholarshipscom: { kind: 'text', value: 'Active', tone: 'neutral' },
+  },
+]
+
+function CellView({ cell }: { cell: Cell }) {
+  if (cell.kind === 'yes') {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <span
+          aria-label="Yes"
+          style={{
+            flexShrink: 0,
+            width: 20,
+            height: 20,
+            borderRadius: '50%',
+            background: 'var(--bb-primary)',
+            color: '#fff',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 12,
+            fontWeight: 700,
+          }}
+          title={cell.note}
+        >
+          ✓
+        </span>
+        {cell.note && (
+          <span
+            style={{
+              fontFamily: SANS,
+              fontSize: 13,
+              color: 'var(--bb-ink-muted)',
+              lineHeight: 1.4,
+            }}
+          >
+            {cell.note}
+          </span>
+        )}
+      </div>
+    )
+  }
+  if (cell.kind === 'no') {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <span
+          aria-label="No"
+          style={{
+            flexShrink: 0,
+            width: 20,
+            height: 20,
+            borderRadius: '50%',
+            background: 'var(--bb-surface)',
+            border: '1px solid var(--bb-border-hairline)',
+            color: 'var(--bb-ink-subtle)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 12,
+            fontWeight: 700,
+          }}
+          title={cell.note}
+        >
+          ✗
+        </span>
+        {cell.note && (
+          <span
+            style={{
+              fontFamily: SANS,
+              fontSize: 13,
+              color: 'var(--bb-ink-subtle)',
+              lineHeight: 1.4,
+            }}
+          >
+            {cell.note}
+          </span>
+        )}
+      </div>
+    )
+  }
+  const color =
+    cell.tone === 'accent'
+      ? 'var(--bb-primary)'
+      : cell.tone === 'warn'
+        ? 'var(--bb-accent, #B91C1C)'
+        : 'var(--bb-ink)'
+  return (
+    <span
+      style={{
+        fontFamily: SANS,
+        fontSize: 14,
+        fontWeight: cell.tone === 'accent' ? 700 : 500,
+        color,
+      }}
+    >
+      {cell.value}
+    </span>
+  )
+}
 
 export default function ComparisonSection() {
   const reduced = useReducedMotion() ?? false
+  const [active, setActive] = useState<Competitor>('goingmerry')
 
   return (
     <section
       style={{
         minHeight: '100vh',
-        background: '#FFFFFF',
+        background: 'var(--bb-surface, #FFFFFF)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -30,23 +200,23 @@ export default function ComparisonSection() {
         padding: 'clamp(80px, 10vh, 120px) clamp(24px, 5vw, 80px)',
       }}
     >
-      {/* Eyebrow + Heading */}
+      {/* Eyebrow + heading */}
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 20 }}
         whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.6, ease: EASE }}
-        style={{ textAlign: 'center', marginBottom: 56 }}
+        style={{ textAlign: 'center', marginBottom: 32, maxWidth: 720 }}
       >
         <p
           style={{
             fontFamily: SANS,
-            fontSize: 13,
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase' as const,
-            color: INDIGO,
-            marginBottom: 12,
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: 'var(--bb-primary)',
+            margin: '0 0 14px',
           }}
         >
           Why BidBoard
@@ -54,10 +224,11 @@ export default function ComparisonSection() {
         <h2
           style={{
             fontFamily: SERIF,
-            fontSize: 'clamp(32px, 5vw, 52px)',
+            fontSize: 'clamp(32px, 4.4vw, 52px)',
             fontWeight: 400,
-            color: '#111827',
-            lineHeight: 1.15,
+            color: 'var(--bb-ink, #111827)',
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
             margin: 0,
           }}
         >
@@ -65,187 +236,227 @@ export default function ComparisonSection() {
         </h2>
       </motion.div>
 
-      {/* Comparison card */}
-      <motion.div
-        initial={reduced ? false : { opacity: 0, y: 30 }}
-        whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
+      {/* Tabs + subtext */}
+      <div
         style={{
-          background: '#FFFFFF',
-          border: '1px solid #E5E7EB',
-          borderRadius: 16,
-          maxWidth: 720,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 10,
+          marginBottom: 28,
+        }}
+      >
+        <div
+          role="tablist"
+          aria-label="Compare BidBoard to other platforms"
+          style={{
+            display: 'inline-flex',
+            flexWrap: 'wrap',
+            gap: 4,
+            padding: 4,
+            borderRadius: 999,
+            background: 'var(--bb-surface-elevated, #F3F4F6)',
+            border: '1px solid var(--bb-border-hairline, #E5E7EB)',
+          }}
+        >
+          {TABS.map((t) => {
+            const selected = t.id === active
+            return (
+              <button
+                key={t.id}
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActive(t.id)}
+                style={{
+                  position: 'relative',
+                  fontFamily: SANS,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: selected ? '#fff' : 'var(--bb-ink-muted, #6B7280)',
+                  background: 'transparent',
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: 999,
+                  cursor: 'pointer',
+                  zIndex: 1,
+                  transition: 'color 0.2s ease',
+                }}
+              >
+                {selected && (
+                  <motion.span
+                    layoutId="comparison-tab-pill"
+                    aria-hidden
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      borderRadius: 999,
+                      background: 'var(--bb-primary, #4F46E5)',
+                      zIndex: -1,
+                    }}
+                  />
+                )}
+                {t.label}
+              </button>
+            )
+          })}
+        </div>
+        <p
+          style={{
+            fontFamily: SANS,
+            fontSize: 12,
+            color: 'var(--bb-accent, #B91C1C)',
+            margin: 0,
+          }}
+        >
+          (Going Merry shut down March 2026.)
+        </p>
+      </div>
+
+      {/* Comparison card — BidBoard vs selected competitor */}
+      <motion.div
+        initial={reduced ? false : { opacity: 0, y: 20 }}
+        whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
+        style={{
+          maxWidth: 760,
           width: '100%',
+          background: 'var(--bb-surface, #FFFFFF)',
+          border: '1px solid var(--bb-border-hairline, #E5E7EB)',
+          borderRadius: 16,
           overflow: 'hidden',
         }}
       >
-        {/* Column headers */}
+        {/* Header row */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            borderBottom: '1px solid #E5E7EB',
+            gridTemplateColumns: '1.3fr 1fr 1fr',
+            borderBottom: '1px solid var(--bb-border-hairline, #E5E7EB)',
+            background: 'var(--bb-surface-elevated, #F9FAFB)',
           }}
         >
-          {/* Feature label column header (empty) */}
-          <div style={{ padding: '20px 24px' }} />
-
-          {/* Traditional Platforms header */}
+          <div style={{ padding: '16px 20px' }} />
           <div
             style={{
-              padding: '20px 24px',
-              borderLeft: '1px solid #E5E7EB',
+              padding: '16px 20px',
+              borderLeft: '3px solid var(--bb-primary, #4F46E5)',
             }}
           >
             <span
               style={{
                 fontFamily: SANS,
-                fontSize: 13,
-                fontWeight: 600,
-                color: '#9CA3AF',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase' as const,
-              }}
-            >
-              Traditional Platforms
-            </span>
-          </div>
-
-          {/* BidBoard header */}
-          <div
-            style={{
-              padding: '20px 24px',
-              background: INDIGO_TINT,
-              borderLeft: '1px solid #E5E7EB',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: SANS,
-                fontSize: 13,
+                fontSize: 12,
                 fontWeight: 700,
-                color: INDIGO,
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase' as const,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'var(--bb-primary, #4F46E5)',
               }}
             >
               BidBoard
             </span>
           </div>
-        </div>
-
-        {/* Feature rows */}
-        {ROWS.map((row, i) => (
           <div
-            key={row.feature}
             style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr',
-              borderBottom: i < ROWS.length - 1 ? '1px solid #E5E7EB' : 'none',
+              padding: '16px 20px',
+              borderLeft: '1px solid var(--bb-border-hairline, #E5E7EB)',
             }}
           >
-            {/* Feature name */}
-            <div
-              style={{
-                padding: '22px 24px',
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <span
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={active}
+                initial={reduced ? false : { opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduced ? undefined : { opacity: 0, y: 6 }}
+                transition={{ duration: 0.2, ease: EASE }}
                 style={{
+                  display: 'inline-block',
                   fontFamily: SANS,
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: 700,
-                  color: '#111827',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: 'var(--bb-ink-muted, #6B7280)',
                 }}
               >
-                {row.feature}
-              </span>
-            </div>
-
-            {/* Traditional cell */}
-            <div
-              style={{
-                padding: '22px 24px',
-                borderLeft: '1px solid #E5E7EB',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-              }}
-            >
-              <span
-                style={{
-                  flexShrink: 0,
-                  width: 18,
-                  height: 18,
-                  borderRadius: '50%',
-                  background: '#F3F4F6',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 11,
-                  color: '#9CA3AF',
-                  fontWeight: 700,
-                }}
-              >
-                ✗
-              </span>
-              <span
-                style={{
-                  fontFamily: SANS,
-                  fontSize: 14,
-                  color: '#9CA3AF',
-                  lineHeight: 1.4,
-                }}
-              >
-                {row.traditional}
-              </span>
-            </div>
-
-            {/* BidBoard cell */}
-            <div
-              style={{
-                padding: '22px 24px',
-                background: INDIGO_TINT,
-                borderLeft: '1px solid #E5E7EB',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-              }}
-            >
-              <span
-                style={{
-                  flexShrink: 0,
-                  width: 18,
-                  height: 18,
-                  borderRadius: '50%',
-                  background: INDIGO,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 11,
-                  color: '#FFFFFF',
-                  fontWeight: 700,
-                }}
-              >
-                ✓
-              </span>
-              <span
-                style={{
-                  fontFamily: SANS,
-                  fontSize: 14,
-                  color: INDIGO,
-                  fontWeight: 600,
-                  lineHeight: 1.4,
-                }}
-              >
-                {row.bidboard}
-              </span>
-            </div>
+                {TABS.find((t) => t.id === active)?.label}
+              </motion.span>
+            </AnimatePresence>
           </div>
-        ))}
+        </div>
+
+        {/* Rows */}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={active}
+            initial={reduced ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduced ? undefined : { opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {ROWS.map((row, i) => (
+              <motion.div
+                key={row.feature}
+                initial={reduced ? false : { opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.4,
+                  ease: EASE,
+                  delay: reduced ? 0 : i * 0.05,
+                }}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1.3fr 1fr 1fr',
+                  borderTop:
+                    i === 0
+                      ? 'none'
+                      : '1px solid var(--bb-border-hairline, #E5E7EB)',
+                }}
+              >
+                <div
+                  style={{
+                    padding: '18px 20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: SANS,
+                      fontSize: 14,
+                      fontWeight: 600,
+                      color: 'var(--bb-ink, #111827)',
+                    }}
+                  >
+                    {row.feature}
+                  </span>
+                </div>
+                <div
+                  style={{
+                    padding: '18px 20px',
+                    borderLeft: '3px solid var(--bb-primary, #4F46E5)',
+                    background: 'rgba(79,70,229,0.04)',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <CellView cell={row.bidboard} />
+                </div>
+                <div
+                  style={{
+                    padding: '18px 20px',
+                    borderLeft: '1px solid var(--bb-border-hairline, #E5E7EB)',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <CellView cell={row[active]} />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
     </section>
   )
