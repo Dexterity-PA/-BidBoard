@@ -25,6 +25,8 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@react-email/components": "^1.0.12",
     "@react-email/render": "^2.0.6",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
@@ -43,12 +45,14 @@
     "svix": "^1.90.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.160.1",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^20.17.16",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "@types/three": "^0.184.0",
     "autoprefixer": "^10.4.20",
     "drizzle-kit": "^0.18.1",
     "eslint": "^9.0.0",
