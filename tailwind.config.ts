@@ -52,6 +52,22 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        bb: {
+          surface: "var(--bb-surface)",
+          "surface-alt": "var(--bb-surface-alt)",
+          "surface-elevated": "var(--bb-surface-elevated)",
+          ink: "var(--bb-ink)",
+          "ink-muted": "var(--bb-ink-muted)",
+          "ink-subtle": "var(--bb-ink-subtle)",
+          primary: "var(--bb-primary)",
+          "primary-hover": "var(--bb-primary-hover)",
+          "primary-soft": "var(--bb-primary-soft)",
+          accent: "var(--bb-accent)",
+        },
+        "bb-border": {
+          hairline: "var(--bb-border-hairline)",
+          strong: "var(--bb-border-strong)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

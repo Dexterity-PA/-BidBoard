@@ -1,6 +1,9 @@
 import Link from "next/link";
 import HeroSection from "./_components/HeroSection";
 import SiteNav from "./_components/SiteNav";
+import PageIntroWipe from "./_components/global/PageIntroWipe";
+import ScrollProgressBar from "./_components/global/ScrollProgressBar";
+import SectionNumbers from "./_components/global/SectionNumbers";
 import TestimonialsAnimated from "@/components/landing/TestimonialsAnimated";
 import PricingAnimated from "@/components/landing/PricingAnimated";
 import ProblemSection from "@/components/landing/ProblemSection";
@@ -258,21 +261,32 @@ function Footer() {
 }
 
 export default function LandingPage() {
+  const sections = [
+    <HeroSection key="hero" />,
+    <ProblemSection key="problem" />,
+    <FormulaSection key="formula" />,
+    <EVCalculator key="ev" />,
+    <DashboardSection key="dashboard" />,
+    <ComparisonSection key="comparison" />,
+    <SocialProofSection key="social" />,
+    <TestimonialsAnimated key="testimonials" />,
+    <PricingAnimated key="pricing" />,
+    <ForCounselorsCTA key="counselors" />,
+    <FinalCTASection key="cta" />,
+  ];
+
   return (
-    <div style={{ background: C.white }}>
+    <div style={{ background: "var(--bb-surface)" }}>
+      <PageIntroWipe />
+      <ScrollProgressBar />
+      <SectionNumbers />
       <SiteNav />
       <main>
-        <HeroSection />
-        <ProblemSection />
-        <FormulaSection />
-        <EVCalculator />
-        <DashboardSection />
-        <ComparisonSection />
-        <SocialProofSection />
-        <TestimonialsAnimated />
-        <PricingAnimated />
-        <ForCounselorsCTA />
-        <FinalCTASection />
+        {sections.map((node, i) => (
+          <div key={node.key} data-section-index={i + 1}>
+            {node}
+          </div>
+        ))}
       </main>
       <Footer />
     </div>

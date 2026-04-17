@@ -24,6 +24,20 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+
+    /* BidBoard landing tokens (bb- prefix to avoid shadcn collisions) */
+    --bb-surface: #FAFAF7;
+    --bb-surface-alt: #F3F2ED;
+    --bb-surface-elevated: #FFFFFF;
+    --bb-ink: #0B0B10;
+    --bb-ink-muted: #5B5B66;
+    --bb-ink-subtle: #8A8A95;
+    --bb-primary: #4F46E5;
+    --bb-primary-hover: #4338CA;
+    --bb-primary-soft: #EEF2FF;
+    --bb-accent: #4C1D95;
+    --bb-border-hairline: rgba(11, 11, 16, 0.08);
+    --bb-border-strong: rgba(11, 11, 16, 0.14);
   }
 
   .dark {
@@ -55,7 +69,12 @@
   }
   body {
     font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
-    @apply bg-background text-foreground;
+    background: var(--bb-surface);
+    color: var(--bb-ink);
+  }
+  ::selection {
+    background: var(--bb-primary);
+    color: var(--bb-surface);
   }
 }
 
@@ -173,6 +192,12 @@ html {
 .terms-nav-link:hover {
   color: #111827 !important;
   background: #F3F4F6 !important;
+}
+
+/* ── Nav dropdown items ──────────────────────────────────────── */
+.nav-dropdown-item:hover {
+  background: var(--bb-primary-soft) !important;
+  color: var(--bb-primary) !important;
 }
 
 /* ── Hero CTA buttons ─────────────────────────────────────────── */

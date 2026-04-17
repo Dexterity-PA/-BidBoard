@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Instrument_Serif, DM_Sans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import CursorSpotlight from "./_components/global/CursorSpotlight";
+import GradientWash from "./_components/global/GradientWash";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -51,7 +53,11 @@ export default function RootLayout({
         lang="en"
         className={`${instrumentSerif.variable} ${dmSans.variable}`}
       >
-        <body>{children}</body>
+        <body>
+          <GradientWash />
+          <CursorSpotlight />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
