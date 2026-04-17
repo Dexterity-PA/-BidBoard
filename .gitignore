@@ -42,3 +42,10 @@ next-env.d.ts
 # clerk configuration (can include secrets)
 /.clerk/
 .worktrees/
+
+# scraper runtime files
+scrapers/bold_org/.progress
+scrapers/bold_org/failed.jsonl
+scrapers/bold_org/slugs.txt
+scrapers/**/.venv
+scrapers/**/__pycache__/
