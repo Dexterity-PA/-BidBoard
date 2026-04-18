@@ -58,31 +58,6 @@ export default function FinalCTASection() {
         <ParticleCanvas reduced={reduced} velocity={reduced ? undefined : smoothV} />
       </div>
 
-      {/* Giant drifting word */}
-      <motion.span
-        aria-hidden
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          y: reduced ? 0 : smoothWordY,
-          fontFamily: SERIF,
-          fontSize: 'clamp(180px, 26vw, 360px)',
-          fontWeight: 400,
-          color: '#fff',
-          opacity: 0.08,
-          letterSpacing: '-0.04em',
-          lineHeight: 1,
-          whiteSpace: 'nowrap',
-          pointerEvents: 'none',
-          userSelect: 'none',
-          zIndex: 1,
-        }}
-      >
-        ENGINEERED.
-      </motion.span>
-
       {/* Content */}
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 30 }}
@@ -125,20 +100,54 @@ export default function FinalCTASection() {
             >
               Start now
             </p>
-            <h2
-              className="mkt-cta-h2"
+            <div
+              className="bb-cta-headline-wrap"
               style={{
-                fontFamily: SERIF,
-                fontSize: 'clamp(44px, 7vw, 88px)',
-                fontWeight: 400,
-                color: '#fff',
-                letterSpacing: '-0.025em',
-                lineHeight: 1.03,
+                position: 'relative',
                 margin: '0 0 32px',
               }}
             >
-              Your next scholarship starts here.
-            </h2>
+              {/* Giant drifting word — baseline-aligned behind the headline */}
+              <motion.span
+                aria-hidden
+                className="bb-cta-wordmark"
+                style={{
+                  position: 'absolute',
+                  left: '-0.04em',
+                  bottom: 0,
+                  y: reduced ? 0 : smoothWordY,
+                  fontFamily: SERIF,
+                  fontSize: 'clamp(180px, 26vw, 360px)',
+                  fontWeight: 400,
+                  color: '#fff',
+                  opacity: 0.08,
+                  letterSpacing: '-0.04em',
+                  lineHeight: 0.82,
+                  whiteSpace: 'nowrap',
+                  pointerEvents: 'none',
+                  userSelect: 'none',
+                  zIndex: 0,
+                }}
+              >
+                ENGINEERED.
+              </motion.span>
+              <h2
+                className="mkt-cta-h2"
+                style={{
+                  position: 'relative',
+                  zIndex: 1,
+                  fontFamily: SERIF,
+                  fontSize: 'clamp(44px, 7vw, 88px)',
+                  fontWeight: 400,
+                  color: '#fff',
+                  letterSpacing: '-0.025em',
+                  lineHeight: 1.03,
+                  margin: 0,
+                }}
+              >
+                Your next scholarship starts here.
+              </h2>
+            </div>
             <div
               style={{
                 display: 'flex',
