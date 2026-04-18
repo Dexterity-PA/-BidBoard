@@ -187,6 +187,15 @@ function CounterBlock({
 // a seamless seam (gap would leave the boundary half-sized).
 const ITEM_GAP = 14
 
+// Repeat the source list enough times that the doubled track always
+// exceeds 2× viewport width on the smallest mobile screen.
+function repeatToCover<T>(items: T[], minCopies: number): T[] {
+  const copies = Math.max(2, minCopies)
+  // Must be even so [first half] === [second half] for a seamless -50% loop.
+  const evenCopies = copies % 2 === 0 ? copies : copies + 1
+  return Array.from({ length: evenCopies }, () => items).flat()
+}
+
 function MarqueeRow({
   items,
   seconds,
@@ -198,7 +207,9 @@ function MarqueeRow({
   direction: 'left' | 'right'
   variant: 'pill' | 'tile'
 }) {
-  const dup = [...items, ...items]
+  // Pills are wide (~150px) and tile wordmarks are also wide; 4 copies
+  // (= 2 halves of 2 copies each) easily covers 2× viewport width.
+  const dup = repeatToCover(items, 4)
   const duration = `${seconds}s`
   const anim = direction === 'left' ? 'bb-marquee-left' : 'bb-marquee-right'
 
@@ -234,6 +245,9 @@ function MarqueeRow({
         </div>
       )
     }
+    // Tile variant: render the school's full name as a serif wordmark on a
+    // cream tile. Real institutional logos are unreliable across .edu domains,
+    // and abbreviations alone are unrecognizable, so the wordmark IS the brand.
     return (
       <div
         key={`${school.name}-${i}`}
@@ -246,12 +260,19 @@ function MarqueeRow({
           background: 'var(--bb-surface-alt)',
           border: '1px solid var(--bb-border-hairline)',
           borderRadius: 10,
-          padding: 8,
+          padding: '10px 22px',
+          height: 52,
           flexShrink: 0,
           marginRight: ITEM_GAP,
+          fontFamily: SERIF,
+          fontSize: 20,
+          fontWeight: 400,
+          letterSpacing: '-0.01em',
+          color: 'var(--bb-ink)',
+          whiteSpace: 'nowrap',
         }}
       >
-        <SchoolLogo school={school} size={32} />
+        {school.name}
       </div>
     )
   }
@@ -277,7 +298,9 @@ function TextRow({
   seconds: number
   direction: 'left' | 'right'
 }) {
-  const dup = [...items, ...items]
+  // Items are short (3 phrases × ~140px each); repeat heavily so the duplicated
+  // track covers 2× viewport even on ultrawide screens at first paint.
+  const dup = repeatToCover(items, 12)
   const duration = `${seconds}s`
   const anim = direction === 'left' ? 'bb-marquee-left' : 'bb-marquee-right'
   return (

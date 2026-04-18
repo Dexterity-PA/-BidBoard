@@ -160,9 +160,15 @@ export default function CategoryShowcase() {
   const tileCount = CATEGORIES.length
   const tileWidth = 340
   const gap = 20
-  // Total track distance = tiles + gaps + some padding, minus viewport.
-  // Use a percentage end point so it adapts.
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-78%'])
+  // Clamp the translateX so once the last tile (Local & regional) reaches the
+  // right edge of the viewport, further scroll does not push the track into
+  // blank space. Reaching the max at scrollYProgress = 0.85 leaves the final
+  // 15% of pinned scroll as a "rest" before the section unpins.
+  const x = useTransform(
+    scrollYProgress,
+    [0, 0.85, 1],
+    ['0%', '-78%', '-78%'],
+  )
 
   if (reduced) {
     // Fallback: native overflow-x scroll-snap row
@@ -200,7 +206,9 @@ export default function CategoryShowcase() {
       ref={wrapperRef}
       style={{
         position: 'relative',
-        height: '180vh',
+        // Doubled from 180vh so the horizontal translate completes over a much
+        // longer vertical scroll distance, slowing perceived scroll speed.
+        height: '360vh',
         background: 'var(--bb-surface)',
       }}
     >

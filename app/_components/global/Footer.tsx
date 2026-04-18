@@ -91,6 +91,10 @@ export default function Footer() {
         background: 'var(--bb-ink)',
         color: 'rgba(255,255,255,0.85)',
         overflow: 'hidden',
+        // Push the entire footer (including the giant background wordmark)
+        // down so it never bleeds into the hairline divider above.
+        paddingTop: 'clamp(96px, 14vh, 200px)',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
       }}
     >
       {/* Giant wordmark background */}
@@ -105,7 +109,9 @@ export default function Footer() {
           fontFamily: SERIF,
           fontSize: 'clamp(160px, 26vw, 380px)',
           fontWeight: 400,
-          letterSpacing: '-0.04em',
+          // Positive tracking prevents the descenders of "R" and "D" from
+          // touching at large display sizes.
+          letterSpacing: '0.02em',
           color: '#fff',
           opacity: 0.06,
           lineHeight: 0.85,
@@ -123,7 +129,7 @@ export default function Footer() {
           zIndex: 1,
           maxWidth: 1200,
           margin: '0 auto',
-          padding: 'clamp(56px, 8vh, 96px) clamp(24px, 5vw, 72px) clamp(56px, 7vh, 88px)',
+          padding: '0 clamp(24px, 5vw, 72px) clamp(56px, 7vh, 88px)',
         }}
       >
         {/* Newsletter strip */}

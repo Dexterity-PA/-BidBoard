@@ -82,7 +82,9 @@ export default function FinalCTASection() {
             display: 'grid',
             gridTemplateColumns: '1.2fr 0.8fr',
             gap: 'clamp(32px, 5vw, 80px)',
-            alignItems: 'end',
+            // Top-align both columns so the headline and the first stat row
+            // share a baseline at the top of the grid.
+            alignItems: 'start',
           }}
         >
           {/* Left: statement */}
@@ -107,14 +109,19 @@ export default function FinalCTASection() {
                 margin: '0 0 32px',
               }}
             >
-              {/* Giant drifting word — baseline-aligned behind the headline */}
+              {/* Giant drifting word — baseline-aligned behind the headline.
+                  Centered horizontally on the headline-wrap (rather than
+                  pinned to its left edge) so the word stays visually balanced
+                  and the section's overflow: hidden clips any spillover at
+                  the viewport edges. */}
               <motion.span
                 aria-hidden
                 className="bb-cta-wordmark"
                 style={{
                   position: 'absolute',
-                  left: '-0.04em',
+                  left: '50%',
                   bottom: 0,
+                  x: '-50%',
                   y: reduced ? 0 : smoothWordY,
                   fontFamily: SERIF,
                   fontSize: 'clamp(180px, 26vw, 360px)',
@@ -193,12 +200,16 @@ export default function FinalCTASection() {
             </div>
           </div>
 
-          {/* Right: stats */}
+          {/* Right: stats — paddingTop matches the height of the left column's
+              "Start now" eyebrow + its 20px margin so the first stat's top
+              edge aligns with the headline's top edge. */}
           <div
+            className="bb-cta-stats-col"
             style={{
               display: 'flex',
               flexDirection: 'column',
               gap: 22,
+              paddingTop: 32,
             }}
           >
             {STATS.map((s) => (
@@ -263,6 +274,9 @@ export default function FinalCTASection() {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
             align-items: start !important;
+          }
+          :global(.bb-cta-stats-col) {
+            padding-top: 0 !important;
           }
         }
       `}</style>

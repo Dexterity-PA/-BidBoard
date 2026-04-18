@@ -143,20 +143,20 @@ function MarqueeHeader({ reduced }: { reduced: boolean }) {
               fontSize: 'clamp(38px, 6vw, 72px)',
               color: '#111827',
               letterSpacing: '-0.02em',
-              paddingRight: 56,
+              paddingRight: 96,
             }}
           >
             {w}
             <span
               aria-hidden
               style={{
-                color: 'var(--bb-primary)',
-                fontFamily: SERIF,
-                margin: '0 56px 0 56px',
-                fontSize: '0.6em',
+                color: 'var(--bb-ink-subtle)',
+                margin: '0 0 0 96px',
+                fontSize: '0.35em',
+                lineHeight: 1,
               }}
             >
-              ⌬
+              •
             </span>
           </span>
         ))}
