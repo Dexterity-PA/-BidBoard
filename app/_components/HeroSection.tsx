@@ -1,6 +1,5 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { useRef } from 'react'
 import {
   motion,
@@ -12,14 +11,8 @@ import {
 import Link from 'next/link'
 import ParticleCanvas from '../../components/landing/ParticleCanvas'
 import HeroQuickMatch from './hero/HeroQuickMatch'
-import StaticCardFallback from './hero/StaticCardFallback'
+import HeroCardScene from './hero/HeroCardScene'
 import MagneticButton from './global/MagneticButton'
-
-// Lazy-load the Three.js scene; SSR-safe fallback during load/SSR.
-const HeroCardScene = dynamic(() => import('./hero/HeroCardScene'), {
-  ssr: false,
-  loading: () => <StaticCardFallback />,
-})
 
 const INDIGO = '#4F46E5'
 const BG = '#F5F4FF'
@@ -365,15 +358,15 @@ export default function HeroSection() {
           <HeroQuickMatch />
         </motion.div>
 
-        {/* Three.js card choreography */}
+        {/* Horizontal slide carousel of real scholarships */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
-            minHeight: 340,
+            minHeight: 230,
           }}
         >
-          <HeroCardScene progress={scrollYProgress} />
+          <HeroCardScene />
         </div>
       </motion.div>
 
