@@ -58,6 +58,40 @@ export default function FinalCTASection() {
         <ParticleCanvas reduced={reduced} velocity={reduced ? undefined : smoothV} />
       </div>
 
+      {/* Giant wordmark — centered against the section (viewport), not the
+          headline wrap. Section overflow: hidden clips any spillover at the
+          viewport edges symmetrically. */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          pointerEvents: 'none',
+        }}
+      >
+        <motion.span
+          className="bb-cta-wordmark"
+          style={{
+            y: reduced ? 0 : smoothWordY,
+            fontFamily: SERIF,
+            fontSize: 'clamp(140px, 20vw, 300px)',
+            fontWeight: 400,
+            color: '#fff',
+            opacity: 0.08,
+            letterSpacing: '-0.04em',
+            lineHeight: 0.82,
+            whiteSpace: 'nowrap',
+            userSelect: 'none',
+          }}
+        >
+          ENGINEERED.
+        </motion.span>
+      </div>
+
       {/* Content */}
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 30 }}
@@ -102,59 +136,21 @@ export default function FinalCTASection() {
             >
               Start now
             </p>
-            <div
-              className="bb-cta-headline-wrap"
+            <h2
+              className="mkt-cta-h2"
               style={{
                 position: 'relative',
+                fontFamily: SERIF,
+                fontSize: 'clamp(44px, 7vw, 88px)',
+                fontWeight: 400,
+                color: '#fff',
+                letterSpacing: '-0.025em',
+                lineHeight: 1.03,
                 margin: '0 0 32px',
               }}
             >
-              {/* Giant drifting word — baseline-aligned behind the headline.
-                  Centered horizontally on the headline-wrap (rather than
-                  pinned to its left edge) so the word stays visually balanced
-                  and the section's overflow: hidden clips any spillover at
-                  the viewport edges. */}
-              <motion.span
-                aria-hidden
-                className="bb-cta-wordmark"
-                style={{
-                  position: 'absolute',
-                  left: '50%',
-                  bottom: 0,
-                  x: '-50%',
-                  y: reduced ? 0 : smoothWordY,
-                  fontFamily: SERIF,
-                  fontSize: 'clamp(180px, 26vw, 360px)',
-                  fontWeight: 400,
-                  color: '#fff',
-                  opacity: 0.08,
-                  letterSpacing: '-0.04em',
-                  lineHeight: 0.82,
-                  whiteSpace: 'nowrap',
-                  pointerEvents: 'none',
-                  userSelect: 'none',
-                  zIndex: 0,
-                }}
-              >
-                ENGINEERED.
-              </motion.span>
-              <h2
-                className="mkt-cta-h2"
-                style={{
-                  position: 'relative',
-                  zIndex: 1,
-                  fontFamily: SERIF,
-                  fontSize: 'clamp(44px, 7vw, 88px)',
-                  fontWeight: 400,
-                  color: '#fff',
-                  letterSpacing: '-0.025em',
-                  lineHeight: 1.03,
-                  margin: 0,
-                }}
-              >
-                Your next scholarship starts here.
-              </h2>
-            </div>
+              Your next scholarship starts here.
+            </h2>
             <div
               style={{
                 display: 'flex',

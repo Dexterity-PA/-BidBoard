@@ -2,7 +2,13 @@
 
 import { useRef } from 'react'
 import Link from 'next/link'
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import {
+  motion,
+  useMotionTemplate,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'framer-motion'
 
 const SANS = 'var(--font-dm-sans), -apple-system, sans-serif'
 const SERIF = 'var(--font-instrument-serif), Georgia, serif'
@@ -158,17 +164,18 @@ export default function CategoryShowcase() {
   })
 
   const tileCount = CATEGORIES.length
-  const tileWidth = 340
+  const tileWidth = 320
   const gap = 20
-  // Clamp the translateX so once the last tile (Local & regional) reaches the
-  // right edge of the viewport, further scroll does not push the track into
-  // blank space. Reaching the max at scrollYProgress = 0.85 leaves the final
-  // 15% of pinned scroll as a "rest" before the section unpins.
-  const x = useTransform(
-    scrollYProgress,
-    [0, 0.85, 1],
-    ['0%', '-78%', '-78%'],
-  )
+  // Total inline size of the track (tiles + gaps). No trailing spacer — the
+  // last tile's right edge is the end of the scroll.
+  const trackWidth = tileCount * tileWidth + (tileCount - 1) * gap
+  // Horizontal scroll ends exactly when the last tile's right edge meets the
+  // container's right padding edge. min(0px, ...) keeps translate non-positive
+  // on viewports wider than the track (no jarring forward slide).
+  // Reaching the max at scrollYProgress = 0.85 leaves the final 15% of pinned
+  // scroll as a "rest" before the section unpins.
+  const progress = useTransform(scrollYProgress, [0, 0.85, 1], [0, 1, 1])
+  const x = useMotionTemplate`calc(${progress} * min(0px, 100vw - ${trackWidth}px - clamp(48px, 10vw, 144px)))`
 
   if (reduced) {
     // Fallback: native overflow-x scroll-snap row
@@ -246,8 +253,6 @@ export default function CategoryShowcase() {
             {CATEGORIES.map((c) => (
               <TileLink key={c.slug} cat={c} />
             ))}
-            {/* spacer */}
-            <div style={{ width: tileWidth, flexShrink: 0 }} />
           </motion.div>
         </div>
         <p

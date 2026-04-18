@@ -32,9 +32,10 @@ const TOKEN_WINDOWS: [number, number][] = [
   [0.12, 0.15], // ×
   [0.17, 0.23], // Win Probability
   [0.25, 0.28], // ÷
-  [0.30, 0.36], // Hours
-  [0.38, 0.41], // =
-  [0.43, 0.48], // EV Score
+  [0.30, 0.40], // Hours — widened so opacity reaches 1 in the same visible
+                //          way "Award" and "Win Probability" do
+  [0.41, 0.44], // =
+  [0.45, 0.49], // EV Score
 ]
 
 function Token({
@@ -157,7 +158,7 @@ export default function FormulaSection() {
   )
 
   // Underline drawn across the formula, bound to overall reveal window.
-  const underlineScale = useTransform(scrollYProgress, [0.04, 0.48], [0, 1])
+  const underlineScale = useTransform(scrollYProgress, [0.04, 0.49], [0, 1])
 
   return (
     <div

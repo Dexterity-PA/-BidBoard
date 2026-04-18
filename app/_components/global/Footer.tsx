@@ -97,20 +97,19 @@ export default function Footer() {
         borderTop: '1px solid rgba(255,255,255,0.08)',
       }}
     >
-      {/* Giant wordmark background */}
+      {/* Giant wordmark background — sized so the ascenders stay below the
+          newsletter divider, and anchored close to the footer's bottom edge. */}
       <span
         aria-hidden
         style={{
           position: 'absolute',
           left: 0,
           right: 0,
-          bottom: 'clamp(80px, 10vh, 140px)',
+          bottom: 'clamp(32px, 4vh, 64px)',
           textAlign: 'center',
           fontFamily: SERIF,
-          fontSize: 'clamp(160px, 26vw, 380px)',
+          fontSize: 'clamp(110px, 17vw, 220px)',
           fontWeight: 400,
-          // Positive tracking prevents the descenders of "R" and "D" from
-          // touching at large display sizes.
           letterSpacing: '0.02em',
           color: '#fff',
           opacity: 0.06,
