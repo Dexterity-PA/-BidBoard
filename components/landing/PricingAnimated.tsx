@@ -87,7 +87,7 @@ export default function PricingAnimated() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        Simple pricing.
+        Plans that pay themselves back.
       </motion.h2>
 
       <div

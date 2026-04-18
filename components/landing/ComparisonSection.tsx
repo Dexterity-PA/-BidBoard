@@ -7,7 +7,7 @@ const SANS = "var(--font-dm-sans), -apple-system, sans-serif"
 const SERIF = "var(--font-instrument-serif), Georgia, serif"
 const EASE = [0.22, 1, 0.36, 1] as const
 
-type Competitor = 'bidboard' | 'goingmerry' | 'fastweb' | 'scholarshipscom'
+type Competitor = 'goingmerry' | 'fastweb' | 'scholarshipscom'
 
 type Cell =
   | { kind: 'yes'; note?: string }
@@ -23,7 +23,6 @@ type Row = {
 }
 
 const TABS: { id: Competitor; label: string }[] = [
-  { id: 'bidboard', label: 'BidBoard' },
   { id: 'goingmerry', label: 'Going Merry' },
   { id: 'fastweb', label: 'Fastweb' },
   { id: 'scholarshipscom', label: 'Scholarships.com' },
@@ -301,16 +300,25 @@ export default function ComparisonSection() {
             )
           })}
         </div>
-        <p
-          style={{
-            fontFamily: SANS,
-            fontSize: 12,
-            color: 'var(--bb-accent, #B91C1C)',
-            margin: 0,
-          }}
-        >
-          (Going Merry shut down March 2026.)
-        </p>
+        <AnimatePresence initial={false}>
+          {active === 'goingmerry' && (
+            <motion.p
+              key="gm-note"
+              initial={reduced ? false : { opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduced ? undefined : { opacity: 0, y: -4 }}
+              transition={{ duration: 0.25, ease: EASE }}
+              style={{
+                fontFamily: SANS,
+                fontSize: 12,
+                color: 'var(--bb-accent, #B91C1C)',
+                margin: 0,
+              }}
+            >
+              (Going Merry shut down March 2026.)
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Comparison card — BidBoard vs selected competitor */}

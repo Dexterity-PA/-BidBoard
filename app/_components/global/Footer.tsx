@@ -100,7 +100,7 @@ export default function Footer() {
           position: 'absolute',
           left: 0,
           right: 0,
-          bottom: '-5%',
+          bottom: 'clamp(80px, 10vh, 140px)',
           textAlign: 'center',
           fontFamily: SERIF,
           fontSize: 'clamp(160px, 26vw, 380px)',
@@ -123,7 +123,7 @@ export default function Footer() {
           zIndex: 1,
           maxWidth: 1200,
           margin: '0 auto',
-          padding: 'clamp(56px, 8vh, 96px) clamp(24px, 5vw, 72px) 32px',
+          padding: 'clamp(56px, 8vh, 96px) clamp(24px, 5vw, 72px) clamp(56px, 7vh, 88px)',
         }}
       >
         {/* Newsletter strip */}

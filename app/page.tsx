@@ -16,7 +16,6 @@ import DashboardSection from "@/components/landing/DashboardSection";
 import ComparisonSection from "@/components/landing/ComparisonSection";
 import HowItWorksStory from "@/components/landing/HowItWorksStory";
 import SchoolsMarquee from "@/components/landing/SchoolsMarquee";
-import FounderSection from "@/components/landing/FounderSection";
 import IndexStats from "@/components/landing/IndexStats";
 import FAQ from "@/components/landing/FAQ";
 import SecurityStrip from "@/components/landing/SecurityStrip";
@@ -194,7 +193,6 @@ export default function LandingPage() {
     { key: "categories",  node: <CategoryShowcase /> },
     { key: "comparison",  node: <ComparisonSection /> },
     { key: "testimonials",node: <TestimonialsAnimated /> },
-    { key: "founder",     node: <FounderSection /> },
     { key: "indexstats",  node: <IndexStats /> },
     { key: "pricing",     id: "pricing", node: <PricingAnimated /> },
     { key: "counselors",  node: <ForCounselorsCTA /> },

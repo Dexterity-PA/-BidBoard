@@ -4,7 +4,6 @@ export type TickerTile = {
   id: string
   name: string
   amount: string
-  deadline: string
   ev: string
 }
 
@@ -148,19 +147,10 @@ export default function LiveScholarshipTickerClient({
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'space-between',
+                  justifyContent: 'flex-end',
                   gap: 12,
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: SANS,
-                    fontSize: 12,
-                    color: 'var(--bb-ink-muted)',
-                  }}
-                >
-                  Deadline {t.deadline}
-                </span>
                 <span
                   style={{
                     fontFamily: SANS,

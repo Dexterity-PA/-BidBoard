@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { useCountUp } from './useCountUp'
 
@@ -8,22 +8,56 @@ const SANS = 'var(--font-dm-sans), -apple-system, sans-serif'
 const SERIF = 'var(--font-instrument-serif), Georgia, serif'
 const EASE = [0.22, 1, 0.36, 1] as const
 
-const ROW_ONE = [
-  'MIT', 'Stanford', 'UC Berkeley', 'UT Austin', 'Georgia Tech',
-  'UNC Chapel Hill', 'Arizona State', 'University of Michigan',
-  'Purdue', 'Ohio State', 'UCF', 'CSU Fullerton',
-  'Community College of Denver', 'Pima CC', 'Temple', 'UNLV',
-  'Rutgers', 'Indiana', 'UT Dallas', 'University of Florida',
-  'Oregon State', 'North Carolina A&T', 'Spelman', 'Morehouse',
+type School = { name: string; domain: string }
+
+const ROW_ONE: School[] = [
+  { name: 'MIT',                          domain: 'mit.edu' },
+  { name: 'Stanford',                     domain: 'stanford.edu' },
+  { name: 'UC Berkeley',                  domain: 'berkeley.edu' },
+  { name: 'UT Austin',                    domain: 'utexas.edu' },
+  { name: 'Georgia Tech',                 domain: 'gatech.edu' },
+  { name: 'UNC Chapel Hill',              domain: 'unc.edu' },
+  { name: 'Arizona State',                domain: 'asu.edu' },
+  { name: 'University of Michigan',       domain: 'umich.edu' },
+  { name: 'Purdue',                       domain: 'purdue.edu' },
+  { name: 'Ohio State',                   domain: 'osu.edu' },
+  { name: 'UCF',                          domain: 'ucf.edu' },
+  { name: 'CSU Fullerton',                domain: 'fullerton.edu' },
+  { name: 'Community College of Denver',  domain: 'ccd.edu' },
+  { name: 'Pima CC',                      domain: 'pima.edu' },
+  { name: 'Temple',                       domain: 'temple.edu' },
+  { name: 'UNLV',                         domain: 'unlv.edu' },
+  { name: 'Rutgers',                      domain: 'rutgers.edu' },
+  { name: 'Indiana',                      domain: 'iu.edu' },
+  { name: 'UT Dallas',                    domain: 'utdallas.edu' },
+  { name: 'University of Florida',        domain: 'ufl.edu' },
+  { name: 'Oregon State',                 domain: 'oregonstate.edu' },
+  { name: 'NC A&T',                       domain: 'ncat.edu' },
+  { name: 'Spelman',                      domain: 'spelman.edu' },
+  { name: 'Morehouse',                    domain: 'morehouse.edu' },
 ]
 
-const ROW_TWO = [
-  'University of Washington', 'UCLA', 'UC San Diego', 'UIUC',
-  'Penn State', 'Texas A&M', 'University of Georgia', 'Virginia Tech',
-  'NC State', 'Clemson', 'Tulane', 'Howard',
-  'Grand Canyon University', 'South Mountain CC', 'Miami Dade',
-  'Northern Essex CC', 'Santa Monica College', 'Cornell',
-  'UT Arlington', 'Fisk',
+const ROW_TWO: School[] = [
+  { name: 'University of Washington',     domain: 'uw.edu' },
+  { name: 'UCLA',                         domain: 'ucla.edu' },
+  { name: 'UC San Diego',                 domain: 'ucsd.edu' },
+  { name: 'UIUC',                         domain: 'illinois.edu' },
+  { name: 'Penn State',                   domain: 'psu.edu' },
+  { name: 'Texas A&M',                    domain: 'tamu.edu' },
+  { name: 'University of Georgia',        domain: 'uga.edu' },
+  { name: 'Virginia Tech',                domain: 'vt.edu' },
+  { name: 'NC State',                     domain: 'ncsu.edu' },
+  { name: 'Clemson',                      domain: 'clemson.edu' },
+  { name: 'Tulane',                       domain: 'tulane.edu' },
+  { name: 'Howard',                       domain: 'howard.edu' },
+  { name: 'Grand Canyon',                 domain: 'gcu.edu' },
+  { name: 'South Mountain CC',            domain: 'southmountaincc.edu' },
+  { name: 'Miami Dade',                   domain: 'mdc.edu' },
+  { name: 'Santa Monica College',         domain: 'smc.edu' },
+  { name: 'Cornell',                      domain: 'cornell.edu' },
+  { name: 'UT Arlington',                 domain: 'uta.edu' },
+  { name: 'Fisk',                         domain: 'fisk.edu' },
+  { name: 'Princeton',                    domain: 'princeton.edu' },
 ]
 
 function initials(name: string): string {
@@ -56,6 +90,50 @@ function Monogram({ name, size = 36 }: { name: string; size?: number }) {
       }}
     >
       {initials(name)}
+    </span>
+  )
+}
+
+// Renders a Clearbit logo; on 404/error, falls back to monogram.
+function SchoolLogo({
+  school,
+  size = 28,
+}: {
+  school: School
+  size?: number
+}) {
+  const [failed, setFailed] = useState(false)
+  if (failed) return <Monogram name={school.name} size={size} />
+  return (
+    <span
+      aria-hidden
+      style={{
+        width: size,
+        height: size,
+        borderRadius: 6,
+        background: '#fff',
+        border: '1px solid var(--bb-border-hairline)',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+        overflow: 'hidden',
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`https://logo.clearbit.com/${school.domain}`}
+        alt=""
+        width={size - 6}
+        height={size - 6}
+        loading="lazy"
+        onError={() => setFailed(true)}
+        style={{
+          width: size - 6,
+          height: size - 6,
+          objectFit: 'contain',
+        }}
+      />
     </span>
   )
 }
@@ -105,27 +183,30 @@ function CounterBlock({
   )
 }
 
+// Track items use margin-right instead of `gap` so translate -50% lands on
+// a seamless seam (gap would leave the boundary half-sized).
+const ITEM_GAP = 14
+
 function MarqueeRow({
   items,
   seconds,
   direction,
   variant,
 }: {
-  items: string[]
+  items: School[]
   seconds: number
   direction: 'left' | 'right'
-  variant: 'pill' | 'text' | 'tile'
+  variant: 'pill' | 'tile'
 }) {
   const dup = [...items, ...items]
   const duration = `${seconds}s`
-  const anim =
-    direction === 'left' ? 'bb-marquee-left' : 'bb-marquee-right'
+  const anim = direction === 'left' ? 'bb-marquee-left' : 'bb-marquee-right'
 
-  const render = (item: string, i: number) => {
+  const render = (school: School, i: number) => {
     if (variant === 'pill') {
       return (
         <div
-          key={`${item}-${i}`}
+          key={`${school.name}-${i}`}
           className="bb-pill"
           style={{
             display: 'inline-flex',
@@ -136,9 +217,10 @@ function MarqueeRow({
             borderRadius: 999,
             padding: '8px 16px 8px 10px',
             flexShrink: 0,
+            marginRight: ITEM_GAP,
           }}
         >
-          <Monogram name={item} size={28} />
+          <SchoolLogo school={school} size={28} />
           <span
             style={{
               fontFamily: SANS,
@@ -147,64 +229,29 @@ function MarqueeRow({
               whiteSpace: 'nowrap',
             }}
           >
-            {item}
+            {school.name}
           </span>
         </div>
       )
     }
-    if (variant === 'tile') {
-      return (
-        <div
-          key={`${item}-${i}`}
-          className="bb-pill"
-          title={item}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'var(--bb-surface-alt)',
-            border: '1px solid var(--bb-border-hairline)',
-            borderRadius: 10,
-            padding: 8,
-            flexShrink: 0,
-          }}
-        >
-          <Monogram name={item} size={32} />
-        </div>
-      )
-    }
-    return null
-  }
-
-  if (variant === 'text') {
     return (
-      <div className="bb-marquee-mask">
-        <div
-          className="bb-marquee-track"
-          style={{ animation: `${anim} ${duration} linear infinite` }}
-        >
-          {dup.map((item, i) => (
-            <span
-              key={i}
-              style={{
-                fontFamily: SANS,
-                fontSize: 12,
-                fontWeight: 500,
-                letterSpacing: '0.28em',
-                textTransform: 'uppercase',
-                color: 'var(--bb-ink-subtle)',
-                whiteSpace: 'nowrap',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 24,
-                padding: '0 24px',
-              }}
-            >
-              {item}
-              <span aria-hidden style={{ color: 'var(--bb-primary)' }}>⌬</span>
-            </span>
-          ))}
-        </div>
+      <div
+        key={`${school.name}-${i}`}
+        className="bb-pill"
+        title={school.name}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'var(--bb-surface-alt)',
+          border: '1px solid var(--bb-border-hairline)',
+          borderRadius: 10,
+          padding: 8,
+          flexShrink: 0,
+          marginRight: ITEM_GAP,
+        }}
+      >
+        <SchoolLogo school={school} size={32} />
       </div>
     )
   }
@@ -213,22 +260,59 @@ function MarqueeRow({
     <div className="bb-marquee-mask">
       <div
         className="bb-marquee-track"
-        style={{
-          animation: `${anim} ${duration} linear infinite`,
-          gap: 14,
-        }}
+        style={{ animation: `${anim} ${duration} linear infinite` }}
       >
-        {dup.map((item, i) => render(item, i))}
+        {dup.map((school, i) => render(school, i))}
       </div>
     </div>
   )
 }
 
-const DECORATIVE_WORDS = [
-  'real students',
-  'real acceptances',
-  'real $',
-]
+function TextRow({
+  items,
+  seconds,
+  direction,
+}: {
+  items: string[]
+  seconds: number
+  direction: 'left' | 'right'
+}) {
+  const dup = [...items, ...items]
+  const duration = `${seconds}s`
+  const anim = direction === 'left' ? 'bb-marquee-left' : 'bb-marquee-right'
+  return (
+    <div className="bb-marquee-mask">
+      <div
+        className="bb-marquee-track"
+        style={{ animation: `${anim} ${duration} linear infinite` }}
+      >
+        {dup.map((item, i) => (
+          <span
+            key={i}
+            style={{
+              fontFamily: SANS,
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: 'var(--bb-ink-subtle)',
+              whiteSpace: 'nowrap',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 24,
+              paddingRight: 48,
+            }}
+          >
+            {item}
+            <span aria-hidden style={{ color: 'var(--bb-primary)' }}>⌬</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const DECORATIVE_WORDS = ['real students', 'real acceptances', 'real $']
 
 export default function SchoolsMarquee() {
   const reduced = useReducedMotion() ?? false
@@ -297,24 +381,9 @@ export default function SchoolsMarquee() {
         transition={{ duration: 0.6, ease: EASE }}
         style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
       >
-        <MarqueeRow
-          items={ROW_ONE}
-          seconds={70}
-          direction="left"
-          variant="pill"
-        />
-        <MarqueeRow
-          items={DECORATIVE_WORDS}
-          seconds={90}
-          direction="right"
-          variant="text"
-        />
-        <MarqueeRow
-          items={ROW_TWO}
-          seconds={85}
-          direction="left"
-          variant="tile"
-        />
+        <MarqueeRow items={ROW_ONE} seconds={70} direction="left" variant="pill" />
+        <TextRow items={DECORATIVE_WORDS} seconds={90} direction="right" />
+        <MarqueeRow items={ROW_TWO} seconds={85} direction="left" variant="tile" />
       </motion.div>
 
       <style jsx>{`

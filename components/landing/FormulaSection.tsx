@@ -25,15 +25,16 @@ const TOKENS = [
   { label: 'EV Score',        color: INDIGO,    size: 64, isResult: true  },
 ] as const
 
-// Windows end at 0.90, leaving 0.90→1.0 as dwell before unsticking.
+// Outer is 200vh with a 100vh sticky child — sticky is only pinned from
+// scrollYProgress 0 → 0.5. Token reveals must land in that range.
 const TOKEN_WINDOWS: [number, number][] = [
-  [0.08, 0.20], // Award
-  [0.22, 0.27], // ×
-  [0.29, 0.44], // Win Probability
-  [0.46, 0.51], // ÷
-  [0.53, 0.68], // Hours
-  [0.70, 0.75], // =
-  [0.77, 0.90], // EV Score
+  [0.04, 0.10], // Award
+  [0.12, 0.15], // ×
+  [0.17, 0.23], // Win Probability
+  [0.25, 0.28], // ÷
+  [0.30, 0.36], // Hours
+  [0.38, 0.41], // =
+  [0.43, 0.48], // EV Score
 ]
 
 function Token({
@@ -151,12 +152,12 @@ export default function FormulaSection() {
 
   const gridOpacity = useTransform(
     scrollYProgress,
-    [0.05, 0.50],
+    [0.04, 0.30],
     reduced ? [0, 0] : [0, 0.06],
   )
 
   // Underline drawn across the formula, bound to overall reveal window.
-  const underlineScale = useTransform(scrollYProgress, [0.08, 0.90], [0, 1])
+  const underlineScale = useTransform(scrollYProgress, [0.04, 0.48], [0, 1])
 
   return (
     <div

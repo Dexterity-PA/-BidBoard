@@ -1,6 +1,5 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { useRef } from 'react'
 import {
   motion,
@@ -12,14 +11,8 @@ import {
 import Link from 'next/link'
 import ParticleCanvas from '../../components/landing/ParticleCanvas'
 import HeroQuickMatch from './hero/HeroQuickMatch'
-import StaticCardFallback from './hero/StaticCardFallback'
+import HeroCardScene from './hero/HeroCardScene'
 import MagneticButton from './global/MagneticButton'
-
-// Lazy-load the Three.js scene; SSR-safe fallback during load/SSR.
-const HeroCardScene = dynamic(() => import('./hero/HeroCardScene'), {
-  ssr: false,
-  loading: () => <StaticCardFallback />,
-})
 
 const INDIGO = '#4F46E5'
 const BG = '#F5F4FF'
@@ -72,7 +65,8 @@ function WordCurtain({
             display: 'inline-block',
             overflow: 'hidden',
             verticalAlign: 'bottom',
-            lineHeight: 1.04,
+            lineHeight: 1.18,
+            paddingBottom: '0.18em',
           }}
         >
           <motion.span
@@ -142,6 +136,22 @@ export default function HeroSection() {
         padding: 'clamp(100px,11vh,130px) 24px clamp(80px,9vh,100px)',
       }}
     >
+      {/* Nav → hero seam blend: fade cream nav background into lavender hero */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 140,
+          pointerEvents: 'none',
+          background:
+            'linear-gradient(to bottom, rgba(250,250,247,0.85) 0%, rgba(250,250,247,0.4) 45%, rgba(245,244,255,0) 100%)',
+          zIndex: 1,
+        }}
+      />
+
       {/* Gradient blobs */}
       <div
         aria-hidden
@@ -241,9 +251,10 @@ export default function HeroSection() {
             fontSize: 'clamp(44px, 8vw, 96px)',
             fontWeight: 400,
             color: '#111827',
-            lineHeight: 1.04,
+            lineHeight: 1.12,
             letterSpacing: '-0.02em',
             margin: '0 0 26px',
+            paddingBottom: '0.08em',
           }}
         >
           <WordCurtain
@@ -347,15 +358,15 @@ export default function HeroSection() {
           <HeroQuickMatch />
         </motion.div>
 
-        {/* Three.js card choreography */}
+        {/* Horizontal slide carousel of real scholarships */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
-            minHeight: 340,
+            minHeight: 230,
           }}
         >
-          <HeroCardScene progress={scrollYProgress} />
+          <HeroCardScene />
         </div>
       </motion.div>
 
