@@ -171,7 +171,7 @@ export default function CategoryShowcase() {
         aria-label="Scholarship categories"
         style={{
           background: 'var(--bb-surface)',
-          padding: 'clamp(80px, 10vh, 120px) 0',
+          padding: 'clamp(56px, 7vh, 80px) 0',
           borderTop: '1px solid var(--bb-border-hairline)',
           borderBottom: '1px solid var(--bb-border-hairline)',
         }}
@@ -200,7 +200,7 @@ export default function CategoryShowcase() {
       ref={wrapperRef}
       style={{
         position: 'relative',
-        height: '300vh',
+        height: '180vh',
         background: 'var(--bb-surface)',
       }}
     >
@@ -213,6 +213,8 @@ export default function CategoryShowcase() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          paddingTop: 'clamp(40px, 6vh, 60px)',
+          paddingBottom: 'clamp(16px, 3vh, 32px)',
         }}
       >
         <Header />
@@ -221,8 +223,8 @@ export default function CategoryShowcase() {
             display: 'flex',
             alignItems: 'center',
             flex: 1,
-            maxHeight: 540,
-            padding: '16px clamp(24px, 5vw, 72px)',
+            maxHeight: 460,
+            padding: '8px clamp(24px, 5vw, 72px)',
           }}
         >
           <motion.div

@@ -65,7 +65,7 @@ export default function IndexStats() {
       aria-label="Index stats"
       style={{
         background: 'var(--bb-surface-alt)',
-        padding: 'clamp(72px, 10vh, 120px) clamp(24px, 6vw, 96px)',
+        padding: 'clamp(48px, 7vh, 80px) clamp(24px, 6vw, 96px)',
         borderTop: '1px solid var(--bb-border-hairline)',
         borderBottom: '1px solid var(--bb-border-hairline)',
       }}
