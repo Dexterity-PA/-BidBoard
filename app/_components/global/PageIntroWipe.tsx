@@ -20,7 +20,7 @@ export default function PageIntroWipe() {
       return
     }
     setVisible(true)
-    const t = window.setTimeout(() => setVisible(false), 1800)
+    const t = window.setTimeout(() => setVisible(false), 2200)
     return () => window.clearTimeout(t)
   }, [reduced])
 
@@ -42,8 +42,8 @@ export default function PageIntroWipe() {
           }}
           exit={{ opacity: 0 }}
           transition={{
-            duration: 1.8,
-            times: [0, 0.22, 0.56, 1],
+            duration: 2.2,
+            times: [0, 0.15, 0.7, 1],
             ease: [0.22, 1, 0.36, 1],
           }}
           style={{

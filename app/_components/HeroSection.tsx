@@ -72,7 +72,8 @@ function WordCurtain({
             display: 'inline-block',
             overflow: 'hidden',
             verticalAlign: 'bottom',
-            lineHeight: 1.04,
+            lineHeight: 1.18,
+            paddingBottom: '0.18em',
           }}
         >
           <motion.span
@@ -142,6 +143,22 @@ export default function HeroSection() {
         padding: 'clamp(100px,11vh,130px) 24px clamp(80px,9vh,100px)',
       }}
     >
+      {/* Nav → hero seam blend: fade cream nav background into lavender hero */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 140,
+          pointerEvents: 'none',
+          background:
+            'linear-gradient(to bottom, rgba(250,250,247,0.85) 0%, rgba(250,250,247,0.4) 45%, rgba(245,244,255,0) 100%)',
+          zIndex: 1,
+        }}
+      />
+
       {/* Gradient blobs */}
       <div
         aria-hidden
@@ -241,9 +258,10 @@ export default function HeroSection() {
             fontSize: 'clamp(44px, 8vw, 96px)',
             fontWeight: 400,
             color: '#111827',
-            lineHeight: 1.04,
+            lineHeight: 1.12,
             letterSpacing: '-0.02em',
             margin: '0 0 26px',
+            paddingBottom: '0.08em',
           }}
         >
           <WordCurtain

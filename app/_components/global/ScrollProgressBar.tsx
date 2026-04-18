@@ -33,7 +33,7 @@ export default function ScrollProgressBar() {
         top: 0,
         left: 0,
         right: 0,
-        height: 2,
+        height: 3,
         originX: 0,
         background: 'var(--bb-primary)',
         scaleX,
