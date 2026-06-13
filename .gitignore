@@ -49,3 +49,6 @@ scrapers/bold_org/failed.jsonl
 scrapers/bold_org/slugs.txt
 scrapers/**/.venv
 scrapers/**/__pycache__/
+
+# local scraped link-audit data (entries, linkcheck results, reports) — keep out of public repo
+scripts/audit/
