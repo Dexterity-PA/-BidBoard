@@ -442,6 +442,14 @@ export default function HowItWorksStory() {
         </div>
       </div>
       <style jsx>{`
+        /* framer-motion's useScroll({ target }) measures against the page's
+           default scroll container (<html>) and warns once in dev when that
+           container is position: static. Making <html> relative satisfies the
+           check for every targeted useScroll on this page; it causes no
+           layout change (verified: zero bounding-rect diffs). */
+        :global(html) {
+          position: relative;
+        }
         @media (max-width: 768px) {
           :global(.bb-hiw-grid) {
             grid-template-columns: 1fr !important;
