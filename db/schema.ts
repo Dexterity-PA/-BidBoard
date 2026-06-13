@@ -139,6 +139,7 @@ export const scholarships = pgTable(
     isVerified:               boolean("is_verified").default(false),
     lastVerified:             timestamp("last_verified"),
     isActive:                 boolean("is_active").default(true),
+    removedReason:            text("removed_reason"),
     createdAt:                timestamp("created_at").defaultNow(),
     updatedAt:                timestamp("updated_at").defaultNow(),
     essayPrompts:             jsonb("essay_prompts").$type<Array<{ prompt: string; word_limit: number | null }>>(),
