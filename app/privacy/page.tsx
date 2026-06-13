@@ -64,7 +64,7 @@ function Nav() {
         <div className="mkt-hide-mobile" style={{ display: "flex", gap: 32, alignItems: "center" }}>
           {[
             { label: "How it works",   href: "/#how-it-works" },
-            { label: "Pricing",        href: "/#pricing" },
+            { label: "Why it's free",  href: "/#why-free" },
             { label: "For Counselors", href: "/#counselors" },
           ].map(({ label, href }) => (
             <Link
@@ -372,7 +372,7 @@ export default function PrivacyPage() {
 
             <div style={calloutBox}>
               <strong>Plain English:</strong> We collect the info you give us when you sign
-              up and build your profile — your name, email, GPA, school, and scholarship
+              up and build your profile: your name, email, GPA, school, and scholarship
               preferences. We also collect basic usage data (like which pages you visit) so
               we can make the product better.
             </div>
@@ -380,7 +380,7 @@ export default function PrivacyPage() {
             <p style={subHeading}>Account Information</p>
             <p style={prose()}>
               When you create an account, we collect your name and email address through
-              Clerk, our authentication provider. We do not store your password — Clerk
+              Clerk, our authentication provider. We do not store your password. Clerk
               handles authentication directly.
             </p>
 
@@ -394,7 +394,7 @@ export default function PrivacyPage() {
 
             <p style={subHeading}>Usage Data</p>
             <p style={prose()}>
-              We collect standard web analytics data — pages visited, features used,
+              We collect standard web analytics data: pages visited, features used,
               session duration, and browser/device type. This data is aggregated and used
               only to improve BidBoard. We do not build individual behavioral profiles for
               advertising purposes.
@@ -416,7 +416,7 @@ export default function PrivacyPage() {
             <h2 style={sectionHeading}>How We Use It</h2>
 
             <div style={calloutBox}>
-              <strong>Plain English:</strong> Your data powers the core product — matching
+              <strong>Plain English:</strong> Your data powers the core product: matching
               you to scholarships, generating essay suggestions, and sending deadline
               reminders. We also use aggregated usage data to fix bugs and ship better
               features.
@@ -426,7 +426,7 @@ export default function PrivacyPage() {
             <p style={prose()}>
               We use your profile data and OpenAI-generated embeddings to rank and surface
               scholarships that best match your background and goals. This matching runs
-              entirely within BidBoard's infrastructure — your profile is not shared with
+              entirely within BidBoard's infrastructure. Your profile is not shared with
               OpenAI beyond the embedding generation step.
             </p>
 
@@ -434,7 +434,7 @@ export default function PrivacyPage() {
             <p style={prose()}>
               When you use BidBoard's essay tools, your profile and essay drafts may be
               processed by OpenAI's API to generate suggestions. Only the data necessary
-              for a given request is sent — we do not send your entire profile
+              for a given request is sent. We do not send your entire profile
               indiscriminately.
             </p>
 
@@ -470,7 +470,7 @@ export default function PrivacyPage() {
             >
               <strong>We never sell your data. Full stop.</strong> Your name, email,
               profile, essays, and activity are not sold, rented, or traded to any third
-              party for any purpose — advertising, marketing lists, data brokers, or
+              party for any purpose: advertising, marketing lists, data brokers, or
               otherwise. This is a hard commitment, not a policy that can be quietly
               changed.
             </div>
@@ -518,12 +518,6 @@ export default function PrivacyPage() {
                   "Handles sign-up, sign-in, and session management. Clerk stores your email and password hash. Their privacy policy governs how they process your authentication data.",
               },
               {
-                name: "Stripe",
-                role: "Billing",
-                detail:
-                  "Processes subscription payments. BidBoard never sees or stores your full credit card number. Stripe is PCI-DSS Level 1 certified. Their privacy policy governs payment data.",
-              },
-              {
                 name: "Neon",
                 role: "Database",
                 detail:
@@ -545,13 +539,13 @@ export default function PrivacyPage() {
                 name: "Resend",
                 role: "Transactional Email",
                 detail:
-                  "Sends deadline reminders and account notifications to your email address. Resend is used exclusively for transactional email — no marketing or bulk mail.",
+                  "Sends deadline reminders and account notifications to your email address. Resend is used exclusively for transactional email (no marketing or bulk mail).",
               },
             ].map(({ name, role, detail }) => (
               <div key={name} style={{ marginBottom: 20 }}>
                 <p style={{ ...prose(14), fontWeight: 600, color: C.textPrimary, marginBottom: 4 }}>
                   {name}{" "}
-                  <span style={{ fontWeight: 400, color: C.textMuted }}>— {role}</span>
+                  <span style={{ fontWeight: 400, color: C.textMuted }}>({role})</span>
                 </p>
                 <p style={prose(14)}>{detail}</p>
               </div>
@@ -587,13 +581,6 @@ export default function PrivacyPage() {
               up to 90 days before those backups are rotated and overwritten.
             </p>
 
-            <p style={subHeading}>Billing Records</p>
-            <p style={prose()}>
-              Transaction records associated with Stripe payments may be retained for up to
-              7 years as required by financial regulations. These records contain billing
-              metadata, not your card details.
-            </p>
-
             <p style={subHeading}>Anonymized Data</p>
             <p style={prose()}>
               We may retain aggregated, anonymized analytics data (e.g., "X% of users
@@ -612,7 +599,7 @@ export default function PrivacyPage() {
 
             <div style={calloutBox}>
               <strong>Plain English:</strong> You can see, correct, export, or delete your
-              data. Email us at contact@bidboard.app and we'll handle it promptly —
+              data. Email us at contact@bidboard.app and we'll handle it promptly,
               no runaround.
             </div>
 
@@ -767,8 +754,8 @@ export default function PrivacyPage() {
 
             <p style={prose()}>
               We may update this Privacy Policy from time to time. When we make a
-              substantive change — one that affects your rights or how we use your data
-              — we will notify you by email at least 14 days before the change takes
+              substantive change (one that affects your rights or how we use your data),
+              we will notify you by email at least 14 days before the change takes
               effect and update the "Last updated" date at the top of this page.
             </p>
             <p style={{ ...prose(), marginTop: 12 }}>

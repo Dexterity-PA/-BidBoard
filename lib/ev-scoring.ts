@@ -4,7 +4,7 @@ type Scholarship = typeof scholarships.$inferSelect;
 type StudentProfile = typeof studentProfiles.$inferSelect;
 
 export function estimateApplicants(scholarship: Scholarship): number {
-  // Step 1: base from locality (sequential — locality sets the starting pool)
+  // Step 1: base from locality (sequential: locality sets the starting pool)
   let estimate: number;
   switch (scholarship.localityLevel) {
     case "local":

@@ -1,15 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-  useAnimationControls,
-  useReducedMotion,
-  type MotionValue,
-} from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 const SANS = "var(--font-dm-sans), -apple-system, sans-serif"
 const SERIF = "var(--font-instrument-serif), Georgia, serif"
@@ -25,63 +16,27 @@ const TOKENS = [
   { label: 'EV Score',        color: INDIGO,    size: 64, isResult: true  },
 ] as const
 
-// Outer is 200vh with a 100vh sticky child — sticky is only pinned from
-// scrollYProgress 0 → 0.5. Token reveals must land in that range.
-const TOKEN_WINDOWS: [number, number][] = [
-  [0.04, 0.10], // Award
-  [0.12, 0.15], // ×
-  [0.17, 0.23], // Win Probability
-  [0.25, 0.28], // ÷
-  [0.30, 0.40], // Hours — widened so opacity reaches 1 in the same visible
-                //          way "Award" and "Win Probability" do
-  [0.41, 0.44], // =
-  [0.45, 0.49], // EV Score
-]
+// Reveal pacing: tokens cascade left to right once the pinned viewport is
+// in view. The result token lands last, then pulses.
+const STEP = 0.18
+const TOKEN_DURATION = 0.5
+const PULSE_DELAY = TOKENS.length * STEP + TOKEN_DURATION + 0.2
 
 function Token({
   label,
   color,
   size,
   isResult,
-  scrollYProgress,
-  win,
+  index,
   reduced,
 }: {
   label: string
   color: string
   size: number
   isResult: boolean
-  scrollYProgress: MotionValue<number>
-  win: [number, number]
+  index: number
   reduced: boolean
 }) {
-  const opacity = useTransform(scrollYProgress, win, [0, 1])
-  const y = useTransform(scrollYProgress, win, [20, 0])
-  const blur = useTransform(scrollYProgress, win, [12, 0])
-  const filter = useTransform(blur, (v) => `blur(${v}px)`)
-
-  const controls = useAnimationControls()
-  const firedRef = useRef(false)
-
-  useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    if (!isResult || reduced) return
-    if (v > win[0] && !firedRef.current) {
-      firedRef.current = true
-      controls.start({
-        scale: [1, 1.08, 1],
-        boxShadow: [
-          '0 0 0 rgba(76,29,149,0)',
-          '0 0 38px rgba(76,29,149,0.55)',
-          '0 0 0 rgba(76,29,149,0)',
-        ],
-        transition: {
-          scale: { type: 'spring', stiffness: 200, damping: 12, duration: 0.6 },
-          boxShadow: { duration: 0.8, ease: [0.22, 1, 0.36, 1], times: [0, 0.4, 1] },
-        },
-      })
-    }
-  })
-
   if (reduced) {
     return (
       <span
@@ -101,11 +56,15 @@ function Token({
   if (isResult) {
     return (
       <motion.span
-        animate={controls}
+        initial={{ opacity: 0, y: 20, filter: 'blur(12px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, amount: 'some' }}
+        transition={{
+          duration: TOKEN_DURATION,
+          delay: index * STEP,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         style={{
-          opacity,
-          y,
-          filter,
           fontFamily: SANS,
           fontSize: size,
           fontWeight: 700,
@@ -114,20 +73,46 @@ function Token({
           display: 'inline-block',
           borderRadius: 10,
           padding: '0 4px',
-          willChange: 'transform, opacity, filter, box-shadow',
+          willChange: 'transform, opacity, filter',
         }}
       >
-        {label}
+        {/* Inner span carries the pulse so it composes with the reveal above. */}
+        <motion.span
+          initial={{ scale: 1, boxShadow: '0 0 0 rgba(76,29,149,0)' }}
+          whileInView={{
+            scale: [1, 1.08, 1],
+            boxShadow: [
+              '0 0 0 rgba(76,29,149,0)',
+              '0 0 38px rgba(76,29,149,0.55)',
+              '0 0 0 rgba(76,29,149,0)',
+            ],
+          }}
+          viewport={{ once: true, amount: 'some' }}
+          transition={{
+            duration: 0.8,
+            delay: PULSE_DELAY,
+            ease: [0.22, 1, 0.36, 1],
+            times: [0, 0.4, 1],
+          }}
+          style={{ display: 'inline-block', borderRadius: 10 }}
+        >
+          {label}
+        </motion.span>
       </motion.span>
     )
   }
 
   return (
     <motion.span
+      initial={{ opacity: 0, y: 20, filter: 'blur(12px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, amount: 'some' }}
+      transition={{
+        duration: TOKEN_DURATION,
+        delay: index * STEP,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       style={{
-        opacity,
-        y,
-        filter,
         fontFamily: SANS,
         fontSize: size,
         fontWeight: 600,
@@ -144,34 +129,19 @@ function Token({
 
 export default function FormulaSection() {
   const reduced = useReducedMotion() ?? false
-  const outerRef = useRef<HTMLDivElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: outerRef,
-    offset: ['start start', 'end start'],
-  })
-
-  const gridOpacity = useTransform(
-    scrollYProgress,
-    [0.04, 0.30],
-    reduced ? [0, 0] : [0, 0.06],
-  )
-
-  // Underline drawn across the formula, bound to overall reveal window.
-  const underlineScale = useTransform(scrollYProgress, [0.04, 0.49], [0, 1])
 
   return (
-    <div
-      ref={outerRef}
-      style={{ height: reduced ? 'auto' : '200vh', position: 'relative' }}
-    >
+    <div style={{ height: reduced ? 'auto' : '200vh', position: 'relative' }}>
       {/* Dot grid */}
       <motion.div
         aria-hidden
+        initial={{ opacity: 0 }}
+        whileInView={reduced ? { opacity: 0 } : { opacity: 0.06 }}
+        viewport={{ once: true, amount: 'some' }}
+        transition={{ duration: 1 }}
         style={{
           position: 'absolute',
           inset: 0,
-          opacity: gridOpacity,
           backgroundImage: 'radial-gradient(circle, #4F46E5 1px, transparent 1px)',
           backgroundSize: '32px 32px',
           pointerEvents: 'none',
@@ -241,17 +211,23 @@ export default function FormulaSection() {
                 color={token.color}
                 size={token.size}
                 isResult={token.isResult}
-                scrollYProgress={scrollYProgress}
-                win={TOKEN_WINDOWS[i]}
+                index={i}
                 reduced={reduced}
               />
             ))}
           </div>
 
-          {/* Underline — draws left-to-right with overall reveal */}
+          {/* Underline: draws left-to-right alongside the token cascade */}
           {!reduced && (
             <motion.div
               aria-hidden
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 'some' }}
+              transition={{
+                duration: PULSE_DELAY,
+                ease: 'linear',
+              }}
               style={{
                 position: 'absolute',
                 left: '10%',
@@ -261,7 +237,6 @@ export default function FormulaSection() {
                 background:
                   'linear-gradient(to right, transparent, rgba(79,70,229,0.35), transparent)',
                 transformOrigin: 'left',
-                scaleX: underlineScale,
               }}
             />
           )}

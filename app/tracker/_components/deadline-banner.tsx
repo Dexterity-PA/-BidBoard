@@ -42,7 +42,7 @@ export function DeadlineBanner({
     <div className="bg-amber-50 border-b border-amber-200 px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
       <p className="text-sm text-amber-800 font-medium">
         ⚠️ {upcoming.length} scholarship
-        {upcoming.length !== 1 ? "s" : ""} due this week — don&apos;t miss them.
+        {upcoming.length !== 1 ? "s" : ""} due this week. Don&apos;t miss them.
       </p>
       <button
         onClick={dismiss}

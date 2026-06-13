@@ -37,7 +37,7 @@ export function AccountSection({ showToast }: Props) {
     startDelete(async () => {
       try {
         await deleteAccount();
-        // deleteAccount redirects to "/" on success — this line won't be reached
+        // deleteAccount redirects to "/" on success, this line won't be reached
       } catch {
         showToast("error", "Failed to delete account. Please try again.");
         setDeleteOpen(false);
@@ -98,7 +98,7 @@ export function AccountSection({ showToast }: Props) {
       <div className="rounded-xl border border-red-200 bg-red-50 p-5 space-y-3">
         <p className="text-sm font-semibold text-red-800">Danger zone</p>
         <p className="text-sm text-red-700">
-          Permanently deletes your account and all associated data — profile, matches, essays,
+          Permanently deletes your account and all associated data: profile, matches, essays,
           applications. This cannot be undone.
         </p>
         <button

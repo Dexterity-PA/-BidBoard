@@ -2,7 +2,7 @@ import LiveScholarshipTickerClient, {
   type TickerTile,
 } from './LiveScholarshipTickerClient'
 
-// Hand-curated real scholarships. Deadlines intentionally omitted — they go stale.
+// Hand-curated real scholarships. Deadlines intentionally omitted (they go stale).
 const TILES: TickerTile[] = [
   { id: 't1',  name: 'Gates Scholarship',            amount: '$55,000', ev: '9.4' },
   { id: 't2',  name: 'Coca-Cola Scholars',           amount: '$20,000', ev: '8.9' },

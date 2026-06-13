@@ -23,7 +23,7 @@ def get_existing_slugs(conn: psycopg.Connection) -> set[str]:
 def upsert_scholarship(conn: psycopg.Connection, data: dict) -> str:
     """
     Upsert a scholarship. Returns 'inserted' or 'updated'.
-    Raises on DB error — caller should catch and log.
+    Raises on DB error (caller should catch and log).
     """
     now = datetime.now(timezone.utc)
     essay_prompts_val = Jsonb(data["essay_prompts"]) if data.get("essay_prompts") else None

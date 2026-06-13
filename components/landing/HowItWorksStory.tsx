@@ -29,12 +29,12 @@ const STEPS: Step[] = [
   {
     number: '02',
     title: 'Get ranked matches',
-    body: 'BidBoard scores every eligible scholarship by expected value — award × probability ÷ hours — and sorts them top-down.',
+    body: 'BidBoard scores every eligible scholarship by expected value (award × probability ÷ hours) and sorts them top-down.',
   },
   {
     number: '03',
     title: 'Apply with the essay engine',
-    body: 'Drafts that pull from your own profile. Edit, refine, and submit — most essays drafted in under twelve seconds.',
+    body: 'Drafts that pull from your own profile. Edit, refine, and submit. Most essays drafted in under twelve seconds.',
   },
 ]
 

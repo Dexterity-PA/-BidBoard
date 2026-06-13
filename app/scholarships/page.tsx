@@ -63,7 +63,7 @@ const LOCALITY_LABEL: Record<string, string> = {
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 function formatAmount(amountMin: number | null, amountMax: number | null): string {
-  if (amountMin == null && amountMax == null) return "—";
+  if (amountMin == null && amountMax == null) return "-";
   const min = amountMin ?? 0;
   const max = amountMax ?? min;
   const fmt = (cents: number) => {
@@ -72,7 +72,7 @@ function formatAmount(amountMin: number | null, amountMax: number | null): strin
       ? `$${(dollars / 1000).toFixed(1)}k`
       : `$${dollars.toLocaleString()}`;
   };
-  return min === max ? fmt(min) : `${fmt(min)}–${fmt(max)}`;
+  return min === max ? fmt(min) : `${fmt(min)}-${fmt(max)}`;
 }
 
 function formatDeadline(dateStr: string | null): string {

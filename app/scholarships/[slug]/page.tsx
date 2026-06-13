@@ -49,19 +49,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const s = await getScholarshipBySlug(slug);
-  if (!s) return { title: "Scholarship — BidBoard" };
+  if (!s) return { title: "Scholarship | BidBoard" };
 
   const amount = formatAmount(s.amountMin, s.amountMax);
   const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app";
 
   return {
-    title: `${s.name} Scholarship — ${amount} | BidBoard`,
+    title: `${s.name} Scholarship: ${amount} | BidBoard`,
     description: `${s.name} by ${s.provider}. Award: ${amount}. View eligibility, requirements, and your match score on BidBoard.`,
     alternates: {
       canonical: `${siteUrl}/scholarships/${slug}`,
     },
     openGraph: {
-      title: `${s.name} — ${amount}`,
+      title: `${s.name}: ${amount}`,
       description: `${s.name} by ${s.provider}. ${amount} award.`,
       url: `${siteUrl}/scholarships/${slug}`,
     },
@@ -87,7 +87,7 @@ export default async function ScholarshipDetailPage({
     notFound();
   }
 
-  // ── Auth (optional — page is public) ──────────────────────────────────────
+  // ── Auth (optional, page is public) ──────────────────────────────────────
   const { userId } = await auth();
 
   // ── Fetch scholarship ──────────────────────────────────────────────────────

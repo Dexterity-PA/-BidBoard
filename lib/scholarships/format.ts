@@ -14,7 +14,7 @@ export type MatchData = {
   isSaved: boolean;
 } | null;
 
-/** Similar scholarship card — includes slug for /scholarships/[slug] links. */
+/** Similar scholarship card, includes slug for /scholarships/[slug] links. */
 export type SimilarScholarship = {
   id: number;
   name: string;
@@ -36,7 +36,7 @@ export function formatAmount(
   amountMin: number | null,
   amountMax: number | null
 ): string {
-  if (amountMin == null && amountMax == null) return "—";
+  if (amountMin == null && amountMax == null) return "-";
   const min = amountMin ?? 0;
   const max = amountMax ?? min;
   const fmt = (cents: number): string => {
@@ -45,7 +45,7 @@ export function formatAmount(
     if (dollars >= 1_000) return `$${(dollars / 1_000).toFixed(0)}k`;
     return `$${dollars.toLocaleString()}`;
   };
-  return min === max ? fmt(min) : `${fmt(min)}–${fmt(max)}`;
+  return min === max ? fmt(min) : `${fmt(min)}-${fmt(max)}`;
 }
 
 /** Returns whole days until deadline (positive = future, negative = past). */
@@ -57,7 +57,7 @@ export function daysUntil(dateStr: string | null): number | null {
 
 /** Formats a "YYYY-MM-DD" date string as "Month D, YYYY". */
 export function formatDate(dateStr: string | null): string {
-  if (!dateStr) return "—";
+  if (!dateStr) return "-";
   const [year, month, day] = dateStr.split("-").map(Number);
   return new Date(year, month - 1, day).toLocaleDateString("en-US", {
     month: "long",

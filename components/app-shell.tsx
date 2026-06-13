@@ -139,7 +139,6 @@ export interface AppShellProps {
   userName?:     string;
   userEmail?:    string;
   userImageUrl?: string;
-  planName?:     string;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -149,7 +148,6 @@ export function AppShell({
   userName     = "Student",
   userEmail,
   userImageUrl,
-  planName     = "Free Plan",
 }: AppShellProps) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -159,8 +157,7 @@ export function AppShell({
       ([key]) => pathname === key || pathname.startsWith(key + "/")
     )?.[1] ?? "BidBoard";
 
-  const initial    = (userName?.[0] ?? "S").toUpperCase();
-  const isFreePlan = !planName || planName === "Free Plan";
+  const initial = (userName?.[0] ?? "S").toUpperCase();
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
@@ -254,21 +251,10 @@ export function AppShell({
                 {userName}
               </p>
               <p className="text-[11px] text-gray-500">
-                Student &middot; {planName}
+                Student
               </p>
             </div>
           </div>
-
-          {/* Upgrade CTA */}
-          {isFreePlan && (
-            <Link
-              href="/pricing"
-              className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700"
-            >
-              <span className="text-indigo-300">✦</span>
-              Upgrade to Pro
-            </Link>
-          )}
         </div>
       </aside>
 
@@ -293,17 +279,6 @@ export function AppShell({
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Upgrade badge — topbar */}
-            {isFreePlan && (
-              <Link
-                href="/pricing"
-                className="hidden items-center gap-1.5 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 ring-1 ring-inset ring-indigo-200 transition-colors hover:bg-indigo-100 sm:flex"
-              >
-                <span className="text-indigo-400">✦</span>
-                Upgrade
-              </Link>
-            )}
-
             {/* Notification bell */}
             <button className="relative rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100">
               <IconBell className="h-5 w-5" />

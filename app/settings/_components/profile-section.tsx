@@ -27,7 +27,7 @@ const schema = z.object({
       { message: "Must be between 2024 and 2035" }
     ),
   schoolName:     z.string().optional(),
-  gpa:            z.string().regex(/^([0-3](\.\d{0,2})?|4(\.0{0,2})?)$/, "0.0–4.0").or(z.literal("")).optional(),
+  gpa:            z.string().regex(/^([0-3](\.\d{0,2})?|4(\.0{0,2})?)$/, "0.0-4.0").or(z.literal("")).optional(),
   intendedMajor:  z.string().optional(),
   state:          z.string().optional(),
 });
@@ -171,7 +171,7 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
 
       {/* GPA + major */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Field label="GPA (0.0 – 4.0)" error={errors.gpa?.message}>
+        <Field label="GPA (0.0 - 4.0)" error={errors.gpa?.message}>
           <input
             {...register("gpa")}
             className={inputCls(!!errors.gpa)}
@@ -190,7 +190,7 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
       {/* State */}
       <Field label="State">
         <select {...register("state")} className={inputCls(false)}>
-          <option value="">— Select state —</option>
+          <option value="">Select state</option>
           {US_STATES.map((s) => (
             <option key={s} value={s}>{s}</option>
           ))}

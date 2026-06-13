@@ -10,7 +10,7 @@ type TriggerStatus = "submitted" | "won" | "lost";
 
 const SUBJECT_MAP: Record<TriggerStatus, string> = {
   submitted: "Application submitted",
-  won:       "Congratulations — you won! 🏆",
+  won:       "Congratulations, you won! 🏆",
   lost:      "Application update",
 };
 

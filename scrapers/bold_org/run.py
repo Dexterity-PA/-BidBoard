@@ -1,5 +1,5 @@
 """
-Bold.org scholarship scraper — entry point.
+Bold.org scholarship scraper: entry point.
 
 Usage:
   python -m scrapers.bold_org.run [--limit N] [--dry-run]
@@ -101,14 +101,14 @@ async def fetch(client: httpx.AsyncClient, url: str, max_retries: int = 3) -> Op
 
             if resp.status_code == 429:
                 wait = 60 * (attempt + 1)
-                logger.warning("Rate limited (429) on %s — sleeping %ds", url, wait)
+                logger.warning("Rate limited (429) on %s, sleeping %ds", url, wait)
                 await asyncio.sleep(wait)
                 continue
 
             if resp.status_code in (403, 503):
                 body = resp.text.lower()
                 if "cloudflare" in body or "cf-ray" in resp.headers:
-                    logger.error("Cloudflare challenge detected on %s — halting", url)
+                    logger.error("Cloudflare challenge detected on %s, halting", url)
                     sys.exit(1)
                 logger.warning("Access denied (%d) for %s", resp.status_code, url)
                 return None
@@ -119,7 +119,7 @@ async def fetch(client: httpx.AsyncClient, url: str, max_retries: int = 3) -> Op
 
             if resp.status_code >= 500:
                 wait = (2**attempt) * 5
-                logger.warning("Server error %d on %s — retry in %ds", resp.status_code, url, wait)
+                logger.warning("Server error %d on %s, retry in %ds", resp.status_code, url, wait)
                 await asyncio.sleep(wait)
                 continue
 
@@ -128,11 +128,11 @@ async def fetch(client: httpx.AsyncClient, url: str, max_retries: int = 3) -> Op
 
         except httpx.TimeoutException:
             wait = (2**attempt) * 3
-            logger.warning("Timeout on %s — retry in %ds", url, wait)
+            logger.warning("Timeout on %s, retry in %ds", url, wait)
             await asyncio.sleep(wait)
         except httpx.HTTPError as e:
             wait = (2**attempt) * 3
-            logger.warning("HTTP error on %s: %s — retry in %ds", url, e, wait)
+            logger.warning("HTTP error on %s: %s, retry in %ds", url, e, wait)
             await asyncio.sleep(wait)
 
     return None
@@ -153,7 +153,7 @@ async def load_slugs(client: httpx.AsyncClient) -> list[str]:
     logger.info("Fetching sitemap from %s …", SITEMAP_URL)
     xml = await fetch(client, SITEMAP_URL)
     if not xml:
-        logger.error("Failed to fetch sitemap — cannot proceed")
+        logger.error("Failed to fetch sitemap, cannot proceed")
         sys.exit(1)
 
     slugs = slugs_from_sitemap(xml)
@@ -267,7 +267,7 @@ async def run(limit: Optional[int], dry_run: bool) -> None:
                     result.get("slug", ""),
                     (result.get("name") or "")[:35],
                     result.get("amount_max") or "?",
-                    result.get("deadline") or "—",
+                    result.get("deadline") or "-",
                 )
             else:
                 action = result.pop("_action", "unknown")

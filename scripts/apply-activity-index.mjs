@@ -18,7 +18,7 @@ await sql`
 console.log("✓ activity_log table ensured");
 
 // Dedup support column: store the UTC calendar day as an immutable generated column,
-// then build a unique index on it — avoids the "not IMMUTABLE" restriction on date_trunc/CAST(timestamptz)
+// then build a unique index on it, which avoids the "not IMMUTABLE" restriction on date_trunc/CAST(timestamptz)
 await sql`
   ALTER TABLE activity_log
     ADD COLUMN IF NOT EXISTS created_day DATE

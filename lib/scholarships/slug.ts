@@ -1,7 +1,7 @@
 /**
  * Generates a URL-safe slug from a scholarship name.
  * Lowercase, ASCII-only, hyphen-separated, max 80 chars.
- * Does NOT check for DB collisions — use a uniqueness check
+ * Does NOT check for DB collisions: use a uniqueness check
  * in server contexts if inserting new scholarships.
  */
 export function generateSlug(name: string): string {

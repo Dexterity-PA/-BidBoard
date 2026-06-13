@@ -28,16 +28,16 @@ function fmtDollars(cents: number): string {
 
 
 function fmtEvHr(raw: string | null): string {
-  if (!raw) return "—";
+  if (!raw) return "-";
   const n = parseFloat(raw);
-  if (isNaN(n)) return "—";
+  if (isNaN(n)) return "-";
   return `$${n.toFixed(0)}/hr`;
 }
 
 function fmtEvScore(raw: string | null): string {
-  if (!raw) return "—";
+  if (!raw) return "-";
   const n = parseFloat(raw);
-  if (isNaN(n)) return "—";
+  if (isNaN(n)) return "-";
   return `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 }
 
@@ -342,7 +342,7 @@ export default async function DashboardPage() {
       label:    "Total EV in Pipeline",
       value:    totalCents != null && Number(totalCents) > 0
                   ? fmtDollars(Number(totalCents))
-                  : "—",
+                  : "-",
       icon:     <IconMoney className="h-5 w-5" />,
       iconBg:   "bg-emerald-100",
       iconText: "text-emerald-600",
@@ -533,7 +533,7 @@ export default async function DashboardPage() {
                               {pill.label}
                             </span>
                           ) : (
-                            <span className="text-xs text-gray-400">—</span>
+                            <span className="text-xs text-gray-400">-</span>
                           )}
                         </td>
                         <td className="px-4 py-3.5 text-right">
@@ -686,24 +686,6 @@ export default async function DashboardPage() {
             </Link>
           </div>
         )}
-      </div>
-
-      {/* ── Free tier upgrade banner ── */}
-      <div className="rounded-xl border border-indigo-100 bg-gradient-to-r from-indigo-50 to-violet-50 px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <p className="text-sm font-semibold text-indigo-900">
-            You&apos;re on the Free plan
-          </p>
-          <p className="text-xs text-indigo-700 mt-0.5">
-            Upgrade to Pro to unlock unlimited matches, AI essay adapting, and CSV exports.
-          </p>
-        </div>
-        <Link
-          href="/pricing"
-          className="shrink-0 rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 whitespace-nowrap"
-        >
-          Upgrade to Pro ✦
-        </Link>
       </div>
 
     </div>

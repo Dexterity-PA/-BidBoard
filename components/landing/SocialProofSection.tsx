@@ -186,7 +186,7 @@ function QuoteCard({
             fontWeight: 500,
           }}
         >
-          — {attribution}
+          {attribution}
         </footer>
       </blockquote>
     </motion.li>

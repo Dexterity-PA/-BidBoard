@@ -145,7 +145,7 @@ export default function EVCalculator() {
             margin: '0 0 40px',
           }}
         >
-          Pre-filled: Gates Millennium Scholars — $40K award, 18% win rate, 6 hrs
+          Pre-filled: Gates Millennium Scholars ($40K award, 18% win rate, 6 hrs)
         </p>
 
         <Slider

@@ -11,7 +11,7 @@ import { ShareButton } from "./ShareButton";
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 export function formatAmount(amountMin: number | null, amountMax: number | null): string {
-  if (amountMin == null && amountMax == null) return "—";
+  if (amountMin == null && amountMax == null) return "-";
   const min = amountMin ?? 0;
   const max = amountMax ?? min;
   const fmt = (cents: number) => {
@@ -22,7 +22,7 @@ export function formatAmount(amountMin: number | null, amountMax: number | null)
       ? `$${(dollars / 1_000).toFixed(0)}k`
       : `$${dollars.toLocaleString()}`;
   };
-  return min === max ? fmt(min) : `${fmt(min)}–${fmt(max)}`;
+  return min === max ? fmt(min) : `${fmt(min)}-${fmt(max)}`;
 }
 
 export function daysUntil(dateStr: string | null): number | null {
@@ -32,7 +32,7 @@ export function daysUntil(dateStr: string | null): number | null {
 }
 
 export function formatDate(dateStr: string | null): string {
-  if (!dateStr) return "—";
+  if (!dateStr) return "-";
   const [year, month, day] = dateStr.split("-").map(Number);
   return new Date(year, month - 1, day).toLocaleDateString("en-US", {
     month: "long", day: "numeric", year: "numeric",
@@ -73,17 +73,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const scholarshipId = parseInt(id, 10);
-  if (isNaN(scholarshipId)) return { title: "Scholarship — BidBoard" };
+  if (isNaN(scholarshipId)) return { title: "Scholarship | BidBoard" };
 
   const s = await db.query.scholarships.findFirst({
     where: eq(scholarships.id, scholarshipId),
     columns: { name: true, provider: true, amountMin: true, amountMax: true },
   });
-  if (!s) return { title: "Scholarship — BidBoard" };
+  if (!s) return { title: "Scholarship | BidBoard" };
 
   const amount = formatAmount(s.amountMin, s.amountMax);
   return {
-    title: `${s.name} — ${amount} | BidBoard`,
+    title: `${s.name}: ${amount} | BidBoard`,
     description: `${s.name} by ${s.provider ?? "Unknown sponsor"}. Award: ${amount}. View eligibility, essay prompts, and strategy on BidBoard.`,
   };
 }
@@ -99,7 +99,7 @@ export default async function ScholarshipDetailPage({
   const scholarshipId = parseInt(id, 10);
   if (isNaN(scholarshipId)) notFound();
 
-  // Auth is optional — page is public
+  // Auth is optional, page is public
   const { userId } = await auth();
 
   // Fetch scholarship

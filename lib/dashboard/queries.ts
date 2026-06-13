@@ -88,7 +88,7 @@ export async function getNextAction(userId: string): Promise<NextAction> {
       : 1;
     return {
       type: "urgent_in_progress",
-      label: `Finish ${urgentItem.scholarshipName} — due in ${days} day${days === 1 ? "" : "s"}`,
+      label: `Finish ${urgentItem.scholarshipName}, due in ${days} day${days === 1 ? "" : "s"}`,
       href: `/tracker`,
       scholarshipId: urgentItem.scholarshipId!,
     };
@@ -123,14 +123,14 @@ export async function getNextAction(userId: string): Promise<NextAction> {
       : 1;
     return {
       type: "start_saved",
-      label: `Start application: ${savedItem.scholarshipName} — due in ${days} day${days === 1 ? "" : "s"}`,
+      label: `Start application: ${savedItem.scholarshipName}, due in ${days} day${days === 1 ? "" : "s"}`,
       href: `/tracker`,
       scholarshipId: savedItem.scholarshipId!,
     };
   }
 
   // Priority 3: highest-EV match not yet in tracker.
-  // No minimum EV threshold — whatever the user's best untracked match is,
+  // No minimum EV threshold: whatever the user's best untracked match is,
   // that's what we surface. The .limit(5) fetches a small window so we can
   // pick topMatches[0] (best by evScore); the extra rows are unused today
   // but leave room to add tie-breaking logic later.
@@ -177,7 +177,7 @@ export async function getNextAction(userId: string): Promise<NextAction> {
     const m = topMatches[0];
     return {
       type: "high_ev_match",
-      label: `Add ${m.scholarshipName} to tracker — ${fmtEvScore(m.evScore)} expected value`,
+      label: `Add ${m.scholarshipName} to tracker, ${fmtEvScore(m.evScore)} expected value`,
       href: `/scholarship/${m.scholarshipId}`,
       scholarshipId: m.scholarshipId!,
     };

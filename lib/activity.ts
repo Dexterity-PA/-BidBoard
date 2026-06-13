@@ -25,6 +25,6 @@ export async function logActivity(
       })
       .onConflictDoNothing();
   } catch {
-    // Intentionally swallowed — a logging failure must never break the caller.
+    // Intentionally swallowed: a logging failure must never break the caller.
   }
 }

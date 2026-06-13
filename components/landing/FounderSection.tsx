@@ -148,7 +148,7 @@ export default function FounderSection() {
             }}
           >
             I built BidBoard because I watched friends apply to 40+ scholarships
-            with no strategy — spraying essays into the void, ignoring deadlines,
+            with no strategy: spraying essays into the void, ignoring deadlines,
             missing the ones they&rsquo;d actually win.
           </p>
           <p
@@ -162,7 +162,7 @@ export default function FounderSection() {
             }}
           >
             So I built the thing I wished existed: a tool that treats
-            scholarships like what they are — an optimization problem. Math, not
+            scholarships like what they are: an optimization problem. Math, not
             guesswork.
           </p>
           <div
@@ -192,7 +192,7 @@ export default function FounderSection() {
                 textTransform: 'uppercase',
               }}
             >
-              — Founder
+              Founder
             </span>
           </div>
         </motion.div>

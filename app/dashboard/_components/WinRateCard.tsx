@@ -81,7 +81,7 @@ export async function WinRateCard({ userId }: Props) {
 
       {winRate === null ? (
         <div className="space-y-1">
-          <p className="text-2xl font-bold text-gray-300">—</p>
+          <p className="text-2xl font-bold text-gray-300">-</p>
           <p className="text-xs text-gray-400">
             Submit {3 - submittedCount} more application{3 - submittedCount !== 1 ? "s" : ""} to see your win rate
           </p>

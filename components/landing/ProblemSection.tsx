@@ -91,7 +91,7 @@ export default function ProblemSection() {
     offset: ['start start', 'end end'],
   })
 
-  // Count values scrubbed by scroll progress — each spans ~0.2 of progress.
+  // Count values scrubbed by scroll progress (each spans ~0.2 of progress).
   const count7 = useScrubbed(scrollYProgress, 7, STAT_STOPS[0], STAT_STOPS[0] + 0.2)
   const count40 = useScrubbed(scrollYProgress, 40, STAT_STOPS[2], STAT_STOPS[2] + 0.2)
 

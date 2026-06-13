@@ -27,7 +27,7 @@ type RecycleResult = {
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 function formatAmount(amountMin: number | null, amountMax: number | null): string {
-  if (amountMin == null && amountMax == null) return "—";
+  if (amountMin == null && amountMax == null) return "-";
   const min = amountMin ?? 0;
   const max = amountMax ?? min;
   const fmt = (cents: number) => {
@@ -36,11 +36,11 @@ function formatAmount(amountMin: number | null, amountMax: number | null): strin
       ? `$${(dollars / 1000).toFixed(1)}k`
       : `$${dollars.toLocaleString()}`;
   };
-  return min === max ? fmt(min) : `${fmt(min)}–${fmt(max)}`;
+  return min === max ? fmt(min) : `${fmt(min)}-${fmt(max)}`;
 }
 
 function formatDeadline(dateStr: string | null): { label: string; urgent: boolean } {
-  if (!dateStr) return { label: "—", urgent: false };
+  if (!dateStr) return { label: "-", urgent: false };
   const [year, month, day] = dateStr.split("-").map(Number);
   const deadline = new Date(year, month - 1, day);
   const today = new Date();
@@ -110,7 +110,7 @@ export function MatchCard({ scholarship, showRecycle = false }: MatchCardProps) 
 
   async function handleRecycleClick() {
     if (!scholarship.essayPrompt) return;
-    // If we already have results, just toggle open/closed — no re-fetch
+    // If we already have results, just toggle open/closed, no re-fetch
     if (recycleResults !== null) {
       setRecycleOpen((prev) => !prev);
       return;
@@ -171,7 +171,7 @@ export function MatchCard({ scholarship, showRecycle = false }: MatchCardProps) 
           <span
             className={`text-xs px-2 py-0.5 rounded-full font-medium ${locStyle}`}
           >
-            {scholarship.localityLevel ?? "—"}
+            {scholarship.localityLevel ?? "-"}
           </span>
         </div>
 

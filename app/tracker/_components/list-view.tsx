@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useTransition } from "react";
 import Link from "next/link";
-import { Trash2, ExternalLink, Download, Lock, ChevronUp, ChevronDown } from "lucide-react";
+import { Trash2, ExternalLink, Download, ChevronUp, ChevronDown } from "lucide-react";
 import type { ApplicationRow } from "@/app/actions/tracker";
 import { bulkUpdateStatus, deleteApplication } from "@/app/actions/tracker";
 import { cn } from "@/lib/utils";
@@ -33,10 +33,9 @@ interface Props {
   onSelect: (id: number) => void;
   onDelete: (id: number) => void;
   onBulkStatus: (ids: number[], status: string) => void;
-  isPro: boolean;
 }
 
-export function ListView({ applications, onSelect, onDelete, onBulkStatus, isPro }: Props) {
+export function ListView({ applications, onSelect, onDelete, onBulkStatus }: Props) {
   const [sortKey, setSortKey] = useState<SortKey>("scholarshipName");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
@@ -185,16 +184,11 @@ export function ListView({ applications, onSelect, onDelete, onBulkStatus, isPro
 
         {/* CSV export */}
         <button
-          onClick={isPro ? exportCSV : undefined}
-          title={isPro ? "Export to CSV" : "Upgrade to Pro to export"}
-          className={cn(
-            "flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border transition-colors",
-            isPro
-              ? "border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50 cursor-pointer"
-              : "border-gray-200 text-gray-400 cursor-not-allowed",
-          )}
+          onClick={exportCSV}
+          title="Export to CSV"
+          className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 transition-colors hover:border-gray-300 hover:bg-gray-50 cursor-pointer"
         >
-          {isPro ? <Download className="w-3.5 h-3.5" /> : <Lock className="w-3.5 h-3.5" />}
+          <Download className="w-3.5 h-3.5" />
           Export CSV
         </button>
       </div>
@@ -292,7 +286,7 @@ export function ListView({ applications, onSelect, onDelete, onBulkStatus, isPro
                       ? `$${app.awardAmount.toLocaleString()}`
                       : app.scholarshipAmountMax
                       ? `$${app.scholarshipAmountMax.toLocaleString()}`
-                      : "—"}
+                      : "-"}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap">
                     {app.deadline ? (
@@ -311,7 +305,7 @@ export function ListView({ applications, onSelect, onDelete, onBulkStatus, isPro
                         })}
                       </span>
                     ) : (
-                      <span className="text-gray-400">—</span>
+                      <span className="text-gray-400">-</span>
                     )}
                   </td>
                   <td className="px-3 py-3">
@@ -327,11 +321,11 @@ export function ListView({ applications, onSelect, onDelete, onBulkStatus, isPro
                   <td className="px-3 py-3 text-gray-600 whitespace-nowrap">
                     {app.evScore
                       ? `$${(parseFloat(app.evScore) / 1000).toFixed(0)}K`
-                      : "—"}
+                      : "-"}
                   </td>
                   <td className="px-3 py-3 max-w-[140px]">
                     <p className="text-xs text-gray-400 truncate">
-                      {app.notes ?? "—"}
+                      {app.notes ?? "-"}
                     </p>
                   </td>
                   <td className="px-3 py-3" onClick={(e) => e.stopPropagation()}>

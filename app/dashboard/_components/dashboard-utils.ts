@@ -1,7 +1,7 @@
 export function fmtAmount(min: number | null, max: number | null): string {
-  if (!min && !max) return "—";
+  if (!min && !max) return "-";
   const fmt = (n: number) => `$${(n / 100).toLocaleString()}`;
-  if (min && max && min !== max) return `${fmt(min)}–${fmt(max)}`;
+  if (min && max && min !== max) return `${fmt(min)}-${fmt(max)}`;
   return fmt(min ?? max!);
 }
 
@@ -72,7 +72,7 @@ export function dotColorClass(deadline: string, today: string): string {
 }
 
 export function fmtAwardCents(cents: number): string {
-  if (cents === 0) return "—";
+  if (cents === 0) return "-";
   if (cents >= 1_000_00) return `$${(cents / 1_000_00).toFixed(0)}K`;
   return `$${(cents / 100).toLocaleString()}`;
 }

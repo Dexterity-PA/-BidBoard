@@ -21,7 +21,7 @@ export function DeadlineTimeline({ items, today }: Props) {
   const hasItems = days.some((d) => d.items.length > 0);
 
   return (
-    // NOTE: no overflow-hidden here — intentional, so dot tooltips are not clipped
+    // NOTE: no overflow-hidden here (intentional, so dot tooltips are not clipped)
     <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">

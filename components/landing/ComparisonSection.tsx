@@ -66,14 +66,14 @@ const ROWS: Row[] = [
   },
   {
     feature: 'Counselor tools',
-    bidboard: { kind: 'yes', note: '50-seat plan + ROI dashboards.' },
+    bidboard: { kind: 'yes', note: '50 student seats + ROI dashboards.' },
     goingmerry: { kind: 'yes', note: 'Counselor portal (defunct).' },
     fastweb: { kind: 'no' },
     scholarshipscom: { kind: 'no' },
   },
   {
     feature: 'Price',
-    bidboard: { kind: 'text', value: '$9/mo', tone: 'accent' },
+    bidboard: { kind: 'text', value: 'Free', tone: 'accent' },
     goingmerry: { kind: 'text', value: 'Free', tone: 'neutral' },
     fastweb: { kind: 'text', value: 'Free (ad-funded)', tone: 'neutral' },
     scholarshipscom: { kind: 'text', value: 'Free (ad-funded)', tone: 'neutral' },
@@ -321,7 +321,7 @@ export default function ComparisonSection() {
         </AnimatePresence>
       </div>
 
-      {/* Comparison card — BidBoard vs selected competitor */}
+      {/* Comparison card: BidBoard vs selected competitor */}
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 20 }}
         whileInView={reduced ? undefined : { opacity: 1, y: 0 }}

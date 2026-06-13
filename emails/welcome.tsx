@@ -22,7 +22,7 @@ export function WelcomeEmail({
   const name = firstName ? `, ${firstName}` : "";
 
   return (
-    <EmailLayout preview="Welcome to BidBoard — your scholarship command center">
+    <EmailLayout preview="Welcome to BidBoard, your scholarship command center">
       <Section>
         <Text style={heading}>Welcome to BidBoard{name} 🎓</Text>
         <Text style={bodyText}>
@@ -51,8 +51,8 @@ export function WelcomeEmail({
             Step 1
           </Text>
           <Text style={{ ...bodyText, margin: 0 }}>
-            <strong style={{ color: "#fafafa" }}>Complete your profile</strong>{" "}
-            — the more we know about you, the better your matches.
+            <strong style={{ color: "#fafafa" }}>Complete your profile</strong>.{" "}
+            The more we know about you, the better your matches.
           </Text>
         </div>
 
@@ -63,8 +63,8 @@ export function WelcomeEmail({
             Step 2
           </Text>
           <Text style={{ ...bodyText, margin: 0 }}>
-            <strong style={{ color: "#fafafa" }}>Browse your matches</strong> —
-            we rank scholarships by expected value per hour of effort.
+            <strong style={{ color: "#fafafa" }}>Browse your matches</strong>.
+            We rank scholarships by expected value per hour of effort.
           </Text>
         </div>
 
@@ -90,7 +90,7 @@ export function WelcomeEmail({
       </Section>
 
       <Text style={mutedText}>
-        Questions? Reply to this email — we read every one.
+        Questions? Reply to this email. We read every one.
       </Text>
     </EmailLayout>
   );

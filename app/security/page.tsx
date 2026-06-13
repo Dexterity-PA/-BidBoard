@@ -5,7 +5,7 @@ const SANS = 'var(--font-dm-sans), -apple-system, sans-serif'
 const SERIF = 'var(--font-instrument-serif), Georgia, serif'
 
 export const metadata: Metadata = {
-  title: 'Security — BidBoard',
+  title: 'Security | BidBoard',
   description:
     'How BidBoard handles your data: encryption, storage, retention, and the guarantees we make to every student.',
 }

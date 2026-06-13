@@ -43,11 +43,6 @@ const PREF_ROWS: { type: NotificationType; label: string; description: string }[
     label: "Weekly digest",
     description: "A Sunday summary of your top matches and deadlines.",
   },
-  {
-    type: "payment_events",
-    label: "Payment events",
-    description: "Receipts and billing alerts. Recommended to leave on.",
-  },
 ];
 
 export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {

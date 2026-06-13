@@ -10,7 +10,7 @@ const RADIUS = (SIZE - STROKE) / 2; // 73
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS; // ≈ 458.67
 
 interface Props {
-  /** Award amounts summed for submitted applications — stored in cents */
+  /** Award amounts summed for submitted applications, stored in cents */
   appliedCents: number;
   submittedCount: number;
   /** Goal stored in dollars (e.g. 50000 = $50,000) */

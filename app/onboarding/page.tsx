@@ -19,7 +19,7 @@ export default async function OnboardingPage() {
     .limit(1);
 
   if (existing.length > 0) {
-    // Profile already exists — middleware will set the __ob cookie on the way
+    // Profile already exists, middleware will set the __ob cookie on the way
     // through /dashboard, so just redirect there.
     redirect("/dashboard");
   }

@@ -17,7 +17,6 @@ export default async function TrackerLayout({
     <AppShell
       userName={userName}
       userImageUrl={userImageUrl}
-      planName="Free Plan" // TODO: replace with real plan from Stripe/DB
     >
       {children}
     </AppShell>

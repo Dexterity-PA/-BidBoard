@@ -61,7 +61,7 @@ export default function LiveScholarshipTickerClient({
             color: 'var(--bb-ink-muted)',
           }}
         >
-          Live — updated hourly
+          Live, updated hourly
         </p>
       </div>
 

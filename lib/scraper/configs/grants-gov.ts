@@ -3,7 +3,7 @@ import type { FrameworkConfig } from "../framework";
 // NOTE: grants.gov is a React SPA (simpler.grants.gov). Headless Playwright can load
 // the page and read page text (1,719+ opportunities visible in body.innerText), but
 // individual opportunity items are not rendered as discrete selectable DOM nodes in the
-// initial load — they require deeper SPA interaction or API access.
+// initial load: they require deeper SPA interaction or API access.
 //
 // Confirmed via live inspection: no selector yields > 0 opportunity-level elements.
 // Pagination button exists at [aria-label="Next page"] but requires JS click, not href nav.

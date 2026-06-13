@@ -14,7 +14,7 @@ export type KnapsackItem = {
  * 0/1 knapsack DP.
  * Hours are converted to half-hour integer slots (×2) so fractional hours
  * become integer weights. Budget of 40 hrs = 80 slots; 50 items × 80 slots
- * = 4,000 DP cells — runs in < 1 ms.
+ * = 4,000 DP cells, runs in < 1 ms.
  *
  * Returns the optimal subset sorted by evScore descending (rank 1 = highest EV).
  */

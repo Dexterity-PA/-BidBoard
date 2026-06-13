@@ -58,7 +58,7 @@ export default function FinalCTASection() {
         <ParticleCanvas reduced={reduced} velocity={reduced ? undefined : smoothV} />
       </div>
 
-      {/* Giant wordmark — centered against the section (viewport), not the
+      {/* Giant wordmark, centered against the section (viewport), not the
           headline wrap. Section overflow: hidden clips any spillover at the
           viewport edges symmetrically. */}
       <div
@@ -196,7 +196,7 @@ export default function FinalCTASection() {
             </div>
           </div>
 
-          {/* Right: stats — paddingTop matches the height of the left column's
+          {/* Right: stats. paddingTop matches the height of the left column's
               "Start now" eyebrow + its 20px margin so the first stat's top
               edge aligns with the headline's top edge. */}
           <div

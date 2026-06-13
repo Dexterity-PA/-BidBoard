@@ -74,7 +74,7 @@ export async function saveToTracker(scholarshipId: number) {
     { status: "saved", at: new Date().toISOString(), label: STATUS_LABELS.saved },
   ];
 
-  // Upsert into applications — do nothing if already tracked
+  // Upsert into applications (do nothing if already tracked)
   await db
     .insert(applications)
     .values({
@@ -127,7 +127,7 @@ export async function updateApplicationStatus(id: number, status: string) {
   if (status === "submitted") {
     await logActivity(userId, "application_submitted", id);
   }
-  // Fire status-change email for notable transitions only — void to keep UI fast
+  // Fire status-change email for notable transitions only (void to keep UI fast)
   if (status === "submitted" || status === "won" || status === "lost") {
     void sendStatusChangeEmail({
       userId,

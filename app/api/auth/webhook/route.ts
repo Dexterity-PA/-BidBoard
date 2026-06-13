@@ -81,7 +81,7 @@ export async function POST(req: Request) {
       INSERT INTO "users" ("id", "email", "first_name", "last_name")
       VALUES (${id}, ${primaryEmail}, ${first_name ?? null}, ${last_name ?? null})
     `);
-    // Fire welcome email — void so we don't block the webhook response
+    // Fire welcome email (void so we don't block the webhook response)
     void sendWelcomeEmail({ userId: id, email: primaryEmail, firstName: first_name });
   }
 

@@ -166,7 +166,7 @@ export default function CategoryShowcase() {
   const tileCount = CATEGORIES.length
   const tileWidth = 320
   const gap = 20
-  // Total inline size of the track (tiles + gaps). No trailing spacer — the
+  // Total inline size of the track (tiles + gaps). No trailing spacer: the
   // last tile's right edge is the end of the scroll.
   const trackWidth = tileCount * tileWidth + (tileCount - 1) * gap
   // Horizontal scroll ends exactly when the last tile's right edge meets the

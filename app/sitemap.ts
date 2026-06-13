@@ -8,7 +8,6 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app";
 const staticPages: MetadataRoute.Sitemap = [
   { url: siteUrl, changeFrequency: "monthly", priority: 1.0 },
   { url: `${siteUrl}/scholarships`, changeFrequency: "daily", priority: 0.9 },
-  { url: `${siteUrl}/pricing`, changeFrequency: "monthly", priority: 0.6 },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -27,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [...staticPages, ...scholarshipPages];
   } catch {
-    // Migration not yet applied — return static pages only.
+    // Migration not yet applied, return static pages only.
     return staticPages;
   }
 }

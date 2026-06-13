@@ -13,13 +13,6 @@ export type SettingsData = {
   // users table
   firstName: string;
   lastName: string;
-  tier: "free" | "premium" | "ultra" | "counselor";
-  stripeCustomerId: string | null;
-  stripeSubscriptionId: string | null;
-  // Stripe (fetched if subscription exists)
-  nextBillingDate: string | null;
-  cardLast4: string | null;
-  cancelAtPeriodEnd: boolean;
   // student_profiles
   graduationYear: number | null;
   schoolName: string | null;

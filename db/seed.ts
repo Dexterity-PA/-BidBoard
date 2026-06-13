@@ -294,7 +294,7 @@ async function seed() {
         provider: "Prudential Financial",
         providerUrl: "https://spirit.prudential.com",
         description:
-          "Honors students in grades 5–12 for outstanding volunteer service to their community.",
+          "Honors students in grades 5-12 for outstanding volunteer service to their community.",
         amountMin: 100000,
         amountMax: 100000,
         amountType: "fixed",
@@ -338,7 +338,7 @@ async function seed() {
         provider: "Flinn Foundation",
         providerUrl: "https://www.flinn.org/flinn-scholars",
         description:
-          "Arizona's most prestigious merit scholarship — full tuition, room, and board at an Arizona public university.",
+          "Arizona's most prestigious merit scholarship: full tuition, room, and board at an Arizona public university.",
         amountMin: 1500000,
         amountMax: 2000000,
         amountType: "range",
@@ -1099,7 +1099,7 @@ async function seed() {
     .values(withSlugs)
     .onConflictDoNothing();
 
-  console.log("Done — 50 scholarships seeded.");
+  console.log("Done: 50 scholarships seeded.");
   process.exit(0);
 }
 

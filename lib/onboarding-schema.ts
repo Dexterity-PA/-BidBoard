@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const onboardingSchema = z.object({
-  // Step 1 — Basic Info
+  // Step 1: Basic Info
   firstName:           z.string().min(1, "First name is required"),
   lastName:            z.string().min(1, "Last name is required"),
   gradeLevel:          z.enum([
@@ -12,14 +12,14 @@ export const onboardingSchema = z.object({
   state:               z.string().optional(),
   city:                z.string().optional(),
 
-  // Step 2 — Academics
+  // Step 2: Academics
   gpa:                 z.coerce.number().min(0).max(4.0).optional().or(z.literal("")),
   satScore:            z.coerce.number().int().min(400).max(1600).optional().or(z.literal("")),
   actScore:            z.coerce.number().int().min(1).max(36).optional().or(z.literal("")),
   intendedMajor:       z.string().optional(),
   careerInterest:      z.string().optional(),
 
-  // Step 3 — Demographics
+  // Step 3: Demographics
   ethnicity:           z.array(z.string()).optional(),
   gender:              z.string().optional(),
   citizenship:         z.string().optional(),
@@ -28,7 +28,7 @@ export const onboardingSchema = z.object({
   disabilities:        z.boolean().default(false),
   militaryFamily:      z.boolean().default(false),
 
-  // Step 4 — Interests
+  // Step 4: Interests
   extracurriculars:    z.array(z.string()).optional(),
   interests:           z.array(z.string()).optional(),
 });
@@ -81,9 +81,9 @@ export const CITIZENSHIP_OPTIONS = [
 
 export const INCOME_OPTIONS = [
   { value: "<30k",      label: "Under $30,000" },
-  { value: "30k-60k",   label: "$30,000 – $60,000" },
-  { value: "60k-100k",  label: "$60,000 – $100,000" },
-  { value: "100k-150k", label: "$100,000 – $150,000" },
+  { value: "30k-60k",   label: "$30,000 - $60,000" },
+  { value: "60k-100k",  label: "$60,000 - $100,000" },
+  { value: "100k-150k", label: "$100,000 - $150,000" },
   { value: "150k+",     label: "$150,000+" },
 ];
 

@@ -11,7 +11,7 @@ export function ShareButton() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard not available — silent fail
+      // Clipboard not available, silent fail
     }
   }
 

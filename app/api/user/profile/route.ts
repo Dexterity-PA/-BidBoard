@@ -94,7 +94,7 @@ export async function POST(req: Request) {
     // and UNIQUE (email). In dev the Clerk webhook often never fires (webhooks
     // need a public URL), so the row may not exist yet. If a prior test run left
     // a stale row under the same email but a different id, ON CONFLICT (id)
-    // won't help — the INSERT would hit the email unique constraint instead,
+    // won't help: the INSERT would hit the email unique constraint instead,
     // producing a DrizzleQueryError whose message is the SQL text.
     const [existingUser] = await db
       .select({ id: users.id })
@@ -103,7 +103,7 @@ export async function POST(req: Request) {
       .limit(1);
 
     if (existingUser) {
-      // Row already exists for this Clerk ID — update contact info only.
+      // Row already exists for this Clerk ID: update contact info only.
       await db.execute(sql`
         UPDATE "users"
         SET "email"      = ${primaryEmail},
@@ -125,7 +125,7 @@ export async function POST(req: Request) {
 
     // For student_profiles we use an explicit check-then-insert/update instead
     // of ON CONFLICT, because ON CONFLICT requires the unique index to exist in
-    // the actual DB — which may not be the case if drizzle-kit push hasn't been
+    // the actual DB, which may not be the case if drizzle-kit push hasn't been
     // run after the uniqueIndex was added to the schema.
     const [existing] = await db
       .select({ id: studentProfiles.id })

@@ -31,9 +31,9 @@ const STATUS_CONFIG: Record<
   },
   won: {
     emoji: "🏆",
-    label: "Congratulations — You Won!",
+    label: "Congratulations, You Won!",
     description:
-      "Your application was selected. This is a huge achievement — you earned it.",
+      "Your application was selected. This is a huge achievement. You earned it.",
     cta: "View in tracker",
   },
   lost: {
@@ -59,7 +59,7 @@ export function StatusChangeEmail({
       : applicationUrl ?? `${appUrl}/tracker`;
 
   return (
-    <EmailLayout preview={`${config.emoji} ${config.label} — ${scholarshipName}`}>
+    <EmailLayout preview={`${config.emoji} ${config.label} (${scholarshipName})`}>
       <Section>
         <Text style={{ fontSize: "32px", margin: "0 0 8px 0" }}>
           {config.emoji}

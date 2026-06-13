@@ -8,7 +8,7 @@ import ScrollProgressBar from "./_components/global/ScrollProgressBar";
 import SectionNumbers from "./_components/global/SectionNumbers";
 import Footer from "./_components/global/Footer";
 import TestimonialsAnimated from "@/components/landing/TestimonialsAnimated";
-import PricingAnimated from "@/components/landing/PricingAnimated";
+import WhyFreeSection from "@/components/landing/WhyFreeSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import FormulaSection from "@/components/landing/FormulaSection";
 import EVCalculator from "@/components/landing/EVCalculator";
@@ -22,7 +22,7 @@ import SecurityStrip from "@/components/landing/SecurityStrip";
 import FinalCTASection from "@/components/landing/FinalCTASection";
 import LiveScholarshipTicker from "@/components/landing/LiveScholarshipTicker";
 
-// Below-the-fold heavy sections — code-split for LCP budget.
+// Below-the-fold heavy sections, code-split for LCP budget.
 const CategoryShowcase = dynamic(
   () => import("@/components/landing/CategoryShowcase"),
 );
@@ -64,7 +64,7 @@ const body = (color: string, size = 17): React.CSSProperties => ({
 
 /* ─── For Counselors CTA ───────────────────────────────────────── */
 const counselorBullets = [
-  "50 student seats per license",
+  "Up to 50 student seats",
   "ROI tracking dashboard",
   "CSV export + reporting",
 ];
@@ -110,12 +110,12 @@ function ForCounselorsCTA() {
             Running a college counseling practice?
           </h2>
           <p style={{ ...body(C.textMuted), marginBottom: 32, maxWidth: 420 }}>
-            BidBoard&apos;s Counselor plan gives you one seat for up to 50
-            students. ROI dashboards, CSV export, and priority matching — all
-            for $199/year.
+            BidBoard is free for counseling practices, with up to 50 student
+            seats per practice. ROI dashboards, CSV export, and priority
+            matching are all included at no cost.
           </p>
           <Link
-            href="#pricing"
+            href="/sign-up"
             style={{
               fontFamily: sans,
               fontSize: 15,
@@ -127,7 +127,7 @@ function ForCounselorsCTA() {
               gap: 4,
             }}
           >
-            See Counselor pricing →
+            Get started free →
           </Link>
         </div>
 
@@ -194,7 +194,7 @@ export default function LandingPage() {
     { key: "comparison",  node: <ComparisonSection /> },
     { key: "testimonials",node: <TestimonialsAnimated /> },
     { key: "indexstats",  node: <IndexStats /> },
-    { key: "pricing",     id: "pricing", node: <PricingAnimated /> },
+    { key: "why-free",    id: "why-free", node: <WhyFreeSection /> },
     { key: "counselors",  node: <ForCounselorsCTA /> },
     { key: "faq",         node: <FAQ /> },
     { key: "security",    node: <SecurityStrip /> },

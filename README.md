@@ -1,6 +1,6 @@
 # BidBoard
 
-BidBoard is a scholarship strategy platform that helps students maximize their aid by applying quantitative finance techniques to the scholarship hunt. Every scholarship in the database is scored with an expected-value (EV) formula — award amount × win probability, adjusted for match quality — then a 0/1 knapsack solver selects the highest-EV portfolio that fits inside a student's time budget. An AI essay engine (Claude for prompt classification, OpenAI for semantic embeddings) clusters and recycles essays across multiple applications, and a full application tracker records every stage from "saved" through "awarded."
+BidBoard is a free scholarship strategy platform that helps students maximize their aid by applying quantitative finance techniques to the scholarship hunt. Every scholarship in the database is scored with an expected-value (EV) formula (award amount × win probability, adjusted for match quality), then a 0/1 knapsack solver selects the highest-EV portfolio that fits inside a student's time budget. An AI essay engine (Claude for prompt classification, OpenAI for semantic embeddings) clusters and recycles essays across multiple applications, and a full application tracker records every stage from "saved" through "awarded."
 
 ---
 
@@ -14,10 +14,9 @@ BidBoard is a scholarship strategy platform that helps students maximize their a
 | ORM | Drizzle ORM |
 | Database | Neon PostgreSQL (serverless) + pgvector |
 | Auth | Clerk v6 |
-| Payments | Stripe (subscriptions + billing portal) |
-| AI — classification | Anthropic SDK (Claude Haiku) |
-| AI — embeddings | OpenAI (`text-embedding-3-small`, 1536-dim) |
-| AI — scraping | Google Gemini (`@google/generative-ai`) |
+| AI (classification) | Anthropic SDK (Claude Haiku) |
+| AI (embeddings) | OpenAI (`text-embedding-3-small`, 1536-dim) |
+| AI (scraping) | Google Gemini (`@google/generative-ai`) |
 | Email | Resend + React Email |
 | Scraping | Playwright (headless Chromium) |
 | Webhooks | svix (Clerk webhook verification) |
@@ -31,7 +30,7 @@ BidBoard is a scholarship strategy platform that helps students maximize their a
 ### Scholarship Matching
 - Hard disqualifiers eliminate scholarships where the student fails GPA, state, citizenship, gender, or grade-level requirements
 - Soft penalties score partial matches across major, ethnicity, first-generation status, extracurriculars, and military family status
-- Match scores (0–100) feed directly into the EV calculation
+- Match scores (0-100) feed directly into the EV calculation
 
 ### Expected-Value (EV) Scoring
 - Award amount (supports fixed, range, and full-ride types) × estimated win probability
@@ -67,7 +66,6 @@ BidBoard is a scholarship strategy platform that helps students maximize their a
 - New-matches digest when fresh scholarships enter the pipeline
 - Status-change notifications
 - Weekly digest summarizing the portfolio
-- Payment confirmation emails
 - Per-user opt-in/opt-out preferences stored in the database
 - Deduplication via `sent_notifications` table; full audit log in `notifications_log`
 
@@ -76,12 +74,9 @@ BidBoard is a scholarship strategy platform that helps students maximize their a
 - Bulk scrape scripts: `scripts/bulk-scrape.ts`, `scripts/scrape-gov.ts`
 - Scholarships store essay prompts, tips, requirements, open/close dates, and locality level as structured data
 
-### Subscription Tiers
-- **Free** — limited matches, basic tracker
-- **Premium** — unlimited matches, essay recycling
-- **Ultra** — long-tail scholarships
-- **Counselor** — counselor dashboard access
-- Stripe Checkout and Customer Portal fully integrated; tier stored on the `users` row and synced via Stripe webhooks
+### Fully Free
+- Every feature is free for every user, including counselors
+- No paid tiers, no checkout, and no payment data collected
 
 ---
 
@@ -91,11 +86,10 @@ BidBoard is a scholarship strategy platform that helps students maximize their a
 app/
   _components/        Landing page sections (hero, nav, scroll reveal)
   api/
-    auth/webhook/     Clerk webhook — syncs users to DB
+    auth/webhook/     Clerk webhook that syncs users to DB
     cron/             Scheduled email jobs (deadline reminders, new matches, weekly digest)
     essays/           Essay CRUD and recycling endpoint
     scholarships/     Matching, deadlines, save/unsave
-    stripe/           Checkout, portal, webhook
     user/profile/     Profile read/update
   dashboard/          Main dashboard with stat cards and widgets
   deadlines/          Deadline calendar view
@@ -103,9 +97,8 @@ app/
   matches/            Sortable/filterable scholarship match table
   onboarding/         Multi-step profile setup form
   planner/            Knapsack portfolio optimizer
-  pricing/            Subscription plans + Stripe checkout
   scholarships/       Public browse page + detail pages (by slug)
-  settings/           Profile editing, notification prefs, billing portal
+  settings/           Profile editing and notification prefs
   tracker/            Application tracker
 
 components/
@@ -127,14 +120,12 @@ lib/
   matching.ts         Match score computation (hard disqualifiers + soft penalties)
   essay-classifier.ts Claude Haiku archetype classifier
   embeddings.ts       OpenAI embedding client
-  tier.ts             Feature gate checks by subscription tier
-  stripe.ts           Stripe client, checkout, and portal helpers
   email/              Resend client, send pipeline, rate limiting, preference checks
   dashboard/queries.ts  Cycle progress and next action queries
   scraper/            Playwright scraper engine, configs, normalizer, DB writer
   scholarships/       Slug helpers and formatting utilities
 
-emails/               React Email templates (welcome, deadline, new-matches, digest, status, payment)
+emails/               React Email templates (welcome, deadline, new-matches, digest, status)
 scripts/              CLI scraping scripts (bulk-scrape, scrape-gov, run-scrape)
 ```
 
@@ -146,7 +137,6 @@ scripts/              CLI scraping scripts (bulk-scrape, scrape-gov, run-scrape)
 - Node.js 20+
 - A [Neon](https://neon.tech) PostgreSQL database with the `pgvector` extension enabled
 - A [Clerk](https://clerk.com) application
-- A [Stripe](https://stripe.com) account with three subscription price IDs (Premium, Ultra, Counselor)
 - An [Anthropic](https://console.anthropic.com) API key
 - An [OpenAI](https://platform.openai.com) API key
 - A [Resend](https://resend.com) account and verified sending domain
@@ -167,12 +157,6 @@ cp .env.example .env.local
 | `DATABASE_URL` | Neon connection string (pooled) |
 | `ANTHROPIC_API_KEY` | Anthropic API key (Claude Haiku for essay classification) |
 | `OPENAI_API_KEY` | OpenAI API key (text-embedding-3-small) |
-| `STRIPE_SECRET_KEY` | Stripe secret key |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key |
-| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret |
-| `STRIPE_PREMIUM_PRICE_ID` | Stripe price ID for the Premium plan |
-| `STRIPE_ULTRA_PRICE_ID` | Stripe price ID for the Ultra plan |
-| `STRIPE_COUNSELOR_PRICE_ID` | Stripe price ID for the Counselor plan |
 | `RESEND_API_KEY` | Resend API key |
 | `RESEND_FROM_EMAIL` | Verified sending address (e.g. `notifications@yourdomain.com`) |
 | `NEXT_PUBLIC_APP_URL` | Public base URL (e.g. `https://www.bidboard.app`) |
@@ -228,7 +212,3 @@ The three email cron routes are secured by the `CRON_SECRET` header. Configure t
 ### Clerk Webhooks
 
 In the Clerk dashboard, add a webhook pointing to `https://yourdomain.com/api/auth/webhook` and subscribe to the `user.created` and `user.updated` events. Copy the signing secret into `CLERK_WEBHOOK_SECRET`.
-
-### Stripe Webhooks
-
-In the Stripe dashboard, add a webhook pointing to `https://yourdomain.com/api/stripe/webhook` and subscribe to `checkout.session.completed`, `customer.subscription.updated`, and `customer.subscription.deleted` events.

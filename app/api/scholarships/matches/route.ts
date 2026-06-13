@@ -5,7 +5,6 @@ import { db } from "@/db";
 import { studentProfiles, scholarships, scholarshipMatches } from "@/db/schema";
 import { computeMatchScore } from "@/lib/matching";
 import { computeEVScore } from "@/lib/ev-scoring";
-import { getUserTier, canAccessFeature } from "@/lib/tier";
 
 export async function GET() {
   // ── 1. Auth ────────────────────────────────────────────────────────────────
@@ -25,15 +24,12 @@ export async function GET() {
     );
   }
 
-  // ── 3. Load user tier ──────────────────────────────────────────────────────
-  const tier = await getUserTier(userId);
-
-  // ── 4. Fetch active scholarships ───────────────────────────────────────────
+  // ── 3. Fetch active scholarships ───────────────────────────────────────────
   const activeScholarships = await db.query.scholarships.findMany({
     where: eq(scholarships.isActive, true),
   });
 
-  // ── 5. Score each scholarship ──────────────────────────────────────────────
+  // ── 4. Score each scholarship ──────────────────────────────────────────────
   const scored: {
     scholarshipId: number;
     name: string;
@@ -51,7 +47,7 @@ export async function GET() {
 
   for (const scholarship of activeScholarships) {
     const matchScore = computeMatchScore(profile, scholarship);
-    if (matchScore === 0) continue; // hard disqualified — skip
+    if (matchScore === 0) continue; // hard disqualified, skip
 
     const { evScore, evPerHour, estimatedHours } = computeEVScore(
       matchScore,
@@ -75,13 +71,13 @@ export async function GET() {
     });
   }
 
-  // ── 6. Sort by evPerHour descending ────────────────────────────────────────
+  // ── 5. Sort by evPerHour descending ────────────────────────────────────────
   scored.sort((a, b) => b.evPerHour - a.evPerHour);
 
-  // ── 7. Free-tier cap: 50 matches max ──────────────────────────────────────
-  const results = canAccessFeature(tier, "unlimited_matches") ? scored : scored.slice(0, 50);
+  // ── 6. All matches included: BidBoard is fully free ───────────────────────
+  const results = scored;
 
-  // ── 8. Bulk upsert into scholarship_matches ────────────────────────────────
+  // ── 7. Bulk upsert into scholarship_matches ────────────────────────────────
   if (results.length > 0) {
     await db
       .insert(scholarshipMatches)
@@ -107,6 +103,6 @@ export async function GET() {
       });
   }
 
-  // ── 9. Return results ──────────────────────────────────────────────────────
+  // ── 8. Return results ──────────────────────────────────────────────────────
   return NextResponse.json({ matches: results, total: results.length });
 }

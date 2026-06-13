@@ -12,11 +12,11 @@ type QA = { q: string; a: string }
 const QUESTIONS: QA[] = [
   {
     q: 'What makes BidBoard different from Bold.org or Fastweb?',
-    a: 'Bold.org and Fastweb are listing sites — they show you every scholarship and leave the strategy to you. BidBoard scores every scholarship by expected value, ranks them, and drafts essays using your own profile. We cut application time by about 70% and push the dollars-per-hour that actually matters.',
+    a: 'Bold.org and Fastweb are listing sites. They show you every scholarship and leave the strategy to you. BidBoard scores every scholarship by expected value, ranks them, and drafts essays using your own profile. We cut application time by about 70% and push the dollars-per-hour that actually matters.',
   },
   {
     q: 'Is it actually free?',
-    a: 'The free tier is free forever. You get unlimited matching, up to five EV-scored deadlines, and basic essay drafting. Pro unlocks unlimited drafts, advanced ranking, and one-click submissions. No credit card required to start.',
+    a: 'Yes. All of BidBoard is free, for everyone, forever. Unlimited matching, full EV scoring, essay drafting, the tracker, and counselor tools. There is no paid tier, no credit card field, and nothing to unlock.',
   },
   {
     q: 'What happens if BidBoard shuts down, like Going Merry did?',
@@ -24,7 +24,7 @@ const QUESTIONS: QA[] = [
   },
   {
     q: 'How accurate is the EV score?',
-    a: 'EV is computed as award × estimated win probability ÷ hours of applicant effort. Probability is seeded from historical win rates and adjusted for how well your profile matches the rubric. It\u2019s directionally correct — not a guarantee — and it beats eyeballing a $500 scholarship that takes 20 hours.',
+    a: 'EV is computed as award × estimated win probability ÷ hours of applicant effort. Probability is seeded from historical win rates and adjusted for how well your profile matches the rubric. It\u2019s directionally correct, not a guarantee, and it beats eyeballing a $500 scholarship that takes 20 hours.',
   },
   {
     q: 'How do you find scholarships?',
@@ -32,11 +32,11 @@ const QUESTIONS: QA[] = [
   },
   {
     q: 'Can my counselor use this?',
-    a: 'Yes. The Counselor plan comes with one seat for up to 50 students, an ROI dashboard, CSV export, and bulk matching runs. Used by public and private schools across 40+ states.',
+    a: 'Yes, and it costs them nothing. Counselor tools include one seat for up to 50 students, an ROI dashboard, CSV export, and bulk matching runs. Used by public and private schools across 40+ states.',
   },
   {
     q: 'Do you help with essays?',
-    a: 'The essay engine drafts personalized first drafts in about twelve seconds, drawing from your profile — activities, background, hometown, voice. You edit the draft. The tool never submits anything without your review.',
+    a: 'The essay engine drafts personalized first drafts in about twelve seconds, drawing from your profile: activities, background, hometown, voice. You edit the draft. The tool never submits anything without your review.',
   },
   {
     q: 'Is my data safe?',

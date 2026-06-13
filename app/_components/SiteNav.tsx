@@ -20,14 +20,14 @@ type NavLink = { label: string; href: string; id?: string }
 
 const PRIMARY_LINKS: NavLink[] = [
   { label: 'How it works', href: '#how-it-works', id: 'how-it-works' },
-  { label: 'Pricing', href: '#pricing', id: 'pricing' },
+  { label: "Why it's free", href: '#why-free', id: 'why-free' },
   { label: 'For Counselors', href: '#counselors', id: 'counselors' },
 ]
 
 const RESOURCES_LINKS = [
-  { label: 'Blog', href: '/blog' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Guides', href: '/guides' },
+  { label: 'Live scholarships', href: '/scholarships' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Security', href: '/security' },
 ]
 
 function LogoMark() {
@@ -134,6 +134,12 @@ function ResourcesDropdown() {
   const onLeave = () => {
     closeTimer.current = window.setTimeout(() => setOpen(false), 120)
   }
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) window.clearTimeout(closeTimer.current)
+    }
+  }, [])
 
   return (
     <div
@@ -258,10 +264,6 @@ export default function SiteNav() {
     const pickBest = () => {
       if (intersecting.size === 0) {
         setActiveId(null)
-        if (process.env.NODE_ENV !== 'production') {
-          // eslint-disable-next-line no-console
-          console.log('[SiteNav] activeSection = null')
-        }
         return
       }
       const centerY = window.innerHeight / 2
@@ -276,10 +278,6 @@ export default function SiteNav() {
       }
       if (best) {
         setActiveId(best.id)
-        if (process.env.NODE_ENV !== 'production') {
-          // eslint-disable-next-line no-console
-          console.log('[SiteNav] activeSection =', best.id, '(dist:', Math.round(best.dist), 'px)')
-        }
       }
     }
 
@@ -306,7 +304,7 @@ export default function SiteNav() {
       }
       const el = linkRefs.current[activeId]
       // Link <a> sits directly inside the center-links flex container,
-      // which is the dot's positioned ancestor — go up exactly one level.
+      // which is the dot's positioned ancestor: go up exactly one level.
       const parent = el?.parentElement
       if (!el || !parent) return
       const linkRect = el.getBoundingClientRect()

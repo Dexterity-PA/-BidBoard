@@ -24,7 +24,7 @@ export function Step4Interests({ form }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* Extracurriculars — chip toggles */}
+      {/* Extracurriculars: chip toggles */}
       <FormField
         control={form.control}
         name="extracurriculars"
@@ -70,7 +70,7 @@ export function Step4Interests({ form }: Props) {
         }}
       />
 
-      {/* Interests — free-text tag input */}
+      {/* Interests: free-text tag input */}
       <FormField
         control={form.control}
         name="interests"

@@ -14,7 +14,7 @@ const TABS = [
   { id: "profile",       label: "Profile",                 Icon: User       },
   { id: "preferences",   label: "Scholarship Preferences", Icon: Star       },
   { id: "notifications", label: "Notifications",           Icon: Bell       },
-  { id: "billing",       label: "Billing",                 Icon: CreditCard },
+  { id: "billing",       label: "Plan",                    Icon: CreditCard },
   { id: "account",       label: "Account",                 Icon: Shield     },
 ] as const;
 

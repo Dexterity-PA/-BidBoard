@@ -31,7 +31,7 @@ function fmtAward(app: ApplicationRow): string {
       app.scholarshipAmountMin &&
       app.scholarshipAmountMin !== app.scholarshipAmountMax
     ) {
-      return `$${app.scholarshipAmountMin.toLocaleString()} – $${app.scholarshipAmountMax.toLocaleString()}`;
+      return `$${app.scholarshipAmountMin.toLocaleString()} - $${app.scholarshipAmountMax.toLocaleString()}`;
     }
     return `$${app.scholarshipAmountMax.toLocaleString()}`;
   }

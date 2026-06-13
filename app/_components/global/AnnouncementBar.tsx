@@ -9,7 +9,7 @@ const STORAGE_KEY = 'bb_announcement_dismissed'
 const MESSAGES = [
   '✨ Now live at 40+ schools',
   'New: Counselor seats available',
-  'Going Merry shut down — we didn\u2019t',
+  'Going Merry shut down. We didn\u2019t.',
 ]
 
 export default function AnnouncementBar() {

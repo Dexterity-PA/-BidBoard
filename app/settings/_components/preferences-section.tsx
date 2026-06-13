@@ -16,9 +16,9 @@ const CATEGORIES = [
 
 const DEADLINE_RANGES = [
   { value: "rolling",    label: "Rolling / anytime" },
-  { value: "fall",       label: "Fall (Sep–Dec)" },
-  { value: "spring",     label: "Spring (Jan–Apr)" },
-  { value: "summer",     label: "Summer (May–Aug)" },
+  { value: "fall",       label: "Fall (Sep-Dec)" },
+  { value: "spring",     label: "Spring (Jan-Apr)" },
+  { value: "summer",     label: "Summer (May-Aug)" },
   { value: "year_round", label: "Year-round" },
 ];
 
@@ -148,7 +148,7 @@ export function PreferencesSection({ data, showToast, onSaved, onDirty }: Props)
           onChange={(e) => setDeadlineRange(e.target.value)}
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:ring-2 focus:ring-indigo-500"
         >
-          <option value="">— Any —</option>
+          <option value="">Any</option>
           {DEADLINE_RANGES.map(({ value, label }) => (
             <option key={value} value={value}>{label}</option>
           ))}
@@ -163,7 +163,7 @@ export function PreferencesSection({ data, showToast, onSaved, onDirty }: Props)
           onChange={(e) => setGradeLevel(e.target.value)}
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:ring-2 focus:ring-indigo-500"
         >
-          <option value="">— Select —</option>
+          <option value="">Select</option>
           {GRADE_LEVELS.map(({ value, label }) => (
             <option key={value} value={value}>{label}</option>
           ))}

@@ -67,7 +67,7 @@ def slugs_from_sitemap(xml: str) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
-# Detail page parser — public entry point
+# Detail page parser: public entry point
 # ---------------------------------------------------------------------------
 
 def parse_detail_page(html: str, slug: str) -> Optional[dict]:
@@ -293,11 +293,11 @@ def _parse_essay(body_text: str) -> tuple[Optional[str], Optional[int], list[dic
     if not raw:
         return None, None, []
 
-    # Extract word limit (e.g. "400–600 words" or "500 words max")
+    # Extract word limit (e.g. "400-600 words" or "500 words max")
     word_limit: Optional[int] = None
     prompt_text = raw
 
-    m = re.search(r"(\d+)\s*[–\-]+\s*(\d+)\s*words?", raw)
+    m = re.search(r"(\d+)\s*[\u2013\-]+\s*(\d+)\s*words?", raw)
     if m:
         word_limit = int(m.group(2))  # store max
         prompt_text = raw[: m.start()].strip()

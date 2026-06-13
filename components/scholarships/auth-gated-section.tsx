@@ -52,23 +52,23 @@ export function AuthGatedSection({
   const winPct =
     matchData.matchScore !== null
       ? `${(parseFloat(matchData.matchScore) * 100).toFixed(0)}%`
-      : "—";
+      : "-";
   const ev =
     matchData.evScore !== null
       ? `$${parseFloat(matchData.evScore).toLocaleString(undefined, {
           maximumFractionDigits: 0,
         })}`
-      : "—";
+      : "-";
   const evHr =
     matchData.evPerHour !== null
       ? `$${parseFloat(matchData.evPerHour).toLocaleString(undefined, {
           maximumFractionDigits: 2,
         })}/hr`
-      : "—";
+      : "-";
   const hrs =
     matchData.estimatedHours !== null
       ? `${parseFloat(matchData.estimatedHours).toFixed(0)} hrs`
-      : "—";
+      : "-";
 
   return (
     <div className="space-y-4 rounded-xl border border-gray-200 bg-white p-5">

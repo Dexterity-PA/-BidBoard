@@ -58,7 +58,7 @@ export function NewMatchesFeed({ matches, totalCount, now }: Props) {
                 key={m.id}
                 className="group flex items-center gap-3 px-5 py-3.5 hover:bg-gray-50 transition-colors duration-100"
               >
-                {/* Left: name + award — wrapped in Link for navigation */}
+                {/* Left: name + award, wrapped in Link for navigation */}
                 <Link href={`/scholarship/${m.id}`} className="min-w-0 flex-1 block">
                   <div className="flex items-center gap-1.5 flex-wrap">
                     <p className="text-sm font-semibold text-gray-900 truncate">{m.name}</p>
@@ -73,7 +73,7 @@ export function NewMatchesFeed({ matches, totalCount, now }: Props) {
                   </p>
                 </Link>
 
-                {/* Right: EV badge + match % + relative time + save — outside the Link */}
+                {/* Right: EV badge + match % + relative time + save, outside the Link */}
                 <div className="flex items-center gap-2 shrink-0">
                   {m.evScore && (
                     <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${evBadge.bg} ${evBadge.text}`}>

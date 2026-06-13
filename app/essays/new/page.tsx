@@ -39,7 +39,7 @@ export default function NewEssayPage() {
       }
       router.push("/essays");
     } catch {
-      setError("Network error — please try again");
+      setError("Network error, please try again");
     } finally {
       setLoading(false);
     }
@@ -69,7 +69,7 @@ export default function NewEssayPage() {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. Leadership Essay — Gates Scholarship 2025"
+                placeholder="e.g. Leadership Essay (Gates Scholarship 2025)"
                 required
                 className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-300 transition-colors"
               />
@@ -107,7 +107,7 @@ export default function NewEssayPage() {
               />
               <p className={`text-xs ${wordCountOk ? "text-emerald-600" : "text-gray-400"}`}>
                 {wordCount} {wordCount === 1 ? "word" : "words"}
-                {!wordCountOk && wordCount > 0 && " — minimum 50 required"}
+                {!wordCountOk && wordCount > 0 && ", minimum 50 required"}
               </p>
             </div>
 

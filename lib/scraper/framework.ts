@@ -7,7 +7,7 @@ export interface RetryOptions {
   maxPageAttempts: number;
   /** Max attempts per item if Gemini normalization returns null or throws */
   maxItemAttempts: number;
-  /** Base backoff in ms — doubles on each retry */
+  /** Base backoff in ms, doubles on each retry */
   backoffMs: number;
 }
 
@@ -99,7 +99,7 @@ export async function runScraper(config: FrameworkConfig): Promise<ScrapeResult>
   }
 
   console.log(
-    `[Framework] Done — scraped: ${result.scraped}, normalized: ${result.normalized}, upserted: ${result.upserted}`
+    `[Framework] Done, scraped: ${result.scraped}, normalized: ${result.normalized}, upserted: ${result.upserted}`
   );
   return result;
 }

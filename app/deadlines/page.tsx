@@ -21,8 +21,8 @@ type DeadlineItem = {
 
 function formatAmount(min: number | null, max: number | null): string {
   const fmt = (n: number) => `$${(n / 100).toLocaleString()}`;
-  if (!min && !max) return "—";
-  if (min && max && min !== max) return `${fmt(min)}–${fmt(max)}`;
+  if (!min && !max) return "-";
+  if (min && max && min !== max) return `${fmt(min)}-${fmt(max)}`;
   return fmt(min ?? max!);
 }
 
@@ -219,7 +219,7 @@ export default function DeadlinesPage() {
                       <div className="min-w-0 flex-1">
                         <p className="font-semibold text-gray-900 truncate">{item.name}</p>
                         <div className="mt-0.5 flex items-center gap-2 text-xs text-gray-500">
-                          <span className="truncate">{item.provider ?? "—"}</span>
+                          <span className="truncate">{item.provider ?? "-"}</span>
                           <span>·</span>
                           <span className="shrink-0 font-medium text-gray-700">
                             {formatAmount(item.amountMin, item.amountMax)}

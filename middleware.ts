@@ -58,7 +58,7 @@ export default clerkMiddleware(async (auth, req) => {
       // If userId is null here, Clerk is mid-handshake (token refresh / session
       // revalidation). auth.protect() above already handles genuine
       // unauthentication by redirecting to /sign-in. A null userId at this
-      // point does NOT mean the user has no profile — it means Clerk hasn't
+      // point does NOT mean the user has no profile: it means Clerk hasn't
       // resolved the session yet. Pass through and let Clerk finish.
       if (!userId) {
         return NextResponse.next();
@@ -72,13 +72,13 @@ export default clerkMiddleware(async (auth, req) => {
       );
 
       if (rows.length > 0) {
-        // Profile exists — backfill the cookie and let the request through.
+        // Profile exists: backfill the cookie and let the request through.
         const res = NextResponse.next();
         res.cookies.set("__ob", "1", OB_COOKIE_OPTS);
         return res;
       }
 
-      // userId is valid but no profile row — genuine new user, send to onboarding.
+      // userId is valid but no profile row: genuine new user, send to onboarding.
       return NextResponse.redirect(new URL("/onboarding", req.url));
     }
   }

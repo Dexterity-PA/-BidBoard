@@ -13,10 +13,9 @@ import { EmptyState } from "./empty-state";
 
 interface Props {
   applications: ApplicationRow[];
-  isPro: boolean;
 }
 
-export function TrackerClient({ applications: initial, isPro }: Props) {
+export function TrackerClient({ applications: initial }: Props) {
   const [applications, setApplications] = useState<ApplicationRow[]>(initial);
   const [view, setView] = useState<"kanban" | "list">("kanban");
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -111,7 +110,6 @@ export function TrackerClient({ applications: initial, isPro }: Props) {
             onSelect={setSelectedId}
             onDelete={handleDelete}
             onBulkStatus={handleBulkStatus}
-            isPro={isPro}
           />
         </div>
         <div className="hidden lg:block">
@@ -128,7 +126,6 @@ export function TrackerClient({ applications: initial, isPro }: Props) {
               onSelect={setSelectedId}
               onDelete={handleDelete}
               onBulkStatus={handleBulkStatus}
-              isPro={isPro}
             />
           )}
         </div>
@@ -144,7 +141,7 @@ export function TrackerClient({ applications: initial, isPro }: Props) {
         onWon={handleWon}
       />
 
-      {/* Confetti burst — CSS keyframe animation, no external deps */}
+      {/* Confetti burst: CSS keyframe animation, no external deps */}
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
           {Array.from({ length: 12 }).map((_, i) => (

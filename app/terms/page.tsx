@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — BidBoard",
+  title: "Terms of Service | BidBoard",
   description:
     "BidBoard's Terms of Service. Understand your rights, our responsibilities, and what to expect when using BidBoard.",
 };
@@ -71,7 +71,7 @@ function Nav() {
         >
           {[
             { label: "How it works",   href: "/#how-it-works" },
-            { label: "Pricing",        href: "/#pricing" },
+            { label: "Why it's free",  href: "/#why-free" },
             { label: "For Counselors", href: "/#counselors" },
           ].map(({ label, href }) => (
             <Link
@@ -207,8 +207,8 @@ const SECTIONS = [
   { id: "service",     label: "Description of Service" },
   { id: "eligibility", label: "Eligibility" },
   { id: "accounts",    label: "User Accounts & Security" },
-  { id: "billing",     label: "Subscription & Billing" },
-  { id: "cancellation",label: "Cancellation & Refunds" },
+  { id: "billing",     label: "Free Service" },
+  { id: "cancellation",label: "Account Closure" },
   { id: "ip",          label: "Intellectual Property" },
   { id: "prohibited",  label: "Prohibited Uses" },
   { id: "warranties",  label: "Disclaimer of Warranties" },
@@ -351,7 +351,7 @@ export default function TermsPage() {
               }}
             >
               These Terms govern your use of BidBoard. We&apos;ve written them in plain English
-              so they&apos;re actually readable—but the formal language below is what&apos;s legally
+              so they&apos;re actually readable, but the formal language below is what&apos;s legally
               binding.
             </p>
           </div>
@@ -368,7 +368,7 @@ export default function TermsPage() {
             alignItems: "flex-start",
           }}
         >
-          {/* Sticky side nav — desktop only */}
+          {/* Sticky side nav (desktop only) */}
           <aside
             className="mkt-hide-mobile"
             style={{
@@ -516,74 +516,49 @@ export default function TermsPage() {
 
             <Section
               id="billing"
-              title="5. Subscription & Billing"
-              summary="BidBoard is free to start. Paid plans are Premium ($9.99/month) and Counselor ($199/year). Payments are processed by Stripe and renew automatically until you cancel."
+              title="5. Free Service"
+              summary="BidBoard is free. There are no paid plans, no subscriptions, and we do not collect payment information."
             >
               <p style={p}>
-                BidBoard offers a free tier (&quot;Free&quot;) and the following paid subscription plans:
-              </p>
-              <ul style={ul}>
-                <li style={li}>
-                  <strong>Premium</strong> — $9.99/month. Unlimited scholarship matches and
-                  essay recycling suggestions.
-                </li>
-                <li style={li}>
-                  <strong>Counselor</strong> — $199/year. Everything in Premium plus a
-                  counselor dashboard for managing multiple student profiles.
-                </li>
-              </ul>
-              <p style={p}>
-                All payments are processed by Stripe, Inc. and subject to{" "}
-                <a
-                  href="https://stripe.com/legal/ssa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: C.indigo, textDecoration: "underline" }}
-                >
-                  Stripe&apos;s terms of service
-                </a>
-                . By providing payment information, you authorize BidBoard to charge the
-                applicable subscription fees. Subscriptions renew automatically at the end of
-                each billing period unless you cancel before the renewal date.
+                BidBoard is provided free of charge. There are no paid subscription plans,
+                no usage fees, and no seat fees, including for counselors and counseling
+                practices. We do not request, collect, or store payment information.
               </p>
               <p style={p}>
-                BidBoard reserves the right to change subscription pricing with at least
-                thirty (30) days&apos; advance notice. Continued use of a paid plan after a
-                price change constitutes acceptance of the new pricing. All fees are exclusive
-                of applicable taxes, which you are responsible for paying.
+                If BidBoard ever introduces paid offerings in the future, we will update
+                these Terms and provide at least thirty (30) days&apos; advance notice
+                before any charge applies to your account. No existing feature will be
+                moved behind a paywall without that notice.
               </p>
             </Section>
 
             <Section
               id="cancellation"
-              title="6. Cancellation & Refunds"
-              summary="Cancel anytime in your account settings. You'll keep access through the end of your billing period. We generally don't refund partial months, but contact us if something went wrong and we'll look into it."
+              title="6. Account Closure"
+              summary="You can close your account anytime in settings. Because BidBoard is free, there are no charges and nothing to refund."
             >
               <p style={p}>
-                You may cancel your subscription at any time through your account settings or
-                by emailing{" "}
+                You may stop using BidBoard or delete your account at any time through your
+                account settings or by emailing{" "}
                 <a
                   href="mailto:contact@bidboard.app"
                   style={{ color: C.indigo, textDecoration: "underline" }}
                 >
                   contact@bidboard.app
                 </a>
-                . Cancellation takes effect at the end of the current billing period; you
-                retain access to paid features through that date.
+                . Account deletion takes effect immediately and removes your data as
+                described in our Privacy Policy.
               </p>
               <p style={p}>
-                BidBoard does not provide refunds for partial subscription periods, except
-                where required by applicable law. If you believe you were charged in error or
-                experienced a significant service outage, please contact us within thirty (30)
-                days of the charge and we will evaluate your request. BidBoard reserves the
-                right to offer or decline refunds at its sole discretion.
+                Because the Service is free, no charges accrue to your account and no
+                refunds are applicable.
               </p>
             </Section>
 
             <Section
               id="ip"
               title="7. Intellectual Property"
-              summary="BidBoard owns the platform—its code, design, and technology. You own your essays and personal data. We only use your content to provide the service, not to claim ownership of it."
+              summary="BidBoard owns the platform: its code, design, and technology. You own your essays and personal data. We only use your content to provide the service, not to claim ownership of it."
             >
               <p style={p}>
                 BidBoard and its licensors retain all intellectual property rights in and to
@@ -733,8 +708,8 @@ export default function TermsPage() {
                 your registered address or through a prominent in-app notice.
               </p>
               <p style={p}>
-                Non-material changes—such as clarifications, corrections, or updates to reflect
-                new features—may take effect immediately upon posting. Your continued use of
+                Non-material changes (such as clarifications, corrections, or updates to reflect
+                new features) may take effect immediately upon posting. Your continued use of
                 the Service after the effective date of any changes constitutes your acceptance
                 of the revised Terms. If you do not agree to the revised Terms, you must stop
                 using the Service and may request account deletion by contacting us.

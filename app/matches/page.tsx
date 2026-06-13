@@ -23,7 +23,7 @@ interface ApiMatch {
   amountMin:      number | null;
   amountMax:      number | null;
   requiresEssay:  boolean;
-  // NOTE: API route doesn't currently return these — all will default to false (status = "matched")
+  // NOTE: API route doesn't currently return these, all will default to false (status = "matched")
   // TODO: join scholarshipMatches status flags into the API response to enable status filtering
   isSaved?:       boolean;
   isApplied?:     boolean;
@@ -36,26 +36,26 @@ type SortDir = "asc" | "desc";
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function fmtAmount(min: number | null, max: number | null): string {
-  if (!min && !max) return "—";
+  if (!min && !max) return "-";
   const fmt = (n: number) => `$${(n / 100).toLocaleString()}`;
-  if (min && max && min !== max) return `${fmt(min)}–${fmt(max)}`;
+  if (min && max && min !== max) return `${fmt(min)}-${fmt(max)}`;
   return fmt(min ?? max!);
 }
 
 function fmtEvHr(raw: string | null): string {
-  if (!raw) return "—";
+  if (!raw) return "-";
   const n = parseFloat(raw);
-  return isNaN(n) ? "—" : `$${n.toFixed(0)}/hr`;
+  return isNaN(n) ? "-" : `$${n.toFixed(0)}/hr`;
 }
 
 function fmtEvScore(raw: string | null): string {
-  if (!raw) return "—";
+  if (!raw) return "-";
   const n = parseFloat(raw);
-  return isNaN(n) ? "—" : `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+  return isNaN(n) ? "-" : `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 }
 
 function fmtDeadline(dateStr: string | null): string {
-  if (!dateStr) return "—";
+  if (!dateStr) return "-";
   return new Date(dateStr + "T12:00:00").toLocaleDateString("en-US", {
     month: "short",
     day:   "numeric",
@@ -318,7 +318,7 @@ export default function MyScholarshipsPage() {
         {/* Loading */}
         {loading && <TableSkeleton />}
 
-        {/* Empty state — no matches at all */}
+        {/* Empty state: no matches at all */}
         {!loading && !error && matches.length === 0 && (
           <div className="flex flex-col items-center justify-center px-6 py-20 text-center">
             <IconEmpty className="h-12 w-12 text-gray-300 mb-4" />
@@ -335,7 +335,7 @@ export default function MyScholarshipsPage() {
           </div>
         )}
 
-        {/* Empty state — filter has no results */}
+        {/* Empty state: filter has no results */}
         {!loading && !error && matches.length > 0 && filtered.length === 0 && (
           <div className="flex flex-col items-center justify-center px-6 py-16 text-center">
             <IconEmpty className="h-10 w-10 text-gray-300 mb-3" />
@@ -446,7 +446,7 @@ export default function MyScholarshipsPage() {
                       {/* Name + sponsor */}
                       <td className="px-4 py-3.5">
                         <p className="font-semibold text-gray-900 truncate max-w-[220px]">{m.name}</p>
-                        <p className="text-xs text-gray-500 mt-0.5 truncate max-w-[220px]">{m.provider ?? "—"}</p>
+                        <p className="text-xs text-gray-500 mt-0.5 truncate max-w-[220px]">{m.provider ?? "-"}</p>
                       </td>
 
                       {/* Award */}

@@ -70,7 +70,7 @@ export function DeadlineReminderEmail({
           <Text style={{ margin: "0 0 4px 0" }}>
             <span style={accentText}>Due in {daysLabel(s.daysLeft)}</span>
             <span style={{ color: "#71717a", fontSize: "13px" }}>
-              {" "}— {s.deadline}
+              {" "}({s.deadline})
             </span>
           </Text>
           {s.amountMax && (

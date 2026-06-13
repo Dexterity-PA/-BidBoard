@@ -30,7 +30,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      'I put my entire senior cohort on BidBoard last fall. Average student found nine real matches in their first session — unheard of.',
+      'I put my entire senior cohort on BidBoard last fall. Average student found nine real matches in their first session. Unheard of.',
     name: 'Dr. Priya K.',
     school: 'College counselor, Denver',
     won: '42 students placed',

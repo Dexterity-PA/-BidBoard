@@ -10,51 +10,22 @@ const SERIF = 'var(--font-instrument-serif), Georgia, serif'
 type LinkItem = { label: string; href: string }
 
 const PRODUCT: LinkItem[] = [
-  { label: 'Features', href: '#features' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Changelog', href: '#' },
-  { label: 'Roadmap', href: '#' },
+  { label: 'How it works', href: '#how-it-works' },
+  { label: "Why it's free", href: '#why-free' },
   { label: 'Live scholarships', href: '/scholarships' },
 ]
 
 const RESOURCES: LinkItem[] = [
-  { label: 'Blog', href: '#' },
-  { label: 'Scholarship guides', href: '#' },
   { label: 'FAQ', href: '#faq' },
-  { label: 'Glossary', href: '#' },
+  { label: 'For Counselors', href: '#counselors' },
+  { label: 'Security', href: '/security' },
 ]
 
 const COMPANY: LinkItem[] = [
-  { label: 'About', href: '#' },
-  { label: 'Founder', href: '#' },
   { label: 'Contact', href: 'mailto:hello@bidboard.app' },
-  { label: 'Press kit', href: '#' },
+  { label: 'Privacy', href: '/privacy' },
+  { label: 'Terms', href: '/terms' },
 ]
-
-function SocialIcon({ label, path }: { label: string; path: string }) {
-  return (
-    <Link
-      href="#"
-      aria-label={label}
-      className="bb-social"
-      style={{
-        width: 32,
-        height: 32,
-        borderRadius: 8,
-        border: '1px solid rgba(255,255,255,0.14)',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'rgba(255,255,255,0.7)',
-        transition: 'color 0.2s, border-color 0.2s',
-      }}
-    >
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
-        <path d={path} stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </Link>
-  )
-}
 
 export default function Footer() {
   const [email, setEmail] = useState('')
@@ -97,7 +68,7 @@ export default function Footer() {
         borderTop: '1px solid rgba(255,255,255,0.08)',
       }}
     >
-      {/* Giant wordmark background — sized so the ascenders stay below the
+      {/* Giant wordmark background, sized so the ascenders stay below the
           newsletter divider, and anchored close to the footer's bottom edge. */}
       <span
         aria-hidden
@@ -283,23 +254,8 @@ export default function Footer() {
                 margin: '0 0 20px',
               }}
             >
-              Built by students in Arizona
+              Built by students in Arizona. Free, forever.
             </p>
-            <div style={{ display: 'flex', gap: 10 }}>
-              <SocialIcon label="X (Twitter)" path="M2 2l12 12M14 2L2 14" />
-              <SocialIcon
-                label="Instagram"
-                path="M4 4h8a4 4 0 0 1 4 4v8m-4 0H4V4M8 8a2 2 0 1 1 0 4 2 2 0 0 1 0-4M12 3h.01"
-              />
-              <SocialIcon
-                label="LinkedIn"
-                path="M3 6v8M3 3.5v.01M7 14V7M7 10c0-2 3-3 4-1v5M13 14V7M13 9c0-1 2-2 2 0v5"
-              />
-              <SocialIcon
-                label="GitHub"
-                path="M8 2a6 6 0 0 0-2 11.7V12c-2 .4-2.5-1-2.5-1M8 2a6 6 0 0 1 6 6c0 3-2 5-5 5.7V12M10.5 14l.5-3"
-              />
-            </div>
           </div>
 
           <FooterColumn title="Product" items={PRODUCT} />
@@ -327,7 +283,6 @@ export default function Footer() {
             {[
               { label: 'Privacy', href: '/privacy' },
               { label: 'Terms', href: '/terms' },
-              { label: 'Cookies', href: '#' },
             ].map((l) => (
               <Link
                 key={l.label}
@@ -357,10 +312,6 @@ export default function Footer() {
       </div>
 
       <style jsx>{`
-        :global(.bb-social):hover {
-          color: #fff !important;
-          border-color: rgba(255,255,255,0.3) !important;
-        }
         @media (max-width: 900px) {
           :global(.bb-footer-cols) {
             grid-template-columns: 1fr 1fr !important;

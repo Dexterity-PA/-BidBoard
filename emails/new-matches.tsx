@@ -13,7 +13,7 @@ import {
 export interface MatchedScholarship {
   name: string;
   provider: string;
-  matchScore: number; // 0–100
+  matchScore: number; // 0-100
   amountMin?: number | null;
   amountMax?: number | null;
   deadline?: string | null; // formatted
@@ -50,7 +50,7 @@ export function NewMatchesEmail({
           {count} new scholarship{count === 1 ? "" : "s"} match your profile
         </Text>
         <Text style={bodyText}>
-          Fresh opportunities just added to BidBoard — ranked by how well they
+          Fresh opportunities just added to BidBoard, ranked by how well they
           fit your profile.
         </Text>
       </Section>

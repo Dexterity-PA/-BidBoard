@@ -167,7 +167,7 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Breathing orb — wrapped for velocity scale on top of breathing scale */}
+      {/* Breathing orb, wrapped for velocity scale on top of breathing scale */}
       {!reduced && (
         <motion.div
           aria-hidden
@@ -197,7 +197,7 @@ export default function HeroSection() {
         </motion.div>
       )}
 
-      {/* Particles — velocity-boosted */}
+      {/* Particles (velocity-boosted) */}
       <ParticleCanvas reduced={reduced} velocity={velocity} />
 
       {/* Grain */}
@@ -244,7 +244,7 @@ export default function HeroSection() {
           Scholarship Strategy, Engineered
         </motion.p>
 
-        {/* Headline — per-word curtain reveal */}
+        {/* Headline: per-word curtain reveal */}
         <h1
           style={{
             fontFamily: SERIF,

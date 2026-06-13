@@ -12,7 +12,6 @@ import {
 } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { getStripe } from "@/lib/stripe";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -131,25 +130,6 @@ export async function saveNotifications(prefs: {
     });
 
   revalidatePath("/settings");
-}
-
-// ── Cancel Subscription ───────────────────────────────────────────────────────
-
-export async function cancelSubscription() {
-  const userId = await getVerifiedUserId();
-
-  const user = await db.query.users.findFirst({
-    where: eq(users.id, userId),
-    columns: { stripeSubscriptionId: true },
-  });
-
-  if (!user?.stripeSubscriptionId) {
-    throw new Error("No active subscription found.");
-  }
-
-  await getStripe().subscriptions.update(user.stripeSubscriptionId, {
-    cancel_at_period_end: true,
-  });
 }
 
 // ── Export Data ───────────────────────────────────────────────────────────────

@@ -38,7 +38,7 @@ const SCENES = [
   },
   {
     id: 6,
-    copy: 'Six weeks later — $8,500.',
+    copy: 'Six weeks later: $8,500.',
   },
 ] as const
 
@@ -285,7 +285,7 @@ function Scene4({ reduced }: { reduced: boolean }) {
           boxShadow: '0 24px 48px -30px rgba(11,11,16,0.25)',
         }}
       >
-        <p style={{ ...eyebrow, margin: '0 0 12px' }}>Gates Scholarship — Draft 1</p>
+        <p style={{ ...eyebrow, margin: '0 0 12px' }}>Gates Scholarship: Draft 1</p>
         <p
           style={{
             fontFamily: SERIF,
@@ -298,7 +298,7 @@ function Scene4({ reduced }: { reduced: boolean }) {
         >
           I captain my school&rsquo;s debate team as the first person in my family
           to compete past the state level. Debate taught me how to translate
-          evidence into persuasion&mdash;and how to say something careful in
+          evidence into persuasion, and how to say something careful in
           public
           <span className="bb-type-caret" aria-hidden>
             ▍
@@ -366,7 +366,7 @@ function Scene5({ reduced }: { reduced: boolean }) {
         boxShadow: '0 30px 60px -40px rgba(11,11,16,0.3)',
       }}
     >
-      <p style={{ ...eyebrow, margin: '0 0 14px' }}>Gates Scholarship — Draft 2</p>
+      <p style={{ ...eyebrow, margin: '0 0 14px' }}>Gates Scholarship: Draft 2</p>
       <p
         style={{
           fontFamily: SERIF,

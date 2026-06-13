@@ -10,8 +10,8 @@ export async function updateApplicationGoal(goal: number) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  // Minimum $1 — zero would cause division-by-zero in the ring progress calc.
-  // Maximum $10M — sanity cap.
+  // Minimum $1: zero would cause division-by-zero in the ring progress calc.
+  // Maximum $10M (sanity cap).
   const clamped = Math.max(1, Math.min(10_000_000, Math.round(goal)));
 
   await db

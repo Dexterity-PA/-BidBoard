@@ -15,7 +15,7 @@ import {
 import { sql } from "drizzle-orm";
 
 // ---------------------------------------------------------------------------
-// pgvector custom type — 1536-dimensional embeddings (Voyage AI voyage-3-lite)
+// pgvector custom type: 1536-dimensional embeddings (Voyage AI voyage-3-lite)
 // ---------------------------------------------------------------------------
 const vector1536 = customType<{ data: number[]; driverData: string }>({
   dataType() {
@@ -154,7 +154,7 @@ export const scholarships = pgTable(
     slug:                     text("slug").notNull(),
   },
   (t) => [
-    // idx_scholarships_deadline — partial index on active scholarships
+    // idx_scholarships_deadline: partial index on active scholarships
     index("idx_scholarships_deadline")
       .on(t.deadline)
       .where(sql`${t.isActive} = TRUE`),
@@ -324,7 +324,7 @@ export const userEmailPreferences = pgTable("user_email_preferences", {
 });
 
 // ---------------------------------------------------------------------------
-// sent_notifications  (dedupe — prevents re-sending the same reminder)
+// sent_notifications  (dedupe: prevents re-sending the same reminder)
 // ---------------------------------------------------------------------------
 export const sentNotifications = pgTable(
   "sent_notifications",
@@ -347,7 +347,7 @@ export const sentNotifications = pgTable(
 );
 
 // ---------------------------------------------------------------------------
-// notifications_log  (audit — every send attempt)
+// notifications_log  (audit: every send attempt)
 // ---------------------------------------------------------------------------
 export const notificationsLog = pgTable(
   "notifications_log",

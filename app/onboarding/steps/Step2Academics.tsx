@@ -41,7 +41,7 @@ export function Step2Academics({ form }: Props) {
                   className={inputClass}
                 />
               </FormControl>
-              <FormDescription className="text-xs text-slate-500">0.0 – 4.0</FormDescription>
+              <FormDescription className="text-xs text-slate-500">0.0 - 4.0</FormDescription>
               <FormMessage className="text-red-400 text-xs" />
             </FormItem>
           )}
@@ -63,7 +63,7 @@ export function Step2Academics({ form }: Props) {
                   className={inputClass}
                 />
               </FormControl>
-              <FormDescription className="text-xs text-slate-500">400 – 1600</FormDescription>
+              <FormDescription className="text-xs text-slate-500">400 - 1600</FormDescription>
               <FormMessage className="text-red-400 text-xs" />
             </FormItem>
           )}
@@ -85,7 +85,7 @@ export function Step2Academics({ form }: Props) {
                   className={inputClass}
                 />
               </FormControl>
-              <FormDescription className="text-xs text-slate-500">1 – 36</FormDescription>
+              <FormDescription className="text-xs text-slate-500">1 - 36</FormDescription>
               <FormMessage className="text-red-400 text-xs" />
             </FormItem>
           )}

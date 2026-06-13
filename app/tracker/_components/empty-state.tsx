@@ -11,7 +11,7 @@ export function EmptyState() {
         No scholarships tracked yet
       </h3>
       <p className="text-sm text-gray-500 mb-6 max-w-sm">
-        Save scholarships to track your application progress — from discovery all
+        Save scholarships to track your application progress, from discovery all
         the way to outcome.
       </p>
       <Link

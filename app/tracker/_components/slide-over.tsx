@@ -24,7 +24,7 @@ function fmtAward(app: ApplicationRow): string {
   if (app.awardAmount) return `$${app.awardAmount.toLocaleString()}`;
   if (app.scholarshipAmountMax) {
     if (app.scholarshipAmountMin && app.scholarshipAmountMin !== app.scholarshipAmountMax) {
-      return `$${app.scholarshipAmountMin.toLocaleString()} – $${app.scholarshipAmountMax.toLocaleString()}`;
+      return `$${app.scholarshipAmountMin.toLocaleString()} - $${app.scholarshipAmountMax.toLocaleString()}`;
     }
     return `$${app.scholarshipAmountMax.toLocaleString()}`;
   }
@@ -217,7 +217,7 @@ export function SlideOver({
                     <span className="text-gray-600 leading-relaxed">
                       {entry.label}{" "}
                       <span className="text-gray-400">
-                        — {fmtHistoryDate(entry.at)}
+                        ({fmtHistoryDate(entry.at)})
                       </span>
                     </span>
                   </li>

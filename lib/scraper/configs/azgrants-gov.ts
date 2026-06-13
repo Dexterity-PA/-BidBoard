@@ -1,7 +1,7 @@
 import type { FrameworkConfig } from "../framework";
 
 // NOTE: azgrants.az.gov permanently redirects to https://azregents.edu/ (Arizona Board
-// of Regents), which is an unrelated institutional site — not an Arizona grants portal.
+// of Regents), which is an unrelated institutional site, not an Arizona grants portal.
 // azgrants.gov and www.azgrants.gov also do not resolve to a scholarship database.
 //
 // If the intended source is the Arizona Board of Regents scholarship programs, the

@@ -5,7 +5,7 @@ import { scholarships } from "@/db/schema";
 import { formatAmount } from "@/lib/scholarships/format";
 
 export const runtime = "nodejs";
-export const alt = "Scholarship — BidBoard";
+export const alt = "Scholarship | BidBoard";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

@@ -26,7 +26,7 @@ export function DeadlineTimelineDots({ days, today }: Props) {
             key={day.dateStr}
             className="flex flex-1 min-w-[36px] flex-col items-center gap-1"
           >
-            {/* Dot stack — fixed height so all columns align */}
+            {/* Dot stack: fixed height so all columns align */}
             <div className="flex flex-col-reverse items-center gap-1 min-h-[60px] justify-start">
               {overflow > 0 && (
                 <span className="text-[9px] text-gray-400 leading-none">+{overflow}</span>
@@ -36,7 +36,7 @@ export function DeadlineTimelineDots({ days, today }: Props) {
                   <div
                     className={`rounded-full ${dotSizeClass(item.awardCents)} ${dotColorClass(item.deadline, today)} cursor-default`}
                   />
-                  {/* Tooltip — card must NOT have overflow-hidden */}
+                  {/* Tooltip: card must NOT have overflow-hidden */}
                   <div className="pointer-events-none group-hover:pointer-events-auto absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50
                                   w-max max-w-[200px] rounded-lg bg-gray-900 px-3 py-2
                                   opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-100">
@@ -58,7 +58,7 @@ export function DeadlineTimelineDots({ days, today }: Props) {
             {/* Day label */}
             <span className="text-[10px] text-gray-400 leading-none">{day.dayLabel}</span>
 
-            {/* Date number — highlighted for today */}
+            {/* Date number, highlighted for today */}
             <span
               className={`text-xs font-medium leading-none ${
                 isToday
