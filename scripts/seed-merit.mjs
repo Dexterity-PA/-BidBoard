@@ -13,7 +13,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const FILES = ["colleges-1", "colleges-2", "outside-1", "outside-2"];
+const FILES = ["colleges-1", "colleges-2", "outside-1", "outside-2", "colleges-3", "states", "outside-3"];
 export const LAST_CHECKED = "2026-09-24";
 export const SOURCE = "merit-ledger";
 
