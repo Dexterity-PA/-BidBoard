@@ -14,13 +14,14 @@ const TYPES: MeritType[] = ["college-program", "scholarship", "competition"];
 export default async function BrowsePage({
   searchParams,
 }: {
-  searchParams: Promise<{ type?: string; month?: string; match?: string }>;
+  searchParams: Promise<{ type?: string; month?: string; match?: string; q?: string }>;
 }) {
   const sp = await searchParams;
   const initial: BrowserInitial = {
     type: TYPES.includes(sp.type as MeritType) ? (sp.type as MeritType) : "all",
     month: sp.month && /^\d{4}-\d{2}$/.test(sp.month) ? sp.month : undefined,
     match: sp.match === "1",
+    q: typeof sp.q === "string" ? sp.q.slice(0, 100) : undefined,
   };
 
   return (

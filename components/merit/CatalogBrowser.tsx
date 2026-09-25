@@ -29,7 +29,7 @@ import {
 type TypeFilter = "all" | MeritType;
 type Sort = "deadline" | "name";
 
-export type BrowserInitial = { type?: TypeFilter; month?: string; match?: boolean };
+export type BrowserInitial = { type?: TypeFilter; month?: string; match?: boolean; q?: string };
 
 const HOW_OPTIONS = [
   { value: "", label: "Any way to apply" },
@@ -78,7 +78,7 @@ export default function CatalogBrowser({
   listings: MeritListing[];
   initial: BrowserInitial;
 }) {
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState(initial.q ?? "");
   const [type, setType] = useState<TypeFilter>(initial.type ?? "all");
   const [month, setMonth] = useState(initial.month ?? "");
   const [how, setHow] = useState("");
