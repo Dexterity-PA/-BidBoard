@@ -184,3 +184,79 @@ export function coverageHint(r: MeritRecord): string | null {
   if (/full tuition|up to full tuition|four years of tuition/.test(v)) return "Full tuition";
   return null;
 }
+
+/* ---------- timeline + requirements ---------- */
+
+export type TimelineStep = { label: string; date: string; iso: string | null };
+
+const MONTH_RE =
+  "(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)";
+const DATE_RE = new RegExp(`${MONTH_RE}\\s+(\\d{1,2})(-\\d{1,2})?(?:,\\s*(\\d{4}))?`, "i");
+const MONTH_INDEX: Record<string, number> = {
+  jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
+};
+
+function tidyLabel(s: string) {
+  let t = s
+    .replace(/,?\s*(\d{1,2}(:\d{2})?\s*(a\.m\.|p\.m\.)|noon|midnight)(\s+(Eastern|Central|Mountain|Pacific|MST|local time))?/gi, "")
+    .replace(/\s+,/g, ",")
+    .replace(/\s{2,}/g, " ")
+    .replace(/^[,;:\s-]+|[,;:\s-]+$/g, "")
+    .replace(/\s+(by|on|at)$/i, "")
+    .trim();
+  if (!t) return "Deadline";
+  if (t.startsWith("(")) t = `Apply ${t}`;
+  return t.charAt(0).toUpperCase() + t.slice(1);
+}
+
+/**
+ * Splits a deadline description into dated steps when it names more than one
+ * date, e.g. "Nomination October 15, 2026; admission November 1". Returns an
+ * empty list when there is one date or none, so pages show plain text instead.
+ */
+export function timelineSteps(r: MeritRecord): TimelineStep[] {
+  const parts = r.deadline.split(/;\s*/).map((p) => p.trim()).filter(Boolean);
+  const steps: TimelineStep[] = [];
+  for (const part of parts) {
+    const m = part.match(DATE_RE);
+    if (!m) continue;
+    const month = MONTH_INDEX[m[1].slice(0, 3).toLowerCase()];
+    const day = Number(m[2]);
+    const range = m[3] ?? "";
+    const year = m[4] ?? null;
+    const label = tidyLabel(part.replace(m[0], " "));
+    const shown = `${MONTHS[month - 1]} ${day}${range}${year ? `, ${year}` : ""}`;
+    const iso = year ? `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` : null;
+    steps.push({ label, date: shown, iso });
+  }
+  return steps.length >= 2 ? steps : [];
+}
+
+const REQUIREMENT_TAGS: [string, string][] = [
+  ["automatic-consideration", "No separate application: you are considered when you apply for admission"],
+  ["checkbox-opt-in", "Opt in on your admission application"],
+  ["separate-application", "A separate scholarship application"],
+  ["honors-application", "An honors college application"],
+  ["nomination", "A nomination from your school"],
+  ["self-nomination", "Self-nomination is allowed"],
+  ["invitation-only", "An invitation to compete after admission review"],
+  ["recommendations", "Recommendation letters"],
+  ["essay", "An essay"],
+  ["short-essay", "A short essay or statement"],
+  ["video", "A video"],
+  ["portfolio", "A portfolio"],
+  ["research", "Original research"],
+  ["speech", "A speech or recorded oration"],
+  ["interview", "An interview"],
+  ["finalist-round", "A finalist round or selection weekend"],
+  ["membership", "Membership in the sponsoring organization"],
+  ["local-route", "Entry through a local chapter or club"],
+  ["acceptance-required", "A college acceptance"],
+  ["fafsa-required", "The FAFSA (or CSS Profile)"],
+  ["fee", "An application fee"],
+];
+
+/** What a student should expect to prepare, derived from the listing's tags. */
+export function requirements(r: MeritRecord): string[] {
+  return REQUIREMENT_TAGS.filter(([t]) => r.tags.includes(t)).map(([, label]) => label);
+}

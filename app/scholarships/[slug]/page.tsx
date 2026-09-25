@@ -14,6 +14,9 @@ import {
   coverageHint,
   formatISODate,
   getListing,
+  requirements,
+  timelineSteps,
+  type MeritListing,
 } from "@/lib/merit/catalog";
 
 export function generateStaticParams() {
@@ -32,6 +35,21 @@ export async function generateMetadata({
     title: `${l.name}, ${l.provider} | Meritously`,
     description: `${l.value} Deadline: ${l.deadline}.`.slice(0, 300),
   };
+}
+
+/** Up to three related listings: same type, sharing a state or program tag, soonest first. */
+function related(l: MeritListing): MeritListing[] {
+  const keyTags = l.tags.filter((t) => t.startsWith("state:") || t === "stamps" || t.startsWith("major:"));
+  const pool = LISTINGS.filter(
+    (o) => o.id !== l.id && o.type === l.type && (o.status === "live" || o.status === "mixed-need"),
+  );
+  const score = (o: MeritListing) =>
+    (o.provider === l.provider ? 3 : 0) + keyTags.filter((t) => o.tags.includes(t)).length * 2 + (coverageHint(o) && coverageHint(l) ? 1 : 0);
+  return pool
+    .map((o) => ({ o, s: score(o) }))
+    .sort((a, b) => b.s - a.s || (a.o.deadlineDate ?? "9999").localeCompare(b.o.deadlineDate ?? "9999"))
+    .slice(0, 3)
+    .map((x) => x.o);
 }
 
 function hostOf(url: string) {
@@ -53,7 +71,15 @@ export default async function ListingPage({
 
   const saved = await isMeritSaved(l.slug).catch(() => false);
   const hint = coverageHint(l);
-  const shownTags = l.tags.filter((t) => TAG_LABEL[t]);
+  const steps = timelineSteps(l);
+  const needs = requirements(l);
+  const more = related(l);
+  const reportHref = `mailto:hello@bidboard.app?subject=${encodeURIComponent(
+    `Listing ${l.id}: ${l.name} (${l.provider})`,
+  )}&body=${encodeURIComponent("What looks wrong or out of date?\n\n")}`;
+  // Tags already covered by "What you'll need" are not repeated as badges.
+  const REQ_TAGS = new Set(["automatic-consideration", "checkbox-opt-in", "separate-application", "honors-application", "nomination", "self-nomination", "invitation-only", "recommendations", "essay", "short-essay", "video", "portfolio", "research", "speech", "interview", "finalist-round", "membership", "local-route", "acceptance-required", "fafsa-required", "fee"]);
+  const shownTags = l.tags.filter((t) => TAG_LABEL[t] && !REQ_TAGS.has(t));
   const statusClass =
     l.status === "live"
       ? "m-badge-verified"
@@ -112,13 +138,38 @@ export default async function ListingPage({
                   <dd>{l.value}</dd>
                 </div>
                 <div className="m-fact">
-                  <dt>Deadline</dt>
-                  <dd>{l.deadline || "Not published yet"}</dd>
+                  <dt>{steps.length ? "Timeline" : "Deadline"}</dt>
+                  <dd>
+                    {steps.length ? (
+                      <ol className="m-steps">
+                        {steps.map((st, i) => (
+                          <li key={i} className="m-step">
+                            <span className="m-step-date">{st.date}</span>
+                            <span>{st.label}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    ) : (
+                      l.deadline || "Not published yet"
+                    )}
+                  </dd>
                 </div>
                 {l.apply && (
                   <div className="m-fact">
                     <dt>How to apply</dt>
                     <dd>{l.apply}</dd>
+                  </div>
+                )}
+                {needs.length > 0 && (
+                  <div className="m-fact">
+                    <dt>What you&apos;ll need</dt>
+                    <dd>
+                      <ul className="m-needs">
+                        {needs.map((n) => (
+                          <li key={n}>{n}</li>
+                        ))}
+                      </ul>
+                    </dd>
                   </div>
                 )}
                 {l.eligibility && (
@@ -148,6 +199,27 @@ export default async function ListingPage({
                   </div>
                 )}
               </dl>
+
+              {more.length > 0 && (
+                <section className="m-related" aria-labelledby="related-title">
+                  <h2 id="related-title" className="m-h3">
+                    Similar awards
+                  </h2>
+                  <ul className="m-related-list">
+                    {more.map((o) => (
+                      <li key={o.id}>
+                        <Link href={`/scholarships/${o.slug}`} className="m-related-card">
+                          <span className="m-row-provider">{o.provider}</span>
+                          <span className="m-related-name">{o.name}</span>
+                          <span className="m-fine">
+                            {o.deadlineDate ? `Due ${formatISODate(o.deadlineDate)}` : "No confirmed date"}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
             </div>
 
             <aside className="m-aside">
@@ -194,6 +266,9 @@ export default async function ListingPage({
                   Details last checked {formatISODate(LAST_CHECKED)}. Programs change their rules,
                   so confirm on the official page before applying.
                 </p>
+                <a href={reportHref} className="m-arrow-link" style={{ fontSize: 13 }}>
+                  Report a problem with this listing
+                </a>
               </div>
             </aside>
           </div>

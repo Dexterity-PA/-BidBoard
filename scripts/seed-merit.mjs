@@ -126,8 +126,14 @@ async function main() {
         is_active = EXCLUDED.is_active, category = EXCLUDED.category, updated_at = now()
     `;
   }
-  const [{ n }] = await sql`SELECT count(*)::int AS n FROM scholarships WHERE source = ${SOURCE}`;
-  console.log(`Done. ${n} merit rows in the database.`);
+  // Listings that left the catalog (split or removed) stay in the table so
+  // tracked rows keep working, but stop being active.
+  const retired = await sql`
+    UPDATE scholarships SET is_active = false, updated_at = now()
+    WHERE source = ${SOURCE} AND is_active = true AND NOT (slug = ANY(${rows.map((r) => r.slug)}))
+    RETURNING slug`;
+  const [{ n }] = await sql`SELECT count(*)::int AS n FROM scholarships WHERE source = ${SOURCE} AND is_active`;
+  console.log(`Done. ${n} active merit rows; ${retired.length} retired.`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
