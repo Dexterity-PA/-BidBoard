@@ -115,12 +115,10 @@ function LogoMark({ className }: { className?: string }) {
 // ── Nav config ────────────────────────────────────────────────────────────────
 
 const NAV_ITEMS = [
-  { href: "/dashboard",  label: "Dashboard",       Icon: IconGrid     },
-  { href: "/matches",    label: "My Scholarships",  Icon: IconTarget    },
-  { href: "/tracker",   label: "Tracker",           Icon: IconClipboard },
-  { href: "/essays",     label: "Essay Engine",     Icon: IconPencil   },
-  { href: "/deadlines",  label: "Deadlines",        Icon: IconCalendar },
-  { href: "/settings",   label: "Settings",         Icon: IconGear     },
+  { href: "/tracker",      label: "Tracker",   Icon: IconClipboard },
+  { href: "/deadlines",    label: "Deadlines", Icon: IconCalendar  },
+  { href: "/scholarships", label: "Browse",    Icon: IconTarget    },
+  { href: "/settings",     label: "Settings",  Icon: IconGear      },
 ] as const;
 
 const PAGE_TITLES: Record<string, string> = {

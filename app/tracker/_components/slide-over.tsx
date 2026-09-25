@@ -1,5 +1,6 @@
 "use client";
 
+import { trackerAward, trackerHref } from "@/lib/tracker-format";
 import { useEffect, useState } from "react";
 import { X, BookOpen, Trophy, Calendar } from "lucide-react";
 import Link from "next/link";
@@ -20,16 +21,6 @@ const STATUS_OPTIONS = [
   { value: "skipped",     label: "Skipped" },
 ];
 
-function fmtAward(app: ApplicationRow): string {
-  if (app.awardAmount) return `$${app.awardAmount.toLocaleString()}`;
-  if (app.scholarshipAmountMax) {
-    if (app.scholarshipAmountMin && app.scholarshipAmountMin !== app.scholarshipAmountMax) {
-      return `$${app.scholarshipAmountMin.toLocaleString()} - $${app.scholarshipAmountMax.toLocaleString()}`;
-    }
-    return `$${app.scholarshipAmountMax.toLocaleString()}`;
-  }
-  return "TBD";
-}
 
 function fmtHistoryDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -143,7 +134,7 @@ export function SlideOver({
                 Award
               </label>
               <p className="text-sm font-semibold text-gray-900 py-2">
-                {fmtAward(app)}
+                {trackerAward(app)}
               </p>
             </div>
           </div>
@@ -230,7 +221,7 @@ export function SlideOver({
         {/* Footer */}
         <div className="shrink-0 border-t border-gray-200 p-4">
           <Link
-            href={`/scholarship/${app.scholarshipId}`}
+            href={trackerHref(app)}
             className="flex items-center justify-center gap-2 text-sm text-gray-500 hover:text-indigo-600 transition-colors"
           >
             View full scholarship →

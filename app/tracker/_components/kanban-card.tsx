@@ -1,5 +1,6 @@
 "use client";
 
+import { trackerAward, trackerHref } from "@/lib/tracker-format";
 import { Pencil, Trash2, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import type { ApplicationRow } from "@/app/actions/tracker";
@@ -24,19 +25,6 @@ function deadlineClass(deadline: string | null): string {
   return "text-gray-500";
 }
 
-function fmtAward(app: ApplicationRow): string {
-  if (app.awardAmount) return `$${app.awardAmount.toLocaleString()}`;
-  if (app.scholarshipAmountMax) {
-    if (
-      app.scholarshipAmountMin &&
-      app.scholarshipAmountMin !== app.scholarshipAmountMax
-    ) {
-      return `$${app.scholarshipAmountMin.toLocaleString()} - $${app.scholarshipAmountMax.toLocaleString()}`;
-    }
-    return `$${app.scholarshipAmountMax.toLocaleString()}`;
-  }
-  return "TBD";
-}
 
 function evBadgeClass(evScore: string | null): string {
   const val = parseFloat(evScore ?? "0");
@@ -87,7 +75,7 @@ export function KanbanCard({ application: app, onDragStart, onSelect, onDelete }
             <Trash2 className="w-3.5 h-3.5" />
           </button>
           <Link
-            href={`/scholarship/${app.scholarshipId}`}
+            href={trackerHref(app)}
             title="View detail"
             className="p-1 text-gray-400 hover:text-indigo-600 rounded"
             onClick={(e) => e.stopPropagation()}
@@ -102,7 +90,7 @@ export function KanbanCard({ application: app, onDragStart, onSelect, onDelete }
 
       {/* Award + EV badge */}
       <div className="flex items-center justify-between gap-2">
-        <span className="text-xs font-semibold text-gray-700">{fmtAward(app)}</span>
+        <span className="text-xs font-semibold text-gray-700">{trackerAward(app)}</span>
         {app.evScore && (
           <span
             className={cn(

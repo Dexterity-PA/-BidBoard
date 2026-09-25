@@ -11,6 +11,11 @@ const nextConfig = {
         destination: "/#why-free",
         permanent: true,
       },
+      // Merit pivot: the EV dashboard, EV matches and the need-based
+      // onboarding profile are retired. Temporary so they can come back.
+      { source: "/dashboard", destination: "/tracker", permanent: false },
+      { source: "/matches", destination: "/scholarships", permanent: false },
+      { source: "/onboarding", destination: "/tracker", permanent: false },
     ];
   },
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import { trackerAward, trackerHref } from "@/lib/tracker-format";
 import { useState, useMemo, useTransition } from "react";
 import Link from "next/link";
 import { Trash2, ExternalLink, Download, ChevronUp, ChevronDown } from "lucide-react";
@@ -282,11 +283,7 @@ export function ListView({ applications, onSelect, onDelete, onBulkStatus }: Pro
                     <p className="text-xs text-gray-400 truncate">{app.scholarshipProvider}</p>
                   </td>
                   <td className="px-3 py-3 text-gray-600 whitespace-nowrap">
-                    {app.awardAmount
-                      ? `$${app.awardAmount.toLocaleString()}`
-                      : app.scholarshipAmountMax
-                      ? `$${app.scholarshipAmountMax.toLocaleString()}`
-                      : "-"}
+                    {trackerAward(app)}
                   </td>
                   <td className="px-3 py-3 whitespace-nowrap">
                     {app.deadline ? (
@@ -331,7 +328,7 @@ export function ListView({ applications, onSelect, onDelete, onBulkStatus }: Pro
                   <td className="px-3 py-3" onClick={(e) => e.stopPropagation()}>
                     <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Link
-                        href={`/scholarship/${app.scholarshipId}`}
+                        href={trackerHref(app)}
                         className="p-1 text-gray-400 hover:text-indigo-600 rounded transition-colors"
                         title="View scholarship"
                       >

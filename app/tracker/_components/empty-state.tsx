@@ -11,14 +11,14 @@ export function EmptyState() {
         No scholarships tracked yet
       </h3>
       <p className="text-sm text-gray-500 mb-6 max-w-sm">
-        Save scholarships to track your application progress, from discovery all
-        the way to outcome.
+        Open any merit listing and choose Save to tracker. Each saved award
+        shows up here with its deadline.
       </p>
       <Link
-        href="/matches"
+        href="/scholarships"
         className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
       >
-        Browse Scholarships
+        Browse scholarships
       </Link>
     </div>
   );

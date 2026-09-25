@@ -45,6 +45,10 @@ export async function getApplications() {
       scholarshipAmountMin:      scholarships.amountMin,
       scholarshipAmountMax:      scholarships.amountMax,
       scholarshipApplicationUrl: scholarships.applicationUrl,
+      scholarshipSlug:           scholarships.slug,
+      scholarshipSource:         scholarships.source,
+      scholarshipAmountType:     scholarships.amountType,
+      scholarshipDescription:    scholarships.description,
       evScore:                   scholarshipMatches.evScore,
     })
     .from(applications)
@@ -74,6 +78,14 @@ export async function saveToTracker(scholarshipId: number) {
     { status: "saved", at: new Date().toISOString(), label: STATUS_LABELS.saved },
   ];
 
+  // Carry the scholarship's deadline onto the tracked row so the tracker,
+  // deadlines page and reminders see it without another join.
+  const [sch] = await db
+    .select({ deadline: scholarships.deadline })
+    .from(scholarships)
+    .where(eq(scholarships.id, scholarshipId))
+    .limit(1);
+
   // Upsert into applications (do nothing if already tracked)
   await db
     .insert(applications)
@@ -81,6 +93,7 @@ export async function saveToTracker(scholarshipId: number) {
       userId,
       scholarshipId,
       status: "saved",
+      deadline: sch?.deadline ?? null,
       statusHistory: initialHistory,
     })
     .onConflictDoNothing();

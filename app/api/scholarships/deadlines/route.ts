@@ -1,11 +1,11 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { eq, and, gte } from "drizzle-orm";
+import { and, eq, gte, notInArray } from "drizzle-orm";
 import { db } from "@/db";
-import { scholarshipMatches, scholarships } from "@/db/schema";
+import { applications, scholarships } from "@/db/schema";
 
+// Upcoming deadlines for everything the student tracks and has not finished.
 export async function GET() {
-  // ── 1. Auth ────────────────────────────────────────────────────────────────
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -13,7 +13,6 @@ export async function GET() {
 
   const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
 
-  // ── 2. Query saved scholarships with upcoming deadlines ────────────────────
   const rows = await db
     .select({
       id:             scholarships.id,
@@ -21,20 +20,19 @@ export async function GET() {
       provider:       scholarships.provider,
       amountMin:      scholarships.amountMin,
       amountMax:      scholarships.amountMax,
-      deadline:       scholarships.deadline,
+      deadline:       applications.deadline,
       applicationUrl: scholarships.applicationUrl,
     })
-    .from(scholarshipMatches)
-    .innerJoin(scholarships, eq(scholarshipMatches.scholarshipId, scholarships.id))
+    .from(applications)
+    .innerJoin(scholarships, eq(applications.scholarshipId, scholarships.id))
     .where(
       and(
-        eq(scholarshipMatches.userId, userId),
-        eq(scholarshipMatches.isSaved, true),
-        eq(scholarships.isActive, true),
-        gte(scholarships.deadline, today)
-      )
+        eq(applications.userId, userId),
+        gte(applications.deadline, today),
+        notInArray(applications.status, ["submitted", "won", "lost", "skipped"]),
+      ),
     )
-    .orderBy(scholarships.deadline);
+    .orderBy(applications.deadline);
 
   return NextResponse.json({ deadlines: rows, total: rows.length });
 }

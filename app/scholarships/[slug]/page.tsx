@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import SaveMeritButton from "@/components/merit/SaveMeritButton";
+import { isMeritSaved } from "@/app/actions/merit";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import {
   LAST_CHECKED,
@@ -49,6 +51,7 @@ export default async function ListingPage({
   const l = getListing(slug);
   if (!l) notFound();
 
+  const saved = await isMeritSaved(l.slug).catch(() => false);
   const hint = coverageHint(l);
   const shownTags = l.tags.filter((t) => TAG_LABEL[t]);
   const statusClass =
@@ -163,6 +166,9 @@ export default async function ListingPage({
                     Open official page
                   </a>
                 )}
+                <SignedIn>
+                  <SaveMeritButton slug={l.slug} initiallySaved={saved} />
+                </SignedIn>
                 <SignedOut>
                   <Link
                     href={`/sign-up?redirect_url=${encodeURIComponent(`/scholarships/${l.slug}`)}`}
