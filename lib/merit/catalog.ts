@@ -8,6 +8,9 @@ import outside3 from "@/data/merit/outside-3.json";
 import colleges4 from "@/data/merit/colleges-4.json";
 import outside4 from "@/data/merit/outside-4.json";
 import regional from "@/data/merit/regional.json";
+import colleges5 from "@/data/merit/colleges-5.json";
+import outside5 from "@/data/merit/outside-5.json";
+import regional2 from "@/data/merit/regional-2.json";
 
 export type MeritType = "college-program" | "scholarship" | "competition";
 export type MeritStatus =
@@ -55,6 +58,9 @@ const ALL = [
   ...colleges4,
   ...outside4,
   ...regional,
+  ...colleges5,
+  ...outside5,
+  ...regional2,
 ] as MeritRecord[];
 
 function slugify(s: string) {
