@@ -5,10 +5,10 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // The product is fully free; the old pricing page now points home.
+      // The product is fully free; the old pricing page points home.
       {
         source: "/pricing",
-        destination: "/#why-free",
+        destination: "/",
         permanent: true,
       },
       // Merit pivot: the EV dashboard, EV matches and the need-based
