@@ -71,7 +71,7 @@ export function StatusChangeEmail({
       <div style={card}>
         <Text
           style={{
-            color: "#fafafa",
+            color: "#0C0F0D",
             fontWeight: "600",
             margin: "0 0 2px 0",
             fontSize: "15px",
@@ -93,7 +93,7 @@ export function StatusChangeEmail({
       {status !== "lost" && (
         <Text style={mutedText}>
           Track all your applications at{" "}
-          <Link href={`${appUrl}/tracker`} style={{ color: "#a3e635" }}>
+          <Link href={`${appUrl}/tracker`} style={{ color: "#0F5D3E" }}>
             bidboard.app/tracker
           </Link>
         </Text>

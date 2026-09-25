@@ -1,8 +1,8 @@
 "use server";
 
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { db } from "@/db";
-import { applications, scholarships, scholarshipMatches } from "@/db/schema";
+import { applications, scholarships, scholarshipMatches, users } from "@/db/schema";
 import type { StatusHistoryEntry } from "@/db/schema";
 import { eq, and, inArray } from "drizzle-orm";
 import { logActivity } from "@/lib/activity";
@@ -38,6 +38,7 @@ export async function getApplications() {
       essayDraftIds:             applications.essayDraftIds,
       reminderSent:              applications.reminderSent,
       statusHistory:             applications.statusHistory,
+      checklist:                 applications.checklist,
       createdAt:                 applications.createdAt,
       updatedAt:                 applications.updatedAt,
       scholarshipName:           scholarships.name,
@@ -70,9 +71,27 @@ export type ApplicationRow = Awaited<ReturnType<typeof getApplications>>[number]
 // Write
 // ---------------------------------------------------------------------------
 
+/**
+ * Makes sure the signed-in student has a users row. The Clerk webhook normally
+ * creates it, but tracked rows reference users(id), so a missed webhook would
+ * otherwise make every save fail.
+ */
+async function ensureUserRow(userId: string) {
+  const existing = await db.select({ id: users.id }).from(users).where(eq(users.id, userId)).limit(1);
+  if (existing.length) return;
+  const u = await currentUser();
+  const email = u?.primaryEmailAddress?.emailAddress ?? u?.emailAddresses?.[0]?.emailAddress;
+  if (!email) throw new Error("No email on this account");
+  await db
+    .insert(users)
+    .values({ id: userId, email, firstName: u?.firstName ?? null, lastName: u?.lastName ?? null })
+    .onConflictDoNothing();
+}
+
 export async function saveToTracker(scholarshipId: number) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
+  await ensureUserRow(userId);
 
   const initialHistory: StatusHistoryEntry[] = [
     { status: "saved", at: new Date().toISOString(), label: STATUS_LABELS.saved },
@@ -192,4 +211,14 @@ export async function bulkUpdateStatus(ids: number[], status: string) {
         inArray(applications.id, ids),
       ),
     );
+}
+
+export async function updateApplicationChecklist(id: number, checklist: Record<string, boolean>) {
+  const { userId } = await auth();
+  if (!userId) throw new Error("Unauthorized");
+
+  await db
+    .update(applications)
+    .set({ checklist, updatedAt: new Date() })
+    .where(and(eq(applications.id, id), eq(applications.userId, userId)));
 }

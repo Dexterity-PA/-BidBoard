@@ -244,7 +244,6 @@ const REQUIREMENT_TAGS: [string, string][] = [
   ["separate-application", "A separate scholarship application"],
   ["honors-application", "An honors college application"],
   ["nomination", "A nomination from your school"],
-  ["self-nomination", "Self-nomination is allowed"],
   ["invitation-only", "An invitation to compete after admission review"],
   ["recommendations", "Recommendation letters"],
   ["essay", "An essay"],
@@ -262,7 +261,70 @@ const REQUIREMENT_TAGS: [string, string][] = [
   ["fee", "An application fee"],
 ];
 
-/** What a student should expect to prepare, derived from the listing's tags. */
+/** Requirements named in the listing's own text that tags may not carry. */
+const REQUIREMENT_TEXT: [RegExp, string][] = [
+  [/recommendation|counselor (report|materials)|nominators|references/i, "recommendations"],
+  [/\bessays?\b|personal statement|written responses|short responses/i, "essay"],
+  [/interview/i, "interview"],
+  [/\bvideo\b/i, "video"],
+  [/r[ée]sum[ée]/i, "resume"],
+  [/transcript/i, "transcript"],
+  [/test scores|\bSAT\b|\bACT\b/i, "scores"],
+];
+
+const EXTRA_LABEL: Record<string, string> = {
+  resume: "A resume or activities list",
+  transcript: "Your transcript",
+  scores: "Test scores (check whether they are optional)",
+};
+
+/** What a student should expect to prepare, from the listing's tags and its own wording. */
 export function requirements(r: MeritRecord): string[] {
-  return REQUIREMENT_TAGS.filter(([t]) => r.tags.includes(t)).map(([, label]) => label);
+  const text = `${r.apply} ${r.deadline}`;
+  const tags = new Set(r.tags);
+  const extras: string[] = [];
+  for (const [re, key] of REQUIREMENT_TEXT) {
+    if (!re.test(text)) continue;
+    if (key in EXTRA_LABEL) extras.push(EXTRA_LABEL[key]);
+    else if (!(key === "essay" && tags.has("short-essay"))) tags.add(key);
+  }
+  const fromTags = REQUIREMENT_TAGS.filter(([t]) => tags.has(t)).map(([, label]) => label);
+  return [...fromTags, ...extras];
+}
+
+/**
+ * Fills in missing years on timeline steps by carrying the year forward from
+ * the previous dated step, rolling over when the month goes backwards (a
+ * listing's steps are written in order). Steps before any known year stay null.
+ */
+export function datedSteps(r: MeritRecord): TimelineStep[] {
+  const steps = timelineSteps(r);
+  let year: number | null = null;
+  let lastMonth = 0;
+  // Seed from the first step that states a year, working backwards.
+  const firstKnown = steps.findIndex((s) => s.iso);
+  if (firstKnown > 0) {
+    let y = Number(steps[firstKnown].iso!.slice(0, 4));
+    let m = Number(steps[firstKnown].iso!.slice(5, 7));
+    for (let i = firstKnown - 1; i >= 0; i--) {
+      const mi = MONTH_INDEX[steps[i].date.slice(0, 3).toLowerCase()];
+      if (mi > m) y -= 1;
+      m = mi;
+      const d = Number(steps[i].date.split(" ")[1]);
+      steps[i] = { ...steps[i], iso: `${y}-${String(mi).padStart(2, "0")}-${String(d).padStart(2, "0")}` };
+    }
+  }
+  return steps.map((s) => {
+    const mi = MONTH_INDEX[s.date.slice(0, 3).toLowerCase()];
+    if (s.iso) {
+      year = Number(s.iso.slice(0, 4));
+      lastMonth = mi;
+      return s;
+    }
+    if (year === null) return s;
+    if (mi < lastMonth) year += 1;
+    lastMonth = mi;
+    const d = Number(s.date.split(" ")[1].replace(/\D.*$/, ""));
+    return { ...s, iso: `${year}-${String(mi).padStart(2, "0")}-${String(d).padStart(2, "0")}` };
+  });
 }

@@ -56,7 +56,7 @@ export function WeeklyDigestEmail({
         <Section style={{ marginBottom: "24px" }}>
           <Text
             style={{
-              color: "#fafafa",
+              color: "#0C0F0D",
               fontWeight: "600",
               fontSize: "15px",
               margin: "0 0 8px 0",
@@ -67,7 +67,7 @@ export function WeeklyDigestEmail({
           {upcomingDeadlines.map((d, i) => (
             <div key={i} style={{ ...card, marginBottom: "8px" }}>
               <Text
-                style={{ color: "#fafafa", fontSize: "14px", margin: "0 0 2px 0" }}
+                style={{ color: "#0C0F0D", fontSize: "14px", margin: "0 0 2px 0" }}
               >
                 {d.name}
               </Text>
@@ -83,7 +83,7 @@ export function WeeklyDigestEmail({
         <Section style={{ marginBottom: "24px" }}>
           <Text
             style={{
-              color: "#fafafa",
+              color: "#0C0F0D",
               fontWeight: "600",
               fontSize: "15px",
               margin: "0 0 8px 0",
@@ -94,7 +94,7 @@ export function WeeklyDigestEmail({
           {newMatches.map((m, i) => (
             <div key={i} style={{ ...card, marginBottom: "8px" }}>
               <Text
-                style={{ color: "#fafafa", fontSize: "14px", margin: "0 0 2px 0" }}
+                style={{ color: "#0C0F0D", fontSize: "14px", margin: "0 0 2px 0" }}
               >
                 {m.name}
               </Text>
@@ -111,7 +111,7 @@ export function WeeklyDigestEmail({
         <Section style={{ marginBottom: "24px" }}>
           <Text
             style={{
-              color: "#fafafa",
+              color: "#0C0F0D",
               fontWeight: "600",
               fontSize: "15px",
               margin: "0 0 8px 0",
@@ -129,7 +129,7 @@ export function WeeklyDigestEmail({
             return (
               <div key={i} style={{ ...card, marginBottom: "8px" }}>
                 <Text
-                  style={{ color: "#fafafa", fontSize: "14px", margin: "0 0 2px 0" }}
+                  style={{ color: "#0C0F0D", fontSize: "14px", margin: "0 0 2px 0" }}
                 >
                   {a.scholarshipName}
                 </Text>
@@ -183,7 +183,7 @@ export function WeeklyDigestEmail({
         Sent every Sunday. Update your preferences at{" "}
         <Link
           href={`${appUrl}/settings/notifications`}
-          style={{ color: "#a3e635" }}
+          style={{ color: "#0F5D3E" }}
         >
           bidboard.app/settings/notifications
         </Link>

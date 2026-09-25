@@ -58,7 +58,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
 // ─── Shared style tokens (imported by all templates) ─────────────────────────
 
 const body: React.CSSProperties = {
-  backgroundColor: "#09090b",
+  backgroundColor: "#FFFFFF",
   fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
   margin: 0,
   padding: 0,
@@ -75,7 +75,7 @@ const logoSection: React.CSSProperties = {
 };
 
 const logoText: React.CSSProperties = {
-  color: "#a3e635",
+  color: "#0F5D3E",
   fontSize: "22px",
   fontWeight: "700",
   letterSpacing: "-0.5px",
@@ -83,7 +83,7 @@ const logoText: React.CSSProperties = {
 };
 
 const divider: React.CSSProperties = {
-  borderColor: "#27272a",
+  borderColor: "#E6E8E6",
   borderTopWidth: "1px",
   margin: "32px 0",
 };
@@ -97,12 +97,12 @@ export const footerText: React.CSSProperties = {
 };
 
 export const footerLink: React.CSSProperties = {
-  color: "#a3e635",
+  color: "#0F5D3E",
   textDecoration: "underline",
 };
 
 export const heading: React.CSSProperties = {
-  color: "#fafafa",
+  color: "#0C0F0D",
   fontSize: "24px",
   fontWeight: "700",
   lineHeight: "32px",
@@ -110,7 +110,7 @@ export const heading: React.CSSProperties = {
 };
 
 export const bodyText: React.CSSProperties = {
-  color: "#d4d4d8",
+  color: "#2A302C",
   fontSize: "15px",
   lineHeight: "24px",
   margin: "0 0 16px 0",
@@ -124,21 +124,21 @@ export const mutedText: React.CSSProperties = {
 };
 
 export const card: React.CSSProperties = {
-  backgroundColor: "#18181b",
+  backgroundColor: "#F4F5F4",
   borderRadius: "8px",
   padding: "16px 20px",
   marginBottom: "12px",
-  border: "1px solid #27272a",
+  border: "1px solid #E6E8E6",
 };
 
 export const accentText: React.CSSProperties = {
-  color: "#a3e635",
+  color: "#0F5D3E",
   fontWeight: "600",
 };
 
 export const ctaButton: React.CSSProperties = {
-  backgroundColor: "#a3e635",
-  color: "#09090b",
+  backgroundColor: "#0F5D3E",
+  color: "#FFFFFF",
   borderRadius: "6px",
   fontSize: "14px",
   fontWeight: "600",

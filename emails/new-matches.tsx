@@ -61,7 +61,7 @@ export function NewMatchesEmail({
           <div key={i} style={card}>
             <Text
               style={{
-                color: "#fafafa",
+                color: "#0C0F0D",
                 fontWeight: "600",
                 fontSize: "15px",
                 margin: "0 0 2px 0",
@@ -77,12 +77,12 @@ export function NewMatchesEmail({
             <Text style={{ margin: "0 0 4px 0" }}>
               <span style={accentText}>{m.matchScore}% match</span>
               {amount && (
-                <span style={{ color: "#a1a1aa", fontSize: "13px" }}>
+                <span style={{ color: "#5A615C", fontSize: "13px" }}>
                   {" "}· {amount}
                 </span>
               )}
               {m.deadline && (
-                <span style={{ color: "#a1a1aa", fontSize: "13px" }}>
+                <span style={{ color: "#5A615C", fontSize: "13px" }}>
                   {" "}· Due {m.deadline}
                 </span>
               )}
@@ -90,7 +90,7 @@ export function NewMatchesEmail({
             {m.applicationUrl && (
               <Link
                 href={m.applicationUrl}
-                style={{ color: "#a3e635", fontSize: "13px" }}
+                style={{ color: "#0F5D3E", fontSize: "13px" }}
               >
                 View scholarship →
               </Link>

@@ -38,7 +38,7 @@ export function WelcomeEmail({
             ...bodyText,
             marginBottom: "12px",
             fontWeight: "600",
-            color: "#fafafa",
+            color: "#0C0F0D",
           }}
         >
           Get started in 3 steps:
@@ -51,7 +51,7 @@ export function WelcomeEmail({
             Step 1
           </Text>
           <Text style={{ ...bodyText, margin: 0 }}>
-            <strong style={{ color: "#fafafa" }}>Complete your profile</strong>.{" "}
+            <strong style={{ color: "#0C0F0D" }}>Complete your profile</strong>.{" "}
             The more we know about you, the better your matches.
           </Text>
         </div>
@@ -63,7 +63,7 @@ export function WelcomeEmail({
             Step 2
           </Text>
           <Text style={{ ...bodyText, margin: 0 }}>
-            <strong style={{ color: "#fafafa" }}>Browse your matches</strong>.
+            <strong style={{ color: "#0C0F0D" }}>Browse your matches</strong>.
             We rank scholarships by expected value per hour of effort.
           </Text>
         </div>
@@ -75,7 +75,7 @@ export function WelcomeEmail({
             Step 3
           </Text>
           <Text style={{ ...bodyText, margin: 0 }}>
-            <strong style={{ color: "#fafafa" }}>
+            <strong style={{ color: "#0C0F0D" }}>
               Add your first scholarship
             </strong>{" "}
             to the tracker and never miss a deadline.

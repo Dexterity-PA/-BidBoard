@@ -56,7 +56,7 @@ export function DeadlineReminderEmail({
         <div key={i} style={card}>
           <Text
             style={{
-              color: "#fafafa",
+              color: "#0C0F0D",
               fontWeight: "600",
               fontSize: "15px",
               margin: "0 0 2px 0",
@@ -75,13 +75,13 @@ export function DeadlineReminderEmail({
           </Text>
           {s.amountMax && (
             <Text
-              style={{ color: "#a1a1aa", fontSize: "13px", margin: "0 0 4px 0" }}
+              style={{ color: "#5A615C", fontSize: "13px", margin: "0 0 4px 0" }}
             >
-              Up to ${s.amountMax.toLocaleString()}
+              Up to ${Math.round(s.amountMax / 100).toLocaleString()}
             </Text>
           )}
           {s.applicationUrl && (
-            <Link href={s.applicationUrl} style={{ color: "#a3e635", fontSize: "13px" }}>
+            <Link href={s.applicationUrl} style={{ color: "#0F5D3E", fontSize: "13px" }}>
               Apply now →
             </Link>
           )}

@@ -278,6 +278,8 @@ export const applications = pgTable(
     essayDraftIds: text("essay_draft_ids").array(),
     reminderSent:  boolean("reminder_sent").notNull().default(false),
     statusHistory: jsonb("status_history").notNull().default(sql`'[]'::jsonb`),
+    // Which "What you'll need" items the student has finished, keyed by item text.
+    checklist:     jsonb("checklist").$type<Record<string, boolean>>().notNull().default(sql`'{}'::jsonb`),
     createdAt:     timestamp("created_at").notNull().defaultNow(),
     updatedAt:     timestamp("updated_at").notNull().defaultNow(),
   },

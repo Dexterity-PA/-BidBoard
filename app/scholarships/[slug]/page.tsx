@@ -79,7 +79,7 @@ export default async function ListingPage({
     `Listing ${l.id}: ${l.name} (${l.provider})`,
   )}&body=${encodeURIComponent("What looks wrong or out of date?\n\n")}`;
   // Tags already covered by "What you'll need" are not repeated as badges.
-  const REQ_TAGS = new Set(["automatic-consideration", "checkbox-opt-in", "separate-application", "honors-application", "nomination", "self-nomination", "invitation-only", "recommendations", "essay", "short-essay", "video", "portfolio", "research", "speech", "interview", "finalist-round", "membership", "local-route", "acceptance-required", "fafsa-required", "fee"]);
+  const REQ_TAGS = new Set(["automatic-consideration", "checkbox-opt-in", "separate-application", "honors-application", "nomination", "invitation-only", "recommendations", "essay", "short-essay", "video", "portfolio", "research", "speech", "interview", "finalist-round", "membership", "local-route", "acceptance-required", "fafsa-required", "fee"]);
   const shownTags = l.tags.filter((t) => TAG_LABEL[t] && !REQ_TAGS.has(t));
   const statusClass =
     l.status === "live"
