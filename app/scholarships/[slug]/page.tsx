@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import SaveMeritButton from "@/components/merit/SaveMeritButton";
+import MatchNote from "@/components/merit/MatchNote";
 import { isMeritSaved } from "@/app/actions/merit";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import {
@@ -238,6 +239,7 @@ export default async function ListingPage({
                     Open official page
                   </a>
                 )}
+                <MatchNote record={l} />
                 <SignedIn>
                   <SaveMeritButton slug={l.slug} initiallySaved={saved} />
                 </SignedIn>

@@ -2,6 +2,17 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import ProfileForm from "@/components/merit/ProfileForm";
+import {
+  EMPTY_PROFILE,
+  clearProfile,
+  hasProfile,
+  loadProfile,
+  matchListing,
+  saveProfile,
+  type MatchResult,
+  type Profile,
+} from "@/lib/merit/match";
 import {
   STATUS_LABEL,
   TYPE_LABEL,
@@ -18,7 +29,7 @@ import {
 type TypeFilter = "all" | MeritType;
 type Sort = "deadline" | "name";
 
-export type BrowserInitial = { type?: TypeFilter; month?: string };
+export type BrowserInitial = { type?: TypeFilter; month?: string; match?: boolean };
 
 const HOW_OPTIONS = [
   { value: "", label: "Any way to apply" },
@@ -80,6 +91,20 @@ export default function CatalogBrowser({
   const [hideClosed, setHideClosed] = useState(true);
   const [sort, setSort] = useState<Sort>("deadline");
   const [today, setToday] = useState<string | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [editing, setEditing] = useState(false);
+  const [onlyMatches, setOnlyMatches] = useState(true);
+  useEffect(() => {
+    const p = loadProfile();
+    setProfile(p && hasProfile(p) ? p : null);
+    if (initial.match && !(p && hasProfile(p))) setEditing(true);
+  }, [initial.match]);
+
+  const verdicts = useMemo(() => {
+    const m = new Map<string, MatchResult>();
+    if (profile) for (const l of listings) m.set(l.id, matchListing(l, profile));
+    return m;
+  }, [listings, profile]);
   useEffect(() => setToday(localToday()), []);
 
   const states = useMemo(
@@ -98,6 +123,7 @@ export default function CatalogBrowser({
       if (state && !stateTags(l).includes(state)) return false;
       if (month && !(l.deadlineDate ?? "").startsWith(month)) return false;
       if (hideClosed && today && l.deadlineDate && l.deadlineDate < today) return false;
+      if (profile && onlyMatches && verdicts.get(l.id)?.verdict === "no") return false;
       return matchesQuery(l, q);
     });
     return out.sort((a, b) => {
@@ -106,7 +132,12 @@ export default function CatalogBrowser({
       const bd = b.deadlineDate ?? "9999";
       return ad.localeCompare(bd) || a.name.localeCompare(b.name);
     });
-  }, [listings, type, size, showUnconfirmed, includeNeed, how, elig, state, month, hideClosed, today, q, sort]);
+  }, [listings, type, size, showUnconfirmed, includeNeed, how, elig, state, month, hideClosed, today, q, sort, profile, onlyMatches, verdicts]);
+
+  const hiddenByProfile = useMemo(
+    () => (profile ? listings.filter((l) => verdicts.get(l.id)?.verdict === "no").length : 0),
+    [listings, profile, verdicts],
+  );
 
   function clearAll() {
     setQ("");
@@ -256,6 +287,51 @@ export default function CatalogBrowser({
       </aside>
 
       <section aria-live="polite">
+        {editing ? (
+          <ProfileForm
+            initial={profile ?? EMPTY_PROFILE}
+            onCancel={() => setEditing(false)}
+            onSave={(p) => {
+              saveProfile(p);
+              setProfile(hasProfile(p) ? p : null);
+              setOnlyMatches(true);
+              setEditing(false);
+            }}
+          />
+        ) : profile ? (
+          <div className="m-matchbar">
+            <span>
+              {onlyMatches
+                ? `Showing awards that fit your profile. ${hiddenByProfile} hidden that rule you out.`
+                : "Showing everything, including awards that rule you out."}
+            </span>
+            <span className="m-matchbar-actions">
+              <button type="button" className="m-clear" onClick={() => setOnlyMatches((v) => !v)}>
+                {onlyMatches ? "Show all" : "Only my matches"}
+              </button>
+              <button type="button" className="m-clear" onClick={() => setEditing(true)}>
+                Edit profile
+              </button>
+              <button
+                type="button"
+                className="m-clear"
+                onClick={() => {
+                  clearProfile();
+                  setProfile(null);
+                }}
+              >
+                Clear
+              </button>
+            </span>
+          </div>
+        ) : (
+          <div className="m-matchbar m-matchbar-empty">
+            <span>See only the awards you qualify for. It takes four answers.</span>
+            <button type="button" className="m-btn m-btn-primary m-btn-sm" onClick={() => setEditing(true)}>
+              Get my matches
+            </button>
+          </div>
+        )}
         <div className="m-results-bar">
           <span>
             {results.length === 1 ? "1 listing" : `${results.length} listings`}
@@ -291,7 +367,7 @@ export default function CatalogBrowser({
           <ul className="m-rows">
             {results.map((l) => (
               <li key={l.id}>
-                <Row l={l} today={today} />
+                <Row l={l} today={today} verdict={verdicts.get(l.id)} />
               </li>
             ))}
           </ul>
@@ -341,7 +417,15 @@ function StatusBadge({ l }: { l: MeritListing }) {
   return <span className={`m-badge ${cls}`}>{STATUS_LABEL[l.status]}</span>;
 }
 
-function Row({ l, today }: { l: MeritListing; today: string | null }) {
+function Row({
+  l,
+  today,
+  verdict,
+}: {
+  l: MeritListing;
+  today: string | null;
+  verdict?: MatchResult;
+}) {
   const hint = coverageHint(l);
   return (
     <Link href={`/scholarships/${l.slug}`} className="m-row">
@@ -355,6 +439,16 @@ function Row({ l, today }: { l: MeritListing; today: string | null }) {
         <StatusBadge l={l} />
         <span className="m-badge">{TYPE_LABEL[l.type]}</span>
         {hint && <span className="m-badge m-badge-gold">{hint}</span>}
+        {verdict?.verdict === "check" && (
+          <span className="m-badge m-badge-watch" title={`Confirm: ${verdict.reasons.join("; ")}`}>
+            Check eligibility
+          </span>
+        )}
+        {verdict?.verdict === "no" && (
+          <span className="m-badge" title={verdict.reasons.join("; ")}>
+            {verdict.reasons[0]}
+          </span>
+        )}
       </div>
     </Link>
   );

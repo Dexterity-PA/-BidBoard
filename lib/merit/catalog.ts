@@ -25,6 +25,12 @@ export type MeritRecord = {
   notes: string;
   tags: string[];
   sources: string[];
+  /** Minimum high-school GPA when the official terms state one. */
+  minGpa?: number | null;
+  /** "uw" when the minimum is stated as unweighted, "any" otherwise. */
+  gpaScale?: "uw" | "any" | null;
+  /** Who can apply by status: citizens only, citizens or permanent residents, anyone, or unstated. */
+  citizenship?: "citizen" | "citizen-or-pr" | "any" | null;
 };
 
 export type MeritListing = MeritRecord & { slug: string };

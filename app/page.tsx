@@ -88,8 +88,8 @@ export default function HomePage() {
                 <Link href="/scholarships" className="m-btn m-btn-primary">
                   Browse scholarships
                 </Link>
-                <Link href="/sign-up" className="m-btn m-btn-ghost">
-                  Create free account
+                <Link href="/scholarships?match=1" className="m-btn m-btn-ghost">
+                  Get my matches
                 </Link>
               </div>
             </div>
