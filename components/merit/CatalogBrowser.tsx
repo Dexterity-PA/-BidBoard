@@ -90,6 +90,8 @@ export default function CatalogBrowser({
   const [includeNeed, setIncludeNeed] = useState(false);
   const [hideClosed, setHideClosed] = useState(true);
   const [sort, setSort] = useState<Sort>("deadline");
+  const PAGE = 50;
+  const [limit, setLimit] = useState(PAGE);
   const [today, setToday] = useState<string | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [editing, setEditing] = useState(false);
@@ -133,6 +135,9 @@ export default function CatalogBrowser({
       return ad.localeCompare(bd) || a.name.localeCompare(b.name);
     });
   }, [listings, type, size, showUnconfirmed, includeNeed, how, elig, state, month, hideClosed, today, q, sort, profile, onlyMatches, verdicts]);
+
+  // Start from the first page whenever the result set changes.
+  useEffect(() => setLimit(PAGE), [results]);
 
   const hiddenByProfile = useMemo(
     () => (profile ? listings.filter((l) => verdicts.get(l.id)?.verdict === "no").length : 0),
@@ -365,12 +370,19 @@ export default function CatalogBrowser({
           </div>
         ) : (
           <ul className="m-rows">
-            {results.map((l) => (
+            {results.slice(0, limit).map((l) => (
               <li key={l.id}>
                 <Row l={l} today={today} verdict={verdicts.get(l.id)} />
               </li>
             ))}
           </ul>
+        )}
+        {results.length > limit && (
+          <div style={{ display: "flex", justifyContent: "center", paddingTop: 20 }}>
+            <button type="button" className="m-btn m-btn-ghost" onClick={() => setLimit((n) => n + PAGE)}>
+              Show {Math.min(PAGE, results.length - limit)} more of {results.length - limit}
+            </button>
+          </div>
         )}
       </section>
     </div>
