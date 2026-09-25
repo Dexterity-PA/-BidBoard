@@ -1,16 +1,15 @@
 export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
-import { Instrument_Serif, DM_Sans } from "next/font/google";
+import { Instrument_Serif, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import CursorSpotlight from "./_components/global/CursorSpotlight";
-import GradientWash from "./_components/global/GradientWash";
-import SectionNumbers from "./_components/global/SectionNumbers";
+import "./merit.css";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
+  style: ["normal", "italic"],
   variable: "--font-instrument-serif",
   display: "swap",
 });
@@ -22,25 +21,29 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
+
+const title = "BidBoard: free merit scholarship finder";
+const description =
+  "A free, merit-only catalog for high-achieving students: college full rides, national awards and niche scholarships, each linked to its official source.";
+
 export const metadata: Metadata = {
-  title: "BidBoard: Scholarship strategy, engineered.",
-  description:
-    "BidBoard scores every scholarship by expected value: award × win probability ÷ hours. Stop guessing. Start winning.",
+  title,
+  description,
   icons: { icon: "/icon.svg" },
   openGraph: {
-    title: "BidBoard: Scholarship strategy, engineered.",
-    description:
-      "BidBoard scores every scholarship by expected value: award × win probability ÷ hours. Stop guessing. Start winning.",
+    title,
+    description,
     url: "https://bidboard.app",
     siteName: "BidBoard",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "BidBoard: Scholarship strategy, engineered.",
-    description:
-      "BidBoard scores every scholarship by expected value: award × win probability ÷ hours. Stop guessing. Start winning.",
-  },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 export default function RootLayout({
@@ -52,14 +55,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html
         lang="en"
-        className={`${instrumentSerif.variable} ${dmSans.variable}`}
+        className={`${instrumentSerif.variable} ${dmSans.variable} ${plexMono.variable}`}
       >
-        <body>
-          <GradientWash />
-          <CursorSpotlight />
-          <SectionNumbers />
-          {children}
-        </body>
+        <body>{children}</body>
       </html>
     </ClerkProvider>
   );

@@ -1,45 +1,21 @@
-import { notFound, redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
-import { eq, and, ne } from "drizzle-orm";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { db } from "@/db";
-import { scholarships, scholarshipMatches } from "@/db/schema";
+import { notFound } from "next/navigation";
+import { SignedOut } from "@clerk/nextjs";
+import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import {
-  formatAmount,
-  formatDate,
-  type MatchData,
-  type SimilarScholarship,
-} from "@/lib/scholarships/format";
-import { getScholarshipBySlug } from "@/lib/scholarships/get-by-slug";
-import {
-  ScholarshipHeader,
-  AboutSection,
-  EligibilitySection,
-  ApplicationSection,
-  SimilarScholarshipsSection,
-  MetaFooter,
-  ClosedBanner,
-} from "@/components/scholarships/public-preview";
-import { AuthGatedSection } from "@/components/scholarships/auth-gated-section";
+  LAST_CHECKED,
+  LISTINGS,
+  STATUS_LABEL,
+  TAG_LABEL,
+  TYPE_LABEL,
+  coverageHint,
+  formatISODate,
+  getListing,
+} from "@/lib/merit/catalog";
 
-export const revalidate = 3600;
-
-// Pre-build top 100 at deploy time.
-// TODO: swap ORDER BY to a view-count column once view tracking is implemented.
-// Falls back to [] if the migration hasn't been applied yet (ISR handles on-demand).
-export async function generateStaticParams() {
-  try {
-    const rows = await db
-      .select({ slug: scholarships.slug })
-      .from(scholarships)
-      .where(eq(scholarships.isActive, true))
-      .orderBy(scholarships.id)
-      .limit(100);
-    return rows.map((r) => ({ slug: r.slug }));
-  } catch {
-    return [];
-  }
+export function generateStaticParams() {
+  return LISTINGS.map((l) => ({ slug: l.slug }));
 }
 
 export async function generateMetadata({
@@ -48,193 +24,176 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const s = await getScholarshipBySlug(slug);
-  if (!s) return { title: "Scholarship | BidBoard" };
-
-  const amount = formatAmount(s.amountMin, s.amountMax);
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app";
-
+  const l = getListing(slug);
+  if (!l) return { title: "Scholarship not found | BidBoard" };
   return {
-    title: `${s.name} Scholarship: ${amount} | BidBoard`,
-    description: `${s.name} by ${s.provider}. Award: ${amount}. View eligibility, requirements, and your match score on BidBoard.`,
-    alternates: {
-      canonical: `${siteUrl}/scholarships/${slug}`,
-    },
-    openGraph: {
-      title: `${s.name}: ${amount}`,
-      description: `${s.name} by ${s.provider}. ${amount} award.`,
-      url: `${siteUrl}/scholarships/${slug}`,
-    },
+    title: `${l.name}, ${l.provider} | BidBoard`,
+    description: `${l.value} Deadline: ${l.deadline}.`.slice(0, 300),
   };
 }
 
-export default async function ScholarshipDetailPage({
+function hostOf(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
+export default async function ListingPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app";
+  const l = getListing(slug);
+  if (!l) notFound();
 
-  // ── Numeric ID fallback → 301 to canonical slug ────────────────────────────
-  if (/^\d+$/.test(slug)) {
-    const row = await db
-      .select({ slug: scholarships.slug })
-      .from(scholarships)
-      .where(eq(scholarships.id, parseInt(slug, 10)))
-      .limit(1);
-    if (row[0]?.slug) redirect(`/scholarships/${row[0].slug}`);
-    notFound();
-  }
-
-  // ── Auth (optional, page is public) ──────────────────────────────────────
-  const { userId } = await auth();
-
-  // ── Fetch scholarship ──────────────────────────────────────────────────────
-  const scholarship = await getScholarshipBySlug(slug);
-  if (!scholarship) notFound();
-
-  // ── Match data (logged-in users only) ─────────────────────────────────────
-  let matchData: MatchData = null;
-  if (userId) {
-    const rows = await db
-      .select({
-        evScore:        scholarshipMatches.evScore,
-        evPerHour:      scholarshipMatches.evPerHour,
-        estimatedHours: scholarshipMatches.estimatedHours,
-        matchScore:     scholarshipMatches.matchScore,
-        isSaved:        scholarshipMatches.isSaved,
-      })
-      .from(scholarshipMatches)
-      .where(
-        and(
-          eq(scholarshipMatches.userId, userId),
-          eq(scholarshipMatches.scholarshipId, scholarship.id)
-        )
-      )
-      .limit(1);
-    if (rows[0]) matchData = { ...rows[0], isSaved: rows[0].isSaved ?? false };
-  }
-
-  // ── Similar scholarships ───────────────────────────────────────────────────
-  const similarRaw = await db
-    .select({
-      id:        scholarships.id,
-      name:      scholarships.name,
-      provider:  scholarships.provider,
-      amountMin: scholarships.amountMin,
-      amountMax: scholarships.amountMax,
-      deadline:  scholarships.deadline,
-      category:  scholarships.category,
-      slug:      scholarships.slug,
-    })
-    .from(scholarships)
-    .where(
-      and(
-        ne(scholarships.id, scholarship.id),
-        eq(scholarships.isActive, true),
-        scholarship.category
-          ? eq(scholarships.category, scholarship.category)
-          : eq(scholarships.localityLevel, scholarship.localityLevel ?? "national")
-      )
-    )
-    .limit(4);
-
-  // ── JSON-LD structured data ────────────────────────────────────────────────
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOccupationalCredential",
-    name: scholarship.name,
-    description: scholarship.description ?? undefined,
-    url: `${siteUrl}/scholarships/${scholarship.slug}`,
-    offers: {
-      "@type": "Offer",
-      price: formatAmount(scholarship.amountMin, scholarship.amountMax),
-      priceCurrency: "USD",
-    },
-  };
+  const hint = coverageHint(l);
+  const shownTags = l.tags.filter((t) => TAG_LABEL[t]);
+  const statusClass =
+    l.status === "live"
+      ? "m-badge-verified"
+      : l.status === "watchlist"
+        ? "m-badge-watch"
+        : l.status === "mixed-need"
+          ? "m-badge-need"
+          : "m-badge-dir";
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
-      {/* ── Nav ── */}
-      <header className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link href="/" className="text-sm font-bold tracking-tight text-indigo-600">
-            BidBoard
-          </Link>
-          <div className="flex items-center gap-3">
-            {userId ? (
-              <Link
-                href="/dashboard"
-                className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
-              >
-                Dashboard →
-              </Link>
-            ) : (
-              <>
-                <Link
-                  href="/sign-in"
-                  className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
-                >
-                  Sign in
-                </Link>
-                <Link
-                  href="/sign-up"
-                  className="rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-700"
-                >
-                  Get started
-                </Link>
-              </>
-            )}
+    <div className="m-page">
+      <SiteHeader />
+      <main className="m-main">
+        <div className="m-wrap">
+          <nav className="m-crumb" aria-label="Breadcrumb">
+            <Link href="/scholarships">Browse</Link> <span aria-hidden>/</span>{" "}
+            <Link href={`/scholarships?type=${l.type}`}>{TYPE_LABEL[l.type]}s</Link>
+          </nav>
+
+          <header className="m-detail-head">
+            <span className="m-eyebrow">{l.provider}</span>
+            <h1 className="m-detail-title">{l.name}</h1>
+            <div className="m-detail-badges">
+              {l.status !== "excluded" && (
+                <span className={`m-badge ${statusClass}`}>{STATUS_LABEL[l.status]}</span>
+              )}
+              <span className="m-badge">{TYPE_LABEL[l.type]}</span>
+              {hint && <span className="m-badge m-badge-gold">{hint}</span>}
+            </div>
+          </header>
+
+          <div className="m-detail">
+            <div>
+              {l.status === "watchlist" && (
+                <p className="m-notice m-notice-watch">
+                  This is a real program, but some details for the current cycle are not
+                  published or not yet confirmed. Check the official source before you plan
+                  around it.
+                </p>
+              )}
+              {l.status === "mixed-need" && (
+                <p className="m-notice m-notice-need">
+                  Financial need is part of how this award is decided, alongside merit.
+                </p>
+              )}
+              {l.status === "directory" && (
+                <p className="m-notice m-notice-dir">
+                  This is a group of awards reached through one application. Each award inside it
+                  has its own rules.
+                </p>
+              )}
+
+              <dl className="m-facts">
+                <div className="m-fact">
+                  <dt>Award</dt>
+                  <dd>{l.value}</dd>
+                </div>
+                <div className="m-fact">
+                  <dt>Deadline</dt>
+                  <dd>{l.deadline || "Not published yet"}</dd>
+                </div>
+                {l.apply && (
+                  <div className="m-fact">
+                    <dt>How to apply</dt>
+                    <dd>{l.apply}</dd>
+                  </div>
+                )}
+                {l.eligibility && (
+                  <div className="m-fact">
+                    <dt>Who can apply</dt>
+                    <dd>{l.eligibility}</dd>
+                  </div>
+                )}
+                {l.notes && (
+                  <div className="m-fact">
+                    <dt>Good to know</dt>
+                    <dd>{l.notes}</dd>
+                  </div>
+                )}
+                {shownTags.length > 0 && (
+                  <div className="m-fact">
+                    <dt>Details</dt>
+                    <dd>
+                      <div className="m-detail-badges">
+                        {shownTags.map((t) => (
+                          <span key={t} className="m-badge">
+                            {TAG_LABEL[t]}
+                          </span>
+                        ))}
+                      </div>
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+
+            <aside className="m-aside">
+              <div className="m-card">
+                <span className="m-card-label">Next deadline</span>
+                <span className="m-card-deadline">
+                  {l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
+                </span>
+                {l.sources[0] && (
+                  <a
+                    href={l.sources[0]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="m-btn m-btn-primary"
+                  >
+                    Open official page
+                  </a>
+                )}
+                <SignedOut>
+                  <Link
+                    href={`/sign-up?redirect_url=${encodeURIComponent(`/scholarships/${l.slug}`)}`}
+                    className="m-btn m-btn-ghost"
+                  >
+                    Sign up to save this award
+                  </Link>
+                </SignedOut>
+              </div>
+
+              <div className="m-card">
+                <span className="m-card-label">Official sources</span>
+                <ul className="m-sources">
+                  {l.sources.map((s) => (
+                    <li key={s}>
+                      <a href={s} target="_blank" rel="noopener noreferrer">
+                        {hostOf(s)}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p className="m-fine">
+                  Details last checked {formatISODate(LAST_CHECKED)}. Programs change their rules,
+                  so confirm on the official page before applying.
+                </p>
+              </div>
+            </aside>
           </div>
-        </div>
-      </header>
-
-      {/* ── JSON-LD ── */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="mb-6 flex items-center gap-1.5 text-sm text-gray-500">
-          <Link href="/scholarships" className="transition-colors hover:text-gray-700">
-            Browse
-          </Link>
-          <span>›</span>
-          <span className="max-w-[280px] truncate font-medium text-gray-700">
-            {scholarship.name}
-          </span>
-        </div>
-
-        {!scholarship.isActive && <ClosedBanner />}
-
-        {/* Two-column layout */}
-        <div className="mt-4 flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
-          {/* Left column */}
-          <div className="min-w-0 flex-1 space-y-6">
-            <ScholarshipHeader scholarship={scholarship} />
-            <AboutSection scholarship={scholarship} />
-            <EligibilitySection scholarship={scholarship} />
-            {scholarship.isActive && (
-              <ApplicationSection scholarship={scholarship} />
-            )}
-            <SimilarScholarshipsSection scholarships={similarRaw as SimilarScholarship[]} />
-            <MetaFooter scholarship={scholarship} />
-          </div>
-
-          {/* Right sidebar */}
-          <aside className="w-full shrink-0 lg:sticky lg:top-20 lg:w-80 lg:self-start">
-            <AuthGatedSection
-              matchData={matchData}
-              isLoggedIn={!!userId}
-              scholarshipSlug={scholarship.slug}
-              scholarshipId={scholarship.id}
-            />
-          </aside>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

@@ -75,14 +75,14 @@ export default function OGImage() {
             marginBottom: 24,
           }}
         >
-          Scholarship strategy,
+          Find the merit scholarships
           <br />
-          engineered.
+          most students miss.
         </div>
 
         {/* Subtext */}
         <div style={{ display: "flex", fontSize: 28, color: "#94A3B8", lineHeight: 1.4 }}>
-          Score every scholarship by expected value. Stop guessing. Start winning.
+          A free, merit-only catalog: college full rides, national awards and niche scholarships.
         </div>
       </div>
     ),
