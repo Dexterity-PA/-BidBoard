@@ -19,6 +19,21 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // Meritously brand: every indigo-* utility in the app renders in the
+        // brand green, so older screens match without touching each class.
+        indigo: {
+          50: "#ECF5F0",
+          100: "#D5EADF",
+          200: "#ACD5BF",
+          300: "#7DB99B",
+          400: "#4E9A75",
+          500: "#2A7D57",
+          600: "#0F5D3E",
+          700: "#0B4A31",
+          800: "#093B28",
+          900: "#072E1F",
+          950: "#041C13",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

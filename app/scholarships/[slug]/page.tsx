@@ -27,9 +27,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const l = getListing(slug);
-  if (!l) return { title: "Scholarship not found | BidBoard" };
+  if (!l) return { title: "Scholarship not found | Meritously" };
   return {
-    title: `${l.name}, ${l.provider} | BidBoard`,
+    title: `${l.name}, ${l.provider} | Meritously`,
     description: `${l.value} Deadline: ${l.deadline}.`.slice(0, 300),
   };
 }
@@ -74,7 +74,7 @@ export default async function ListingPage({
           </nav>
 
           <header className="m-detail-head">
-            <span className="m-eyebrow">{l.provider}</span>
+            <span className="m-detail-provider">{l.provider}</span>
             <h1 className="m-detail-title">{l.name}</h1>
             <div className="m-detail-badges">
               {l.status !== "excluded" && (

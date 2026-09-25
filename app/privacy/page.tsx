@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 
 /* ─── Design tokens (mirrors app/page.tsx) ─────────────────────── */
 const C = {
-  indigo:      "#4F46E5",
-  indigoDark:  "#4338CA",
-  indigoTint:  "#EEF2FF",
+  indigo:      "#0F5D3E",
+  indigoDark:  "#0B4A31",
+  indigoTint:  "#E7F1EC",
   white:       "#FFFFFF",
   surface1:    "#F9FAFB",
   surface2:    "#F3F4F6",
@@ -58,7 +58,7 @@ function Nav() {
             letterSpacing: "-0.02em",
           }}
         >
-          BidBoard
+          Meritously
         </Link>
 
         <div className="mkt-hide-mobile" style={{ display: "flex", gap: 32, alignItems: "center" }}>
@@ -152,7 +152,7 @@ function Footer() {
               marginBottom: 4,
             }}
           >
-            BidBoard
+            Meritously
           </div>
           <div style={{ fontFamily: sans, fontSize: 13, color: C.textOnDark }}>
             Scholarship strategy, engineered.
@@ -179,7 +179,7 @@ function Footer() {
             ))}
           </nav>
           <span style={{ fontFamily: sans, fontSize: 12, color: C.textOnDark }}>
-            © 2026 BidBoard
+            © 2026 Meritously
           </span>
         </div>
       </div>
@@ -356,7 +356,7 @@ export default function PrivacyPage() {
               Last updated: April 16, 2026
             </p>
             <p style={{ ...prose(15), marginTop: 12 }}>
-              This policy explains what data BidBoard collects, why we collect it, and how
+              This policy explains what data Meritously collects, why we collect it, and how
               we protect it. We've written it in plain English first, with the formal
               language below each summary.
             </p>
@@ -396,7 +396,7 @@ export default function PrivacyPage() {
             <p style={prose()}>
               We collect standard web analytics data: pages visited, features used,
               session duration, and browser/device type. This data is aggregated and used
-              only to improve BidBoard. We do not build individual behavioral profiles for
+              only to improve Meritously. We do not build individual behavioral profiles for
               advertising purposes.
             </p>
 
@@ -426,13 +426,13 @@ export default function PrivacyPage() {
             <p style={prose()}>
               We use your profile data and OpenAI-generated embeddings to rank and surface
               scholarships that best match your background and goals. This matching runs
-              entirely within BidBoard's infrastructure. Your profile is not shared with
+              entirely within Meritously's infrastructure. Your profile is not shared with
               OpenAI beyond the embedding generation step.
             </p>
 
             <p style={subHeading}>Essay Engine</p>
             <p style={prose()}>
-              When you use BidBoard's essay tools, your profile and essay drafts may be
+              When you use Meritously's essay tools, your profile and essay drafts may be
               processed by OpenAI's API to generate suggestions. Only the data necessary
               for a given request is sent. We do not send your entire profile
               indiscriminately.
@@ -506,7 +506,7 @@ export default function PrivacyPage() {
 
             <div style={calloutBox}>
               <strong>Plain English:</strong> We use a small, carefully chosen set of
-              vendors to run BidBoard. Each one sees only the data it needs to do its job.
+              vendors to run Meritously. Each one sees only the data it needs to do its job.
               None of them can sell your data.
             </div>
 
@@ -527,7 +527,7 @@ export default function PrivacyPage() {
                 name: "Vercel",
                 role: "Hosting & Infrastructure",
                 detail:
-                  "Serves the BidBoard application. Vercel may log request metadata (IP address, request path, response time) for infrastructure and security purposes. These logs are retained for a limited period per Vercel's data retention policy.",
+                  "Serves the Meritously application. Vercel may log request metadata (IP address, request path, response time) for infrastructure and security purposes. These logs are retained for a limited period per Vercel's data retention policy.",
               },
               {
                 name: "OpenAI",
@@ -575,7 +575,7 @@ export default function PrivacyPage() {
 
             <p style={subHeading}>Account Deletion</p>
             <p style={prose()}>
-              When you delete your BidBoard account, we initiate deletion of your personal
+              When you delete your Meritously account, we initiate deletion of your personal
               data within 30 days. This includes your profile, essays, tracker entries, and
               any preference data. Some data may persist in encrypted database backups for
               up to 90 days before those backups are rotated and overwritten.
@@ -605,7 +605,7 @@ export default function PrivacyPage() {
 
             <p style={prose()}>
               Depending on your location, you may have the following rights under GDPR,
-              CCPA, or similar privacy laws. BidBoard honors these rights for all users
+              CCPA, or similar privacy laws. Meritously honors these rights for all users
               regardless of geography.
             </p>
 
@@ -613,7 +613,7 @@ export default function PrivacyPage() {
               {
                 right: "Access",
                 description:
-                  "You can request a copy of all personal data BidBoard holds about you.",
+                  "You can request a copy of all personal data Meritously holds about you.",
               },
               {
                 right: "Correction",
@@ -672,7 +672,7 @@ export default function PrivacyPage() {
 
             <p style={subHeading}>Essential Cookies</p>
             <p style={prose()}>
-              These cookies are required for BidBoard to function. They include your
+              These cookies are required for Meritously to function. They include your
               session token (managed by Clerk) and a cookie that remembers whether you've
               completed onboarding. You cannot opt out of essential cookies without also
               disabling your account session.
@@ -687,14 +687,14 @@ export default function PrivacyPage() {
 
             <p style={subHeading}>What We Don't Use</p>
             <p style={prose()}>
-              BidBoard does not use advertising cookies, retargeting pixels, or third-party
+              Meritously does not use advertising cookies, retargeting pixels, or third-party
               tracking scripts (e.g., Google Ads, Meta Pixel, LinkedIn Insight Tag).
             </p>
 
             <p style={subHeading}>Opting Out</p>
             <p style={prose()}>
               You can block or delete cookies through your browser settings. Note that
-              blocking essential cookies will prevent BidBoard from functioning correctly.
+              blocking essential cookies will prevent Meritously from functioning correctly.
               For non-essential cookies, most modern browsers allow selective blocking via
               their privacy settings.
             </p>
@@ -709,13 +709,13 @@ export default function PrivacyPage() {
             <h2 style={sectionHeading}>Children's Privacy</h2>
 
             <div style={calloutBox}>
-              <strong>Plain English:</strong> BidBoard is not for children under 13. If
+              <strong>Plain English:</strong> Meritously is not for children under 13. If
               you're under 13, please don't create an account. If we discover we've
               collected data from a child under 13, we'll delete it immediately.
             </div>
 
             <p style={prose()}>
-              BidBoard is not directed at children under the age of 13. We do not
+              Meritously is not directed at children under the age of 13. We do not
               knowingly collect personal information from children under 13 in compliance
               with the Children's Online Privacy Protection Act (COPPA).
             </p>
@@ -768,7 +768,7 @@ export default function PrivacyPage() {
               .
             </p>
             <p style={{ ...prose(), marginTop: 12 }}>
-              Continued use of BidBoard after a policy change takes effect constitutes
+              Continued use of Meritously after a policy change takes effect constitutes
               acceptance of the updated policy.
             </p>
           </section>
@@ -804,7 +804,7 @@ export default function PrivacyPage() {
                 color: C.textMuted,
               }}
             >
-              <strong style={{ color: C.textPrimary }}>BidBoard</strong>
+              <strong style={{ color: C.textPrimary }}>Meritously</strong>
               <br />
               Privacy inquiries:{" "}
               <a

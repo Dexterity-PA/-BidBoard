@@ -107,7 +107,7 @@ function LogoMark({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none">
       <path d="M12 2L4 6.5V13C4 17.4 7.4 21.5 12 22C16.6 21.5 20 17.4 20 13V6.5L12 2Z" fill="white" opacity="0.95" />
-      <path d="M9 12L11 14L15 10" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9 12L11 14L15 10" stroke="#0F5D3E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -153,7 +153,7 @@ export function AppShell({
   const pageTitle =
     Object.entries(PAGE_TITLES).find(
       ([key]) => pathname === key || pathname.startsWith(key + "/")
-    )?.[1] ?? "BidBoard";
+    )?.[1] ?? "Meritously";
 
   const initial = (userName?.[0] ?? "S").toUpperCase();
 
@@ -184,7 +184,7 @@ export function AppShell({
             <LogoMark className="h-5 w-5" />
           </div>
           <span className="text-[15px] font-extrabold tracking-tight text-gray-900">
-            BidBoard
+            Meritously
           </span>
         </div>
 

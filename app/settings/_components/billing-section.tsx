@@ -22,7 +22,7 @@ export function BillingSection(_props: Props) {
       <div>
         <h2 className="text-lg font-semibold text-gray-900">Plan</h2>
         <p className="text-sm text-gray-500 mt-0.5">
-          BidBoard is completely free. Every feature is included.
+          Meritously is completely free. Every feature is included.
         </p>
       </div>
 

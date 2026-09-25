@@ -25,19 +25,22 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
 
-    /* BidBoard landing tokens (bb- prefix to avoid shadcn collisions) */
-    --bb-surface: #FAFAF7;
-    --bb-surface-alt: #F3F2ED;
+    /* Meritously tokens (bb- prefix kept so older pages pick up the brand) */
+    --bb-surface: #FFFFFF;
+    --bb-surface-alt: #F4F5F4;
     --bb-surface-elevated: #FFFFFF;
-    --bb-ink: #0B0B10;
-    --bb-ink-muted: #5B5B66;
-    --bb-ink-subtle: #8A8A95;
-    --bb-primary: #4F46E5;
-    --bb-primary-hover: #4338CA;
-    --bb-primary-soft: #EEF2FF;
-    --bb-accent: #4C1D95;
-    --bb-border-hairline: rgba(11, 11, 16, 0.08);
-    --bb-border-strong: rgba(11, 11, 16, 0.14);
+    --bb-ink: #0C0F0D;
+    --bb-ink-muted: #5A615C;
+    --bb-ink-subtle: #8B918D;
+    --bb-primary: #0F5D3E;
+    --bb-primary-hover: #0B4A31;
+    --bb-primary-soft: #E7F1EC;
+    --bb-accent: #0B4A31;
+    --bb-border-hairline: rgba(12, 15, 13, 0.08);
+    --bb-border-strong: rgba(12, 15, 13, 0.14);
+    /* Older pages reference these families; both now resolve to Geist. */
+    --font-instrument-serif: var(--font-geist);
+    --font-dm-sans: var(--font-geist);
   }
 
   .dark {
@@ -68,7 +71,7 @@
     @apply border-border;
   }
   body {
-    font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bb-surface);
     color: var(--bb-ink);
   }

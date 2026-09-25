@@ -96,7 +96,7 @@ export function DeadlineReminderEmail({
 
       <Text style={mutedText}>
         You&apos;re receiving this because you have active scholarships in your
-        BidBoard tracker.
+        Meritously tracker.
       </Text>
     </EmailLayout>
   );

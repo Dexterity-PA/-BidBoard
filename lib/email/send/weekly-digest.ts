@@ -181,7 +181,7 @@ export async function runWeeklyDigestCron(): Promise<{
       userId,
       type: "weekly_digest",
       to: email,
-      subject: "📊 Your BidBoard week in review",
+      subject: "📊 Your Meritously week in review",
       react: React.createElement(WeeklyDigestEmail, {
         upcomingDeadlines,
         newMatches,

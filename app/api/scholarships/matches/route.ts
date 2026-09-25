@@ -74,7 +74,7 @@ export async function GET() {
   // ── 5. Sort by evPerHour descending ────────────────────────────────────────
   scored.sort((a, b) => b.evPerHour - a.evPerHour);
 
-  // ── 6. All matches included: BidBoard is fully free ───────────────────────
+  // ── 6. All matches included: Meritously is fully free ───────────────────────
   const results = scored;
 
   // ── 7. Bulk upsert into scholarship_matches ────────────────────────────────

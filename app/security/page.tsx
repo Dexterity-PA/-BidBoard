@@ -5,9 +5,9 @@ const SANS = 'var(--font-dm-sans), -apple-system, sans-serif'
 const SERIF = 'var(--font-instrument-serif), Georgia, serif'
 
 export const metadata: Metadata = {
-  title: 'Security | BidBoard',
+  title: 'Security | Meritously',
   description:
-    'How BidBoard handles your data: encryption, storage, retention, and the guarantees we make to every student.',
+    'How Meritously handles your data: encryption, storage, retention, and the guarantees we make to every student.',
 }
 
 export default function SecurityPage() {
@@ -59,7 +59,7 @@ export default function SecurityPage() {
           Postgres infrastructure managed by Neon, and never sell or share it
           with third parties. You can export everything we know about you, or
           delete your account with everything it contains, with one click in
-          settings. If BidBoard ever changes hands or winds down, we&rsquo;ll
+          settings. If Meritously ever changes hands or winds down, we&rsquo;ll
           give you a full CSV of your matches, essays, and deadline pipeline
           before the lights go off.
         </p>
@@ -89,7 +89,7 @@ export default function SecurityPage() {
               textDecoration: 'none',
             }}
           >
-            ← Back to BidBoard
+            ← Back to Meritously
           </Link>
         </div>
       </div>

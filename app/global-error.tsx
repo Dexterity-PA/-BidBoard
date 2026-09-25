@@ -10,7 +10,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error("[BidBoard] Global error:", error);
+    console.error("[Meritously] Global error:", error);
   }, [error]);
 
   return (
@@ -46,7 +46,7 @@ export default function GlobalError({
               letterSpacing: "-0.02em",
             }}
           >
-            BidBoard
+            Meritously
           </p>
 
           {/* Headline */}
@@ -61,7 +61,7 @@ export default function GlobalError({
               margin: "0 0 16px",
             }}
           >
-            BidBoard hit a critical error.
+            Meritously hit a critical error.
           </h1>
 
           {/* Subtext */}
@@ -86,7 +86,7 @@ export default function GlobalError({
               justifyContent: "center",
               height: 44,
               padding: "0 28px",
-              background: "#4F46E5",
+              background: "#0F5D3E",
               color: "#ffffff",
               fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
               fontSize: 15,

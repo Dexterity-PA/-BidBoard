@@ -2,15 +2,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | BidBoard",
+  title: "Terms of Service | Meritously",
   description:
-    "BidBoard's Terms of Service. Understand your rights, our responsibilities, and what to expect when using BidBoard.",
+    "Meritously's Terms of Service. Understand your rights, our responsibilities, and what to expect when using Meritously.",
 };
 
 /* ─── Design tokens ─────────────────────────────────────────── */
 const C = {
-  indigo:      "#4F46E5",
-  indigoDark:  "#4338CA",
+  indigo:      "#0F5D3E",
+  indigoDark:  "#0B4A31",
   white:       "#FFFFFF",
   surface1:    "#F9FAFB",
   surface2:    "#F3F4F6",
@@ -62,7 +62,7 @@ function Nav() {
             letterSpacing: "-0.02em",
           }}
         >
-          BidBoard
+          Meritously
         </Link>
 
         <div
@@ -159,7 +159,7 @@ function Footer() {
               marginBottom: 4,
             }}
           >
-            BidBoard
+            Meritously
           </div>
           <div style={{ fontFamily: sans, fontSize: 13, color: C.textOnDark }}>
             Scholarship strategy, engineered.
@@ -193,7 +193,7 @@ function Footer() {
             ))}
           </nav>
           <span style={{ fontFamily: sans, fontSize: 12, color: C.textOnDark }}>
-            © 2026 BidBoard
+            © 2026 Meritously
           </span>
         </div>
       </div>
@@ -350,7 +350,7 @@ export default function TermsPage() {
                 maxWidth: 560,
               }}
             >
-              These Terms govern your use of BidBoard. We&apos;ve written them in plain English
+              These Terms govern your use of Meritously. We&apos;ve written them in plain English
               so they&apos;re actually readable, but the formal language below is what&apos;s legally
               binding.
             </p>
@@ -421,12 +421,12 @@ export default function TermsPage() {
             <Section
               id="acceptance"
               title="1. Acceptance of Terms"
-              summary="By using BidBoard, you're agreeing to these Terms. If you don't agree, please don't use the service."
+              summary="By using Meritously, you're agreeing to these Terms. If you don't agree, please don't use the service."
             >
               <p style={p}>
                 These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement
-                between you and BidBoard, Inc. (&quot;BidBoard,&quot; &quot;we,&quot; &quot;our,&quot; or
-                &quot;us&quot;). By accessing or using bidboard.app or any BidBoard application, API,
+                between you and Meritously, Inc. (&quot;Meritously,&quot; &quot;we,&quot; &quot;our,&quot; or
+                &quot;us&quot;). By accessing or using bidboard.app or any Meritously application, API,
                 or service (collectively, the &quot;Service&quot;), you acknowledge that you have
                 read, understood, and agree to be bound by these Terms and our{" "}
                 <Link href="/privacy" style={{ color: C.indigo, textDecoration: "underline" }}>
@@ -444,16 +444,16 @@ export default function TermsPage() {
             <Section
               id="service"
               title="2. Description of Service"
-              summary="BidBoard helps you find and track scholarships using AI-assisted matching. We don't apply for scholarships on your behalf and can't guarantee you'll win any."
+              summary="Meritously helps you find and track scholarships using AI-assisted matching. We don't apply for scholarships on your behalf and can't guarantee you'll win any."
             >
               <p style={p}>
-                BidBoard provides a web-based platform that aggregates scholarship opportunities,
+                Meritously provides a web-based platform that aggregates scholarship opportunities,
                 uses algorithmic and AI-assisted matching to surface relevant scholarships based
                 on user-provided profile information, and offers tools for application tracking,
                 essay drafting assistance, and deadline management.
               </p>
               <p style={p}>
-                BidBoard does not submit scholarship applications on behalf of users and does
+                Meritously does not submit scholarship applications on behalf of users and does
                 not guarantee the accuracy, completeness, or continued availability of any
                 scholarship listed. Scholarship information is provided for informational
                 purposes only. You should independently verify scholarship requirements,
@@ -473,7 +473,7 @@ export default function TermsPage() {
               <p style={p}>
                 If you are under 18 years of age, you represent that a parent or legal guardian
                 has reviewed and agreed to these Terms on your behalf and consents to your use
-                of the Service. BidBoard reserves the right to terminate accounts of users we
+                of the Service. Meritously reserves the right to terminate accounts of users we
                 have reasonable cause to believe are under 13 or who lack required parental
                 consent.
               </p>
@@ -496,7 +496,7 @@ export default function TermsPage() {
               </p>
               <p style={p}>
                 You are solely responsible for maintaining the confidentiality of your account
-                credentials and for all activities that occur under your account. BidBoard is
+                credentials and for all activities that occur under your account. Meritously is
                 not liable for any loss or damage resulting from unauthorized access caused by
                 your failure to safeguard your credentials.
               </p>
@@ -509,7 +509,7 @@ export default function TermsPage() {
                   contact@bidboard.app
                 </a>{" "}
                 if you suspect unauthorized use of your account. You may not create more than
-                one personal account. BidBoard reserves the right to suspend or terminate
+                one personal account. Meritously reserves the right to suspend or terminate
                 accounts that contain inaccurate information or that violate these Terms.
               </p>
             </Section>
@@ -517,15 +517,15 @@ export default function TermsPage() {
             <Section
               id="billing"
               title="5. Free Service"
-              summary="BidBoard is free. There are no paid plans, no subscriptions, and we do not collect payment information."
+              summary="Meritously is free. There are no paid plans, no subscriptions, and we do not collect payment information."
             >
               <p style={p}>
-                BidBoard is provided free of charge. There are no paid subscription plans,
+                Meritously is provided free of charge. There are no paid subscription plans,
                 no usage fees, and no seat fees, including for counselors and counseling
                 practices. We do not request, collect, or store payment information.
               </p>
               <p style={p}>
-                If BidBoard ever introduces paid offerings in the future, we will update
+                If Meritously ever introduces paid offerings in the future, we will update
                 these Terms and provide at least thirty (30) days&apos; advance notice
                 before any charge applies to your account. No existing feature will be
                 moved behind a paywall without that notice.
@@ -535,10 +535,10 @@ export default function TermsPage() {
             <Section
               id="cancellation"
               title="6. Account Closure"
-              summary="You can close your account anytime in settings. Because BidBoard is free, there are no charges and nothing to refund."
+              summary="You can close your account anytime in settings. Because Meritously is free, there are no charges and nothing to refund."
             >
               <p style={p}>
-                You may stop using BidBoard or delete your account at any time through your
+                You may stop using Meritously or delete your account at any time through your
                 account settings or by emailing{" "}
                 <a
                   href="mailto:contact@bidboard.app"
@@ -558,36 +558,36 @@ export default function TermsPage() {
             <Section
               id="ip"
               title="7. Intellectual Property"
-              summary="BidBoard owns the platform: its code, design, and technology. You own your essays and personal data. We only use your content to provide the service, not to claim ownership of it."
+              summary="Meritously owns the platform: its code, design, and technology. You own your essays and personal data. We only use your content to provide the service, not to claim ownership of it."
             >
               <p style={p}>
-                BidBoard and its licensors retain all intellectual property rights in and to
+                Meritously and its licensors retain all intellectual property rights in and to
                 the Service, including software, algorithms, interface designs, logos,
-                trademarks, and content we create (&quot;BidBoard IP&quot;). You may not copy, modify,
-                distribute, sell, or lease any BidBoard IP without our express written
+                trademarks, and content we create (&quot;Meritously IP&quot;). You may not copy, modify,
+                distribute, sell, or lease any Meritously IP without our express written
                 permission.
               </p>
               <p style={p}>
                 You retain full ownership of the content you submit to the Service, including
                 profile information, essays, and uploaded documents (&quot;User Content&quot;). By
-                submitting User Content, you grant BidBoard a non-exclusive, worldwide,
+                submitting User Content, you grant Meritously a non-exclusive, worldwide,
                 royalty-free license to use, store, display, and process your User Content
                 solely to provide and improve the Service. This license ends when you delete
                 your content or close your account, subject to reasonable backup retention
-                periods. BidBoard does not claim ownership of your User Content.
+                periods. Meritously does not claim ownership of your User Content.
               </p>
             </Section>
 
             <Section
               id="prohibited"
               title="8. Prohibited Uses"
-              summary="Use BidBoard for finding and tracking scholarships. Don't try to break it, scrape it, impersonate others, or use it for anything fraudulent or illegal."
+              summary="Use Meritously for finding and tracking scholarships. Don't try to break it, scrape it, impersonate others, or use it for anything fraudulent or illegal."
             >
               <p style={p}>You agree not to use the Service to:</p>
               <ul style={ul}>
                 <li style={li}>Violate any applicable law or regulation;</li>
                 <li style={li}>
-                  Submit false or misleading information to scholarships or to BidBoard;
+                  Submit false or misleading information to scholarships or to Meritously;
                 </li>
                 <li style={li}>Impersonate any person or entity;</li>
                 <li style={li}>
@@ -624,7 +624,7 @@ export default function TermsPage() {
             <Section
               id="warranties"
               title="9. Disclaimer of Warranties"
-              summary="BidBoard is provided as-is. We work hard to keep it reliable and accurate, but we can't make legal guarantees about uptime, scholarship results, or outcomes. Whether you win a scholarship is up to you and the awarding organization."
+              summary="Meritously is provided as-is. We work hard to keep it reliable and accurate, but we can't make legal guarantees about uptime, scholarship results, or outcomes. Whether you win a scholarship is up to you and the awarding organization."
             >
               <p style={p}>
                 THE SERVICE IS PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS WITHOUT
@@ -647,7 +647,7 @@ export default function TermsPage() {
             <Section
               id="liability"
               title="10. Limitation of Liability"
-              summary="If something goes wrong with BidBoard, our legal liability is capped. We're not responsible for things like missed scholarship opportunities. Our total liability to you is capped at what you've paid us in the past year."
+              summary="If something goes wrong with Meritously, our legal liability is capped. We're not responsible for things like missed scholarship opportunities. Our total liability to you is capped at what you've paid us in the past year."
             >
               <p style={p}>
                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, BIDBOARD AND ITS OFFICERS,
@@ -683,7 +683,7 @@ export default function TermsPage() {
                 you consent to the data practices described in the Privacy Policy.
               </p>
               <p style={p}>
-                BidBoard handles personal data in accordance with applicable privacy laws,
+                Meritously handles personal data in accordance with applicable privacy laws,
                 including where applicable the California Consumer Privacy Act (CCPA) and the
                 General Data Protection Regulation (GDPR). If you have questions about our data
                 practices, contact us at{" "}
@@ -700,10 +700,10 @@ export default function TermsPage() {
             <Section
               id="changes"
               title="12. Changes to Terms"
-              summary="We may update these Terms from time to time. We'll give you at least 30 days' notice before material changes take effect. If you keep using BidBoard after an update, you're accepting the new Terms."
+              summary="We may update these Terms from time to time. We'll give you at least 30 days' notice before material changes take effect. If you keep using Meritously after an update, you're accepting the new Terms."
             >
               <p style={p}>
-                BidBoard reserves the right to modify these Terms at any time. For material
+                Meritously reserves the right to modify these Terms at any time. For material
                 changes, we will provide at least thirty (30) days&apos; advance notice via email to
                 your registered address or through a prominent in-app notice.
               </p>
@@ -735,7 +735,7 @@ export default function TermsPage() {
                 }}
               >
                 <p style={{ fontFamily: sans, fontSize: 15, color: C.textPrimary, margin: "0 0 4px 0", fontWeight: 600 }}>
-                  BidBoard
+                  Meritously
                 </p>
                 <p style={{ fontFamily: sans, fontSize: 14, color: C.textMuted, margin: 0 }}>
                   Email:{" "}

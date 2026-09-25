@@ -13,7 +13,7 @@ export async function sendWelcomeEmail(params: {
     userId: params.userId,
     type: "welcome",
     to: params.email,
-    subject: "Welcome to BidBoard 🎓",
+    subject: "Welcome to Meritously 🎓",
     react: React.createElement(WelcomeEmail, { firstName: params.firstName }),
     metadata: { userId: params.userId },
   });

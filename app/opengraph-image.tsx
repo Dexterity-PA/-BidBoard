@@ -27,7 +27,7 @@ export default function OGImage() {
             right: 0,
             width: 360,
             height: 6,
-            background: "#4F46E5",
+            background: "#0F5D3E",
           }}
         />
 
@@ -38,7 +38,7 @@ export default function OGImage() {
               width: 56,
               height: 56,
               borderRadius: 12,
-              background: "#4F46E5",
+              background: "#0F5D3E",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -58,7 +58,7 @@ export default function OGImage() {
               letterSpacing: "-0.02em",
             }}
           >
-            BidBoard
+            Meritously
           </span>
         </div>
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 /* ─── Design tokens (mirrors landing page) ─────────────────────── */
 const C = {
-  indigo:      "#4F46E5",
+  indigo:      "#0F5D3E",
   white:       "#FFFFFF",
   textPrimary: "#111827",
   textMuted:   "#6B7280",
@@ -25,7 +25,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error("[BidBoard] Runtime error:", error);
+    console.error("[Meritously] Runtime error:", error);
   }, [error]);
 
   return (
@@ -70,7 +70,7 @@ export default function Error({
               letterSpacing: "-0.02em",
             }}
           >
-            BidBoard
+            Meritously
           </Link>
         </div>
       </nav>

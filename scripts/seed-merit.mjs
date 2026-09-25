@@ -31,7 +31,7 @@ export function slugify(s) {
 
 export function coverageHint(value) {
   const v = value.toLowerCase();
-  if (/full (cost|ride)|comprehensive college costs/.test(v)) return "Full cost";
+  if (/full[- ](cost|ride)|comprehensive college costs/.test(v)) return "Full cost";
   if (/tuition, (mandatory )?fees?,? (room|housing)|tuition,( on-campus)? housing|tuition, room|tuition and required fees.*housing|tuition, fees, room|tuition, books, room/.test(v))
     return "Tuition + housing";
   if (/full tuition|up to full tuition|four years of tuition/.test(v)) return "Full tuition";

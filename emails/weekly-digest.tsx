@@ -43,7 +43,7 @@ export function WeeklyDigestEmail({
   appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app",
 }: WeeklyDigestEmailProps) {
   return (
-    <EmailLayout preview="📊 Your BidBoard week in review">
+    <EmailLayout preview="📊 Your Meritously week in review">
       <Section>
         <Text style={{ fontSize: "28px", margin: "0 0 8px 0" }}>📊</Text>
         <Text style={heading}>Your week in review</Text>

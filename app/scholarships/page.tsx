@@ -4,7 +4,7 @@ import CatalogBrowser, { type BrowserInitial } from "@/components/merit/CatalogB
 import { LISTINGS, type MeritType } from "@/lib/merit/catalog";
 
 export const metadata: Metadata = {
-  title: "Browse merit scholarships | BidBoard",
+  title: "Browse merit scholarships | Meritously",
   description:
     "Search college merit programs, national scholarships and competitions. Filter by deadline, how you apply and who is eligible.",
 };

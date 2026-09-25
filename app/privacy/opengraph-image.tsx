@@ -26,7 +26,7 @@ export default function OGImage() {
             right: 0,
             width: 360,
             height: 6,
-            background: "#4F46E5",
+            background: "#0F5D3E",
           }}
         />
 
@@ -37,7 +37,7 @@ export default function OGImage() {
               width: 48,
               height: 48,
               borderRadius: 10,
-              background: "#4F46E5",
+              background: "#0F5D3E",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -49,12 +49,12 @@ export default function OGImage() {
             B
           </div>
           <span style={{ display: "flex", fontSize: 30, fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em" }}>
-            BidBoard
+            Meritously
           </span>
         </div>
 
         {/* Page label */}
-        <div style={{ display: "flex", fontSize: 22, color: "#4F46E5", fontWeight: 600, marginBottom: 20, letterSpacing: "0.05em" }}>
+        <div style={{ display: "flex", fontSize: 22, color: "#0F5D3E", fontWeight: 600, marginBottom: 20, letterSpacing: "0.05em" }}>
           LEGAL
         </div>
 

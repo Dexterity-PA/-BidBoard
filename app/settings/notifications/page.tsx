@@ -38,7 +38,7 @@ export default async function NotificationsSettingsPage() {
         Email Notifications
       </h1>
       <p className="text-sm text-gray-500 mb-1">
-        Manage which emails BidBoard sends you.
+        Manage which emails Meritously sends you.
       </p>
       <p className="text-xs text-gray-400 mb-8">
         Last updated: {formatUpdatedAt(updatedAt)}

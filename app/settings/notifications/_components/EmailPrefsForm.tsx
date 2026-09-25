@@ -21,7 +21,7 @@ const PREF_ROWS: { type: NotificationType; label: string; description: string }[
   {
     type: "welcome",
     label: "Welcome email",
-    description: "Sent when you first join BidBoard.",
+    description: "Sent when you first join Meritously.",
   },
   {
     type: "deadline_reminders",
@@ -31,7 +31,7 @@ const PREF_ROWS: { type: NotificationType; label: string; description: string }[
   {
     type: "new_matches",
     label: "New matches",
-    description: "When BidBoard finds new scholarships matching your profile.",
+    description: "When Meritously finds new scholarships matching your profile.",
   },
   {
     type: "status_changes",

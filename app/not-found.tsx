@@ -2,8 +2,8 @@ import Link from "next/link";
 
 /* ─── Design tokens (mirrors landing page) ─────────────────────── */
 const C = {
-  indigo:      "#4F46E5",
-  indigoDark:  "#4338CA",
+  indigo:      "#0F5D3E",
+  indigoDark:  "#0B4A31",
   white:       "#FFFFFF",
   textPrimary: "#111827",
   textMuted:   "#6B7280",
@@ -56,7 +56,7 @@ export default function NotFound() {
               letterSpacing: "-0.02em",
             }}
           >
-            BidBoard
+            Meritously
           </Link>
         </div>
       </nav>

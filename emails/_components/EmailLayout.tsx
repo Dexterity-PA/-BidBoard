@@ -27,7 +27,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
         <Container style={container}>
           {/* Logo */}
           <Section style={logoSection}>
-            <Text style={logoText}>BidBoard</Text>
+            <Text style={logoText}>Meritously</Text>
           </Section>
 
           {/* Content */}
@@ -37,7 +37,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
           <Hr style={divider} />
           <Section>
             <Text style={footerText}>
-              You&apos;re receiving this because you have a BidBoard account.{" "}
+              You&apos;re receiving this because you have a Meritously account.{" "}
               <Link
                 href={`${APP_URL}/settings/notifications`}
                 style={footerLink}
@@ -46,7 +46,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
               </Link>
             </Text>
             <Text style={footerText}>
-              © {new Date().getFullYear()} BidBoard. All rights reserved.
+              © {new Date().getFullYear()} Meritously. All rights reserved.
             </Text>
           </Section>
         </Container>

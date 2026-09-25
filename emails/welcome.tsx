@@ -22,12 +22,12 @@ export function WelcomeEmail({
   const name = firstName ? `, ${firstName}` : "";
 
   return (
-    <EmailLayout preview="Welcome to BidBoard, your scholarship command center">
+    <EmailLayout preview="Welcome to Meritously, your scholarship command center">
       <Section>
-        <Text style={heading}>Welcome to BidBoard{name} 🎓</Text>
+        <Text style={heading}>Welcome to Meritously{name} 🎓</Text>
         <Text style={bodyText}>
           You&apos;re now set up to find, track, and win scholarships smarter.
-          BidBoard matches you to opportunities you actually qualify for and
+          Meritously matches you to opportunities you actually qualify for and
           tracks every application in one place.
         </Text>
       </Section>
