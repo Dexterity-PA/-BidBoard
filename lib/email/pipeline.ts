@@ -35,7 +35,13 @@ export async function sendEmail(
 
   // 3. Send via Resend
   try {
-    await getResend().emails.send({ from: FROM_EMAIL, to, subject, react });
+    const { data, error } = await getResend().emails.send({ from: FROM_EMAIL, to, subject, react });
+    // Resend resolves API and network failures with an error object. Only an
+    // acknowledged message may be logged as sent or suppress future reminders.
+    if (error) throw new Error(error.message || "Email provider rejected the message");
+    if (typeof data?.id !== "string" || !data.id.trim()) {
+      throw new Error("Email provider did not acknowledge the message");
+    }
     await logNotification(userId, type, "sent", null, metadata);
     return { success: true };
   } catch (err) {

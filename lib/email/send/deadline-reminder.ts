@@ -6,13 +6,13 @@ import {
   users,
   sentNotifications,
 } from "@/db/schema";
-import { and, eq, notInArray, sql } from "drizzle-orm";
+import { and, eq, notInArray } from "drizzle-orm";
 import {
   DeadlineReminderEmail,
   type DeadlineScholarship,
 } from "@/emails/deadline-reminder";
 import { sendEmail } from "../pipeline";
-import { canSend } from "../preferences";
+import { getDeadlineReminderDays } from "../preferences";
 
 const REMINDER_DAYS = [1, 3, 7, 14] as const;
 type ReminderDay = (typeof REMINDER_DAYS)[number];
@@ -98,13 +98,15 @@ export async function runDeadlineReminderCron(): Promise<{
   let skipped = 0;
 
   for (const [userId, reminders] of byUser) {
-    if (!await canSend(userId, "deadline_reminders")) {
+    const allowedDays = await getDeadlineReminderDays(userId);
+    if (allowedDays.length === 0) {
       skipped++;
       continue;
     }
     // Filter out already-sent dedupe records
     const notSent: PendingReminder[] = [];
     for (const r of reminders) {
+      if (!allowedDays.includes(r.daysLeft)) continue;
       const type = reminderType(r.daysLeft);
       const [existing] = await db
         .select({ id: sentNotifications.id })

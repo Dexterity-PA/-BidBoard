@@ -3,6 +3,7 @@ import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getUserPrefs } from "@/lib/email/preferences";
+import { ensureUserRow } from "@/lib/ensure-user";
 import { EmailPrefsForm } from "./_components/EmailPrefsForm";
 
 function formatUpdatedAt(date: Date | null): string {
@@ -22,6 +23,7 @@ export default async function NotificationsSettingsPage() {
   const { userId } = await auth();
   if (!userId) redirect("/sign-in");
 
+  await ensureUserRow(userId);
   const prefs = await getUserPrefs(userId);
   const { updatedAt, ...boolPrefs } = prefs;
 

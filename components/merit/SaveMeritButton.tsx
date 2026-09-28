@@ -32,9 +32,13 @@ export default function SaveMeritButton({
         onClick={() =>
           start(async () => {
             setError(null);
-            const res = await saveMerit(slug);
-            if (res.ok) setSaved(true);
-            else setError(res.error ?? "Could not save. Try again.");
+            try {
+              const res = await saveMerit(slug);
+              if (res.ok) setSaved(true);
+              else setError(res.error ?? "Could not save. Try again.");
+            } catch {
+              setError("Could not save this award. Try again.");
+            }
           })
         }
       >

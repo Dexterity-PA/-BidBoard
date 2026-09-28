@@ -1,12 +1,14 @@
 "use server";
 
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
+import { after } from "next/server";
 import { db } from "@/db";
-import { applications, scholarships, scholarshipMatches, users } from "@/db/schema";
+import { applications, scholarships, scholarshipMatches } from "@/db/schema";
 import type { StatusHistoryEntry } from "@/db/schema";
-import { eq, and, inArray } from "drizzle-orm";
+import { eq, and, inArray, sql } from "drizzle-orm";
 import { logActivity } from "@/lib/activity";
 import { sendStatusChangeEmail } from "@/lib/email/send/status-change";
+import { ensureUserRow } from "@/lib/ensure-user";
 
 const STATUS_LABELS: Record<string, string> = {
   saved:       "Added to Tracker",
@@ -16,6 +18,27 @@ const STATUS_LABELS: Record<string, string> = {
   lost:        "Marked as Lost",
   skipped:     "Marked as Skipped",
 };
+
+function validateId(id: number) {
+  if (!Number.isSafeInteger(id) || id <= 0 || id > 2_147_483_647) {
+    throw new Error("Invalid tracker item");
+  }
+}
+
+/** Secondary work must not turn a completed tracker write into a failed save. */
+function afterTrackerWrite(work: () => Promise<unknown>) {
+  try {
+    after(async () => {
+      try {
+        await work();
+      } catch (error) {
+        console.error("[tracker] Follow-up failed:", error);
+      }
+    });
+  } catch (error) {
+    console.error("[tracker] Could not schedule follow-up:", error);
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Read
@@ -71,27 +94,10 @@ export type ApplicationRow = Awaited<ReturnType<typeof getApplications>>[number]
 // Write
 // ---------------------------------------------------------------------------
 
-/**
- * Makes sure the signed-in student has a users row. The Clerk webhook normally
- * creates it, but tracked rows reference users(id), so a missed webhook would
- * otherwise make every save fail.
- */
-async function ensureUserRow(userId: string) {
-  const existing = await db.select({ id: users.id }).from(users).where(eq(users.id, userId)).limit(1);
-  if (existing.length) return;
-  const u = await currentUser();
-  const email = u?.primaryEmailAddress?.emailAddress ?? u?.emailAddresses?.[0]?.emailAddress;
-  if (!email) throw new Error("No email on this account");
-  await db
-    .insert(users)
-    .values({ id: userId, email, firstName: u?.firstName ?? null, lastName: u?.lastName ?? null })
-    .onConflictDoNothing();
-}
-
 export async function saveToTracker(scholarshipId: number) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
-  await ensureUserRow(userId);
+  validateId(scholarshipId);
 
   const initialHistory: StatusHistoryEntry[] = [
     { status: "saved", at: new Date().toISOString(), label: STATUS_LABELS.saved },
@@ -105,6 +111,9 @@ export async function saveToTracker(scholarshipId: number) {
     .where(eq(scholarships.id, scholarshipId))
     .limit(1);
 
+  if (!sch) throw new Error("Scholarship not found");
+  await ensureUserRow(userId);
+
   // Upsert into applications (do nothing if already tracked)
   await db
     .insert(applications)
@@ -112,13 +121,13 @@ export async function saveToTracker(scholarshipId: number) {
       userId,
       scholarshipId,
       status: "saved",
-      deadline: sch?.deadline ?? null,
+      deadline: sch.deadline ?? null,
       statusHistory: initialHistory,
     })
-    .onConflictDoNothing();
+    .onConflictDoNothing({ target: [applications.userId, applications.scholarshipId] });
 
   // Keep scholarshipMatches.isSaved in sync
-  await db
+  afterTrackerWrite(() => db
     .update(scholarshipMatches)
     .set({ isSaved: true, updatedAt: new Date() })
     .where(
@@ -126,57 +135,62 @@ export async function saveToTracker(scholarshipId: number) {
         eq(scholarshipMatches.userId, userId),
         eq(scholarshipMatches.scholarshipId, scholarshipId),
       ),
-    );
+    ));
 
-  await logActivity(userId, "scholarship_added", scholarshipId);
+  afterTrackerWrite(() => logActivity(userId, "scholarship_added", scholarshipId));
 }
 
 export async function updateApplicationStatus(id: number, status: string) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
-
-  const existing = await db
-    .select({ statusHistory: applications.statusHistory })
-    .from(applications)
-    .where(and(eq(applications.id, id), eq(applications.userId, userId)))
-    .limit(1);
-
-  if (!existing.length) throw new Error("Application not found");
-
-  const history = (existing[0].statusHistory ?? []) as StatusHistoryEntry[];
+  validateId(id);
+  if (typeof status !== "string" || !Object.hasOwn(STATUS_LABELS, status)) {
+    throw new Error("Invalid application status");
+  }
   const newEntry: StatusHistoryEntry = {
     status,
     at: new Date().toISOString(),
-    label: STATUS_LABELS[status] ?? `Moved to ${status}`,
+    label: STATUS_LABELS[status],
   };
 
-  await db
+  const updated = await db
     .update(applications)
-    .set({ status, statusHistory: [...history, newEntry], updatedAt: new Date() })
-    .where(and(eq(applications.id, id), eq(applications.userId, userId)));
+    .set({
+      status,
+      statusHistory: sql`${applications.statusHistory} || ${JSON.stringify([newEntry])}::jsonb`,
+      updatedAt: new Date(),
+    })
+    .where(and(eq(applications.id, id), eq(applications.userId, userId)))
+    .returning({ id: applications.id });
 
-  await logActivity(userId, "status_changed", id);
+  if (!updated.length) throw new Error("Application not found");
+
+  afterTrackerWrite(() => logActivity(userId, "status_changed", id));
   if (status === "submitted") {
-    await logActivity(userId, "application_submitted", id);
+    afterTrackerWrite(() => logActivity(userId, "application_submitted", id));
   }
-  // Fire status-change email for notable transitions only (void to keep UI fast)
+  // Next keeps this work alive after the response in a serverless deployment.
   if (status === "submitted" || status === "won" || status === "lost") {
-    void sendStatusChangeEmail({
+    afterTrackerWrite(() => sendStatusChangeEmail({
       userId,
       applicationId: id,
       newStatus: status as "submitted" | "won" | "lost",
-    });
+    }));
   }
 }
 
 export async function updateApplicationNotes(id: number, notes: string) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
+  validateId(id);
+  if (typeof notes !== "string") throw new Error("Invalid notes");
 
-  await db
+  const updated = await db
     .update(applications)
     .set({ notes, updatedAt: new Date() })
-    .where(and(eq(applications.id, id), eq(applications.userId, userId)));
+    .where(and(eq(applications.id, id), eq(applications.userId, userId)))
+    .returning({ id: applications.id });
+  if (!updated.length) throw new Error("Application not found");
 }
 
 export async function updateApplicationDeadline(id: number, deadline: string) {
@@ -192,10 +206,13 @@ export async function updateApplicationDeadline(id: number, deadline: string) {
 export async function deleteApplication(id: number) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
+  validateId(id);
 
-  await db
+  const deleted = await db
     .delete(applications)
-    .where(and(eq(applications.id, id), eq(applications.userId, userId)));
+    .where(and(eq(applications.id, id), eq(applications.userId, userId)))
+    .returning({ id: applications.id });
+  if (!deleted.length) throw new Error("Application not found");
 }
 
 export async function bulkUpdateStatus(ids: number[], status: string) {
@@ -216,9 +233,16 @@ export async function bulkUpdateStatus(ids: number[], status: string) {
 export async function updateApplicationChecklist(id: number, checklist: Record<string, boolean>) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
+  validateId(id);
+  if (!checklist || typeof checklist !== "object" || Array.isArray(checklist) ||
+      !Object.values(checklist).every((value) => typeof value === "boolean")) {
+    throw new Error("Invalid checklist");
+  }
 
-  await db
+  const updated = await db
     .update(applications)
     .set({ checklist, updatedAt: new Date() })
-    .where(and(eq(applications.id, id), eq(applications.userId, userId)));
+    .where(and(eq(applications.id, id), eq(applications.userId, userId)))
+    .returning({ id: applications.id });
+  if (!updated.length) throw new Error("Application not found");
 }
