@@ -11,16 +11,16 @@ type QA = { q: string; a: string }
 
 const QUESTIONS: QA[] = [
   {
-    q: 'What makes BidBoard different from Bold.org or Fastweb?',
-    a: 'Bold.org and Fastweb are listing sites. They show you every scholarship and leave the strategy to you. BidBoard scores every scholarship by expected value, ranks them, and drafts essays using your own profile. We cut application time by about 70% and push the dollars-per-hour that actually matters.',
+    q: 'What makes Meritously different from Bold.org or Fastweb?',
+    a: 'Bold.org and Fastweb are listing sites. They show you every scholarship and leave the strategy to you. Meritously scores every scholarship by expected value, ranks them, and drafts essays using your own profile. We cut application time by about 70% and push the dollars-per-hour that actually matters.',
   },
   {
     q: 'Is it actually free?',
-    a: 'Yes. All of BidBoard is free, for everyone, forever. Unlimited matching, full EV scoring, essay drafting, the tracker, and counselor tools. There is no paid tier, no credit card field, and nothing to unlock.',
+    a: 'Yes. All of Meritously is free, for everyone, forever. Unlimited matching, full EV scoring, essay drafting, the tracker, and counselor tools. There is no paid tier, no credit card field, and nothing to unlock.',
   },
   {
-    q: 'What happens if BidBoard shuts down, like Going Merry did?',
-    a: 'Going Merry was venture-backed, which means the business had a death clock from day one. BidBoard was built by a high school junior, runs lean on fixed infrastructure, and isn\u2019t raising outside money to chase hockey-stick growth. We export all of your data on request, and if anything ever changed, we\u2019d give you an uncensored CSV of everything we know about you and your pipeline.',
+    q: 'What happens if Meritously shuts down, like Going Merry did?',
+    a: 'Going Merry was venture-backed, which means the business had a death clock from day one. Meritously was built by a high school junior, runs lean on fixed infrastructure, and isn\u2019t raising outside money to chase hockey-stick growth. We export all of your data on request, and if anything ever changed, we\u2019d give you an uncensored CSV of everything we know about you and your pipeline.',
   },
   {
     q: 'How accurate is the EV score?',
@@ -48,7 +48,7 @@ const QUESTIONS: QA[] = [
   },
   {
     q: 'Who built this?',
-    a: 'BidBoard is built by Praneeth, a junior at BASIS Chandler in Arizona, with help from a small group of students around the country who use it to pay for college. Not a stealth startup. Not a funding round in disguise.',
+    a: 'Meritously is built by Praneeth, a junior at BASIS Chandler in Arizona, with help from a small group of students around the country who use it to pay for college. Not a stealth startup. Not a funding round in disguise.',
   },
 ]
 

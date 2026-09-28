@@ -1,6 +1,8 @@
-# BidBoard
+# Meritously
 
-BidBoard is a free scholarship strategy platform that helps students maximize their aid by applying quantitative finance techniques to the scholarship hunt. Every scholarship in the database is scored with an expected-value (EV) formula (award amount × win probability, adjusted for match quality), then a 0/1 knapsack solver selects the highest-EV portfolio that fits inside a student's time budget. An AI essay engine (Claude for prompt classification, OpenAI for semantic embeddings) clusters and recycles essays across multiple applications, and a full application tracker records every stage from "saved" through "awarded."
+Meritously is a free, student-built merit scholarship finder. Students can browse a source-linked catalog, answer four optional profile questions to find potential matches, and create an account to save awards and track deadlines. Matching is a starting point, not a guarantee of eligibility; students confirm the full requirements on each award's official page.
+
+The live site remains at [bidboard.app](https://www.bidboard.app). The repository name and working email addresses keep the original domain. Some older research and strategy tools remain in the codebase but are not part of the current public homepage.
 
 ---
 
@@ -193,7 +195,7 @@ npm run db:studio
 
 ## Deployment
 
-BidBoard is designed for [Vercel](https://vercel.com).
+Meritously is designed for [Vercel](https://vercel.com).
 
 1. Push the repository to GitHub and import it in Vercel.
 2. Add all environment variables from the table above in the Vercel project settings.

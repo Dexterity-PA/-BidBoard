@@ -113,7 +113,36 @@ export default async function ListingPage({
           </header>
 
           <div className="m-detail">
-            <div>
+            <aside className="m-card m-detail-actions" aria-label="Apply and save">
+              <span className="m-card-label">Next deadline</span>
+              <span className="m-card-deadline">
+                {l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
+              </span>
+              {l.sources[0] && (
+                <a
+                  href={l.sources[0]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="m-btn m-btn-primary"
+                >
+                  Open official page
+                </a>
+              )}
+              <MatchNote record={l} />
+              <SignedIn>
+                <SaveMeritButton slug={l.slug} initiallySaved={saved} />
+              </SignedIn>
+              <SignedOut>
+                <Link
+                  href={`/sign-up?redirect_url=${encodeURIComponent(`/scholarships/${l.slug}`)}`}
+                  className="m-btn m-btn-ghost"
+                >
+                  Sign up to save this award
+                </Link>
+              </SignedOut>
+            </aside>
+
+            <div className="m-detail-content">
               {l.status === "watchlist" && (
                 <p className="m-notice m-notice-watch">
                   This is a real program, but some details for the current cycle are not
@@ -223,55 +252,24 @@ export default async function ListingPage({
               )}
             </div>
 
-            <aside className="m-aside">
-              <div className="m-card">
-                <span className="m-card-label">Next deadline</span>
-                <span className="m-card-deadline">
-                  {l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
-                </span>
-                {l.sources[0] && (
-                  <a
-                    href={l.sources[0]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="m-btn m-btn-primary"
-                  >
-                    Open official page
-                  </a>
-                )}
-                <MatchNote record={l} />
-                <SignedIn>
-                  <SaveMeritButton slug={l.slug} initiallySaved={saved} />
-                </SignedIn>
-                <SignedOut>
-                  <Link
-                    href={`/sign-up?redirect_url=${encodeURIComponent(`/scholarships/${l.slug}`)}`}
-                    className="m-btn m-btn-ghost"
-                  >
-                    Sign up to save this award
-                  </Link>
-                </SignedOut>
-              </div>
-
-              <div className="m-card">
-                <span className="m-card-label">Official sources</span>
-                <ul className="m-sources">
-                  {l.sources.map((s) => (
-                    <li key={s}>
-                      <a href={s} target="_blank" rel="noopener noreferrer">
-                        {hostOf(s)}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <p className="m-fine">
-                  Details last checked {formatISODate(LAST_CHECKED)}. Programs change their rules,
-                  so confirm on the official page before applying.
-                </p>
-                <a href={reportHref} className="m-arrow-link" style={{ fontSize: 13 }}>
-                  Report a problem with this listing
-                </a>
-              </div>
+            <aside className="m-card m-detail-sources" aria-label="Official sources">
+              <span className="m-card-label">Official sources</span>
+              <ul className="m-sources">
+                {l.sources.map((s) => (
+                  <li key={s}>
+                    <a href={s} target="_blank" rel="noopener noreferrer">
+                      {hostOf(s)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className="m-fine">
+                Details last checked {formatISODate(LAST_CHECKED)}. Programs change their rules,
+                so confirm on the official page before applying.
+              </p>
+              <a href={reportHref} className="m-arrow-link" style={{ fontSize: 13 }}>
+                Report a problem with this listing
+              </a>
             </aside>
           </div>
         </div>

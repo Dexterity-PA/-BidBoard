@@ -16,7 +16,7 @@ type Testimonial = {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Every scholarship I tried to win in 10th grade I got rejected from. BidBoard pointed me at three I'd never heard of. I landed the second one.",
+      "Every scholarship I tried to win in 10th grade I got rejected from. Meritously pointed me at three I'd never heard of. I landed the second one.",
     name: 'Aisha T.',
     school: 'UCLA ’27',
     won: '$8,500',
@@ -30,7 +30,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      'I put my entire senior cohort on BidBoard last fall. Average student found nine real matches in their first session. Unheard of.',
+      'I put my entire senior cohort on Meritously last fall. Average student found nine real matches in their first session. Unheard of.',
     name: 'Dr. Priya K.',
     school: 'College counselor, Denver',
     won: '42 students placed',
@@ -52,7 +52,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "I write recs and track outcomes for 48 students. BidBoard's counselor dashboard is the first tool that actually shows me who's stalled.",
+      "I write recs and track outcomes for 48 students. Meritously's counselor dashboard is the first tool that actually shows me who's stalled.",
     name: 'Mr. David H.',
     school: 'Guidance counselor, Chicago',
     won: '$180K across cohort',
@@ -60,7 +60,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "I'm a transfer student from a community college. BidBoard surfaced a local grant my 4-year didn't even list. Paid my whole spring.",
+      "I'm a transfer student from a community college. Meritously surfaced a local grant my 4-year didn't even list. Paid my whole spring.",
     name: 'Leah P.',
     school: 'UNC Chapel Hill ’27',
     won: '$3,200',
@@ -74,7 +74,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      'Honestly the part I love most is the data. I tell every student: picking scholarships at random is gambling. BidBoard is the first time we have a strategy.',
+      'Honestly the part I love most is the data. I tell every student: picking scholarships at random is gambling. Meritously is the first time we have a strategy.',
     name: 'Ms. Rachel O.',
     school: 'Independent counselor, Bay Area',
     won: '$94K placed in cohort',
@@ -82,7 +82,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "I applied to the Horatio Alger because BidBoard flagged me as a fit. I wouldn't have even clicked the link without the EV next to it.",
+      "I applied to the Horatio Alger because Meritously flagged me as a fit. I wouldn't have even clicked the link without the EV next to it.",
     name: 'Kenji A.',
     school: 'University of Washington ’27',
     won: '$25,000',

@@ -220,7 +220,7 @@ export default function EVCalculator() {
               margin: '12px 0 0',
             }}
           >
-            This is how BidBoard thinks.
+            This is how Meritously thinks.
           </p>
         </div>
       </motion.div>

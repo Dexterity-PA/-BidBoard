@@ -23,7 +23,7 @@ const SCHOOLS = [
 const QUOTES = [
   {
     id: 'ut-austin-engineering',
-    text: 'I applied to 3 scholarships last cycle. Won one. BidBoard showed me I\'d been ignoring a $15K local grant the whole time.',
+    text: 'I applied to 3 scholarships last cycle. Won one. Meritously showed me I\'d been ignoring a $15K local grant the whole time.',
     attribution: 'Engineering junior, UT Austin',
   },
   {
@@ -38,7 +38,7 @@ const QUOTES = [
   },
   {
     id: 'asu-firstgen',
-    text: 'My counselor didn\'t know half these scholarships existed. BidBoard did.',
+    text: 'My counselor didn\'t know half these scholarships existed. Meritously did.',
     attribution: 'First-gen freshman, ASU',
   },
   {

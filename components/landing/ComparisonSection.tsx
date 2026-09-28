@@ -218,7 +218,7 @@ export default function ComparisonSection() {
             margin: '0 0 14px',
           }}
         >
-          Why BidBoard
+          Why Meritously
         </p>
         <h2
           style={{
@@ -247,7 +247,7 @@ export default function ComparisonSection() {
       >
         <div
           role="tablist"
-          aria-label="Compare BidBoard to other platforms"
+          aria-label="Compare Meritously to other platforms"
           style={{
             display: 'inline-flex',
             flexWrap: 'wrap',
@@ -321,7 +321,7 @@ export default function ComparisonSection() {
         </AnimatePresence>
       </div>
 
-      {/* Comparison card: BidBoard vs selected competitor */}
+      {/* Comparison card: Meritously vs selected competitor */}
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 20 }}
         whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
@@ -362,7 +362,7 @@ export default function ComparisonSection() {
                 color: 'var(--bb-primary, #4F46E5)',
               }}
             >
-              BidBoard
+              Meritously
             </span>
           </div>
           <div

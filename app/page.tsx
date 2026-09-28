@@ -67,13 +67,54 @@ export default function HomePage() {
       <SiteHeader />
       <main className="m-main">
         <section className="lp-hero">
+          <div className="m-wrap lp-hero-grid">
+            <div>
+              <h1 className="lp-title">Find your next merit scholarship.</h1>
+              <p className="lp-sub">
+                {total}{" "}college merit programs, scholarships and competitions. Narrow the list
+                with four answers, then check each award&apos;s official requirements.
+              </p>
+              <div className="lp-actions">
+                <Link href="/scholarships?match=1" className="m-btn m-btn-primary">
+                  Find potential matches
+                </Link>
+                <Link href="/scholarships" className="m-btn m-btn-ghost">
+                  Browse all awards
+                </Link>
+              </div>
+              <p className="lp-caption">Free to browse and match. No account needed.</p>
+            </div>
+            <section className="lp-how" aria-labelledby="lp-how-title">
+              <h2 id="lp-how-title" className="lp-how-title">From a long list to a shortlist</h2>
+              <ol className="lp-how-steps">
+                <li>
+                  <h3>Tell us four things</h3>
+                  <p>Your state, citizenship, unweighted GPA and intended field. Skip anything
+                    you prefer not to share.</p>
+                </li>
+                <li>
+                  <h3>Explore potential matches</h3>
+                  <p>We filter using those answers. You still need to check the full eligibility
+                    rules on each award&apos;s official page.</p>
+                </li>
+                <li>
+                  <h3>Keep your next steps together</h3>
+                  <p>Create a free account when you want to save awards and track deadlines.</p>
+                </li>
+              </ol>
+            </section>
+          </div>
           <div className="m-wrap">
-            <h1 className="lp-title">
-              {total} merit scholarships, each checked against its official page.
-            </h1>
-            <p className="lp-sub">
-              Free for students. College full rides, national awards and competitions in one list.
-            </p>
+            <div className="lp-community">
+              <p>Student-built. Now used by <strong>10,000+ people.</strong></p>
+              <a href="#about" className="lp-inline-link">Meet the founder</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="lp-section lp-search-section" aria-labelledby="lp-search-title">
+          <div className="m-wrap lp-search-grid">
+            <h2 id="lp-search-title" className="lp-label">Have an award or college in mind?</h2>
             <form action="/scholarships" method="get" className="lp-search" role="search">
               <label htmlFor="lp-q" className="lp-sr">
                 Search scholarships
@@ -137,19 +178,31 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="lp-section lp-notes">
-          <div className="m-wrap lp-notes-grid">
-            <p>
-              Not listed: sweepstakes, popularity votes and need-only aid. Awards that also weigh
-              financial need are labeled. If a cycle&apos;s deadline isn&apos;t published yet, the
-              listing says so.
-            </p>
-            <p>
-              <Link href="/sign-up" className="lp-inline-link">
-                Create a free account
-              </Link>{" "}
-              to save awards and keep your deadlines on one list.
-            </p>
+        <section id="about" className="lp-section lp-about" aria-labelledby="lp-about-title">
+          <div className="m-wrap lp-about-grid">
+            <div>
+              <h2 id="lp-about-title" className="lp-section-title">Built by Praneeth.</h2>
+              <p>
+                Meritously is a free project by Praneeth Annapureddy, a student at BASIS Chandler
+                in Arizona. It has grown through local schools and word of mouth.
+              </p>
+              <p>
+                Have a correction, a question or an idea for the site?{" "}
+                <a href="mailto:hello@bidboard.app" className="lp-inline-link">Get in touch.</a>
+              </p>
+            </div>
+            <div>
+              <h2 className="lp-section-title">What &ldquo;checked&rdquo; means</h2>
+              <p>
+                Listings link to official sources and show when details were last checked.
+                Unconfirmed information is labeled, so you can see what still needs checking.
+                Always confirm the current requirements before applying.
+              </p>
+              <p>
+                Awards that also consider financial need are labeled separately. Sweepstakes,
+                popularity votes and need-only aid aren&apos;t included.
+              </p>
+            </div>
           </div>
         </section>
       </main>

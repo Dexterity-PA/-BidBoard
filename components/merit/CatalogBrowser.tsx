@@ -307,8 +307,8 @@ export default function CatalogBrowser({
           <div className="m-matchbar">
             <span>
               {onlyMatches
-                ? `Showing awards that fit your profile. ${hiddenByProfile} hidden that rule you out.`
-                : "Showing everything, including awards that rule you out."}
+                ? `Showing potential matches. ${hiddenByProfile} listings hidden based on your answers. Confirm full eligibility on the official pages.`
+                : "Showing all awards, including those outside your profile filters."}
             </span>
             <span className="m-matchbar-actions">
               <button type="button" className="m-clear" onClick={() => setOnlyMatches((v) => !v)}>
@@ -331,7 +331,7 @@ export default function CatalogBrowser({
           </div>
         ) : (
           <div className="m-matchbar m-matchbar-empty">
-            <span>See only the awards you qualify for. It takes four answers.</span>
+            <span>Find potential matches with four answers. Check each award&apos;s full requirements before applying.</span>
             <button type="button" className="m-btn m-btn-primary m-btn-sm" onClick={() => setEditing(true)}>
               Get my matches
             </button>

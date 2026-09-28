@@ -90,7 +90,7 @@ export default function Footer() {
           userSelect: 'none',
         }}
       >
-        BIDBOARD
+        MERITOUSLY
       </span>
 
       <div
@@ -230,7 +230,7 @@ export default function Footer() {
                 marginBottom: 14,
               }}
             >
-              BidBoard
+              Meritously
             </div>
             <p
               style={{
@@ -306,7 +306,7 @@ export default function Footer() {
               color: 'rgba(255,255,255,0.4)',
             }}
           >
-            © 2026 BidBoard
+            © 2026 Meritously
           </span>
         </div>
       </div>

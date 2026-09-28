@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import SocialPreview from "@/components/merit/SocialPreview";
 import { getListing } from "@/lib/merit/catalog";
 
 export const alt = "Merit scholarship on Meritously";
@@ -7,34 +8,13 @@ export const contentType = "image/png";
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const l = getListing(slug);
-  const name = l?.name ?? "Merit scholarship";
-  const provider = l?.provider ?? "Meritously";
-  const deadline = l?.deadline ?? "";
+  const listing = getListing(slug);
+  const description = listing
+    ? `${listing.provider}. ${listing.deadline || "Check the official page for deadlines."}`
+    : "Find potential matches and check each award's official requirements.";
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          background: "#0C0F0D",
-          color: "#ffffff",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: 72,
-          fontFamily: "sans-serif",
-        }}
-      >
-        <div style={{ fontSize: 28, color: "#b9bccb", display: "flex" }}>{provider}</div>
-        <div style={{ fontSize: 72, lineHeight: 1.05, display: "flex" }}>{name}</div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#b9bccb" }}>
-          <span>{deadline.slice(0, 70)}</span>
-          <span style={{ color: "#7DB99B" }}>Meritously</span>
-        </div>
-      </div>
-    ),
+    <SocialPreview title={listing?.name ?? "Find your next merit scholarship."} description={description.slice(0, 160)} />,
     size,
   );
 }

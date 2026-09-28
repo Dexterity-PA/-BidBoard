@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-  <circle cx="11" cy="11" r="11" fill="#0F5D3E"/>
-  <polygon points="11.00,5.60 12.35,9.14 16.14,9.33 13.19,11.71 14.17,15.37 11.00,13.30 7.83,15.37 8.81,11.71 5.86,9.33 9.65,9.14" fill="#FFFFFF"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <rect width="48" height="48" rx="12" fill="#e7f1ec"/>
+  <path d="M7 37V10l17 12 17-12v27l-7-4V23L24 31 14 23v10Z" fill="#0f5d3e"/>
+  <path d="m24 22 17-12v27l-7-4V23l-10 8Z" fill="#287857"/>
 </svg>

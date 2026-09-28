@@ -1,91 +1,16 @@
 import { ImageResponse } from "next/og";
+import SocialPreview from "@/components/merit/SocialPreview";
 
+export const alt = "Meritously: free merit scholarship finder";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OGImage() {
   return new ImageResponse(
-    (
-      <div
-        style={{
-          background: "#0F172A",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          padding: "80px",
-          position: "relative",
-          fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-        }}
-      >
-        {/* Top-right indigo accent bar */}
-        <div
-          style={{
-            display: "flex",
-            position: "absolute",
-            top: 0,
-            right: 0,
-            width: 360,
-            height: 6,
-            background: "#0F5D3E",
-          }}
-        />
-
-        {/* Logo row */}
-        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: "auto" }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: 12,
-              background: "#0F5D3E",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 32,
-              fontWeight: 700,
-              color: "#FFFFFF",
-            }}
-          >
-            B
-          </div>
-          <span
-            style={{
-              display: "flex",
-              fontSize: 36,
-              fontWeight: 700,
-              color: "#FFFFFF",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Meritously
-          </span>
-        </div>
-
-        {/* Headline */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            fontSize: 72,
-            fontWeight: 700,
-            color: "#FFFFFF",
-            letterSpacing: "-0.03em",
-            lineHeight: 1.1,
-            marginBottom: 24,
-          }}
-        >
-          Find the merit scholarships
-          <br />
-          most students miss.
-        </div>
-
-        {/* Subtext */}
-        <div style={{ display: "flex", fontSize: 28, color: "#94A3B8", lineHeight: 1.4 }}>
-          A free, merit-only catalog: college full rides, national awards and niche scholarships.
-        </div>
-      </div>
-    ),
-    { ...size }
+    <SocialPreview
+      title="Find your next merit scholarship."
+      description="Find potential matches. Check official sources. Track your next steps."
+    />,
+    size,
   );
 }

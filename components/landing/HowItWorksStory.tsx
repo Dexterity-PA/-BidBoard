@@ -29,7 +29,7 @@ const STEPS: Step[] = [
   {
     number: '02',
     title: 'Get ranked matches',
-    body: 'BidBoard scores every eligible scholarship by expected value (award × probability ÷ hours) and sorts them top-down.',
+    body: 'Meritously scores every eligible scholarship by expected value (award × probability ÷ hours) and sorts them top-down.',
   },
   {
     number: '03',

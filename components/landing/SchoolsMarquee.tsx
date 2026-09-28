@@ -341,7 +341,7 @@ export default function SchoolsMarquee() {
   const reduced = useReducedMotion() ?? false
   return (
     <section
-      aria-label="Where BidBoard students go"
+      aria-label="Where Meritously students go"
       style={{
         background: 'var(--bb-surface)',
         padding: 'clamp(72px, 10vh, 120px) 0',

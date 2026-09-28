@@ -22,13 +22,12 @@ export function WelcomeEmail({
   const name = firstName ? `, ${firstName}` : "";
 
   return (
-    <EmailLayout preview="Welcome to Meritously, your scholarship command center">
+    <EmailLayout preview="Find potential scholarships and keep your next steps together">
       <Section>
         <Text style={heading}>Welcome to Meritously{name} 🎓</Text>
         <Text style={bodyText}>
-          You&apos;re now set up to find, track, and win scholarships smarter.
-          Meritously matches you to opportunities you actually qualify for and
-          tracks every application in one place.
+          Find potential merit scholarship matches, check official requirements,
+          and save awards to your free tracker.
         </Text>
       </Section>
 
@@ -51,8 +50,9 @@ export function WelcomeEmail({
             Step 1
           </Text>
           <Text style={{ ...bodyText, margin: 0 }}>
-            <strong style={{ color: "#0C0F0D" }}>Complete your profile</strong>.{" "}
-            The more we know about you, the better your matches.
+            <strong style={{ color: "#0C0F0D" }}>Answer four optional questions</strong>.{" "}
+            Your state, citizenship, unweighted GPA and intended field help narrow
+            the list. Skip anything you prefer. These answers stay in your browser.
           </Text>
         </div>
 
@@ -63,8 +63,8 @@ export function WelcomeEmail({
             Step 2
           </Text>
           <Text style={{ ...bodyText, margin: 0 }}>
-            <strong style={{ color: "#0C0F0D" }}>Browse your matches</strong>.
-            We rank scholarships by expected value per hour of effort.
+            <strong style={{ color: "#0C0F0D" }}>Explore potential matches</strong>.{" "}
+            Check each award&apos;s full requirements on its official page before applying.
           </Text>
         </div>
 
@@ -76,21 +76,24 @@ export function WelcomeEmail({
           </Text>
           <Text style={{ ...bodyText, margin: 0 }}>
             <strong style={{ color: "#0C0F0D" }}>
-              Add your first scholarship
-            </strong>{" "}
-            to the tracker and never miss a deadline.
+              Save an award
+            </strong>.{" "}
+            Keep deadlines, notes and application progress together in your tracker.
           </Text>
         </div>
       </Section>
 
       <Section style={{ textAlign: "center", marginBottom: "24px" }}>
-        <Link href={`${appUrl}/dashboard`} style={ctaButton}>
-          Go to your dashboard →
+        <Link href={`${appUrl}/scholarships?match=1`} style={ctaButton}>
+          Find potential matches →
         </Link>
       </Section>
 
       <Text style={mutedText}>
-        Questions? Reply to this email. We read every one.
+        Questions?{" "}
+        <Link href="mailto:hello@bidboard.app" style={{ color: "#0F5D3E" }}>
+          Get in touch.
+        </Link>
       </Text>
     </EmailLayout>
   );
