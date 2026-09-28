@@ -104,34 +104,6 @@ export async function savePreferences(data: {
   revalidatePath("/settings");
 }
 
-// ── Notifications ─────────────────────────────────────────────────────────────
-
-export async function saveNotifications(prefs: {
-  deadlines_7d: boolean;
-  deadlines_3d: boolean;
-  deadlines_1d: boolean;
-  weekly_digest: boolean;
-  product_updates: boolean;
-}) {
-  const userId = await getVerifiedUserId();
-
-  await db
-    .insert(studentProfiles)
-    .values({
-      userId,
-      notificationPreferences: prefs,
-    })
-    .onConflictDoUpdate({
-      target: studentProfiles.userId,
-      set: {
-        notificationPreferences: prefs,
-        updatedAt: new Date(),
-      },
-    });
-
-  revalidatePath("/settings");
-}
-
 // ── Export Data ───────────────────────────────────────────────────────────────
 
 export async function exportUserData(): Promise<string> {

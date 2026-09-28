@@ -7,6 +7,7 @@ import { applications, scholarships } from "@/db/schema";
 import { saveToTracker } from "@/app/actions/tracker";
 
 async function scholarshipIdForSlug(slug: string) {
+  if (typeof slug !== "string" || !slug.trim() || slug.length > 200) return null;
   const row = await db
     .select({ id: scholarships.id })
     .from(scholarships)
@@ -33,8 +34,13 @@ export async function isMeritSaved(slug: string): Promise<boolean> {
 export async function saveMerit(slug: string): Promise<{ ok: boolean; error?: string }> {
   const { userId } = await auth();
   if (!userId) return { ok: false, error: "Sign in to save awards." };
-  const id = await scholarshipIdForSlug(slug);
-  if (!id) return { ok: false, error: "This award can't be saved yet. Try again later." };
-  await saveToTracker(id);
-  return { ok: true };
+  try {
+    const id = await scholarshipIdForSlug(slug);
+    if (!id) return { ok: false, error: "This award can't be saved yet. Try again later." };
+    await saveToTracker(id);
+    return { ok: true };
+  } catch (error) {
+    console.error("[tracker] Could not save award:", error);
+    return { ok: false, error: "Could not save this award. Please try again." };
+  }
 }

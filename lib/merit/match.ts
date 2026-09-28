@@ -64,14 +64,51 @@ const CHECK_TAGS: Record<string, string> = {
   "region-restricted": "Living in specific counties or cities",
   "acceptance-required": "A college acceptance before applying",
   "age-18": "Being 18 or older",
+  "college-restricted": "Enrollment at an eligible college or program",
+  "score-threshold": "Required SAT, ACT or other qualifying test scores",
+  "psat-route": "The required PSAT or National Merit status",
 };
 
 const FIELD_OF_MAJOR: Record<string, Field[]> = {
+  accounting: ["business"],
+  "actuarial-science": ["math", "business"],
+  aerospace: ["engineering", "sciences"],
+  agriculture: ["sciences", "engineering", "business"],
+  "american-studies": ["humanities", "arts"],
+  art: ["arts"],
+  arts: ["arts", "humanities"],
+  aviation: ["engineering", "sciences", "business"],
+  "aviation-maintenance": ["engineering"],
+  "biomedical-engineering": ["engineering", "sciences"],
   business: ["business"],
+  chemistry: ["sciences"],
+  classics: ["humanities"],
+  construction: ["engineering", "business"],
+  "construction-trades": ["engineering"],
+  cybersecurity: ["computer-science", "engineering"],
+  education: ["humanities", "sciences", "math", "arts"],
   engineering: ["engineering"],
+  english: ["humanities", "arts"],
+  "film and media arts": ["arts", "humanities"],
+  "health-sciences": ["sciences"],
+  history: ["humanities"],
+  "international-relations": ["humanities"],
+  journalism: ["humanities", "arts", "business"],
   math: ["math"],
+  mathematics: ["math"],
+  music: ["arts"],
+  "natural-resources": ["sciences", "engineering"],
+  "nuclear-engineering": ["engineering", "sciences", "math"],
+  stem: ["sciences", "engineering", "computer-science", "math"],
+  transportation: ["engineering", "sciences", "business"],
+  "water-resources": ["sciences", "engineering"],
   "computer-science": ["computer-science"],
 };
+
+// Only these broad restrictions can be compared directly with the form's fields.
+// Specialist tags may permit related degrees, minors or career interests, so a
+// different broad field alone is not enough evidence to rule an applicant out.
+const COMPARABLE_MAJORS = new Set(["business", "engineering", "computer-science", "math", "mathematics"]);
 
 export type MatchResult = {
   verdict: "match" | "check" | "no";
@@ -94,35 +131,57 @@ export function matchListing(r: MeritRecord, p: Profile): MatchResult {
 
   // State residency (state tags mean the award is limited to residents).
   const states = r.tags.filter((t) => t.startsWith("state:")).map((t) => t.slice(6));
-  if (states.length && p.state && !states.includes(p.state)) {
-    no.push(`Only for ${states.join(" or ")} students`);
+  if (states.length) {
+    if (!p.state) check.push(`Residency in ${states.join(" or ")} (your state is not provided)`);
+    else if (!states.includes(p.state)) no.push(`Only for ${states.join(" or ")} students`);
   }
 
   // Citizenship.
-  if (p.citizenship) {
+  const citizenship = r.citizenship ?? (r.tags.includes("us-citizen-only") ? "citizen" : null);
+  if (!p.citizenship) {
+    if (r.tags.includes("international-only")) check.push("International student status");
+    else if (citizenship === "citizen") check.push("U.S. citizenship (your status is not provided)");
+    else if (citizenship === "citizen-or-pr") check.push("U.S. citizenship or permanent residency (your status is not provided)");
+    else if (r.tags.includes("no-international")) check.push("Citizenship or residency requirements (international applicants excluded)");
+  } else {
     if (r.tags.includes("international-only") && p.citizenship !== "international") {
       no.push("Only for international students");
-    } else if (r.citizenship === "citizen" && p.citizenship !== "citizen") {
+    } else if (citizenship === "citizen" && p.citizenship !== "citizen") {
       no.push("U.S. citizens only");
     } else if (p.citizenship === "international") {
-      if (r.citizenship === "citizen-or-pr") no.push("U.S. citizens or permanent residents only");
+      if (citizenship === "citizen-or-pr") no.push("U.S. citizens or permanent residents only");
       else if (r.tags.includes("no-international")) no.push("International applicants excluded");
-      else if (r.citizenship !== "any") check.push("Whether international students can apply");
+      else if (citizenship !== "any" && !r.tags.includes("international-eligible") && !r.tags.includes("international-only")) {
+        check.push("Whether international students can apply");
+      }
     }
   }
 
-  // GPA minimum (profile GPA is unweighted, so any stated minimum is comparable).
-  if (p.gpa !== null && typeof r.minGpa === "number" && p.gpa < r.minGpa) {
-    no.push(`Minimum ${r.minGpa.toFixed(2).replace(/0$/, "")} GPA`);
+  // A weighted, either-scale or unspecified minimum cannot exclude someone
+  // using the unweighted GPA collected by this form.
+  if (typeof r.minGpa === "number") {
+    const minimum = r.minGpa.toFixed(2).replace(/0$/, "");
+    if (p.gpa === null) {
+      check.push(`Minimum ${minimum} GPA (your GPA is not provided)`);
+    } else if (r.gpaScale !== "uw") {
+      check.push(`Minimum ${minimum} GPA: confirm the required GPA scale`);
+    } else if (p.gpa < r.minGpa) {
+      no.push(`Minimum ${minimum} unweighted GPA`);
+    }
   }
 
   // Intended field.
-  const majors = r.tags.filter((t) => t.startsWith("major:")).map((t) => t.slice(6));
+  const majors = r.tags.filter((t) => t.startsWith("major:")).map((t) => t.slice(6).toLowerCase());
   if (majors.length) {
-    const ok = majors.some((m) => (FIELD_OF_MAJOR[m] ?? []).includes(p.field));
-    if (!ok) {
-      if (p.field === "undecided") check.push(`Intended major: ${majors.join(", ").replace("-", " ")}`);
-      else no.push(`Limited to ${majors.join(", ").replace("-", " ")} majors`);
+    const majorLabel = majors.join(", ").replace(/-/g, " ");
+    const related = majors.some((m) => (FIELD_OF_MAJOR[m] ?? []).includes(p.field));
+    const comparable = majors.every((m) => COMPARABLE_MAJORS.has(m));
+    if (p.field !== "undecided" && !related && comparable) {
+      no.push(`Limited to ${majorLabel} majors`);
+    } else {
+      check.push(related
+        ? `Confirm your intended major meets the ${majorLabel} requirement`
+        : `Intended major: ${majorLabel} (confirm the eligible programs)`);
     }
   }
 

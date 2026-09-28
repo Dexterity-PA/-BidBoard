@@ -1,7 +1,7 @@
 // app/settings/notifications/_components/EmailPrefsForm.tsx
 "use client";
 
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import type { UserEmailPrefs } from "@/lib/email/preferences";
 import type { NotificationType } from "@/lib/email/client";
 import { saveEmailPref, unsubscribeAll } from "../actions";
@@ -26,22 +26,12 @@ const PREF_ROWS: { type: NotificationType; label: string; description: string }[
   {
     type: "deadline_reminders",
     label: "Deadline reminders",
-    description: "Alerts before scholarships you're tracking close.",
-  },
-  {
-    type: "new_matches",
-    label: "New matches",
-    description: "When Meritously finds new scholarships matching your profile.",
+    description: "Alerts before tracked awards close. Turning this on enables reminders 14, 7, 3 and 1 day before.",
   },
   {
     type: "status_changes",
     label: "Status changes",
     description: "Updates when your application status changes.",
-  },
-  {
-    type: "weekly_digest",
-    label: "Weekly digest",
-    description: "A Sunday summary of your top matches and deadlines.",
   },
 ];
 
@@ -51,8 +41,11 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
   const [unsubError, setUnsubError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const [pendingTypes, setPendingTypes] = useState<Set<NotificationType>>(new Set());
+  const writing = useRef(false);
 
   function toggle(type: NotificationType) {
+    if (writing.current) return;
+    writing.current = true;
     const key = PREF_KEY_MAP[type];
     const newValue = !prefs[key];
     // Optimistic update
@@ -67,6 +60,7 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
         setPrefs((prev) => ({ ...prev, [key]: !newValue }));
         setErrors((prev) => ({ ...prev, [type]: "Failed to save. Try again." }));
       } finally {
+        writing.current = false;
         setPendingTypes((prev) => {
           const next = new Set(prev);
           next.delete(type);
@@ -77,7 +71,9 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
   }
 
   function handleUnsubscribeAll() {
-    if (!window.confirm("Turn off all email notifications?")) return;
+    if (writing.current) return;
+    if (!window.confirm("Turn off all account email notifications?")) return;
+    writing.current = true;
     setUnsubError(null);
     startTransition(async () => {
       try {
@@ -92,6 +88,8 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
         });
       } catch {
         setUnsubError("Failed to unsubscribe. Try again.");
+      } finally {
+        writing.current = false;
       }
     });
   }
@@ -108,7 +106,7 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
                 <p className="text-sm font-medium text-gray-900">{label}</p>
                 <p className="text-xs text-gray-500 mt-0.5">{description}</p>
                 {errors[type] && (
-                  <p className="text-xs text-red-500 mt-1">{errors[type]}</p>
+                  <p role="alert" className="text-xs text-red-500 mt-1">{errors[type]}</p>
                 )}
               </div>
               <button
@@ -117,7 +115,7 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
                 aria-checked={checked}
                 aria-label={label}
                 onClick={() => toggle(type)}
-                disabled={pendingTypes.has(type)}
+                disabled={isPending || pendingTypes.size > 0}
                 className={`relative inline-flex h-5 w-9 shrink-0 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 disabled:opacity-60 ${
                   checked ? "bg-indigo-600" : "bg-gray-200"
                 }`}
@@ -137,13 +135,13 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
         <button
           type="button"
           onClick={handleUnsubscribeAll}
-          disabled={isPending}
+          disabled={isPending || pendingTypes.size > 0}
           className="w-full rounded-lg border border-red-300 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 disabled:opacity-60 transition-colors"
         >
-          Unsubscribe from all emails
+          Turn off all account emails
         </button>
         {unsubError && (
-          <p className="text-xs text-red-500 mt-2 text-center">{unsubError}</p>
+          <p role="alert" className="text-xs text-red-500 mt-2 text-center">{unsubError}</p>
         )}
       </div>
     </>
