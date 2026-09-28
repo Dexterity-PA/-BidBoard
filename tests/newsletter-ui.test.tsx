@@ -121,7 +121,7 @@ describe("newsletter email-link actions", () => {
   ] as const)("does not %s from merely opening the token URL", async (action, label, heading) => {
     render(<NewsletterAction action={action} token="synthetic-test-token" />);
     expect(fetchMock).not.toHaveBeenCalled();
-    fireEvent.click(screen.getByRole("button", { name: label, exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: label }));
 
     expect(await screen.findByRole("heading", { name: heading })).toBeTruthy();
     expect(screen.getByRole("status")).toBeTruthy();

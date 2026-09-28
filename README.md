@@ -167,10 +167,14 @@ cp .env.example .env.local
 
 ### Weekly scholarship digest
 
-Apply `scripts/migrations/2026-09-28-newsletter.sql` to the verified production
-database before deploying the newsletter routes. This additive migration creates
-the subscriber, cooldown, batch and delivery tables. It does not enroll existing
-accounts. `db/schema.ts` also exports the newsletter schema for future migrations.
+`npm run build` first runs `scripts/migrate-newsletter.mjs`. Only Vercel production
+builds apply the reviewed additive SQL migration using the deployment's existing
+database connection; local and preview builds skip it. Required email/cron settings
+and a public HTTPS app URL are checked before connecting. Concurrent production
+builds serialize the migration with a transaction advisory lock, and the four
+newsletter tables, keys and deferred batch foreign key are verified before commit.
+A failure stops the build without printing secrets. Existing accounts are not
+enrolled. `db/schema.ts` also exports the newsletter schema for future migrations.
 
 The homepage and notification settings offer a separate, unchecked digest opt-in.
 Subscribers must follow a confirmation link and press Confirm before receiving
