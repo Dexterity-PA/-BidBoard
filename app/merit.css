@@ -695,6 +695,10 @@
 .lp-section-title { margin: 0 0 16px; font-size: clamp(24px, 3vw, 30px); line-height: 1.2; font-weight: 600; letter-spacing: -0.025em; }
 .lp-about p { margin: 0 0 16px; font-size: 16px; line-height: 1.65; color: var(--m-muted); max-width: 58ch; }
 .lp-about p:last-child { margin-bottom: 0; }
+.lp-updates { padding-bottom: 72px; scroll-margin-top: 80px; }
+.m-newsletter-form { display: grid; gap: 16px; max-width: 520px; }
+.m-newsletter-form .m-btn { justify-self: start; }
+.m-newsletter-form .m-fine { margin: 0; }
 
 @media (max-width: 860px) {
   .lp-hero-grid { grid-template-columns: 1fr; }

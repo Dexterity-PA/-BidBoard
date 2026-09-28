@@ -1,35 +1,24 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
+import { newsletterRequestBody, newsletterRequestIp } from "@/lib/newsletter/http";
+import { NewsletterInputError, NewsletterRateLimitError, requestNewsletterSubscription, SUBSCRIBE_MESSAGE } from "@/lib/newsletter/service";
 
-// MVP newsletter capture: log to server, hold in memory for local testing.
-// Replace with a real provider (Resend audience, etc.) when ready.
-const subscribers = new Set<string>()
+export const runtime = "nodejs";
 
-function isEmail(x: unknown): x is string {
-  return (
-    typeof x === 'string' &&
-    x.length < 255 &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x)
-  )
-}
-
-export async function POST(req: Request) {
-  let body: unknown
+export async function POST(request: Request) {
+  let body: Record<string, unknown>;
+  try { body = await newsletterRequestBody(request); }
+  catch { return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 }); }
   try {
-    body = await req.json()
-  } catch {
-    return NextResponse.json({ ok: false, error: 'Invalid JSON' }, { status: 400 })
+    await requestNewsletterSubscription({ email: body.email, consent: body.consent, ip: newsletterRequestIp(request) });
+    return NextResponse.json({ ok: true, message: SUBSCRIBE_MESSAGE }, { status: 202 });
+  } catch (error) {
+    if (error instanceof NewsletterRateLimitError) {
+      return NextResponse.json({ ok: false, error: error.message }, {
+        status: 429,
+        headers: { "Retry-After": String(error.retryAfterSeconds) },
+      });
+    }
+    if (error instanceof NewsletterInputError) return NextResponse.json({ ok: false, error: error.message }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Subscriptions are temporarily unavailable. Please try again later." }, { status: 503 });
   }
-
-  const email = (body as { email?: unknown })?.email
-  if (!isEmail(email)) {
-    return NextResponse.json(
-      { ok: false, error: 'Enter a valid email' },
-      { status: 400 },
-    )
-  }
-
-  subscribers.add(email.toLowerCase())
-  console.log('[newsletter] subscribed:', email)
-
-  return NextResponse.json({ ok: true })
 }

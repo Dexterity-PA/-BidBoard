@@ -163,6 +163,42 @@ cp .env.example .env.local
 | `RESEND_FROM_EMAIL` | Verified sending address (e.g. `notifications@yourdomain.com`) |
 | `NEXT_PUBLIC_APP_URL` | Public base URL (e.g. `https://www.bidboard.app`) |
 | `CRON_SECRET` | Random secret for protecting cron endpoints (`openssl rand -hex 32`) |
+| `NEWSLETTER_SECRET` | Optional stable secret for newsletter unsubscribe links; falls back to `CRON_SECRET` |
+
+### Weekly scholarship digest
+
+Apply `scripts/migrations/2026-09-28-newsletter.sql` to the verified production
+database before deploying the newsletter routes. This additive migration creates
+the subscriber, cooldown, batch and delivery tables. It does not enroll existing
+accounts. `db/schema.ts` also exports the newsletter schema for future migrations.
+
+The homepage and notification settings offer a separate, unchecked digest opt-in.
+Subscribers must follow a confirmation link and press Confirm before receiving
+digests. Tracked-award reminders remain a separate account preference. New account
+preference rows start with deadline reminders disabled; saved choices are preserved.
+
+Configure a verified Resend sender, `RESEND_API_KEY`, `NEXT_PUBLIC_APP_URL` and
+`CRON_SECRET` in production. Keep the newsletter signing secret stable so existing
+unsubscribe links keep working. There is no local subscriber-file fallback.
+
+Vercel checks the digest queue daily at 15:00 UTC, sending at most one digest per
+subscriber per UTC calendar week. Each invocation processes up to 100 batches of
+100 messages within a bounded runtime. Daily invocations drain any remaining
+recipients. Immutable stored payloads, atomic weekly claims and
+[Resend batch idempotency](https://resend.com/changelog/batch-idempotency-keys)
+protect retries. Failed batches receive one immediate retry; ambiguous attempts
+are not retried after the provider's idempotency window. A recipient opting out
+withholds their entire already-prepared batch to preserve consent and deduplication.
+The cron response reports sent, failed, skipped and remaining-backlog counts.
+Provider quotas still apply; this code does not purchase or upgrade a sending plan.
+
+Confirmation links expire after 24 hours. Unsubscribe links support an explicit
+browser confirmation and mail-client one-click POST. Opening a link with GET never
+changes the subscription.
+
+Run `npm test` for mocked provider and UI regression tests. Tests use a non-routable
+database URL and do not send messages. Do not invoke an authenticated production
+cron as a smoke test because it delivers real email.
 
 ### Install & Run
 
