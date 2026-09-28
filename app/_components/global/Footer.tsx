@@ -254,7 +254,7 @@ export default function Footer() {
                 margin: '0 0 20px',
               }}
             >
-              Built by students in Arizona. Free, forever.
+              Free for students.
             </p>
           </div>
 

@@ -106,8 +106,8 @@ export default function HomePage() {
           </div>
           <div className="m-wrap">
             <div className="lp-community">
-              <p>Student-built. Now used by <strong>10,000+ people.</strong></p>
-              <a href="#about" className="lp-inline-link">Meet the founder</a>
+              <p>Used by <strong>10,000+ people.</strong></p>
+              <a href="#about" className="lp-inline-link">About Meritously</a>
             </div>
           </div>
         </section>
@@ -181,10 +181,10 @@ export default function HomePage() {
         <section id="about" className="lp-section lp-about" aria-labelledby="lp-about-title">
           <div className="m-wrap lp-about-grid">
             <div>
-              <h2 id="lp-about-title" className="lp-section-title">Built by Praneeth.</h2>
+              <h2 id="lp-about-title" className="lp-section-title">About Meritously</h2>
               <p>
-                Meritously is a free project by Praneeth Annapureddy, a student at BASIS Chandler
-                in Arizona. It has grown through local schools and word of mouth.
+                Meritously is a free merit scholarship finder. Browse awards, check official
+                requirements, and keep your applications organized.
               </p>
               <p>
                 Have a correction, a question or an idea for the site?{" "}

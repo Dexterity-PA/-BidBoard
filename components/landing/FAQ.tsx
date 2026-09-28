@@ -20,7 +20,7 @@ const QUESTIONS: QA[] = [
   },
   {
     q: 'What happens if Meritously shuts down, like Going Merry did?',
-    a: 'Going Merry was venture-backed, which means the business had a death clock from day one. Meritously was built by a high school junior, runs lean on fixed infrastructure, and isn\u2019t raising outside money to chase hockey-stick growth. We export all of your data on request, and if anything ever changed, we\u2019d give you an uncensored CSV of everything we know about you and your pipeline.',
+    a: 'Going Merry was venture-backed, which means the business had a death clock from day one. Meritously runs lean on fixed infrastructure and isn\u2019t raising outside money to chase hockey-stick growth. We export all of your data on request, and if anything ever changed, we\u2019d give you an uncensored CSV of everything we know about you and your pipeline.',
   },
   {
     q: 'How accurate is the EV score?',
@@ -45,10 +45,6 @@ const QUESTIONS: QA[] = [
   {
     q: 'How fast are new scholarships added?',
     a: 'The provider index refreshes hourly. New scholarships typically show up in matching within an hour of being posted; the EV score is computed the moment a new listing lands.',
-  },
-  {
-    q: 'Who built this?',
-    a: 'Meritously is built by Praneeth, a junior at BASIS Chandler in Arizona, with help from a small group of students around the country who use it to pay for college. Not a stealth startup. Not a funding round in disguise.',
   },
 ]
 
