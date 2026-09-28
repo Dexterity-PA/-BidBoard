@@ -364,3 +364,6 @@ export const notificationsLog = pgTable(
     index("idx_notifications_log_user_sent").on(t.userId, t.sentAt),
   ]
 );
+
+// Keep the optional mailing list in the schema used by Drizzle migrations.
+export * from "./newsletter-schema";

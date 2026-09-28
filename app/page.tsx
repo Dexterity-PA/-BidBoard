@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import DeadlineBoard, { type BoardRow } from "@/components/merit/DeadlineBoard";
+import NewsletterForm from "@/components/merit/NewsletterForm";
 import { LISTINGS, awardTier, coverageHint, maxDollars, type MeritListing } from "@/lib/merit/catalog";
 
 function valueLabel(l: MeritListing): string | null {
@@ -203,6 +204,16 @@ export default function HomePage() {
                 popularity votes and need-only aid aren&apos;t included.
               </p>
             </div>
+          </div>
+        </section>
+        <section id="updates" className="lp-section lp-updates" aria-labelledby="lp-updates-title">
+          <div className="m-wrap lp-about-grid">
+            <div>
+              <h2 id="lp-updates-title" className="lp-section-title">Scholarship updates, once a week.</h2>
+              <p className="m-body">Get upcoming deadlines and a short list of awards in your inbox. No account needed.</p>
+              <p className="m-fine">Want reminders for your saved awards? <Link href="/settings/notifications" className="lp-inline-link">Choose your reminder preferences.</Link></p>
+            </div>
+            <div><NewsletterForm /></div>
           </div>
         </section>
       </main>

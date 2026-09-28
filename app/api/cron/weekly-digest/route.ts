@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { runWeeklyDigestCron } from "@/lib/email/send/weekly-digest";
+import { runNewsletterDigest } from "@/lib/newsletter/digest";
+
+export const runtime = "nodejs";
+export const maxDuration = 300;
 
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
@@ -8,11 +11,9 @@ export async function GET(req: Request) {
   }
 
   try {
-    const result = await runWeeklyDigestCron();
-    console.log("[cron/weekly-digest]", result);
-    return NextResponse.json({ ok: true, ...result });
-  } catch (err) {
-    console.error("[cron/weekly-digest] error:", err);
+    const result = await runNewsletterDigest();
+    return NextResponse.json({ ok: result.failed === 0, ...result }, { status: result.failed ? 503 : 200 });
+  } catch {
     return NextResponse.json({ error: "Cron failed" }, { status: 500 });
   }
 }

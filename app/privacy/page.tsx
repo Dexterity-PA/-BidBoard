@@ -188,7 +188,7 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p style={{ ...prose(14), color: C.textFaint }}>
-              Last updated: April 16, 2026
+              Last updated: September 28, 2026
             </p>
             <p style={{ ...prose(15), marginTop: 12 }}>
               This policy explains what data Meritously collects, why we collect it, and how
@@ -225,6 +225,17 @@ export default function PrivacyPage() {
               intended major, school name, graduation year, demographic background, and
               scholarship preferences. This data is stored in our database and used solely
               to power your personalized scholarship feed and essay suggestions.
+            </p>
+
+            <p style={subHeading}>Optional Weekly Digest</p>
+            <p style={prose()}>
+              If you join the weekly scholarship digest, we store your email address,
+              confirmation and unsubscribe status, consent timestamps, and delivery records.
+              We use hashed email and network identifiers to limit repeated signup requests.
+              The digest is separate from account notifications and starts only after you
+              confirm your email. Resend delivers these messages. Every digest includes an
+              unsubscribe link; we retain your opt-out status to prevent further deliveries.
+              You can request deletion using the contact address below.
             </p>
 
             <p style={subHeading}>Usage Data</p>
