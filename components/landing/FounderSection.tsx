@@ -147,7 +147,7 @@ export default function FounderSection() {
               maxWidth: 560,
             }}
           >
-            I built BidBoard because I watched friends apply to 40+ scholarships
+            I built Meritously because I watched friends apply to 40+ scholarships
             with no strategy: spraying essays into the void, ignoring deadlines,
             missing the ones they&rsquo;d actually win.
           </p>

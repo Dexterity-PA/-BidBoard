@@ -41,10 +41,11 @@ export default function ProfileForm({
   return (
     <form className="m-profile" onSubmit={submit} aria-label="Your profile for matching">
       <div className="m-profile-head">
-        <h2 className="m-h3">Your matches</h2>
+        <h2 className="m-h3">Find potential matches</h2>
         <p className="m-fine">
-          Four answers, saved only in this browser. Awards that clearly rule you out are hidden;
-          anything we can&apos;t confirm stays visible with a note.
+          Answer what you can. Your profile is saved only in this browser. We filter using
+          these four details, but other eligibility rules may apply. Check the official pages
+          before applying.
         </p>
       </div>
       <div className="m-profile-grid">

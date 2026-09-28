@@ -22,7 +22,7 @@ export function AccountSection({ showToast }: Props) {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "bidboard-data.json";
+        a.download = "meritously-data.json";
         a.click();
         URL.revokeObjectURL(url);
         showToast("success", "Your data export has started downloading.");

@@ -106,7 +106,7 @@ export function NewMatchesEmail({
       </Section>
 
       <Text style={mutedText}>
-        Matches are ranked by expected value per hour of application effort.
+        These are potential matches. Confirm full eligibility on each award&apos;s official page.
       </Text>
     </EmailLayout>
   );

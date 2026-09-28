@@ -73,18 +73,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const scholarshipId = parseInt(id, 10);
-  if (isNaN(scholarshipId)) return { title: "Scholarship | BidBoard" };
+  if (isNaN(scholarshipId)) return { title: "Scholarship | Meritously" };
 
   const s = await db.query.scholarships.findFirst({
     where: eq(scholarships.id, scholarshipId),
     columns: { name: true, provider: true, amountMin: true, amountMax: true },
   });
-  if (!s) return { title: "Scholarship | BidBoard" };
+  if (!s) return { title: "Scholarship | Meritously" };
 
   const amount = formatAmount(s.amountMin, s.amountMax);
   return {
-    title: `${s.name}: ${amount} | BidBoard`,
-    description: `${s.name} by ${s.provider ?? "Unknown sponsor"}. Award: ${amount}. View eligibility, essay prompts, and strategy on BidBoard.`,
+    title: `${s.name}: ${amount} | Meritously`,
+    description: `${s.name} by ${s.provider ?? "Unknown sponsor"}. Award: ${amount}. View eligibility, essay prompts, and strategy on Meritously.`,
   };
 }
 
@@ -185,7 +185,7 @@ function ScholarshipDetailView({
       <header className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
           <Link href="/" className="text-sm font-bold text-indigo-600 tracking-tight">
-            BidBoard
+            Meritously
           </Link>
           <div className="flex items-center gap-3">
             {isLoggedIn ? (

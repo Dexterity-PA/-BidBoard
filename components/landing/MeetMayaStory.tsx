@@ -22,7 +22,7 @@ const SCENES = [
   },
   {
     id: 2,
-    copy: 'In 4 seconds, BidBoard found 47 scholarships she qualifies for.',
+    copy: 'In 4 seconds, Meritously found 47 scholarships she qualifies for.',
   },
   {
     id: 3,

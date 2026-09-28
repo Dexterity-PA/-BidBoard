@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import MeritouslyMark from '@/components/merit/LogoMark'
 import { useEffect, useRef, useState } from 'react'
 import {
   AnimatePresence,
@@ -14,7 +15,6 @@ import AnnouncementBar from './global/AnnouncementBar'
 import MagneticButton from './global/MagneticButton'
 
 const SANS = 'var(--font-dm-sans), -apple-system, sans-serif'
-const SERIF = 'var(--font-instrument-serif), Georgia, serif'
 
 type NavLink = { label: string; href: string; id?: string }
 
@@ -41,24 +41,7 @@ function LogoMark() {
         textDecoration: 'none',
       }}
     >
-      <span
-        aria-hidden
-        style={{
-          width: 28,
-          height: 28,
-          borderRadius: 8,
-          background: 'var(--bb-primary)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontFamily: SERIF,
-          fontSize: 18,
-          lineHeight: 1,
-          color: 'var(--bb-surface)',
-        }}
-      >
-        B
-      </span>
+      <MeritouslyMark width={28} height={28} />
       <span
         style={{
           fontFamily: SANS,
@@ -68,7 +51,7 @@ function LogoMark() {
           letterSpacing: '-0.02em',
         }}
       >
-        BidBoard
+        Meritously
       </span>
     </Link>
   )

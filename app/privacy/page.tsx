@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { SiteHeader, SiteFooter } from "@/components/merit/SiteChrome";
 import { useEffect, useRef, useState } from "react";
 
 /* ─── Design tokens (mirrors app/page.tsx) ─────────────────────── */
@@ -22,172 +23,6 @@ const C = {
 const serif = "var(--font-instrument-serif), Georgia, serif";
 const sans  = "var(--font-dm-sans), -apple-system, sans-serif";
 
-/* ─── Nav (mirrors app/page.tsx Nav()) ─────────────────────────── */
-function Nav() {
-  return (
-    <nav
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        background: "rgba(255,255,255,0.88)",
-        backdropFilter: "saturate(180%) blur(12px)",
-        WebkitBackdropFilter: "saturate(180%) blur(12px)",
-        borderBottom: `1px solid ${C.border}`,
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "0 24px",
-          height: 64,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Link
-          href="/"
-          style={{
-            fontFamily: sans,
-            fontWeight: 600,
-            fontSize: 16,
-            color: C.textPrimary,
-            textDecoration: "none",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          Meritously
-        </Link>
-
-        <div className="mkt-hide-mobile" style={{ display: "flex", gap: 32, alignItems: "center" }}>
-          {[
-            { label: "How it works",   href: "/#how-it-works" },
-            { label: "Why it's free",  href: "/#why-free" },
-            { label: "For Counselors", href: "/#counselors" },
-          ].map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className="nav-link-light"
-              style={{
-                fontFamily: sans,
-                fontSize: 14,
-                color: C.textMuted,
-                textDecoration: "none",
-                transition: "color 0.15s",
-              }}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <Link
-            href="/sign-in"
-            style={{
-              fontFamily: sans,
-              fontSize: 14,
-              color: C.textMuted,
-              textDecoration: "none",
-            }}
-          >
-            Sign in
-          </Link>
-          <Link
-            href="/sign-up"
-            className="btn-indigo"
-            style={{
-              fontFamily: sans,
-              fontSize: 14,
-              fontWeight: 500,
-              color: "#fff",
-              textDecoration: "none",
-              background: C.indigo,
-              padding: "8px 18px",
-              borderRadius: 8,
-              transition: "background 0.15s",
-              display: "inline-block",
-            }}
-          >
-            Get Started
-          </Link>
-        </div>
-      </div>
-    </nav>
-  );
-}
-
-/* ─── Footer (mirrors app/page.tsx Footer()) ────────────────────── */
-function Footer() {
-  return (
-    <footer
-      style={{
-        background: C.dark,
-        borderTop: "1px solid rgba(255,255,255,0.08)",
-        padding: "32px 24px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 16,
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: sans,
-              fontWeight: 600,
-              fontSize: 15,
-              color: C.white,
-              letterSpacing: "-0.01em",
-              marginBottom: 4,
-            }}
-          >
-            Meritously
-          </div>
-          <div style={{ fontFamily: sans, fontSize: 13, color: C.textOnDark }}>
-            Scholarship strategy, engineered.
-          </div>
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
-          <nav aria-label="Footer" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-            {["Privacy", "Terms", "Contact"].map((label) => (
-              <Link
-                key={label}
-                href={`/${label.toLowerCase()}`}
-                className="footer-link"
-                style={{
-                  fontFamily: sans,
-                  fontSize: 13,
-                  color: C.textOnDark,
-                  textDecoration: "none",
-                  transition: "color 0.15s",
-                }}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-          <span style={{ fontFamily: sans, fontSize: 12, color: C.textOnDark }}>
-            © 2026 Meritously
-          </span>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-/* ─── Section definitions ───────────────────────────────────────── */
 const SECTIONS = [
   { id: "what-we-collect",    label: "What We Collect" },
   { id: "how-we-use-it",      label: "How We Use It" },
@@ -272,8 +107,8 @@ export default function PrivacyPage() {
   };
 
   return (
-    <div style={{ background: C.white, minHeight: "100vh" }}>
-      <Nav />
+    <div className="m-page">
+      <SiteHeader />
 
       <div
         style={{
@@ -820,7 +655,7 @@ export default function PrivacyPage() {
         </main>
       </div>
 
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }

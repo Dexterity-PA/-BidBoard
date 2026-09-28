@@ -68,7 +68,7 @@ export default function PageIntroWipe() {
               letterSpacing: '-0.02em',
             }}
           >
-            BidBoard
+            Meritously
           </motion.span>
         </motion.div>
       )}

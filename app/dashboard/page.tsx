@@ -406,7 +406,7 @@ export default async function DashboardPage() {
     },
     {
       label:       "Invite a Friend",
-      description: "Share BidBoard with a classmate",
+      description: "Share Meritously with a classmate",
       href:        "#", // TODO: wire up referral
       icon:        <IconUsers className="h-4 w-4" />,
       iconBg:      "bg-gray-100",

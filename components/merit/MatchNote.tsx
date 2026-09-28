@@ -17,7 +17,7 @@ export default function MatchNote({ record }: { record: MeritRecord }) {
   if (result === "none") {
     return (
       <Link href="/scholarships?match=1" className="m-arrow-link" style={{ fontSize: 13 }}>
-        Check if this fits you →
+        Find potential matches
       </Link>
     );
   }
@@ -25,8 +25,8 @@ export default function MatchNote({ record }: { record: MeritRecord }) {
     result.verdict === "match" ? "m-notice-fit" : result.verdict === "check" ? "m-notice-watch" : "m-notice-dir";
   return (
     <div className={`m-notice ${cls}`} style={{ margin: 0 }}>
-      {result.verdict === "match" && "Fits your profile."}
-      {result.verdict === "check" && <>Fits so far. Confirm: {result.reasons.join("; ")}.</>}
+      {result.verdict === "match" && "Potential match based on your answers. Confirm all requirements on the official page."}
+      {result.verdict === "check" && <>More details to check: {result.reasons.join("; ")}. Confirm full eligibility on the official page.</>}
       {result.verdict === "no" && <>Likely not for you: {result.reasons.join("; ")}.</>}
     </div>
   );

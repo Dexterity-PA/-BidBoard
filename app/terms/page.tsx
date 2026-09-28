@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteHeader, SiteFooter } from "@/components/merit/SiteChrome";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,182 +27,6 @@ const C = {
 
 const sans  = "var(--font-dm-sans), -apple-system, sans-serif";
 
-/* ─── Nav (same as marketing page) ─────────────────────────── */
-function Nav() {
-  return (
-    <nav
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        background: "rgba(255,255,255,0.88)",
-        backdropFilter: "saturate(180%) blur(12px)",
-        WebkitBackdropFilter: "saturate(180%) blur(12px)",
-        borderBottom: `1px solid ${C.border}`,
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "0 24px",
-          height: 64,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Link
-          href="/"
-          style={{
-            fontFamily: sans,
-            fontWeight: 600,
-            fontSize: 16,
-            color: C.textPrimary,
-            textDecoration: "none",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          Meritously
-        </Link>
-
-        <div
-          className="mkt-hide-mobile"
-          style={{ display: "flex", gap: 32, alignItems: "center" }}
-        >
-          {[
-            { label: "How it works",   href: "/#how-it-works" },
-            { label: "Why it's free",  href: "/#why-free" },
-            { label: "For Counselors", href: "/#counselors" },
-          ].map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className="nav-link-light"
-              style={{
-                fontFamily: sans,
-                fontSize: 14,
-                color: C.textMuted,
-                textDecoration: "none",
-                transition: "color 0.15s",
-              }}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <Link
-            href="/sign-in"
-            style={{
-              fontFamily: sans,
-              fontSize: 14,
-              color: C.textMuted,
-              textDecoration: "none",
-            }}
-          >
-            Sign in
-          </Link>
-          <Link
-            href="/sign-up"
-            className="btn-indigo"
-            style={{
-              fontFamily: sans,
-              fontSize: 14,
-              fontWeight: 500,
-              color: "#fff",
-              textDecoration: "none",
-              background: C.indigo,
-              padding: "8px 18px",
-              borderRadius: 8,
-              transition: "background 0.15s",
-              display: "inline-block",
-            }}
-          >
-            Get Started
-          </Link>
-        </div>
-      </div>
-    </nav>
-  );
-}
-
-/* ─── Footer (same as marketing page) ──────────────────────── */
-function Footer() {
-  return (
-    <footer
-      style={{
-        background: C.dark,
-        borderTop: "1px solid rgba(255,255,255,0.08)",
-        padding: "32px 24px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 16,
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: sans,
-              fontWeight: 600,
-              fontSize: 15,
-              color: C.white,
-              letterSpacing: "-0.01em",
-              marginBottom: 4,
-            }}
-          >
-            Meritously
-          </div>
-          <div style={{ fontFamily: sans, fontSize: 13, color: C.textOnDark }}>
-            Scholarship strategy, engineered.
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 24,
-            flexWrap: "wrap",
-          }}
-        >
-          <nav aria-label="Footer" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-            {["Privacy", "Terms", "Contact"].map((label) => (
-              <Link
-                key={label}
-                href={`/${label.toLowerCase()}`}
-                className="footer-link"
-                style={{
-                  fontFamily: sans,
-                  fontSize: 13,
-                  color: C.textOnDark,
-                  textDecoration: "none",
-                  transition: "color 0.15s",
-                }}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-          <span style={{ fontFamily: sans, fontSize: 12, color: C.textOnDark }}>
-            © 2026 Meritously
-          </span>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-/* ─── Section nav entries ───────────────────────────────────── */
 const SECTIONS = [
   { id: "acceptance",  label: "Acceptance of Terms" },
   { id: "service",     label: "Description of Service" },
@@ -301,8 +126,8 @@ const li: React.CSSProperties = { marginBottom: 6 };
 /* ─── Page ──────────────────────────────────────────────────── */
 export default function TermsPage() {
   return (
-    <div style={{ background: C.white }}>
-      <Nav />
+    <div className="m-page">
+      <SiteHeader />
 
       <main style={{ minHeight: "80vh" }}>
         {/* Page header */}
@@ -633,12 +458,12 @@ export default function TermsPage() {
                 OR NON-INFRINGEMENT.
               </p>
               <p style={p}>
-                BIDBOARD DOES NOT WARRANT THAT (A) THE SERVICE WILL BE UNINTERRUPTED,
+                MERITOUSLY DOES NOT WARRANT THAT (A) THE SERVICE WILL BE UNINTERRUPTED,
                 ERROR-FREE, OR SECURE; (B) ANY DEFECTS WILL BE CORRECTED; (C) THE SERVICE OR
                 THE SERVERS THAT MAKE IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL
                 COMPONENTS; OR (D) THE RESULTS OF USING THE SERVICE WILL MEET YOUR
                 EXPECTATIONS. SCHOLARSHIP AVAILABILITY, REQUIREMENTS, AND AWARD DECISIONS ARE
-                DETERMINED SOLELY BY THIRD-PARTY AWARDING ORGANIZATIONS, AND BIDBOARD MAKES NO
+                DETERMINED SOLELY BY THIRD-PARTY AWARDING ORGANIZATIONS, AND MERITOUSLY MAKES NO
                 REPRESENTATION REGARDING THE LIKELIHOOD OF ANY USER RECEIVING A SCHOLARSHIP
                 AWARD.
               </p>
@@ -650,7 +475,7 @@ export default function TermsPage() {
               summary="If something goes wrong with Meritously, our legal liability is capped. We're not responsible for things like missed scholarship opportunities. Our total liability to you is capped at what you've paid us in the past year."
             >
               <p style={p}>
-                TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, BIDBOARD AND ITS OFFICERS,
+                TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, MERITOUSLY AND ITS OFFICERS,
                 DIRECTORS, EMPLOYEES, AGENTS, AND LICENSORS SHALL NOT BE LIABLE FOR ANY
                 INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES,
                 INCLUDING BUT NOT LIMITED TO LOSS OF REVENUE, DATA, GOODWILL, OR ANTICIPATED
@@ -658,9 +483,9 @@ export default function TermsPage() {
                 THE SERVICE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
               </p>
               <p style={p}>
-                IN NO EVENT SHALL BIDBOARD&apos;S AGGREGATE LIABILITY TO YOU FOR ALL CLAIMS ARISING
+                IN NO EVENT SHALL MERITOUSLY&apos;S AGGREGATE LIABILITY TO YOU FOR ALL CLAIMS ARISING
                 OUT OF OR RELATED TO THESE TERMS EXCEED THE GREATER OF (A) THE TOTAL FEES PAID
-                BY YOU TO BIDBOARD IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM OR (B) ONE
+                BY YOU TO MERITOUSLY IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM OR (B) ONE
                 HUNDRED DOLLARS ($100).
               </p>
               <p style={p}>
@@ -756,7 +581,7 @@ export default function TermsPage() {
         </div>
       </main>
 
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }

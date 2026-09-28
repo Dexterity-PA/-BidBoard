@@ -83,7 +83,7 @@ export default function WhyFreeSection() {
       >
         <div>
           <p style={{ fontFamily: sans, fontSize: 17, lineHeight: 1.7, color: C.textMuted, margin: "0 0 16px" }}>
-            BidBoard has no premium tier, no seat fees, and no credit card
+            Meritously has no premium tier, no seat fees, and no credit card
             field anywhere in the product. The full toolkit is free for
             students and for counseling practices.
           </p>

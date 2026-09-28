@@ -1,4 +1,4 @@
-# BidBoard Email Notifications
+# Meritously Email Notifications
 
 All email templates live in `emails/` and are built with [React Email](https://react.email).
 The shared layout and style tokens are in `emails/_components/EmailLayout.tsx`.

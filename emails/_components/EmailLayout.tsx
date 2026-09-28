@@ -9,6 +9,7 @@ import {
   Section,
   Text,
   Hr,
+  Img,
 } from "@react-email/components";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app";
@@ -27,6 +28,13 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
         <Container style={container}>
           {/* Logo */}
           <Section style={logoSection}>
+            <Img
+              src={`${APP_URL}/meritously-mark.png`}
+              width="32"
+              height="32"
+              alt=""
+              style={{ marginBottom: "12px" }}
+            />
             <Text style={logoText}>Meritously</Text>
           </Section>
 

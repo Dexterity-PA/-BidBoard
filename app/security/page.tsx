@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { SiteHeader, SiteFooter } from '@/components/merit/SiteChrome'
 
 const SANS = 'var(--font-dm-sans), -apple-system, sans-serif'
 const SERIF = 'var(--font-instrument-serif), Georgia, serif'
@@ -12,10 +13,11 @@ export const metadata: Metadata = {
 
 export default function SecurityPage() {
   return (
-    <main
+    <div className="m-page">
+      <SiteHeader />
+    <main className="m-main"
       style={{
         background: 'var(--bb-surface)',
-        minHeight: '100vh',
         padding: 'clamp(80px, 12vh, 140px) clamp(24px, 6vw, 96px)',
       }}
     >
@@ -94,5 +96,7 @@ export default function SecurityPage() {
         </div>
       </div>
     </main>
+      <SiteFooter />
+    </div>
   )
 }
