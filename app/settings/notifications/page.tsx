@@ -50,7 +50,7 @@ export default async function NotificationsSettingsPage() {
       <div className="border border-gray-200 rounded-xl overflow-hidden mb-8">
         <EmailPrefsForm prefs={boolPrefs} />
       </div>
-      <section className="m-page" aria-labelledby="digest-heading">
+      <section className="m-page" style={{ minHeight: 0 }} aria-labelledby="digest-heading">
         <h2 id="digest-heading" className="m-h3">Weekly scholarship digest</h2>
         <p className="m-body" style={{ margin: "12px 0 24px" }}>
           A general roundup of upcoming awards. This is a separate subscription from your
