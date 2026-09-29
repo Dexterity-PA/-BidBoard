@@ -7,7 +7,6 @@ import MatchNote from "@/components/merit/MatchNote";
 import { isMeritSaved } from "@/app/actions/merit";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import {
-  LAST_CHECKED,
   LISTINGS,
   STATUS_LABEL,
   TAG_LABEL,
@@ -15,8 +14,10 @@ import {
   coverageHint,
   formatISODate,
   getListing,
+  getVerification,
   requirements,
   timelineSteps,
+  verificationState,
   type MeritListing,
 } from "@/lib/merit/catalog";
 
@@ -75,6 +76,8 @@ export default async function ListingPage({
   const steps = timelineSteps(l);
   const needs = requirements(l);
   const more = related(l);
+  const verification = getVerification(l);
+  const freshness = verificationState(verification?.checkedAt);
   const reportHref = `mailto:hello@bidboard.app?subject=${encodeURIComponent(
     `Listing ${l.id}: ${l.name} (${l.provider})`,
   )}&body=${encodeURIComponent("What looks wrong or out of date?\n\n")}`;
@@ -118,6 +121,7 @@ export default async function ListingPage({
               <span className="m-card-deadline">
                 {l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
               </span>
+              {freshness === "stale" && <p className="m-fine">This listing was checked at least 90 days ago. Confirm current dates and rules before applying.</p>}
               {l.sources[0] && (
                 <a
                   href={l.sources[0]}
@@ -264,9 +268,12 @@ export default async function ListingPage({
                 ))}
               </ul>
               <p className="m-fine">
-                Details last checked {formatISODate(LAST_CHECKED)}. Programs change their rules,
-                so confirm on the official page before applying.
+                {verification
+                  ? <>Last checked {formatISODate(verification.checkedAt)}. </>
+                  : <>An individual check date has not been recorded for this listing. </>}
+                Confirm current dates and rules on the official page before applying.
               </p>
+              {verification?.notes && <p className="m-fine">{verification.notes}</p>}
               <a href={reportHref} className="m-arrow-link" style={{ fontSize: 13 }}>
                 Report a problem with this listing
               </a>

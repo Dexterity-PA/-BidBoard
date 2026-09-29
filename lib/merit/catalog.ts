@@ -13,6 +13,9 @@ import outside5 from "@/data/merit/outside-5.json";
 import regional2 from "@/data/merit/regional-2.json";
 import outside6 from "@/data/merit/outside-6.json";
 import regional3 from "@/data/merit/regional-3.json";
+import verificationLedger from "@/data/merit/verification.json";
+import { validateVerificationLedger } from "./verification.mjs";
+export { validateVerificationLedger, verificationState, VERIFICATION_STALE_DAYS } from "./verification.mjs";
 
 export type MeritType = "college-program" | "scholarship" | "competition";
 export type MeritStatus =
@@ -46,9 +49,6 @@ export type MeritRecord = {
 
 export type MeritListing = MeritRecord & { slug: string };
 
-/** Date the research behind every listing was last checked. */
-export const LAST_CHECKED = "2026-09-24";
-
 const ALL = [
   ...colleges1,
   ...colleges2,
@@ -66,6 +66,13 @@ const ALL = [
   ...outside6,
   ...regional3,
 ] as MeritRecord[];
+
+const VERIFICATION = validateVerificationLedger(verificationLedger, ALL);
+
+/** Program classification and the date of an individual source check are separate. */
+export function getVerification(record: Pick<MeritRecord, "id">) {
+  return VERIFICATION[record.id] ?? null;
+}
 
 function slugify(s: string) {
   return s
@@ -99,7 +106,7 @@ export const TYPE_LABEL: Record<MeritType, string> = {
 };
 
 export const STATUS_LABEL: Record<Exclude<MeritStatus, "excluded">, string> = {
-  live: "Verified",
+  live: "Listed",
   watchlist: "Unconfirmed",
   "mixed-need": "Merit + need",
   directory: "Directory",

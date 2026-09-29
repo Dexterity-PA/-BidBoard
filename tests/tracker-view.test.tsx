@@ -39,6 +39,18 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("tracker confirmed writes", () => {
+  it("preserves a saved target and identifies a different current official deadline", () => {
+    render(<TrackerView initial={[{ ...award, deadline: "2026-10-15", officialDeadline: "2026-12-01" }]} />);
+    expect(screen.getByText(/Saved target: Oct 15, 2026\. Catalog deadline: Dec 1, 2026\./).textContent).toContain("Reminders use your saved target.");
+    expect(updateApplicationStatus).not.toHaveBeenCalled();
+    expect(updateApplicationNotes).not.toHaveBeenCalled();
+  });
+
+  it("does not show a mismatch when the saved and official dates agree", () => {
+    render(<TrackerView initial={[{ ...award, officialDeadline: award.deadline }]} />);
+    expect(screen.queryByText(/Saved target:/)).toBeNull();
+  });
+
   it("retains an award until removal succeeds and allows retry after failure", async () => {
     const request = deferred();
     vi.mocked(deleteApplication).mockReturnValueOnce(request.promise);
