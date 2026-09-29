@@ -57,6 +57,12 @@ export async function loadAuditedSyncRows() {
   return auditedSyncRows(files.flat(), ledger, manifest, archive);
 }
 
+export function auditSyncParameters(sql, rows) {
+  // Let postgres.js serialize the array once. A pre-stringified value is
+  // serialized again when the server describes the parameter as JSONB.
+  return [sql.json(rows), SOURCE];
+}
+
 // A single parameterized statement locks its exact scholarship targets and is
 // safe to rerun. It does not insert/delete scholarships or delete user records.
 export const AUDIT_SYNC_SQL = `
@@ -120,7 +126,7 @@ async function main() {
       await tx`SET LOCAL lock_timeout = '30s'`;
       await tx`SET LOCAL statement_timeout = '90s'`;
       await tx`SELECT pg_advisory_xact_lock(hashtext('meritously'), hashtext('catalog-audit-2026-09-29'))`;
-      const result = await tx.unsafe(AUDIT_SYNC_SQL, [JSON.stringify(rows), SOURCE]);
+      const result = await tx.unsafe(AUDIT_SYNC_SQL, auditSyncParameters(tx, rows));
       if (result[0]?.matched !== rows.length) {
         console.error(`[catalog audit] Matched ${result[0]?.matched ?? 0} of ${rows.length} reviewed records; refusing an incomplete synchronization.`);
         throw new Error("Incomplete catalog synchronization");
@@ -128,8 +134,9 @@ async function main() {
       return result;
     });
     console.log(`[catalog audit] Reviewed=${counts.reviewed}; matched=${counts.matched}; scholarship corrections=${counts.scholarships}; untouched saved deadlines corrected=${counts.applications}.`);
-  } catch {
-    console.error("[catalog audit] Failed. Check audit evidence, database availability and schema permissions.");
+  } catch (error) {
+    const code = typeof error?.code === "string" && /^[A-Z0-9_]{1,40}$/.test(error.code) ? error.code : "UNKNOWN";
+    console.error(`[catalog audit] Failed (${code}). Check audit evidence, database availability and schema permissions.`);
     process.exitCode = 1;
   } finally {
     if (sql) await sql.end({ timeout: 5 }).catch(() => { process.exitCode = 1; });
