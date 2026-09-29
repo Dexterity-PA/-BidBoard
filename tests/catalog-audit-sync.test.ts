@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { auditedSyncRows, canonicalRecordHash } from "@/scripts/sync-catalog-audit.mjs";
+import { auditedSyncRows, auditSyncParameters, canonicalRecordHash } from "@/scripts/sync-catalog-audit.mjs";
+import postgres from "postgres";
 import type { MeritRecord } from "@/lib/merit/catalog";
 
 const record: MeritRecord = {
@@ -23,6 +24,20 @@ function makeArchive(item: MeritRecord = record, evidence = checked) {
 const archive = makeArchive();
 
 describe("completed catalog audit publication", () => {
+  it("sends a JSON array through the production driver's JSONB serializer", async () => {
+    const sql = postgres("postgresql://audit:unused@127.0.0.1:1/audit");
+    try {
+      const rows = auditedSyncRows([record], { C901: checked }, manifest, archive);
+      const [payload, source] = auditSyncParameters(sql, rows) as [{ type: number; value: unknown }, string];
+      expect(source).toBe("merit-ledger");
+      expect(payload.type).toBe(3802);
+      const wireValue = sql.options.serializers[payload.type](payload.value);
+      expect(JSON.parse(wireValue)).toEqual(rows);
+    } finally {
+      await sql.end();
+    }
+  });
+
   it("keeps saved URLs stable after official name corrections and carries the old date separately", () => {
     const [row] = auditedSyncRows([record], { C901: checked }, manifest, archive);
     expect(row.slug).toBe("c901-original-stable-name");
