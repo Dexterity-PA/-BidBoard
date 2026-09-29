@@ -367,3 +367,4 @@ export const notificationsLog = pgTable(
 
 // Keep the optional mailing list in the schema used by Drizzle migrations.
 export * from "./newsletter-schema";
+export * from "./analytics-schema";

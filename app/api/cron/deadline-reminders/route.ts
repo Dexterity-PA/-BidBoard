@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { runDeadlineReminderCron } from "@/lib/email/send/deadline-reminder";
+import { cleanAnalyticsRetention } from "@/lib/analytics/server";
 
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
@@ -8,6 +9,7 @@ export async function GET(req: Request) {
   }
 
   try {
+    await cleanAnalyticsRetention();
     const result = await runDeadlineReminderCron();
     console.log("[cron/deadline-reminders]", result);
     return NextResponse.json({ ok: true, ...result });

@@ -1,0 +1,16 @@
+.main { max-width: 1080px; margin: 0 auto; padding: 36px 20px 72px; color: #17251d; }
+.main h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 650; margin: 24px 0 12px; }
+.main h2 { font-size: 24px; font-weight: 650; margin-bottom: 16px; }
+.main h3 { font-size: 18px; font-weight: 600; margin: 24px 0 12px; }
+.main p { line-height: 1.6; margin: 12px 0; color: #4c5a51; }
+.main a { color: #0f5d3e; text-decoration: underline; }
+.section { margin-top: 36px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.cards > div { border: 1px solid #dce4de; padding: 18px; border-radius: 12px; background: #f7faf8; }
+.cards dt { font-size: 13px; min-height: 38px; }
+.cards dd { font-size: 30px; font-weight: 650; margin: 0; }
+.tableScroll { overflow-x: auto; border: 1px solid #dce4de; border-radius: 10px; }
+.tableScroll table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.tableScroll th, .tableScroll td { padding: 14px; border-bottom: 1px solid #e9eeeb; white-space: nowrap; }
+.tableScroll thead { background: #f3f7f4; }
+.main code { overflow-wrap: anywhere; font-size: 13px; }

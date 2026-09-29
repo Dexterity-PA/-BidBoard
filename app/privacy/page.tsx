@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { SiteHeader, SiteFooter } from "@/components/merit/SiteChrome";
 import { useEffect, useRef, useState } from "react";
+import { AnalyticsPreference } from "@/components/merit/AnalyticsPreference";
 
 /* ─── Design tokens (mirrors app/page.tsx) ─────────────────────── */
 const C = {
@@ -240,10 +241,18 @@ export default function PrivacyPage() {
 
             <p style={subHeading}>Usage Data</p>
             <p style={prose()}>
-              We collect standard web analytics data: pages visited, features used,
-              session duration, and browser/device type. This data is aggregated and used
-              only to improve Meritously. We do not build individual behavioral profiles for
-              advertising purposes.
+              We measure visits to the home page and public scholarship pages, returning
+              browsers, account creation, saved awards and confirmed weekly digest opt-ins.
+              We store page categories, limited campaign/source labels and referring
+              hostnames, using random browser identifiers and keyed hashes. These identifiers
+              are pseudonymous, not a count of individual people.
+            </p>
+            <p style={{ ...prose(), marginTop: 12 }}>
+              Analytics records do not contain raw IP addresses, emails, names, profile or
+              essay content, full query strings, or account and email confirmation tokens.
+              Private account pages and email action pages are excluded from browser tracking.
+              A temporary keyed network hash limits abusive measurement requests. Reports
+              are available only to the authorized site owner.
             </p>
 
             <p style={subHeading}>Cookies &amp; Local Storage</p>
@@ -427,11 +436,12 @@ export default function PrivacyPage() {
               up to 90 days before those backups are rotated and overwritten.
             </p>
 
-            <p style={subHeading}>Anonymized Data</p>
+            <p style={subHeading}>Analytics Retention</p>
             <p style={prose()}>
-              We may retain aggregated, anonymized analytics data (e.g., "X% of users
-              clicked the essay tool in March") indefinitely. This data cannot be linked
-              back to any individual user.
+              Analytics events are retained for 90 days and removed by a daily cleanup.
+              Temporary network rate-limit hashes expire after one day and are removed
+              by the same cleanup. Counts may be incomplete when browsers block storage
+              or requests, or when measurement is unavailable.
             </p>
           </section>
 
@@ -526,9 +536,11 @@ export default function PrivacyPage() {
 
             <p style={subHeading}>Analytics Cookies</p>
             <p style={prose()}>
-              We may use anonymized, first-party analytics to understand aggregate usage
-              patterns. These cookies do not track you across other websites and are not
-              shared with advertising networks.
+              First-party analytics uses a random browser identifier in local storage for
+              up to 30 days and a visit attribution cookie lasting 30 minutes. A new visit
+              begins after 30 minutes without a tracked page navigation. Identifiers are
+              hashed before database storage. We do not track you across websites or
+              share these measurements with advertising networks.
             </p>
 
             <p style={subHeading}>What We Don't Use</p>
@@ -539,11 +551,13 @@ export default function PrivacyPage() {
 
             <p style={subHeading}>Opting Out</p>
             <p style={prose()}>
-              You can block or delete cookies through your browser settings. Note that
-              blocking essential cookies will prevent Meritously from functioning correctly.
-              For non-essential cookies, most modern browsers allow selective blocking via
-              their privacy settings.
+              You can turn off browser analytics below. We also honor Do Not Track and
+              Global Privacy Control. This stops browser visit measurement and source
+              attribution. Successful account creation, saved-award and confirmed
+              subscription totals are still counted without a browser identifier or source.
+              This preference does not affect sign-in or email subscription choices.
             </p>
+            <AnalyticsPreference />
           </section>
 
           {/* ── Section: Children's Privacy ── */}

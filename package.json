@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/migrate-newsletter.mjs && next build",
+    "build": "node scripts/migrate-newsletter.mjs && node scripts/migrate-analytics.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",

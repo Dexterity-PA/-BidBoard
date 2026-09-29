@@ -3,6 +3,7 @@ import { and, eq, gt, inArray, isNull, lt, lte, ne, notInArray, or, sql } from "
 import { db } from "@/db";
 import { newsletterBatches, newsletterCooldowns, newsletterDeliveries, newsletterSubscribers, type NewsletterBatch } from "@/db/newsletter-schema";
 import type { NewsletterDigestContent, NewsletterMessage } from "./types";
+import { recordConversion } from "@/lib/analytics/server";
 
 export async function claimCooldown(key: string, blockedUntil: Date, now: Date) {
   const rows = await db.insert(newsletterCooldowns).values({ key, blockedUntil })
@@ -37,6 +38,7 @@ export async function confirmSubscription(tokenHash: string, now: Date) {
     confirmationTokenHash: null, confirmationExpiresAt: null,
   }).where(and(eq(newsletterSubscribers.confirmationTokenHash, tokenHash), eq(newsletterSubscribers.status, "pending"), gt(newsletterSubscribers.confirmationExpiresAt, now)))
     .returning({ id: newsletterSubscribers.id });
+  if (rows[0]) await recordConversion("newsletter", rows[0].id);
   return rows.length === 1;
 }
 
