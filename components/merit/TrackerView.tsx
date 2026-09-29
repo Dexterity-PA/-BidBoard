@@ -22,6 +22,8 @@ export type TrackedAward = {
   officialUrl: string | null;
   deadline: string | null;
   officialDeadline?: string | null;
+  catalogTracked?: boolean;
+  inactive?: boolean;
   award: string;
   requirements: string[];
   steps: { label: string; date: string; iso: string | null }[];
@@ -190,14 +192,21 @@ function TrackedRow({
   return (
     <div className="m-track">
       <div className="m-track-main">
-        <DateBlock iso={a.deadline} today={today} />
+        <DateBlock iso={a.deadline} today={today} emptyLabel="No saved date" />
         <div className="m-row-main">
           <span className="m-row-provider">{a.provider}</span>
-          <Link href={a.href} className="m-row-name m-track-name">
-            {a.name}
-          </Link>
+          {a.inactive ? <span className="m-row-name m-track-name">{a.name}</span> : (
+            <Link href={a.href} className="m-row-name m-track-name">{a.name}</Link>
+          )}
           <span className="m-row-value">{a.award}</span>
-          {a.deadline && a.officialDeadline && a.deadline !== a.officialDeadline && (
+          {a.inactive && <span className="m-track-next">Removed from the active catalog. Your saved notes remain; deadline reminders are paused.</span>}
+          {!a.inactive && a.catalogTracked && !a.deadline && a.officialDeadline && (
+            <span className="m-track-next">Catalog deadline: {formatISODate(a.officialDeadline)}. No reminder date is saved.</span>
+          )}
+          {!a.inactive && a.catalogTracked && a.deadline && !a.officialDeadline && (
+            <span className="m-track-next">Current application deadline unconfirmed. Reminders use your saved target of {formatISODate(a.deadline)}.</span>
+          )}
+          {!a.inactive && a.deadline && a.officialDeadline && a.deadline !== a.officialDeadline && (
             <span className="m-track-next">
               Saved target: {formatISODate(a.deadline)}. Catalog deadline: {formatISODate(a.officialDeadline)}.
               {" "}Reminders use your saved target.

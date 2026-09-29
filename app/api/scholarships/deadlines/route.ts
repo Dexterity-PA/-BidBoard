@@ -28,6 +28,7 @@ export async function GET() {
     .where(
       and(
         eq(applications.userId, userId),
+        eq(scholarships.isActive, true),
         gte(applications.deadline, today),
         notInArray(applications.status, ["submitted", "won", "lost", "skipped"]),
       ),

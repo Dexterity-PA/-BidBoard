@@ -27,6 +27,15 @@ async function renderPage() {
 }
 
 describe("scholarship verification copy", () => {
+  it("labels inaccessible official information as an attempt and shows what remains unknown", async () => {
+    mocks.verification.mockReturnValue({ checkedAt: "2026-09-29", sourceUrls: [], outcome: "unavailable", notes: "The official page could not be read.", unresolved: ["The 2027 deadline remains unconfirmed."] });
+    const html = await renderPage();
+    expect(html).toContain("Official information unavailable");
+    expect(html).toContain("Review attempted Sep 29, 2026.");
+    expect(html).toContain("The 2027 deadline remains unconfirmed.");
+    expect(html).not.toContain("Last checked");
+  });
+
   it("clearly identifies an unknown individual date without repeating the old blanket date", async () => {
     mocks.verification.mockReturnValue(null);
     const html = await renderPage();

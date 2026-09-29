@@ -5,7 +5,7 @@ import { buildRows, SOURCE } from "./seed-merit.mjs";
 
 export function deadlineCorrections() {
   const rows = buildRows().filter((row) => row.slug.startsWith("c079-"));
-  if (rows.length !== 1 || rows[0].deadline !== "2026-12-01" || !rows[0].last_verified) {
+  if (rows.length !== 1 || rows[0].deadline !== "2026-12-01") {
     throw new Error("Reviewed Forty Acres correction does not match the current catalog");
   }
   return [{ source: SOURCE, slug: rows[0].slug, previousDeadline: "2026-10-15", deadline: "2026-12-01" }];

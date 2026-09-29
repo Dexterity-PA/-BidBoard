@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { deadlineCorrections, syncMeritCorrections } from "@/scripts/sync-merit-corrections.mjs";
-import { getVerification, LISTINGS, STATUS_LABEL } from "@/lib/merit/catalog";
+import { getVerification, isFullyVerified, LISTINGS, STATUS_LABEL } from "@/lib/merit/catalog";
 
 describe("bounded catalog deadline correction", () => {
   it("targets only the officially checked Forty Acres correction", () => {
@@ -25,8 +25,8 @@ describe("bounded catalog deadline correction", () => {
     expect(query).not.toContain("DELETE FROM");
   });
 
-  it("does not describe an unknown check date as a verified record", () => {
-    const unknown = LISTINGS.find((listing) => listing.status === "live" && !getVerification(listing));
+  it("does not describe an incompletely verified listing as a verified record", () => {
+    const unknown = LISTINGS.find((listing) => listing.status === "live" && !isFullyVerified(getVerification(listing)));
     expect(unknown).toBeDefined();
     expect(STATUS_LABEL.live).toBe("Listed");
   });

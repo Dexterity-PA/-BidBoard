@@ -8,7 +8,7 @@ function valueLabel(l: MeritListing): string | null {
   const hint = coverageHint(l);
   if (hint) return hint;
   const d = maxDollars(l);
-  return d > 0 ? `$${d.toLocaleString("en-US")}` : null;
+  return d > 0 ? `Up to $${d.toLocaleString("en-US")}` : null;
 }
 
 /** Substantial awards with an upcoming date in the catalog, soonest first. */

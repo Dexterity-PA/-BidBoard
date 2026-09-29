@@ -12,6 +12,17 @@ function profile(overrides: Partial<Profile> = {}): Profile {
   return { ...EMPTY_PROFILE, state: "AZ", citizenship: "citizen", gpa: 4, ...overrides };
 }
 
+function restrictedListing(): MeritRecord {
+  return {
+    ...listing("C100"),
+    id: "restricted-fixture",
+    tags: ["state:AZ"],
+    citizenship: "citizen",
+    minGpa: 3.75,
+    gpaScale: "uw",
+  };
+}
+
 describe("conservative merit matching", () => {
   it.each([
     ["C530", "arts", "art"],
@@ -65,7 +76,7 @@ describe("conservative merit matching", () => {
   });
 
   it("shows unanswered residency, citizenship and GPA requirements", () => {
-    const result = matchListing(listing("C100"), { ...EMPTY_PROFILE, field: "sciences" });
+    const result = matchListing(restrictedListing(), { ...EMPTY_PROFILE, field: "sciences" });
     expect(result.verdict).toBe("check");
     expect(result.reasons).toEqual(expect.arrayContaining([
       "Residency in AZ (your state is not provided)",
@@ -81,8 +92,8 @@ describe("conservative merit matching", () => {
   });
 
   it("retains definite residency and citizenship exclusions", () => {
-    expect(matchListing(listing("C100"), profile({ state: "CA" })).verdict).toBe("no");
-    expect(matchListing(listing("C100"), profile({ citizenship: "pr" })).verdict).toBe("no");
+    expect(matchListing(restrictedListing(), profile({ state: "CA" })).verdict).toBe("no");
+    expect(matchListing(restrictedListing(), profile({ citizenship: "pr" })).verdict).toBe("no");
   });
 
   it("does not call explicitly international-eligible records uncertain", () => {

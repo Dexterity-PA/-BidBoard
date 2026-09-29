@@ -11,7 +11,8 @@
 import { readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { validateVerificationLedger } from "../lib/merit/verification.mjs";
+import { isFullyVerified, validateVerificationLedger } from "../lib/merit/verification.mjs";
+import { coverageFromValue, maxDollarsFromValue } from "../lib/merit/award-value.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FILES = ["colleges-1", "colleges-2", "outside-1", "outside-2", "colleges-3", "states", "outside-3", "colleges-4", "outside-4", "regional", "colleges-5", "outside-5", "regional-2", "outside-6", "regional-3"];
@@ -29,41 +30,31 @@ export function slugify(s) {
     .replace(/-+$/g, "");
 }
 
-export function coverageHint(value) {
-  const v = value.toLowerCase();
-  if (/full[- ](cost|ride)|comprehensive college costs/.test(v)) return "Full cost";
-  if (/tuition, (mandatory )?fees?,? (room|housing)|tuition,( on-campus)? housing|tuition, room|tuition and required fees.*housing|tuition, fees, room|tuition, books, room/.test(v))
-    return "Tuition + housing";
-  if (/full tuition|up to full tuition|four years of tuition/.test(v)) return "Full tuition";
-  return null;
-}
-
-export function maxDollars(value) {
-  const nums = [...value.matchAll(/\$\s?([\d,]+(?:\.\d+)?)\s*(k|million)?/gi)].map((m) => {
-    const n = parseFloat(m[1].replace(/,/g, ""));
-    const unit = (m[2] || "").toLowerCase();
-    return unit === "k" ? n * 1_000 : unit === "million" ? n * 1_000_000 : n;
-  });
-  return nums.length ? Math.max(...nums) : 0;
-}
+export const coverageHint = coverageFromValue;
+export const maxDollars = maxDollarsFromValue;
 
 export function buildRows() {
   const allRecords = FILES.flatMap((f) =>
     JSON.parse(readFileSync(join(ROOT, "data/merit", `${f}.json`), "utf8")),
   );
-  const verification = validateVerificationLedger(
-    JSON.parse(readFileSync(join(ROOT, "data/merit/verification.json"), "utf8")),
-    allRecords,
-    new Date().toISOString().slice(0, 10),
-  );
-  const records = allRecords.filter((r) => r.status !== "excluded");
+  return buildRowsFromRecords(allRecords, JSON.parse(readFileSync(join(ROOT, "data/merit/verification.json"), "utf8")));
+}
+
+/**
+ * @param {import('../lib/merit/catalog').MeritRecord[]} allRecords
+ * @param {unknown} ledger
+ */
+export function buildRowsFromRecords(allRecords, ledger, { includeExcluded = false } = {}) {
+  const verification = validateVerificationLedger(ledger, allRecords, new Date().toISOString().slice(0, 10));
+  const records = allRecords.filter((r) => includeExcluded || r.status !== "excluded");
 
   return records.map((r) => {
-    const cover = coverageHint(r.value);
-    const dollars = maxDollars(r.value);
+    const amountUnconfirmed = verification[r.id]?.checks?.value === "unconfirmed";
+    const cover = amountUnconfirmed ? null : coverageHint(r.value);
+    const dollars = amountUnconfirmed ? 0 : maxDollars(r.value);
     const states = r.tags.filter((t) => t.startsWith("state:")).map((t) => t.slice(6));
     return {
-      slug: `${r.id.toLowerCase()}-${slugify(r.provider + " " + r.name)}`,
+      slug: r.slug ?? `${r.id.toLowerCase()}-${slugify(r.provider + " " + r.name)}`,
       name: r.name,
       provider: r.provider,
       provider_url: r.sources[0] ?? null,
@@ -74,12 +65,12 @@ export function buildRows() {
       deadline: r.deadlineDate,
       application_url: r.sources[0] ?? null,
       eligible_states: states.length ? states : null,
-      requires_essay: r.tags.some((t) => t === "essay" || t === "short-essay"),
+      requires_essay: r.tags.some((t) => t === "essay" || t === "essays" || t === "short-essay"),
       source: SOURCE,
       source_url: r.sources[0] ?? null,
-      is_verified: r.status === "live",
-      last_verified: verification[r.id]?.checkedAt ? `${verification[r.id].checkedAt}T00:00:00Z` : null,
-      is_active: true,
+      is_verified: isFullyVerified(verification[r.id]),
+      last_verified: isFullyVerified(verification[r.id]) ? `${verification[r.id].checkedAt}T00:00:00Z` : null,
+      is_active: r.status !== "excluded",
       category: r.type,
     };
   });

@@ -4,13 +4,21 @@ Meritously is a free, student-built merit scholarship finder. Students can brows
 
 The live site remains at [bidboard.app](https://www.bidboard.app). The repository name and working email addresses keep the original domain. Some older research and strategy tools remain in the codebase but are not part of the current public homepage.
 
+## Scholarship source reviews
+
+`data/merit/verification.json` records an individual review date, outcome, and remaining limitations for each reviewed listing. `audit-2026-09-29.json` retains the field-level source evidence and corrections. A reviewed listing is only marked verified when its identity, value, deadline, application route, and eligibility are supported. Unpublished future-cycle terms and conflicting official information remain partial; inaccessible official information remains unavailable.
+
+Review outcomes are separate from program classifications such as merit plus need or award directories. Unknown award values do not contribute dollar amounts or full-tuition labels to filters. Calendar steps require explicitly published years; edited targets remain visible alongside official dates. Renamed programs keep their existing URLs.
+
+The build checks complete audit coverage before release. After compilation, production applies the committed catalog corrections only to existing `merit-ledger` database rows. It preserves edited application targets, notes, statuses, and checklists, and only adjusts deadline copies that are still untouched. Removed awards remain in students' saved history with reminders paused. Preview and local builds validate the evidence without changing a database.
+
 ---
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 16 (App Router, React 18) |
+| Framework | Next.js 16 (App Router, React 19) |
 | Styling | Tailwind CSS 3, Framer Motion |
 | UI Primitives | Radix UI, shadcn/ui |
 | ORM | Drizzle ORM |
@@ -216,6 +224,14 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+The lockfile includes patched Next.js, Clerk and transitive dependencies. The
+scoped `@esbuild-kit/core-utils` override keeps Drizzle's legacy loader on esbuild
+0.25.12 or newer in that minor line, addressing
+[GHSA-67mh-4wv8-2f99](https://github.com/evanw/esbuild/security/advisories/GHSA-67mh-4wv8-2f99).
+The separate development esbuild dependency satisfies Vite's newer peer range.
+When changing these versions, run the tests, TypeScript check, dependency audit,
+and `drizzle-kit export` against a non-routable database URL.
 
 ### Database Migrations
 

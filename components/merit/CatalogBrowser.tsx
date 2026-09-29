@@ -19,9 +19,14 @@ import {
   awardTier,
   coverageHint,
   daysUntil,
+  getVerification,
+  hasUpcomingListedDate,
+  isFullyVerified,
   localToday,
   monthDay,
   stateTags,
+  verificationLabel,
+  verificationState,
   type MeritListing,
   type MeritType,
 } from "@/lib/merit/catalog";
@@ -117,14 +122,18 @@ export default function CatalogBrowser({
   const results = useMemo(() => {
     const out = listings.filter((l) => {
       if (type !== "all" && l.type !== type) return false;
-      if (!showUnconfirmed && (l.status === "watchlist" || l.status === "directory")) return false;
+      if (!showUnconfirmed) {
+        const evidence = getVerification(l);
+        if (l.status === "watchlist" || l.status === "directory" || !isFullyVerified(evidence) ||
+            verificationState(evidence?.checkedAt, today ?? undefined) !== "current") return false;
+      }
       if (!includeNeed && l.status === "mixed-need") return false;
       if (size && awardTier(l) < size) return false;
       if (how && !l.tags.includes(how)) return false;
       if (elig && !l.tags.includes(elig)) return false;
       if (state && !stateTags(l).includes(state)) return false;
       if (month && !(l.deadlineDate ?? "").startsWith(month)) return false;
-      if (hideClosed && today && l.deadlineDate && l.deadlineDate < today) return false;
+      if (hideClosed && today && l.deadlineDate && !hasUpcomingListedDate(l, today)) return false;
       if (profile && onlyMatches && verdicts.get(l.id)?.verdict === "no") return false;
       return matchesQuery(l, q);
     });
@@ -263,7 +272,7 @@ export default function CatalogBrowser({
           <legend className="m-filter-label">Show</legend>
           <label className="m-toggle">
             <input type="checkbox" checked={hideClosed} onChange={(e) => setHideClosed(e.target.checked)} />
-            <span>Hide closed deadlines</span>
+            <span>Hide listings with only past dates</span>
           </label>
           <label className="m-toggle">
             <input
@@ -273,7 +282,7 @@ export default function CatalogBrowser({
             />
             <span>
               Unconfirmed listings
-              <small>Real programs whose details for this cycle are not published yet</small>
+              <small>Unpublished cycle details or incomplete source checks</small>
             </span>
           </label>
           <label className="m-toggle">
@@ -398,8 +407,8 @@ function monthLabel(key: string) {
   });
 }
 
-export function DateBlock({ iso, today }: { iso: string | null; today: string | null }) {
-  if (!iso) return <div className="m-date m-date-none">No confirmed date</div>;
+export function DateBlock({ iso, today, emptyLabel = "No confirmed date" }: { iso: string | null; today: string | null; emptyLabel?: string }) {
+  if (!iso) return <div className="m-date m-date-none">{emptyLabel}</div>;
   const { month, day } = monthDay(iso);
   const left = today ? daysUntil(iso, today) : null;
   const past = left !== null && left < 0;
@@ -409,7 +418,7 @@ export function DateBlock({ iso, today }: { iso: string | null; today: string | 
       <div className="m-date-day">{day}</div>
       {left !== null && (
         <div className={`m-date-left${left >= 0 && left <= 14 ? " m-date-soon" : ""}`}>
-          {left < 0 ? "Closed" : left === 0 ? "Today" : left === 1 ? "1 day" : `${left} days`}
+          {left < 0 ? "Date passed" : left === 0 ? "Today" : left === 1 ? "1 day" : `${left} days`}
         </div>
       )}
     </div>
@@ -439,6 +448,8 @@ function Row({
   verdict?: MatchResult;
 }) {
   const hint = coverageHint(l);
+  const review = getVerification(l);
+  const staleReview = review && today && verificationState(review.checkedAt, today) === "stale";
   return (
     <Link href={`/scholarships/${l.slug}`} className="m-row">
       <DateBlock iso={l.deadlineDate} today={today} />
@@ -449,6 +460,14 @@ function Row({
       </div>
       <div className="m-row-side">
         <StatusBadge l={l} />
+        {review?.outcome && (
+          <span
+            className={`m-badge ${review.outcome === "verified" && !staleReview ? "m-badge-verified" : "m-badge-watch"}`}
+            title={`${review.outcome === "unavailable" ? "Review attempted" : "Reviewed"} ${review.checkedAt}. ${review.notes}`}
+          >
+            {staleReview ? "Recheck needed" : verificationLabel(review)}
+          </span>
+        )}
         <span className="m-badge">{TYPE_LABEL[l.type]}</span>
         {hint && <span className="m-badge m-badge-gold">{hint}</span>}
         {verdict?.verdict === "check" && (

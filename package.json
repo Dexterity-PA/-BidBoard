@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/migrate-newsletter.mjs && node scripts/migrate-analytics.mjs && node scripts/sync-merit-corrections.mjs && next build",
+    "build": "node scripts/migrate-newsletter.mjs && node scripts/migrate-analytics.mjs && next build && node scripts/sync-catalog-audit.mjs",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
-    "@clerk/nextjs": "^6.12.12",
+    "@clerk/nextjs": "^6.39.7",
     "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^5.2.2",
     "@neondatabase/serverless": "^0.10.4",
@@ -32,7 +32,7 @@
     "drizzle-orm": "^0.45.2",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.475.0",
-    "next": "^16.2.3",
+    "next": "^16.3.6",
     "openai": "^6.34.0",
     "playwright": "^1.59.1",
     "postgres": "^3.4.5",
@@ -40,7 +40,7 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.72.1",
     "resend": "^4.2.0",
-    "svix": "^1.90.0",
+    "svix": "^1.99.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.25.76"
@@ -52,13 +52,19 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
-    "drizzle-kit": "^0.18.1",
+    "drizzle-kit": "^0.31.11",
+    "esbuild": "^0.28.2",
     "eslint": "^9.0.0",
-    "eslint-config-next": "^16.2.3",
+    "eslint-config-next": "^16.3.6",
     "jsdom": "^26.1.0",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3",
     "vitest": "^4.1.11"
+  },
+  "overrides": {
+    "@esbuild-kit/core-utils": {
+      "esbuild": "^0.25.12"
+    }
   }
 }

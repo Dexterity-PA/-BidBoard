@@ -72,6 +72,7 @@ export async function getApplications() {
       scholarshipApplicationUrl: scholarships.applicationUrl,
       scholarshipSlug:           scholarships.slug,
       scholarshipSource:         scholarships.source,
+      scholarshipIsActive:       scholarships.isActive,
       scholarshipAmountType:     scholarships.amountType,
       scholarshipDescription:    scholarships.description,
       evScore:                   scholarshipMatches.evScore,
