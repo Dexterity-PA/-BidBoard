@@ -11,7 +11,7 @@ function valueLabel(l: MeritListing): string | null {
   return d > 0 ? `$${d.toLocaleString("en-US")}` : null;
 }
 
-/** Substantial awards with a confirmed upcoming date, soonest first. */
+/** Substantial awards with an upcoming date in the catalog, soonest first. */
 function nextDeadlines(now: Date): BoardRow[] {
   // Start a day back so the client's own "today" decides what is past.
   const from = new Date(now.getTime() - 86_400_000).toISOString().slice(0, 10);
@@ -57,10 +57,23 @@ const KINDS = [
   { type: "competition", label: "Competitions" },
 ] as const;
 
+/** Real examples, with a live alternative when a featured award's date has passed. */
+function cataloguePreview(now: Date) {
+  const today = now.toISOString().slice(0, 10);
+  return ["P001", "C001", "P025"].flatMap((id) => {
+    const preferred = LISTINGS.find((listing) => listing.id === id);
+    const available = (listing: MeritListing) => listing.status === "live" &&
+      !listing.tags.includes("needs-split") && (!listing.deadlineDate || listing.deadlineDate >= today);
+    const listing = preferred && available(preferred) ? preferred : LISTINGS.find((candidate) => candidate.type === preferred?.type && available(candidate));
+    return listing ? [listing] : [];
+  });
+}
+
 export default function HomePage() {
   const now = new Date();
   const rows = nextDeadlines(now);
   const months = upcomingMonths(now);
+  const preview = cataloguePreview(now);
   const total = LISTINGS.length;
 
   return (
@@ -69,11 +82,11 @@ export default function HomePage() {
       <main className="m-main">
         <section className="lp-hero">
           <div className="m-wrap lp-hero-grid">
-            <div>
+            <div className="lp-hero-copy">
               <h1 className="lp-title">Find your next merit scholarship.</h1>
               <p className="lp-sub">
-                {total}{" "}college merit programs, scholarships and competitions. Narrow the list
-                with four answers, then check each award&apos;s official requirements.
+                Explore {total}{" "}college merit programs, scholarships and competitions.
+                Four optional answers help you find a place to start.
               </p>
               <div className="lp-actions">
                 <Link href="/scholarships?match=1" className="m-btn m-btn-primary">
@@ -85,24 +98,24 @@ export default function HomePage() {
               </div>
               <p className="lp-caption">Free to browse and match. No account needed.</p>
             </div>
-            <section className="lp-how" aria-labelledby="lp-how-title">
-              <h2 id="lp-how-title" className="lp-how-title">From a long list to a shortlist</h2>
-              <ol className="lp-how-steps">
-                <li>
-                  <h3>Tell us four things</h3>
-                  <p>Your state, citizenship, unweighted GPA and intended field. Skip anything
-                    you prefer not to share.</p>
-                </li>
-                <li>
-                  <h3>Explore potential matches</h3>
-                  <p>We filter using those answers. You still need to check the full eligibility
-                    rules on each award&apos;s official page.</p>
-                </li>
-                <li>
-                  <h3>Keep your next steps together</h3>
-                  <p>Create a free account when you want to save awards and track deadlines.</p>
-                </li>
-              </ol>
+            <section className="lp-preview" aria-labelledby="lp-preview-title">
+              <div className="lp-preview-head">
+                <h2 id="lp-preview-title">A look inside the catalog</h2>
+                <p>Different paths to merit aid.</p>
+              </div>
+              <ul className="lp-preview-list">
+                {preview.map((listing) => (
+                  <li key={listing.id}>
+                    <Link href={`/scholarships/${listing.slug}`} className="lp-preview-award">
+                      <span className="lp-preview-type">{listing.type === "college-program" ? "College merit" : listing.type === "competition" ? "Competition" : "Scholarship"}</span>
+                      <span className="lp-preview-name">{listing.name}</span>
+                      <span className="lp-preview-provider">{listing.provider}</span>
+                      <span className="lp-preview-value">{coverageHint(listing) || (maxDollars(listing) > 0 ? `Up to $${maxDollars(listing).toLocaleString("en-US")}` : "See award details")}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="lp-preview-note">Examples from the catalog. Check each award&apos;s official eligibility rules.</p>
             </section>
           </div>
           <div className="m-wrap">
@@ -115,7 +128,10 @@ export default function HomePage() {
 
         <section className="lp-section lp-search-section" aria-labelledby="lp-search-title">
           <div className="m-wrap lp-search-grid">
-            <h2 id="lp-search-title" className="lp-label">Have an award or college in mind?</h2>
+            <div>
+              <h2 id="lp-search-title" className="lp-label">Already have something in mind?</h2>
+              <p className="lp-search-caption">Search by award, college or sponsor.</p>
+            </div>
             <form action="/scholarships" method="get" className="lp-search" role="search">
               <label htmlFor="lp-q" className="lp-sr">
                 Search scholarships
@@ -125,7 +141,7 @@ export default function HomePage() {
                 name="q"
                 type="search"
                 className="lp-search-input"
-                placeholder="Search by award, college or sponsor"
+                placeholder="Award, college or sponsor"
                 autoComplete="off"
               />
               <button type="submit" className="m-btn m-btn-primary lp-search-btn">
@@ -138,14 +154,15 @@ export default function HomePage() {
         <section className="lp-section" aria-labelledby="lp-next">
           <div className="m-wrap">
             <div className="lp-head">
-              <h2 id="lp-next" className="lp-label">
-                Next confirmed deadlines
-              </h2>
+              <div>
+                <h2 id="lp-next" className="lp-section-title">Coming up next</h2>
+                <p className="lp-head-caption">Awards with upcoming dates in the catalog.</p>
+              </div>
               <Link href="/scholarships" className="lp-head-link">
-                See all {total}
+                Browse all awards
               </Link>
             </div>
-            <DeadlineBoard rows={rows} />
+            <DeadlineBoard rows={rows} show={5} initialToday={now.toISOString().slice(0, 10)} />
           </div>
         </section>
 
@@ -184,18 +201,22 @@ export default function HomePage() {
             <div>
               <h2 id="lp-about-title" className="lp-section-title">About Meritously</h2>
               <p>
-                Meritously is a free merit scholarship finder. Browse awards, check official
-                requirements, and keep your applications organized.
+                A free place to find merit scholarships and keep your next steps together.
               </p>
+              <ol className="lp-how-steps">
+                <li><h3>Narrow the list</h3><p>Four optional answers help guide your search.</p></li>
+                <li><h3>Check the requirements</h3><p>Confirm eligibility and deadlines on the official source.</p></li>
+                <li><h3>Build your shortlist</h3><p>Save awards and track your progress with a free account.</p></li>
+              </ol>
               <p>
-                Have a correction, a question or an idea for the site?{" "}
+                Have a correction or a question?{" "}
                 <a href="mailto:hello@bidboard.app" className="lp-inline-link">Get in touch.</a>
               </p>
             </div>
             <div>
               <h2 className="lp-section-title">What &ldquo;checked&rdquo; means</h2>
               <p>
-                Listings link to official sources and show when details were last checked.
+                Listings link to official sources and show individual check dates where recorded.
                 Unconfirmed information is labeled, so you can see what still needs checking.
                 Always confirm the current requirements before applying.
               </p>
@@ -207,13 +228,15 @@ export default function HomePage() {
           </div>
         </section>
         <section id="updates" className="lp-section lp-updates" aria-labelledby="lp-updates-title">
-          <div className="m-wrap lp-about-grid">
-            <div>
-              <h2 id="lp-updates-title" className="lp-section-title">Scholarship updates, once a week.</h2>
-              <p className="m-body">Get upcoming deadlines and a short list of awards in your inbox. No account needed.</p>
-              <p className="m-fine">Want reminders for your saved awards? <Link href="/settings/notifications" className="lp-inline-link">Choose your reminder preferences.</Link></p>
+          <div className="m-wrap">
+            <div className="lp-updates-panel">
+              <div>
+                <h2 id="lp-updates-title" className="lp-section-title">Keep up with upcoming awards.</h2>
+                <p className="m-body">One weekly email with upcoming deadlines and a short list of awards. No account needed.</p>
+                <p className="m-fine">Want reminders for your saved awards? <Link href="/settings/notifications" className="lp-inline-link">Choose your reminder preferences.</Link></p>
+              </div>
+              <div><NewsletterForm /></div>
             </div>
-            <div><NewsletterForm /></div>
           </div>
         </section>
       </main>

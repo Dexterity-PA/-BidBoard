@@ -26,6 +26,7 @@ export default async function TrackerPage() {
       href: trackerHref(a),
       officialUrl: a.scholarshipApplicationUrl,
       deadline: a.deadline,
+      officialDeadline: l?.deadlineDate ?? null,
       award: l ? coverageHint(l) ?? l.value : trackerAward(a),
       requirements: l ? requirements(l) : [],
       steps: l ? datedSteps(l).map((s) => ({ label: s.label, date: s.date, iso: s.iso })) : [],

@@ -11,10 +11,10 @@
 import { readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { validateVerificationLedger } from "../lib/merit/verification.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FILES = ["colleges-1", "colleges-2", "outside-1", "outside-2", "colleges-3", "states", "outside-3", "colleges-4", "outside-4", "regional", "colleges-5", "outside-5", "regional-2", "outside-6", "regional-3"];
-export const LAST_CHECKED = "2026-09-24";
 export const SOURCE = "merit-ledger";
 
 export function slugify(s) {
@@ -48,9 +48,15 @@ export function maxDollars(value) {
 }
 
 export function buildRows() {
-  const records = FILES.flatMap((f) =>
+  const allRecords = FILES.flatMap((f) =>
     JSON.parse(readFileSync(join(ROOT, "data/merit", `${f}.json`), "utf8")),
-  ).filter((r) => r.status !== "excluded");
+  );
+  const verification = validateVerificationLedger(
+    JSON.parse(readFileSync(join(ROOT, "data/merit/verification.json"), "utf8")),
+    allRecords,
+    new Date().toISOString().slice(0, 10),
+  );
+  const records = allRecords.filter((r) => r.status !== "excluded");
 
   return records.map((r) => {
     const cover = coverageHint(r.value);
@@ -72,7 +78,7 @@ export function buildRows() {
       source: SOURCE,
       source_url: r.sources[0] ?? null,
       is_verified: r.status === "live",
-      last_verified: `${LAST_CHECKED}T00:00:00Z`,
+      last_verified: verification[r.id]?.checkedAt ? `${verification[r.id].checkedAt}T00:00:00Z` : null,
       is_active: true,
       category: r.type,
     };

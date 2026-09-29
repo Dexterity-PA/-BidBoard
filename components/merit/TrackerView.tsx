@@ -9,7 +9,7 @@ import {
   updateApplicationStatus,
 } from "@/app/actions/tracker";
 import { DateBlock } from "@/components/merit/CatalogBrowser";
-import { localToday } from "@/lib/merit/catalog";
+import { formatISODate, localToday } from "@/lib/merit/catalog";
 
 export type TrackedAward = {
   id: number;
@@ -21,6 +21,7 @@ export type TrackedAward = {
   href: string;
   officialUrl: string | null;
   deadline: string | null;
+  officialDeadline?: string | null;
   award: string;
   requirements: string[];
   steps: { label: string; date: string; iso: string | null }[];
@@ -196,6 +197,12 @@ function TrackedRow({
             {a.name}
           </Link>
           <span className="m-row-value">{a.award}</span>
+          {a.deadline && a.officialDeadline && a.deadline !== a.officialDeadline && (
+            <span className="m-track-next">
+              Saved target: {formatISODate(a.deadline)}. Catalog deadline: {formatISODate(a.officialDeadline)}.
+              {" "}Reminders use your saved target.
+            </span>
+          )}
           {next && (
             <span className="m-track-next">
               Next: {next.label}, {next.date}

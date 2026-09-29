@@ -12,14 +12,16 @@ export type BoardRow = {
   value: string | null;
 };
 
-export default function DeadlineBoard({ rows, show = 8 }: { rows: BoardRow[]; show?: number }) {
-  // "Today" follows the student's own calendar, so it resolves after mount.
-  const [today, setToday] = useState<string | null>(null);
+export default function DeadlineBoard({ rows, show = 8, initialToday }: { rows: BoardRow[]; show?: number; initialToday: string }) {
+  // Show useful countdowns immediately, then follow the student's local calendar.
+  const [today, setToday] = useState(initialToday);
   useEffect(() => setToday(localToday()), []);
   const visible = (today ? rows.filter((r) => r.date >= today) : rows).slice(0, show);
 
+  if (!visible.length) return <p className="lp-empty">No upcoming dates to show right now. <Link href="/scholarships" className="lp-inline-link">Browse the catalog for more awards.</Link></p>;
+
   return (
-    <ol className="lp-board" aria-label="Next confirmed deadlines">
+    <ol className="lp-board" aria-label="Upcoming award deadlines">
       {visible.map((r) => {
         const left = today ? daysUntil(r.date, today) : null;
         const urgent = left !== null && left <= 7;
@@ -36,8 +38,10 @@ export default function DeadlineBoard({ rows, show = 8 }: { rows: BoardRow[]; sh
                 <span className="lp-award-name">{r.name}</span>
                 <span className="lp-award-provider">{r.provider}</span>
               </span>
-              <span className="lp-value">{r.value}</span>
-              <span className="lp-date">{formatISODate(r.date, false)}</span>
+              <span className="lp-row-meta">
+                {r.value && <span className="lp-value">{r.value}</span>}
+                <time className="lp-date" dateTime={r.date}>{formatISODate(r.date, false)}</time>
+              </span>
             </Link>
           </li>
         );
