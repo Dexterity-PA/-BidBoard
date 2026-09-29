@@ -32,7 +32,7 @@ describe("completed catalog audit publication", () => {
       expect(source).toBe("merit-ledger");
       expect(payload.type).toBe(3802);
       const wireValue = sql.options.serializers[payload.type](payload.value);
-      expect(JSON.parse(wireValue)).toEqual(rows);
+      expect(JSON.parse(String(wireValue))).toEqual(rows);
     } finally {
       await sql.end();
     }
