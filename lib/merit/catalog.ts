@@ -105,6 +105,14 @@ export function getListing(slug: string): MeritListing | undefined {
   return LISTINGS.find((l) => l.slug === slug);
 }
 
+/** Keep reviewed retirements readable from saved links without rediscovering them. */
+export function getDetailListing(slug: string): MeritListing | undefined {
+  return getListing(slug) ?? ALL
+    .filter((record) => record.status === "excluded" && getVerification(record)?.outcome === "retired")
+    .map(withSlug)
+    .find((record) => record.slug === slug);
+}
+
 export const TYPE_LABEL: Record<MeritType, string> = {
   "college-program": "College program",
   scholarship: "Scholarship",

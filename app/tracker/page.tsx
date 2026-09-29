@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getApplications } from "@/app/actions/tracker";
 import TrackerView, { type TrackedAward } from "@/components/merit/TrackerView";
-import { LISTINGS, coverageHint, datedSteps, requirements } from "@/lib/merit/catalog";
+import { LISTINGS, coverageHint, datedSteps, getDetailListing, requirements } from "@/lib/merit/catalog";
 import { trackerAward, trackerHref } from "@/lib/tracker-format";
 
 export const dynamic = "force-dynamic";
@@ -29,6 +29,8 @@ export default async function TrackerPage() {
       officialDeadline: l?.deadlineDate ?? null,
       catalogTracked: a.scholarshipSource === "merit-ledger",
       inactive: a.scholarshipIsActive === false || (a.scholarshipSource === "merit-ledger" && !l),
+      retiredDetailAvailable: a.scholarshipSource === "merit-ledger" &&
+        getDetailListing(a.scholarshipSlug)?.status === "excluded",
       award: l ? coverageHint(l) ?? l.value : trackerAward(a),
       requirements: l ? requirements(l) : [],
       steps: l ? datedSteps(l).map((s) => ({ label: s.label, date: s.date, iso: s.iso })) : [],

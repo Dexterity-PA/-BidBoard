@@ -205,6 +205,14 @@ describe("saving an award", () => {
     expect(mocks.insert).not.toHaveBeenCalled();
   });
 
+  it("rejects a retired scholarship before creating a new saved record", async () => {
+    mocks.selectLimit.mockResolvedValue([{ deadline: null, isActive: false }]);
+    await expect(saveToTracker(12)).rejects.toThrow("This scholarship is no longer offered.");
+    expect(mocks.insert).not.toHaveBeenCalled();
+    expect(mocks.update).not.toHaveBeenCalled();
+    expect(mocks.after).not.toHaveBeenCalled();
+  });
+
   it("keeps repeated saves idempotent without overwriting an existing application's state", async () => {
     await saveToTracker(12);
     await saveToTracker(12);

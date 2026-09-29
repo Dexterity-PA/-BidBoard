@@ -53,6 +53,15 @@ describe("tracker confirmed writes", () => {
     expect(deleteApplication).not.toHaveBeenCalled();
   });
 
+  it("links a saved retirement to its reviewed notice while reminders stay paused", () => {
+    render(<TrackerView initial={[{ ...award, inactive: true, catalogTracked: true, retiredDetailAvailable: true }]} />);
+    expect(screen.getByRole("link", { name: award.name }).getAttribute("href")).toBe(award.href);
+    expect(screen.getByText(/Removed from the active catalog/).textContent).toContain("deadline reminders are paused");
+    openDetails();
+    expect((screen.getByLabelText("Notes") as HTMLTextAreaElement).value).toBe("Original notes");
+    expect(deleteApplication).not.toHaveBeenCalled();
+  });
+
   it("distinguishes an old saved target from an unconfirmed catalog deadline", () => {
     render(<TrackerView initial={[{ ...award, catalogTracked: true, officialDeadline: null }]} />);
     expect(screen.getByText(/Current application deadline unconfirmed/).textContent).toContain("Jan 1, 2027");

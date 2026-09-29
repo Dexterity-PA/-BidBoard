@@ -13,7 +13,7 @@ import {
   TYPE_LABEL,
   coverageHint,
   formatISODate,
-  getListing,
+  getDetailListing,
   getVerification,
   requirements,
   timelineSteps,
@@ -32,11 +32,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const l = getListing(slug);
+  const l = getDetailListing(slug);
   if (!l) return { title: "Scholarship not found | Meritously" };
   return {
     title: `${l.name}, ${l.provider} | Meritously`,
     description: `${l.value} Deadline: ${l.deadline}.`.slice(0, 300),
+    ...(l.status === "excluded" ? { robots: { index: false, follow: true } } : {}),
   };
 }
 
@@ -69,13 +70,14 @@ export default async function ListingPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const l = getListing(slug);
+  const l = getDetailListing(slug);
   if (!l) notFound();
 
-  const saved = await isMeritSaved(l.slug).catch(() => false);
-  const hint = coverageHint(l);
-  const steps = timelineSteps(l);
-  const needs = requirements(l);
+  const retired = l.status === "excluded";
+  const saved = retired ? false : await isMeritSaved(l.slug).catch(() => false);
+  const hint = retired ? null : coverageHint(l);
+  const steps = retired ? [] : timelineSteps(l);
+  const needs = retired ? [] : requirements(l);
   const more = related(l);
   const verification = getVerification(l);
   const freshness = verificationState(verification?.checkedAt);
@@ -108,6 +110,7 @@ export default async function ListingPage({
             <span className="m-detail-provider">{l.provider}</span>
             <h1 className="m-detail-title">{l.name}</h1>
             <div className="m-detail-badges">
+              {retired && <span className="m-badge">Retired</span>}
               {l.status !== "excluded" && (
                 <span className={`m-badge ${statusClass}`}>{STATUS_LABEL[l.status]}</span>
               )}
@@ -117,12 +120,12 @@ export default async function ListingPage({
           </header>
 
           <div className="m-detail">
-            <aside className="m-card m-detail-actions" aria-label="Apply and save">
-              <span className="m-card-label">Next deadline</span>
+            <aside className="m-card m-detail-actions" aria-label={retired ? "Program status" : "Apply and save"}>
+              <span className="m-card-label">{retired ? "Program status" : "Next deadline"}</span>
               <span className="m-card-deadline">
-                {l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
+                {retired ? "No longer offered" : l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
               </span>
-              {freshness === "stale" && verification?.outcome !== "unavailable" && <p className="m-fine">This listing was checked at least 90 days ago. Confirm current dates and rules before applying.</p>}
+              {!retired && freshness === "stale" && verification?.outcome !== "unavailable" && <p className="m-fine">This listing was checked at least 90 days ago. Confirm current dates and rules before applying.</p>}
               {l.sources[0] && (
                 <a
                   href={l.sources[0]}
@@ -130,24 +133,33 @@ export default async function ListingPage({
                   rel="noopener noreferrer"
                   className="m-btn m-btn-primary"
                 >
-                  Open official page
+                  {retired ? "Read official update" : "Open official page"}
                 </a>
               )}
-              <MatchNote record={l} />
-              <SignedIn>
-                <SaveMeritButton slug={l.slug} initiallySaved={saved} />
-              </SignedIn>
-              <SignedOut>
-                <Link
-                  href={`/sign-up?redirect_url=${encodeURIComponent(`/scholarships/${l.slug}`)}`}
-                  className="m-btn m-btn-ghost"
-                >
-                  Sign up to save this award
-                </Link>
-              </SignedOut>
+              {!retired && (
+                <>
+                  <MatchNote record={l} />
+                  <SignedIn>
+                    <SaveMeritButton slug={l.slug} initiallySaved={saved} />
+                  </SignedIn>
+                  <SignedOut>
+                    <Link
+                      href={`/sign-up?redirect_url=${encodeURIComponent(`/scholarships/${l.slug}`)}`}
+                      className="m-btn m-btn-ghost"
+                    >
+                      Sign up to save this award
+                    </Link>
+                  </SignedOut>
+                </>
+              )}
             </aside>
 
             <div className="m-detail-content">
+              {retired && (
+                <p className="m-notice m-notice-watch">
+                  This program has ended. This page is kept for saved records and past applications.
+                </p>
+              )}
               {l.status === "watchlist" && (
                 <p className="m-notice m-notice-watch">
                   This is a real program, but some details for the current cycle are not
@@ -169,11 +181,11 @@ export default async function ListingPage({
 
               <dl className="m-facts">
                 <div className="m-fact">
-                  <dt>Award</dt>
+                  <dt>{retired ? "Former award" : "Award"}</dt>
                   <dd>{l.value}</dd>
                 </div>
                 <div className="m-fact">
-                  <dt>{steps.length ? "Timeline" : "Deadline"}</dt>
+                  <dt>{retired ? "Program dates" : steps.length ? "Timeline" : "Deadline"}</dt>
                   <dd>
                     {steps.length ? (
                       <ol className="m-steps">
@@ -191,7 +203,7 @@ export default async function ListingPage({
                 </div>
                 {l.apply && (
                   <div className="m-fact">
-                    <dt>How to apply</dt>
+                    <dt>{retired ? "Application status" : "How to apply"}</dt>
                     <dd>{l.apply}</dd>
                   </div>
                 )}
@@ -209,7 +221,7 @@ export default async function ListingPage({
                 )}
                 {l.eligibility && (
                   <div className="m-fact">
-                    <dt>Who can apply</dt>
+                    <dt>{retired ? "Former eligibility" : "Who can apply"}</dt>
                     <dd>{l.eligibility}</dd>
                   </div>
                 )}
@@ -273,7 +285,7 @@ export default async function ListingPage({
                 {verification
                   ? <>{verification.outcome === "unavailable" ? "Review attempted" : "Last checked"} {formatISODate(verification.checkedAt)}. </>
                   : <>An individual check date has not been recorded for this listing. </>}
-                Confirm current dates and rules on the official page before applying.
+                {retired ? "The official source records the program's retirement." : "Confirm current dates and rules on the official page before applying."}
               </p>
               {verification?.notes && <p className="m-fine">{verification.notes}</p>}
               {!!verification?.unresolved?.length && (
