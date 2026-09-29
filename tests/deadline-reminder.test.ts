@@ -103,7 +103,7 @@ describe("deadline reminder delivery", () => {
     expect(mocks.getDeadlineReminderDays).toHaveBeenCalledExactlyOnceWith("test-user");
     expect(mocks.sendEmail).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({
       metadata: { scholarshipIds: [13] },
-      subject: "⏰ Deadline in 3 days: Test scholarship",
+      subject: "⏰ Saved date in 3 days: Test scholarship",
     }));
     expect(dedupe).toEqual([{ userId: "test-user", scholarshipId: 13, type: "deadline_3d" }]);
   });

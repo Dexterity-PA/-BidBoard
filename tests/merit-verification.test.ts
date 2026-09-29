@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getVerification, LISTINGS, validateVerificationLedger, verificationState } from "@/lib/merit/catalog";
+import { getVerification, isFullyVerified, LISTINGS, MERIT_RECORDS, validateVerificationLedger, verificationState } from "@/lib/merit/catalog";
 import ledger from "@/data/merit/verification.json";
 import sitemap from "@/app/sitemap";
 import { buildRows } from "@/scripts/seed-merit.mjs";
@@ -55,29 +55,43 @@ describe("per-listing verification evidence", () => {
   });
 
   it("validates the committed evidence against real catalog IDs, sources and today's UTC date", () => {
-    expect(() => validateVerificationLedger(ledger, LISTINGS, new Date().toISOString().slice(0, 10))).not.toThrow();
+    expect(() => validateVerificationLedger(ledger, MERIT_RECORDS, new Date().toISOString().slice(0, 10))).not.toThrow();
   });
 
   it("keeps unknown check dates out of the sitemap and database seed", () => {
     const rows = buildRows();
     const rowsBySlug = new Map(rows.map((row) => [row.slug, row]));
     const sitemapRows = sitemap();
-    let unknown = 0;
     for (const listing of LISTINGS) {
       const evidence = getVerification(listing);
       const row = rowsBySlug.get(listing.slug)!;
       const page = sitemapRows.find((entry) => entry.url.endsWith(`/scholarships/${listing.slug}`))!;
-      expect(row.is_verified).toBe(listing.status === "live");
+      expect(row.is_verified).toBe(isFullyVerified(evidence));
+      expect(row.last_verified).toBe(isFullyVerified(evidence) ? `${evidence!.checkedAt}T00:00:00Z` : null);
       if (evidence) {
-        expect(row.last_verified).toBe(`${evidence.checkedAt}T00:00:00Z`);
         expect(page.lastModified).toBe(`${evidence.checkedAt}T00:00:00Z`);
       } else {
-        unknown++;
-        expect(row.last_verified).toBeNull();
         expect(page).not.toHaveProperty("lastModified");
       }
     }
-    expect(unknown).toBeGreaterThan(0);
     expect(rows).toHaveLength(LISTINGS.length);
+  });
+
+  it("does not upgrade an old date-only review into full verification", () => {
+    expect(isFullyVerified(evidence)).toBe(false);
+  });
+
+  it("rejects a fully verified outcome with an unsupported material claim", () => {
+    const checks = { identity: "supported", value: "supported", deadline: "unconfirmed", application: "supported", eligibility: "supported" };
+    expect(() => validateVerificationLedger({ TEST1: { ...evidence, outcome: "verified", checks, unresolved: ["Next-cycle dates are unpublished."] } }, [record])).toThrow("unresolved claims");
+    expect(validateVerificationLedger({ TEST1: { ...evidence, outcome: "partial", checks, unresolved: ["Next-cycle dates are unpublished."] } }, [record]).TEST1.outcome).toBe("partial");
+  });
+
+  it("records an unavailable source as an attempt without calling it verified", () => {
+    const attempted = { ...evidence, sourceUrls: [], outcome: "unavailable", checks: Object.fromEntries(["identity", "value", "deadline", "application", "eligibility"].map((field) => [field, "unconfirmed"])), unresolved: ["Official program page requires a login."] };
+    const result = validateVerificationLedger({ TEST1: attempted }, [record]).TEST1;
+    expect(result.outcome).toBe("unavailable");
+    expect(isFullyVerified(result)).toBe(false);
+    expect(() => validateVerificationLedger({ TEST1: { ...attempted, outcome: "verified" } }, [record])).toThrow();
   });
 });

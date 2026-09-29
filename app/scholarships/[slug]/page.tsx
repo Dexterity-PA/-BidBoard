@@ -17,6 +17,7 @@ import {
   getVerification,
   requirements,
   timelineSteps,
+  verificationLabel,
   verificationState,
   type MeritListing,
 } from "@/lib/merit/catalog";
@@ -82,7 +83,7 @@ export default async function ListingPage({
     `Listing ${l.id}: ${l.name} (${l.provider})`,
   )}&body=${encodeURIComponent("What looks wrong or out of date?\n\n")}`;
   // Tags already covered by "What you'll need" are not repeated as badges.
-  const REQ_TAGS = new Set(["automatic-consideration", "checkbox-opt-in", "separate-application", "honors-application", "nomination", "invitation-only", "recommendations", "essay", "short-essay", "video", "portfolio", "research", "speech", "interview", "finalist-round", "membership", "local-route", "acceptance-required", "fafsa-required", "fee"]);
+  const REQ_TAGS = new Set(["automatic-consideration", "checkbox-opt-in", "separate-application", "honors-application", "nomination", "invitation-only", "recommendations", "essay", "essays", "short-essay", "video", "portfolio", "research-required", "speech", "interview", "finalist-round", "membership", "local-route", "acceptance-required", "fafsa-required", "fee"]);
   const shownTags = l.tags.filter((t) => TAG_LABEL[t] && !REQ_TAGS.has(t));
   const statusClass =
     l.status === "live"
@@ -121,7 +122,7 @@ export default async function ListingPage({
               <span className="m-card-deadline">
                 {l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
               </span>
-              {freshness === "stale" && <p className="m-fine">This listing was checked at least 90 days ago. Confirm current dates and rules before applying.</p>}
+              {freshness === "stale" && verification?.outcome !== "unavailable" && <p className="m-fine">This listing was checked at least 90 days ago. Confirm current dates and rules before applying.</p>}
               {l.sources[0] && (
                 <a
                   href={l.sources[0]}
@@ -267,13 +268,19 @@ export default async function ListingPage({
                   </li>
                 ))}
               </ul>
+              {verification?.outcome && <p className="m-fine"><strong>{verificationLabel(verification)}</strong></p>}
               <p className="m-fine">
                 {verification
-                  ? <>Last checked {formatISODate(verification.checkedAt)}. </>
+                  ? <>{verification.outcome === "unavailable" ? "Review attempted" : "Last checked"} {formatISODate(verification.checkedAt)}. </>
                   : <>An individual check date has not been recorded for this listing. </>}
                 Confirm current dates and rules on the official page before applying.
               </p>
               {verification?.notes && <p className="m-fine">{verification.notes}</p>}
+              {!!verification?.unresolved?.length && (
+                <ul className="m-fine" aria-label="Details still unconfirmed">
+                  {verification.unresolved.map((note) => <li key={note}>{note}</li>)}
+                </ul>
+              )}
               <a href={reportHref} className="m-arrow-link" style={{ fontSize: 13 }}>
                 Report a problem with this listing
               </a>

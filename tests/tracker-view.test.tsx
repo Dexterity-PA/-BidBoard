@@ -39,6 +39,25 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("tracker confirmed writes", () => {
+  it("shows a known catalog deadline without inventing a saved reminder date", () => {
+    render(<TrackerView initial={[{ ...award, deadline: null, catalogTracked: true, officialDeadline: "2027-01-01" }]} />);
+    expect(screen.getByText(/Catalog deadline: Jan 1, 2027/).textContent).toContain("No reminder date is saved");
+  });
+
+  it("keeps a removed award and its notes while avoiding a dead catalog link", () => {
+    render(<TrackerView initial={[{ ...award, inactive: true, catalogTracked: true }]} />);
+    expect(screen.queryByRole("link", { name: award.name })).toBeNull();
+    expect(screen.getByText(/Removed from the active catalog/).textContent).toContain("deadline reminders are paused");
+    openDetails();
+    expect((screen.getByLabelText("Notes") as HTMLTextAreaElement).value).toBe("Original notes");
+    expect(deleteApplication).not.toHaveBeenCalled();
+  });
+
+  it("distinguishes an old saved target from an unconfirmed catalog deadline", () => {
+    render(<TrackerView initial={[{ ...award, catalogTracked: true, officialDeadline: null }]} />);
+    expect(screen.getByText(/Current application deadline unconfirmed/).textContent).toContain("Jan 1, 2027");
+  });
+
   it("preserves a saved target and identifies a different current official deadline", () => {
     render(<TrackerView initial={[{ ...award, deadline: "2026-10-15", officialDeadline: "2026-12-01" }]} />);
     expect(screen.getByText(/Saved target: Oct 15, 2026\. Catalog deadline: Dec 1, 2026\./).textContent).toContain("Reminders use your saved target.");

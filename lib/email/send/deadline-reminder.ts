@@ -77,6 +77,7 @@ export async function runDeadlineReminderCron(): Promise<{
       .where(
         and(
           eq(applications.deadline, targetDateStr),
+          eq(scholarships.isActive, true),
           notInArray(applications.status, SKIP_STATUSES)
         )
       );
@@ -143,8 +144,8 @@ export async function runDeadlineReminderCron(): Promise<{
       to: email,
       subject:
         notSent.length === 1
-          ? `⏰ Deadline in ${notSent[0].daysLeft} day${notSent[0].daysLeft === 1 ? "" : "s"}: ${notSent[0].scholarshipName}`
-          : `⏰ ${notSent.length} scholarship deadlines coming up`,
+          ? `⏰ Saved date in ${notSent[0].daysLeft} day${notSent[0].daysLeft === 1 ? "" : "s"}: ${notSent[0].scholarshipName}`
+          : `⏰ ${notSent.length} tracked dates coming up`,
       react: React.createElement(DeadlineReminderEmail, {
         scholarships: scholarshipsPayload,
       }),

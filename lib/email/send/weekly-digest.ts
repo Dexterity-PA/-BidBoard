@@ -85,6 +85,7 @@ export async function runWeeklyDigestCron(): Promise<{
       .where(
         and(
           eq(applications.userId, userId),
+          eq(scholarships.isActive, true),
           sql`${applications.deadline} >= ${todayStr}`,
           sql`${applications.deadline} <= ${fourteenOutStr}`,
           sql`${applications.status} NOT IN ('submitted', 'won', 'lost', 'skipped')`
@@ -125,6 +126,7 @@ export async function runWeeklyDigestCron(): Promise<{
       .where(
         and(
           eq(scholarshipMatches.userId, userId),
+          eq(scholarships.isActive, true),
           gte(scholarshipMatches.createdAt, sevenDaysAgo)
         )
       )

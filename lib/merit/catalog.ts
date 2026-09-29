@@ -14,8 +14,9 @@ import regional2 from "@/data/merit/regional-2.json";
 import outside6 from "@/data/merit/outside-6.json";
 import regional3 from "@/data/merit/regional-3.json";
 import verificationLedger from "@/data/merit/verification.json";
-import { validateVerificationLedger } from "./verification.mjs";
-export { validateVerificationLedger, verificationState, VERIFICATION_STALE_DAYS } from "./verification.mjs";
+import { validateVerificationLedger, type MeritVerification } from "./verification.mjs";
+import { coverageFromValue, maxDollarsFromValue } from "./award-value.mjs";
+export { isFullyVerified, validateVerificationLedger, verificationLabel, verificationState, VERIFICATION_STALE_DAYS } from "./verification.mjs";
 
 export type MeritType = "college-program" | "scholarship" | "competition";
 export type MeritStatus =
@@ -27,6 +28,8 @@ export type MeritStatus =
 
 export type MeritRecord = {
   id: string;
+  /** Stable route retained when an official program name changes. */
+  slug?: string;
   provider: string;
   name: string;
   type: MeritType;
@@ -67,10 +70,13 @@ const ALL = [
   ...regional3,
 ] as MeritRecord[];
 
+/** Includes retired research records for audit validation; public routes use LISTINGS. */
+export const MERIT_RECORDS = ALL;
+
 const VERIFICATION = validateVerificationLedger(verificationLedger, ALL);
 
 /** Program classification and the date of an individual source check are separate. */
-export function getVerification(record: Pick<MeritRecord, "id">) {
+export function getVerification(record: Pick<MeritRecord, "id">): MeritVerification | null {
   return VERIFICATION[record.id] ?? null;
 }
 
@@ -87,10 +93,10 @@ function slugify(s: string) {
 }
 
 function withSlug(r: MeritRecord): MeritListing {
-  return { ...r, slug: `${r.id.toLowerCase()}-${slugify(r.provider + " " + r.name)}` };
+  return { ...r, slug: r.slug ?? `${r.id.toLowerCase()}-${slugify(r.provider + " " + r.name)}` };
 }
 
-/** Everything a student can see: excluded records never leave this module. */
+/** Public catalog routes omit excluded research records. */
 export const LISTINGS: MeritListing[] = ALL.filter(
   (r) => r.status !== "excluded",
 ).map(withSlug);
@@ -133,6 +139,7 @@ export const TAG_LABEL: Record<string, string> = {
   stem: "STEM",
   math: "Math",
   essay: "Essay",
+  essays: "Essays",
   "short-essay": "Short essay",
   writing: "Writing",
   arts: "Arts",
@@ -190,12 +197,8 @@ export function localToday() {
 
 /** Largest dollar figure mentioned in the award text, or 0. */
 export function maxDollars(r: MeritRecord): number {
-  const nums = [...r.value.matchAll(/\$\s?([\d,]+(?:\.\d+)?)\s*(k|million)?/gi)].map((m) => {
-    const n = parseFloat(m[1].replace(/,/g, ""));
-    const unit = (m[2] || "").toLowerCase();
-    return unit === "k" ? n * 1_000 : unit === "million" ? n * 1_000_000 : n;
-  });
-  return nums.length ? Math.max(...nums) : 0;
+  if (getVerification(r)?.checks?.value === "unconfirmed") return 0;
+  return maxDollarsFromValue(r.value);
 }
 
 /**
@@ -212,12 +215,8 @@ export function awardTier(r: MeritRecord): number {
 
 /** A short, honest "full ride"-style label derived from the award text. */
 export function coverageHint(r: MeritRecord): string | null {
-  const v = r.value.toLowerCase();
-  if (/full[- ](cost|ride)|comprehensive college costs/.test(v)) return "Full cost";
-  if (/tuition, (mandatory )?fees?,? (room|housing)|tuition,( on-campus)? housing|tuition, room|tuition and required fees.*housing|tuition, fees, room|tuition, books, room/.test(v))
-    return "Tuition + housing";
-  if (/full tuition|up to full tuition|four years of tuition/.test(v)) return "Full tuition";
-  return null;
+  if (getVerification(r)?.checks?.value === "unconfirmed") return null;
+  return coverageFromValue(r.value);
 }
 
 /* ---------- timeline + requirements ---------- */
@@ -226,10 +225,28 @@ export type TimelineStep = { label: string; date: string; iso: string | null };
 
 const MONTH_RE =
   "(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)";
-const DATE_RE = new RegExp(`${MONTH_RE}\\s+(\\d{1,2})(-\\d{1,2})?(?:,\\s*(\\d{4}))?`, "i");
+const DATE_RE = new RegExp(`${MONTH_RE}\\s+(\\d{1,2})(-\\d{1,2})?(?:(?:,\\s*|\\s+)(\\d{4}))?`, "i");
 const MONTH_INDEX: Record<string, number> = {
   jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
 };
+
+function explicitISO(match: RegExpMatchArray, rangeEnd = false): string | null {
+  if (!match[4]) return null;
+  const month = MONTH_INDEX[match[1].slice(0, 3).toLowerCase()];
+  const day = rangeEnd && match[3] ? Number(match[3].slice(1)) : Number(match[2]);
+  const candidate = `${match[4]}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+  const parsed = new Date(`${candidate}T00:00:00Z`);
+  return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === candidate ? candidate : null;
+}
+
+/** A past first date does not establish closure when a later published stage exists. */
+export function hasUpcomingListedDate(r: MeritRecord, today: string): boolean {
+  if (r.deadlineDate && r.deadlineDate >= today) return true;
+  return [...r.deadline.matchAll(new RegExp(DATE_RE.source, "gi"))].some((match) => {
+    const iso = explicitISO(match, true);
+    return iso !== null && iso >= today;
+  });
+}
 
 function tidyLabel(s: string) {
   let t = s
@@ -261,7 +278,7 @@ export function timelineSteps(r: MeritRecord): TimelineStep[] {
     const year = m[4] ?? null;
     const label = tidyLabel(part.replace(m[0], " "));
     const shown = `${MONTHS[month - 1]} ${day}${range}${year ? `, ${year}` : ""}`;
-    const iso = year ? `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` : null;
+    const iso = explicitISO(m);
     steps.push({ label, date: shown, iso });
   }
   return steps.length >= 2 ? steps : [];
@@ -272,88 +289,32 @@ const REQUIREMENT_TAGS: [string, string][] = [
   ["checkbox-opt-in", "Opt in on your admission application"],
   ["separate-application", "A separate scholarship application"],
   ["honors-application", "An honors college application"],
-  ["nomination", "A nomination from your school"],
-  ["invitation-only", "An invitation to compete after admission review"],
-  ["recommendations", "Recommendation letters"],
+  ["nomination", "A nomination (check the program's nominator rules)"],
+  ["invitation-only", "An invitation to apply or compete"],
+  ["recommendations", "Recommendations"],
   ["essay", "An essay"],
+  ["essays", "Essays"],
   ["short-essay", "A short essay or statement"],
   ["video", "A video"],
   ["portfolio", "A portfolio"],
-  ["research", "Original research"],
+  ["research-required", "Original research"],
   ["speech", "A speech or recorded oration"],
   ["interview", "An interview"],
   ["finalist-round", "A finalist round or selection weekend"],
   ["membership", "Membership in the sponsoring organization"],
   ["local-route", "Entry through a local chapter or club"],
   ["acceptance-required", "A college acceptance"],
-  ["fafsa-required", "The FAFSA (or CSS Profile)"],
+  ["fafsa-required", "Required financial-aid forms (check the program's rules)"],
   ["fee", "An application fee"],
 ];
 
-/** Requirements named in the listing's own text that tags may not carry. */
-const REQUIREMENT_TEXT: [RegExp, string][] = [
-  [/recommendation|counselor (report|materials)|nominators|references/i, "recommendations"],
-  [/\bessays?\b|personal statement|written responses|short responses/i, "essay"],
-  [/interview/i, "interview"],
-  [/\bvideo\b/i, "video"],
-  [/r[ée]sum[ée]/i, "resume"],
-  [/transcript/i, "transcript"],
-  [/test scores|\bSAT\b|\bACT\b/i, "scores"],
-];
-
-const EXTRA_LABEL: Record<string, string> = {
-  resume: "A resume or activities list",
-  transcript: "Your transcript",
-  scores: "Test scores (check whether they are optional)",
-};
-
-/** What a student should expect to prepare, from the listing's tags and its own wording. */
+/** Only explicit catalog tags establish checklist items. The full application
+ * instructions retain qualifications, alternatives, and optional materials. */
 export function requirements(r: MeritRecord): string[] {
-  const text = `${r.apply} ${r.deadline}`;
-  const tags = new Set(r.tags);
-  const extras: string[] = [];
-  for (const [re, key] of REQUIREMENT_TEXT) {
-    if (!re.test(text)) continue;
-    if (key in EXTRA_LABEL) extras.push(EXTRA_LABEL[key]);
-    else if (!(key === "essay" && tags.has("short-essay"))) tags.add(key);
-  }
-  const fromTags = REQUIREMENT_TAGS.filter(([t]) => tags.has(t)).map(([, label]) => label);
-  return [...fromTags, ...extras];
+  return REQUIREMENT_TAGS.filter(([tag]) => r.tags.includes(tag) && !(tag === "essay" && r.tags.includes("essays"))).map(([, label]) => label);
 }
 
-/**
- * Fills in missing years on timeline steps by carrying the year forward from
- * the previous dated step, rolling over when the month goes backwards (a
- * listing's steps are written in order). Steps before any known year stay null.
- */
+/** Calendar entries require an explicit, valid year for each published step. */
 export function datedSteps(r: MeritRecord): TimelineStep[] {
-  const steps = timelineSteps(r);
-  let year: number | null = null;
-  let lastMonth = 0;
-  // Seed from the first step that states a year, working backwards.
-  const firstKnown = steps.findIndex((s) => s.iso);
-  if (firstKnown > 0) {
-    let y = Number(steps[firstKnown].iso!.slice(0, 4));
-    let m = Number(steps[firstKnown].iso!.slice(5, 7));
-    for (let i = firstKnown - 1; i >= 0; i--) {
-      const mi = MONTH_INDEX[steps[i].date.slice(0, 3).toLowerCase()];
-      if (mi > m) y -= 1;
-      m = mi;
-      const d = Number(steps[i].date.split(" ")[1]);
-      steps[i] = { ...steps[i], iso: `${y}-${String(mi).padStart(2, "0")}-${String(d).padStart(2, "0")}` };
-    }
-  }
-  return steps.map((s) => {
-    const mi = MONTH_INDEX[s.date.slice(0, 3).toLowerCase()];
-    if (s.iso) {
-      year = Number(s.iso.slice(0, 4));
-      lastMonth = mi;
-      return s;
-    }
-    if (year === null) return s;
-    if (mi < lastMonth) year += 1;
-    lastMonth = mi;
-    const d = Number(s.date.split(" ")[1].replace(/\D.*$/, ""));
-    return { ...s, iso: `${year}-${String(mi).padStart(2, "0")}-${String(d).padStart(2, "0")}` };
-  });
+  return timelineSteps(r);
 }

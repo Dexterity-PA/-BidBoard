@@ -72,6 +72,7 @@ export async function getNextAction(userId: string): Promise<NextAction> {
       and(
         eq(applications.userId, userId),
         eq(applications.status, "in_progress"),
+        eq(scholarships.isActive, true),
         gte(scholarships.deadline, today),
         lte(scholarships.deadline, in3days)
       )
@@ -107,6 +108,7 @@ export async function getNextAction(userId: string): Promise<NextAction> {
       and(
         eq(applications.userId, userId),
         eq(applications.status, "saved"),
+        eq(scholarships.isActive, true),
         gte(scholarships.deadline, today),
         lte(scholarships.deadline, in7days)
       )

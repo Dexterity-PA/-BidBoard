@@ -62,7 +62,7 @@ export function WeeklyDigestEmail({
               margin: "0 0 8px 0",
             }}
           >
-            ⏰ Upcoming deadlines
+            ⏰ Dates in your tracker
           </Text>
           {upcomingDeadlines.map((d, i) => (
             <div key={i} style={{ ...card, marginBottom: "8px" }}>

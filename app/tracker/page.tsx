@@ -27,6 +27,8 @@ export default async function TrackerPage() {
       officialUrl: a.scholarshipApplicationUrl,
       deadline: a.deadline,
       officialDeadline: l?.deadlineDate ?? null,
+      catalogTracked: a.scholarshipSource === "merit-ledger",
+      inactive: a.scholarshipIsActive === false || (a.scholarshipSource === "merit-ledger" && !l),
       award: l ? coverageHint(l) ?? l.value : trackerAward(a),
       requirements: l ? requirements(l) : [],
       steps: l ? datedSteps(l).map((s) => ({ label: s.label, date: s.date, iso: s.iso })) : [],

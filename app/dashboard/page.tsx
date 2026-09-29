@@ -258,6 +258,7 @@ export default async function DashboardPage() {
         and(
           eq(applications.userId, userId),
           notInArray(applications.status, ["submitted", "won", "lost", "skipped"]),
+          eq(scholarships.isActive, true),
           gte(applications.deadline, today),
           lte(applications.deadline, todayPlus14),
         )
