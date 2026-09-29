@@ -164,10 +164,14 @@ cp .env.example .env.local
 | `NEXT_PUBLIC_APP_URL` | Public base URL (e.g. `https://www.bidboard.app`) |
 | `CRON_SECRET` | Random secret for protecting cron endpoints (`openssl rand -hex 32`) |
 | `NEWSLETTER_SECRET` | Optional stable secret for newsletter unsubscribe links; falls back to `CRON_SECRET` |
+| `ANALYTICS_ENABLED` | Set to `true` to enable first-party outreach measurement |
+| `ANALYTICS_SECRET` | Stable random secret used to hash analytics identifiers |
+| `ANALYTICS_ADMIN_EMAIL` | Exact Clerk-verified email allowed to open `/admin/analytics` |
 
 ### Weekly scholarship digest
 
-`npm run build` first runs `scripts/migrate-newsletter.mjs`. Only Vercel production
+`npm run build` first runs `scripts/migrate-newsletter.mjs` and then
+`scripts/migrate-analytics.mjs`. Only Vercel production
 builds apply the reviewed additive SQL migration using the deployment's existing
 database connection; local and preview builds skip it. Required email/cron settings
 and a public HTTPS app URL are checked before connecting. Concurrent production

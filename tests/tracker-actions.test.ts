@@ -5,7 +5,7 @@ import type { SQL } from "drizzle-orm";
 const mocks = vi.hoisted(() => ({
   auth: vi.fn(), currentUser: vi.fn(), after: vi.fn(),
   select: vi.fn(), selectWhere: vi.fn(), selectLimit: vi.fn(),
-  insert: vi.fn(), insertValues: vi.fn(), insertConflict: vi.fn(),
+  insert: vi.fn(), insertValues: vi.fn(), insertConflict: vi.fn(), insertReturning: vi.fn(), recordConversion: vi.fn(),
   update: vi.fn(), updateValues: vi.fn(), updateWhere: vi.fn(), updateReturning: vi.fn(),
   delete: vi.fn(), deleteWhere: vi.fn(), deleteReturning: vi.fn(),
   secondaryUpdate: vi.fn(), logActivity: vi.fn(), sendStatusChangeEmail: vi.fn(),
@@ -19,6 +19,7 @@ vi.mock("@/db", () => ({ db: {
 } }));
 vi.mock("@/lib/activity", () => ({ logActivity: mocks.logActivity }));
 vi.mock("@/lib/email/send/status-change", () => ({ sendStatusChangeEmail: mocks.sendStatusChangeEmail }));
+vi.mock("@/lib/analytics/server", () => ({ recordConversion: mocks.recordConversion }));
 
 import { applications, scholarshipMatches, users } from "@/db/schema";
 import { ensureUserRow } from "@/lib/ensure-user";
@@ -45,7 +46,8 @@ beforeEach(() => {
       },
     }),
   }));
-  mocks.insertConflict.mockResolvedValue(undefined);
+  mocks.insertReturning.mockResolvedValue([{ id: 7 }]);
+  mocks.insertConflict.mockReturnValue({ returning: mocks.insertReturning });
   mocks.insert.mockImplementation(() => ({
     values: (values: unknown) => {
       mocks.insertValues(values);
@@ -225,7 +227,7 @@ describe("saving an award", () => {
   });
 
   it("reports primary insert failures without scheduling follow-up work", async () => {
-    mocks.insertConflict.mockRejectedValue(new Error("Insert failed"));
+    mocks.insertReturning.mockRejectedValue(new Error("Insert failed"));
     await expect(saveToTracker(12)).rejects.toThrow("Insert failed");
     expect(mocks.after).not.toHaveBeenCalled();
   });
@@ -257,5 +259,12 @@ describe("saving an award", () => {
     await expect(saveMerit("test-award")).resolves.toEqual({ ok: true });
     expect(mocks.insert).toHaveBeenCalledWith(applications);
     expect(mocks.insertConflict).toHaveBeenCalledOnce();
+  });
+
+  it("measures successful new inserts and ignores duplicate save retries", async () => {
+    mocks.insertReturning.mockResolvedValueOnce([{ id: 7 }]).mockResolvedValueOnce([]);
+    await saveToTracker(12);
+    await saveToTracker(12);
+    expect(mocks.recordConversion).toHaveBeenCalledExactlyOnceWith("save", `${userId}:12`);
   });
 });

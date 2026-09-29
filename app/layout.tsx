@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import Analytics from "@/components/merit/Analytics";
 import "./globals.css";
 import "./merit.css";
 
@@ -92,7 +93,7 @@ export default function RootLayout({
         lang="en"
         className={`${geist.variable} ${geistMono.variable}`}
       >
-        <body>{children}</body>
+        <body>{children}{process.env.ANALYTICS_ENABLED === "true" && <Analytics />}</body>
       </html>
     </ClerkProvider>
   );

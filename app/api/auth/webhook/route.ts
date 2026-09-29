@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { users } from "@/db/schema";
 import { eq, sql } from "drizzle-orm";
 import { sendWelcomeEmail } from "@/lib/email/send/welcome";
+import { recordConversion } from "@/lib/analytics/server";
 
 type ClerkUserEvent = {
   type: "user.created" | "user.updated";
@@ -12,6 +13,7 @@ type ClerkUserEvent = {
     email_addresses: { email_address: string; primary: boolean }[];
     first_name: string | null;
     last_name: string | null;
+    created_at?: number;
   };
 };
 
@@ -85,5 +87,11 @@ export async function POST(req: Request) {
     void sendWelcomeEmail({ userId: id, email: primaryEmail, firstName: first_name });
   }
 
+  if (event.type === "user.created") {
+    await recordConversion("signup", id, {
+      attribution: null,
+      createdAt: typeof event.data.created_at === "number" ? new Date(event.data.created_at) : undefined,
+    });
+  }
   return new Response("OK", { status: 200 });
 }

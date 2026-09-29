@@ -9,6 +9,7 @@ import { eq, and, inArray, sql } from "drizzle-orm";
 import { logActivity } from "@/lib/activity";
 import { sendStatusChangeEmail } from "@/lib/email/send/status-change";
 import { ensureUserRow } from "@/lib/ensure-user";
+import { recordConversion } from "@/lib/analytics/server";
 
 const STATUS_LABELS: Record<string, string> = {
   saved:       "Added to Tracker",
@@ -115,7 +116,7 @@ export async function saveToTracker(scholarshipId: number) {
   await ensureUserRow(userId);
 
   // Upsert into applications (do nothing if already tracked)
-  await db
+  const inserted = await db
     .insert(applications)
     .values({
       userId,
@@ -124,7 +125,10 @@ export async function saveToTracker(scholarshipId: number) {
       deadline: sch.deadline ?? null,
       statusHistory: initialHistory,
     })
-    .onConflictDoNothing({ target: [applications.userId, applications.scholarshipId] });
+    .onConflictDoNothing({ target: [applications.userId, applications.scholarshipId] })
+    .returning({ id: applications.id });
+
+  if (inserted.length) await recordConversion("save", `${userId}:${scholarshipId}`);
 
   // Keep scholarshipMatches.isSaved in sync
   afterTrackerWrite(() => db
