@@ -2,17 +2,19 @@ import type { ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const mocks = vi.hoisted(() => ({ verification: vi.fn() }));
-vi.mock("@/lib/merit/catalog", async (importOriginal) => ({
-  ...await importOriginal<typeof import("@/lib/merit/catalog")>(), getVerification: mocks.verification,
-}));
+const mocks = vi.hoisted(() => ({ verification: vi.fn(), listing: vi.fn() }));
+vi.mock("@/lib/merit/catalog", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/merit/catalog")>();
+  return { ...actual, getVerification: mocks.verification,
+    getDetailListing: (slug: string) => mocks.listing(slug) ?? actual.getDetailListing(slug) };
+});
 vi.mock("@/app/actions/merit", () => ({ isMeritSaved: async () => false }));
 vi.mock("@/components/merit/SiteChrome", () => ({ SiteHeader: () => null, SiteFooter: () => null }));
 vi.mock("@/components/merit/SaveMeritButton", () => ({ default: () => null }));
 vi.mock("@/components/merit/MatchNote", () => ({ default: () => null }));
 vi.mock("@clerk/nextjs", () => ({ SignedIn: () => null, SignedOut: ({ children }: { children: ReactNode }) => children }));
 
-import ListingPage from "@/app/scholarships/[slug]/page";
+import ListingPage, { generateMetadata } from "@/app/scholarships/[slug]/page";
 import { LISTINGS } from "@/lib/merit/catalog";
 
 beforeEach(() => {
@@ -27,6 +29,21 @@ async function renderPage() {
 }
 
 describe("scholarship verification copy", () => {
+  it("keeps a retired award readable without promoting a new application or save", async () => {
+    mocks.listing.mockReturnValue({ ...LISTINGS[0], status: "excluded", deadlineDate: null });
+    mocks.verification.mockReturnValue({ checkedAt: "2026-09-29", sourceUrls: LISTINGS[0].sources,
+      outcome: "retired", notes: "The provider confirms that the program ended.", unresolved: [] });
+    const html = await renderPage();
+    expect(html).toContain("This program has ended.");
+    expect(html).toContain("No longer offered");
+    expect(html).toContain("Read official update");
+    expect(html).not.toContain("Sign up to save this award");
+    expect(html).not.toContain("How to apply");
+    expect(html).not.toContain("before applying");
+    const metadata = await generateMetadata({ params: Promise.resolve({ slug: LISTINGS[0].slug }) });
+    expect(metadata.robots).toEqual({ index: false, follow: true });
+  });
+
   it("labels inaccessible official information as an attempt and shows what remains unknown", async () => {
     mocks.verification.mockReturnValue({ checkedAt: "2026-09-29", sourceUrls: [], outcome: "unavailable", notes: "The official page could not be read.", unresolved: ["The 2027 deadline remains unconfirmed."] });
     const html = await renderPage();

@@ -108,12 +108,13 @@ export async function saveToTracker(scholarshipId: number) {
   // Carry the scholarship's deadline onto the tracked row so the tracker,
   // deadlines page and reminders see it without another join.
   const [sch] = await db
-    .select({ deadline: scholarships.deadline })
+    .select({ deadline: scholarships.deadline, isActive: scholarships.isActive })
     .from(scholarships)
     .where(eq(scholarships.id, scholarshipId))
     .limit(1);
 
   if (!sch) throw new Error("Scholarship not found");
+  if (sch.isActive === false) throw new Error("This scholarship is no longer offered.");
   await ensureUserRow(userId);
 
   // Upsert into applications (do nothing if already tracked)

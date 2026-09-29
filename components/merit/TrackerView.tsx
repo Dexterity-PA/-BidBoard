@@ -24,6 +24,7 @@ export type TrackedAward = {
   officialDeadline?: string | null;
   catalogTracked?: boolean;
   inactive?: boolean;
+  retiredDetailAvailable?: boolean;
   award: string;
   requirements: string[];
   steps: { label: string; date: string; iso: string | null }[];
@@ -195,7 +196,7 @@ function TrackedRow({
         <DateBlock iso={a.deadline} today={today} emptyLabel="No saved date" />
         <div className="m-row-main">
           <span className="m-row-provider">{a.provider}</span>
-          {a.inactive ? <span className="m-row-name m-track-name">{a.name}</span> : (
+          {a.inactive && !a.retiredDetailAvailable ? <span className="m-row-name m-track-name">{a.name}</span> : (
             <Link href={a.href} className="m-row-name m-track-name">{a.name}</Link>
           )}
           <span className="m-row-value">{a.award}</span>

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { getVerification, isFullyVerified, LISTINGS, MERIT_RECORDS, validateVerificationLedger, verificationState } from "@/lib/merit/catalog";
+import { getDetailListing, getListing, getVerification, isFullyVerified, LISTINGS, MERIT_RECORDS, validateVerificationLedger, verificationState } from "@/lib/merit/catalog";
 import ledger from "@/data/merit/verification.json";
 import sitemap from "@/app/sitemap";
-import { buildRows } from "@/scripts/seed-merit.mjs";
+import { buildRows, buildRowsFromRecords } from "@/scripts/seed-merit.mjs";
 
 const record = { id: "TEST1", sources: ["https://provider.edu/awards/example/"] };
 const evidence = {
@@ -56,6 +56,21 @@ describe("per-listing verification evidence", () => {
 
   it("validates the committed evidence against real catalog IDs, sources and today's UTC date", () => {
     expect(() => validateVerificationLedger(ledger, MERIT_RECORDS, new Date().toISOString().slice(0, 10))).not.toThrow();
+  });
+
+  it("preserves reviewed retirement links while excluding all retired awards from discovery", () => {
+    const rows = buildRowsFromRecords(MERIT_RECORDS, ledger, { includeExcluded: true });
+    const publicUrls = new Set(sitemap().map((entry) => entry.url));
+    for (const listing of MERIT_RECORDS.filter((item) => item.status === "excluded")) {
+      const row = rows.find((item) => item.slug.startsWith(`${listing.id.toLowerCase()}-`))!;
+      expect(getListing(row.slug)).toBeUndefined();
+      expect([...publicUrls].some((url) => url.endsWith(`/scholarships/${row.slug}`))).toBe(false);
+      if (getVerification(listing)?.outcome === "retired") {
+        expect(getDetailListing(row.slug)?.id).toBe(listing.id);
+      } else {
+        expect(getDetailListing(row.slug)).toBeUndefined();
+      }
+    }
   });
 
   it("keeps unknown check dates out of the sitemap and database seed", () => {

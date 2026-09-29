@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { eq, and, ne } from "drizzle-orm";
 import type { Metadata } from "next";
@@ -7,6 +7,7 @@ import { db } from "@/db";
 import { scholarships, scholarshipMatches } from "@/db/schema";
 import { SaveButton } from "./SaveButton";
 import { ShareButton } from "./ShareButton";
+import { getDetailListing } from "@/lib/merit/catalog";
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -107,6 +108,10 @@ export default async function ScholarshipDetailPage({
     where: eq(scholarships.id, scholarshipId),
   });
   if (!scholarship) notFound();
+  if (scholarship.isActive === false && scholarship.source === "merit-ledger" &&
+      scholarship.slug && getDetailListing(scholarship.slug)?.status === "excluded") {
+    redirect(`/scholarships/${scholarship.slug}`);
+  }
 
   // Fetch user's match data if logged in
   let matchData: MatchData = null;

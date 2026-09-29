@@ -6,9 +6,11 @@ The live site remains at [bidboard.app](https://www.bidboard.app). The repositor
 
 ## Scholarship source reviews
 
-`data/merit/verification.json` records an individual review date, outcome, and remaining limitations for each reviewed listing. `audit-2026-09-29.json` retains the field-level source evidence and corrections. A reviewed listing is only marked verified when its identity, value, deadline, application route, and eligibility are supported. Unpublished future-cycle terms and conflicting official information remain partial; inaccessible official information remains unavailable.
+`data/merit/verification.json` records an individual review date, outcome, and remaining limitations for each reviewed listing. `audit-2026-09-29-deep.json` retains the active field-level source evidence and corrections; `audit-2026-09-29.json` preserves the earlier review. Deeper reviews record the additional sources and access attempts, the facts resolved, and the remaining reason for uncertainty. A reviewed listing is only marked verified when its material displayed claims about identity, value, deadline, application route, and eligibility are supported. Unpublished future-cycle terms and conflicting official information remain partial; inaccessible official information remains unavailable. An official variable award or individual offer condition is described as such, without inventing a uniform amount or requirement.
 
 Review outcomes are separate from program classifications such as merit plus need or award directories. Unknown award values do not contribute dollar amounts or full-tuition labels to filters. Calendar steps require explicitly published years; edited targets remain visible alongside official dates. Renamed programs keep their existing URLs.
+
+Officially retired programs leave discovery and reminder selections. Reviewed retirement pages remain accessible through saved links, show the provider's update, and prevent new saves. Existing application history is preserved.
 
 The build checks complete audit coverage before release. After compilation, production applies the committed catalog corrections only to existing `merit-ledger` database rows. It preserves edited application targets, notes, statuses, and checklists, and only adjusts deadline copies that are still untouched. Removed awards remain in students' saved history with reminders paused. Preview and local builds validate the evidence without changing a database.
 
