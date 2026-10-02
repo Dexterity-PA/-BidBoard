@@ -1,5 +1,8 @@
+// @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { renderToStaticMarkup } from "react-dom/server";
+import { act } from "@testing-library/react";
+import { hydrateRoot } from "react-dom/client";
+import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { readFile, writeFile } from "node:fs/promises";
 const mocks = vi.hoisted(() => ({ report: vi.fn() }));
 vi.mock("@clerk/nextjs/server", () => ({
@@ -142,6 +145,22 @@ const report = {
 };
 afterEach(() => vi.unstubAllEnvs());
 describe("analytics dashboard presentation", () => {
+  it("hydrates the complete dashboard without replacing its server HTML", async () => {
+    vi.stubEnv("ANALYTICS_ADMIN_EMAIL", "owner@example.test");
+    mocks.report.mockResolvedValue(report);
+    const element = await AnalyticsPage({ searchParams: Promise.resolve({ days: "7" }) });
+    const container = document.createElement("div");
+    container.innerHTML = renderToString(element);
+    document.body.appendChild(container);
+    const errors: unknown[] = [];
+    let root: ReturnType<typeof hydrateRoot>;
+    await act(async () => {
+      root = hydrateRoot(container, element, { onRecoverableError: (error) => errors.push(error) });
+    });
+    await act(async () => root.unmount());
+    container.remove();
+    expect(errors).toEqual([]);
+  });
   it("renders chart controls, regional coverage and the selected private export", async () => {
     vi.stubEnv("ANALYTICS_ADMIN_EMAIL", "owner@example.test");
     mocks.report.mockResolvedValue(report);
