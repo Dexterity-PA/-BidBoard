@@ -1,3 +1,4 @@
+import { recordOperationalIssue } from "@/lib/health/server";
 import * as React from "react";
 import { db } from "@/db";
 import { notificationsLog } from "@/db/schema";
@@ -47,7 +48,8 @@ export async function sendEmail(
   } catch (err) {
     const error = err instanceof Error ? err.message : String(err);
     await logNotification(userId, type, "error", error, metadata);
-    console.error(`[email] Failed to send ${type} to ${userId}:`, err);
+    await recordOperationalIssue("email", "provider_failed");
+    console.error("[email] Provider did not acknowledge delivery.");
     return { success: false, reason: error };
   }
 }

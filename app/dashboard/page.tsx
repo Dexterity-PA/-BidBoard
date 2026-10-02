@@ -109,20 +109,6 @@ function IconArrowUp({ className }: { className?: string }) {
     </svg>
   );
 }
-function IconExport({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 20 20" fill="currentColor">
-      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconUsers({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 20 20" fill="currentColor">
-      <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-    </svg>
-  );
-}
 function IconEmpty({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 48 48" fill="none">
@@ -336,7 +322,7 @@ export default async function DashboardPage() {
       icon:     <IconTarget className="h-5 w-5" />,
       iconBg:   "bg-indigo-100",
       iconText: "text-indigo-600",
-      trend:    hasMatches ? "+3 this week" : null, // TODO: replace with real delta
+      trend:    null,
       trendUp:  true,
     },
     {
@@ -396,22 +382,6 @@ export default async function DashboardPage() {
       icon:        <IconCalendar className="h-4 w-4" />,
       iconBg:      "bg-amber-100",
       iconText:    "text-amber-600",
-    },
-    {
-      label:       "Export to CSV",
-      description: "Download your matches spreadsheet",
-      href:        "#", // TODO: wire up CSV export
-      icon:        <IconExport className="h-4 w-4" />,
-      iconBg:      "bg-gray-100",
-      iconText:    "text-gray-500",
-    },
-    {
-      label:       "Invite a Friend",
-      description: "Share Meritously with a classmate",
-      href:        "#", // TODO: wire up referral
-      icon:        <IconUsers className="h-4 w-4" />,
-      iconBg:      "bg-gray-100",
-      iconText:    "text-gray-500",
     },
   ];
 

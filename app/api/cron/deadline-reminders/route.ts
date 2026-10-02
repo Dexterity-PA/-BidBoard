@@ -1,3 +1,4 @@
+import { observeJob, cleanHealthRetention } from "@/lib/health/server";
 import { NextResponse } from "next/server";
 import { runDeadlineReminderCron } from "@/lib/email/send/deadline-reminder";
 import { cleanAnalyticsRetention } from "@/lib/analytics/server";
@@ -10,11 +11,12 @@ export async function GET(req: Request) {
 
   try {
     await cleanAnalyticsRetention();
-    const result = await runDeadlineReminderCron();
+    await cleanHealthRetention();
+    const result = await observeJob("deadline-reminders", runDeadlineReminderCron);
     console.log("[cron/deadline-reminders]", result);
-    return NextResponse.json({ ok: true, ...result });
-  } catch (err) {
-    console.error("[cron/deadline-reminders] error:", err);
+    return NextResponse.json({ ok: result.failed === 0, ...result }, { status: result.failed ? 503 : 200 });
+  } catch {
+    console.error("[cron/deadline-reminders] Run failed.");
     return NextResponse.json({ error: "Cron failed" }, { status: 500 });
   }
 }

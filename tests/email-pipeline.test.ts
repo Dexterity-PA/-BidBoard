@@ -3,11 +3,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   canSend: vi.fn(),
+  operationalIssue: vi.fn(),
   canSendToday: vi.fn(),
   send: vi.fn(),
   log: vi.fn(),
 }));
 
+vi.mock("@/lib/health/server", () => ({ recordOperationalIssue: mocks.operationalIssue }));
 vi.mock("@/db", () => ({
   db: { insert: () => ({ values: mocks.log }) },
 }));

@@ -11,6 +11,8 @@ import {
   scholarshipMatches,
 } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { accountEvent } from "@/lib/accounts/events";
+import { syncAccount } from "@/lib/accounts/sync";
 import { revalidatePath } from "next/cache";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -136,12 +138,12 @@ export async function exportUserData(): Promise<string> {
 export async function deleteAccount() {
   const userId = await getVerifiedUserId();
 
-  // All child rows are deleted via cascade (FK onDelete: "cascade")
-  await db.delete(users).where(eq(users.id, userId));
-
-  // Delete from Clerk
+  // Keep saved work until Clerk confirms deletion. A permanent tombstone blocks delayed webhooks.
   const clerk = await clerkClient();
   await clerk.users.deleteUser(userId);
+  const event = accountEvent({ type: "user.deleted", timestamp: Date.now(), data: { id: userId } });
+  if (!event) throw new Error("Could not delete account");
+  await syncAccount(event);
 
   redirect("/");
 }

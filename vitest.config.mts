@@ -8,6 +8,8 @@ export default defineConfig({
     clearMocks: true,
     restoreMocks: true,
     env: {
+      VERCEL_ENV: "test",
+      HEALTH_ALERTS_ENABLED: "false",
       DATABASE_URL: "postgresql://test:test@127.0.0.1:1/meritously_test",
       RESEND_API_KEY: "re_test_only",
     },

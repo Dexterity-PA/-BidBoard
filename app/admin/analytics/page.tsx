@@ -16,6 +16,8 @@ import {
   growthLabel,
 } from "@/lib/analytics/presentation";
 import TrafficChart from "./TrafficChart";
+import HealthPanel from "./HealthPanel";
+import { healthSnapshot } from "@/lib/health/server";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -102,6 +104,7 @@ export default async function AnalyticsPage({
     );
   }
   const { totals, previous, quality } = report;
+  const health = await healthSnapshot();
   const link = (nextDays = days, internal = includeInternal) =>
     `?days=${nextDays}${internal ? "&internal=1" : ""}`;
   const primary: [keyof AnalyticsTotals, string, string][] = [
@@ -460,6 +463,7 @@ export default async function AnalyticsPage({
           ))}
         </div>
       </section>
+      <HealthPanel health={health} />
       <section className={`${styles.panel} ${styles.quality}`}>
         <h2>Measurement quality</h2>
         <dl>

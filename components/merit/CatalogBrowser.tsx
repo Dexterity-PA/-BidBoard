@@ -19,14 +19,10 @@ import {
   awardTier,
   coverageHint,
   daysUntil,
-  getVerification,
   hasUpcomingListedDate,
-  isFullyVerified,
   localToday,
   monthDay,
   stateTags,
-  verificationLabel,
-  verificationState,
   type MeritListing,
   type MeritType,
 } from "@/lib/merit/catalog";
@@ -91,7 +87,6 @@ export default function CatalogBrowser({
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [elig, setElig] = useState("");
   const [state, setState] = useState("");
-  const [showUnconfirmed, setShowUnconfirmed] = useState(true);
   const [includeNeed, setIncludeNeed] = useState(false);
   const [hideClosed, setHideClosed] = useState(true);
   const [sort, setSort] = useState<Sort>("deadline");
@@ -122,11 +117,6 @@ export default function CatalogBrowser({
   const results = useMemo(() => {
     const out = listings.filter((l) => {
       if (type !== "all" && l.type !== type) return false;
-      if (!showUnconfirmed) {
-        const evidence = getVerification(l);
-        if (l.status === "watchlist" || l.status === "directory" || !isFullyVerified(evidence) ||
-            verificationState(evidence?.checkedAt, today ?? undefined) !== "current") return false;
-      }
       if (!includeNeed && l.status === "mixed-need") return false;
       if (size && awardTier(l) < size) return false;
       if (how && !l.tags.includes(how)) return false;
@@ -143,7 +133,7 @@ export default function CatalogBrowser({
       const bd = b.deadlineDate ?? "9999";
       return ad.localeCompare(bd) || a.name.localeCompare(b.name);
     });
-  }, [listings, type, size, showUnconfirmed, includeNeed, how, elig, state, month, hideClosed, today, q, sort, profile, onlyMatches, verdicts]);
+  }, [listings, type, size, includeNeed, how, elig, state, month, hideClosed, today, q, sort, profile, onlyMatches, verdicts]);
 
   // Start from the first page whenever the result set changes.
   useEffect(() => setLimit(PAGE), [results]);
@@ -161,7 +151,6 @@ export default function CatalogBrowser({
     setSize(0);
     setElig("");
     setState("");
-    setShowUnconfirmed(true);
     setIncludeNeed(false);
     setHideClosed(true);
   }
@@ -273,17 +262,6 @@ export default function CatalogBrowser({
           <label className="m-toggle">
             <input type="checkbox" checked={hideClosed} onChange={(e) => setHideClosed(e.target.checked)} />
             <span>Hide listings with only past dates</span>
-          </label>
-          <label className="m-toggle">
-            <input
-              type="checkbox"
-              checked={showUnconfirmed}
-              onChange={(e) => setShowUnconfirmed(e.target.checked)}
-            />
-            <span>
-              Unconfirmed listings
-              <small>Unpublished cycle details or incomplete source checks</small>
-            </span>
           </label>
           <label className="m-toggle">
             <input type="checkbox" checked={includeNeed} onChange={(e) => setIncludeNeed(e.target.checked)} />
@@ -448,8 +426,6 @@ function Row({
   verdict?: MatchResult;
 }) {
   const hint = coverageHint(l);
-  const review = getVerification(l);
-  const staleReview = review && today && verificationState(review.checkedAt, today) === "stale";
   return (
     <Link href={`/scholarships/${l.slug}`} className="m-row">
       <DateBlock iso={l.deadlineDate} today={today} />
@@ -460,14 +436,6 @@ function Row({
       </div>
       <div className="m-row-side">
         <StatusBadge l={l} />
-        {review?.outcome && (
-          <span
-            className={`m-badge ${review.outcome === "verified" && !staleReview ? "m-badge-verified" : "m-badge-watch"}`}
-            title={`${review.outcome === "unavailable" ? "Review attempted" : "Reviewed"} ${review.checkedAt}. ${review.notes}`}
-          >
-            {staleReview ? "Recheck needed" : verificationLabel(review)}
-          </span>
-        )}
         <span className="m-badge">{TYPE_LABEL[l.type]}</span>
         {hint && <span className="m-badge m-badge-gold">{hint}</span>}
         {verdict?.verdict === "check" && (

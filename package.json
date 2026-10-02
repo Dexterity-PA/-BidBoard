@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/migrate-newsletter.mjs && node scripts/migrate-analytics.mjs && next build && node scripts/sync-catalog-audit.mjs",
+    "build": "npm run check:release && node scripts/migrate-newsletter.mjs && node scripts/migrate-analytics.mjs && node scripts/migrate-account-health.mjs && next build && node scripts/sync-catalog-audit.mjs",
     "start": "next start",
     "lint": "eslint .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check:release": "next typegen && tsc --noEmit && vitest run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

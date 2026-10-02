@@ -4,6 +4,7 @@ const mocks = vi.hoisted(() => ({ auth: vi.fn(), currentUser: vi.fn(), report: v
 vi.mock("@clerk/nextjs/server", () => ({ auth: mocks.auth, currentUser: mocks.currentUser }));
 vi.mock("next/navigation", () => ({ notFound: mocks.notFound }));
 vi.mock("@/lib/analytics/report", () => ({ analyticsReport: mocks.report }));
+vi.mock("@/lib/health/server", () => ({ healthSnapshot: async () => null }));
 vi.mock("@/lib/analytics/server", () => ({ analyticsEnabled: () => true }));
 
 import { isAnalyticsAdmin } from "@/lib/analytics/access";

@@ -71,14 +71,14 @@ export async function recordConversion(kind: Conversion, entity: string, options
 }
 
 /** Network addresses are used transiently, never stored; the keyed hash expires after one day. */
-export async function allowAnalyticsRequest(ip: string, now = new Date()) {
+export async function allowAnalyticsRequest(ip: string, now = new Date(), limit = 120, purpose = "rate") {
   const minute = Math.floor(now.getTime() / 60_000);
-  const key = analyticsHash("rate", `${minute}:${ip.slice(0, 128)}`);
+  const key = analyticsHash(purpose, `${minute}:${ip.slice(0, 128)}`);
   const result = await db.execute(sql`
     INSERT INTO analytics_rate_limits (key, count, expires_at)
     VALUES (${key}, 1, ${new Date(now.getTime() + 24 * 60 * 60_000).toISOString()}::timestamptz)
     ON CONFLICT (key) DO UPDATE SET count = analytics_rate_limits.count + 1
-    WHERE analytics_rate_limits.count < 120 RETURNING key
+    WHERE analytics_rate_limits.count < ${Math.max(1, Math.min(120, limit))} RETURNING key
   `);
   return result.rows.length === 1;
 }

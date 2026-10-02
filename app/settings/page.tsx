@@ -38,7 +38,7 @@ export default async function SettingsPage() {
 
   const data: SettingsData = {
     // Clerk
-    email:    clerkUser.emailAddresses[0]?.emailAddress ?? "",
+    email:    clerkUser.primaryEmailAddress?.emailAddress ?? "",
     imageUrl: clerkUser.imageUrl ?? "",
     // users table
     firstName:             dbUser.firstName ?? clerkUser.firstName ?? "",
