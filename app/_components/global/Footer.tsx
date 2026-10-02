@@ -22,7 +22,7 @@ const RESOURCES: LinkItem[] = [
 ]
 
 const COMPANY: LinkItem[] = [
-  { label: 'Contact', href: 'mailto:hello@bidboard.app' },
+  { label: 'Contact', href: 'mailto:hello@meritously.com' },
   { label: 'Privacy', href: '/privacy' },
   { label: 'Terms', href: '/terms' },
 ]

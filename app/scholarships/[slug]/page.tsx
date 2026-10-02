@@ -82,7 +82,7 @@ export default async function ListingPage({
   const more = related(l);
   const verification = getVerification(l);
   const freshness = verificationState(verification?.checkedAt);
-  const reportHref = `mailto:hello@bidboard.app?subject=${encodeURIComponent(
+  const reportHref = `mailto:hello@meritously.com?subject=${encodeURIComponent(
     `Listing ${l.id}: ${l.name} (${l.provider})`,
   )}&body=${encodeURIComponent("What looks wrong or out of date?\n\n")}`;
   // Tags already covered by "What you'll need" are not repeated as badges.

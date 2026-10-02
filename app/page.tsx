@@ -212,7 +212,7 @@ export default function HomePage() {
               </ol>
               <p>
                 Have a correction or a question?{" "}
-                <a href="mailto:hello@bidboard.app" className="lp-inline-link">Get in touch.</a>
+                <a href="mailto:hello@meritously.com" className="lp-inline-link">Get in touch.</a>
               </p>
             </div>
             <div>

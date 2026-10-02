@@ -455,7 +455,7 @@ export default function PrivacyPage() {
 
             <div style={calloutBox}>
               <strong>Plain English:</strong> You can see, correct, export, or delete your
-              data. Email us at contact@bidboard.app and we'll handle it promptly,
+              data. Email us at contact@meritously.com and we'll handle it promptly,
               no runaround.
             </div>
 
@@ -503,10 +503,10 @@ export default function PrivacyPage() {
             <p style={{ ...prose(14), marginTop: 8 }}>
               To exercise any of these rights, email{" "}
               <a
-                href="mailto:contact@bidboard.app"
+                href="mailto:contact@meritously.com"
                 style={{ color: C.indigo, textDecoration: "none" }}
               >
-                contact@bidboard.app
+                contact@meritously.com
               </a>
               . We will respond within 30 days.
             </p>
@@ -589,10 +589,10 @@ export default function PrivacyPage() {
               Parents or guardians who believe their child has provided us with personal
               information may contact us at{" "}
               <a
-                href="mailto:contact@bidboard.app"
+                href="mailto:contact@meritously.com"
                 style={{ color: C.indigo, textDecoration: "none" }}
               >
-                contact@bidboard.app
+                contact@meritously.com
               </a>{" "}
               to request deletion.
             </p>
@@ -668,10 +668,10 @@ export default function PrivacyPage() {
               <br />
               Privacy inquiries:{" "}
               <a
-                href="mailto:contact@bidboard.app"
+                href="mailto:contact@meritously.com"
                 style={{ color: C.indigo, textDecoration: "none" }}
               >
-                contact@bidboard.app
+                contact@meritously.com
               </a>
               <br />
               We aim to respond to all privacy-related inquiries within 5 business days.

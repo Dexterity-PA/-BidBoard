@@ -75,10 +75,10 @@ export default function SecurityPage() {
         >
           Questions or disclosures?{' '}
           <Link
-            href="mailto:security@bidboard.app"
+            href="mailto:security@meritously.com"
             style={{ color: 'var(--bb-primary)', textDecoration: 'none' }}
           >
-            security@bidboard.app
+            security@meritously.com
           </Link>
         </p>
         <div style={{ marginTop: 56 }}>

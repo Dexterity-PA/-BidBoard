@@ -328,10 +328,10 @@ export default function TermsPage() {
               <p style={p}>
                 You must notify us immediately at{" "}
                 <a
-                  href="mailto:contact@bidboard.app"
+                  href="mailto:contact@meritously.com"
                   style={{ color: C.indigo, textDecoration: "underline" }}
                 >
-                  contact@bidboard.app
+                  contact@meritously.com
                 </a>{" "}
                 if you suspect unauthorized use of your account. You may not create more than
                 one personal account. Meritously reserves the right to suspend or terminate
@@ -366,10 +366,10 @@ export default function TermsPage() {
                 You may stop using Meritously or delete your account at any time through your
                 account settings or by emailing{" "}
                 <a
-                  href="mailto:contact@bidboard.app"
+                  href="mailto:contact@meritously.com"
                   style={{ color: C.indigo, textDecoration: "underline" }}
                 >
-                  contact@bidboard.app
+                  contact@meritously.com
                 </a>
                 . Account deletion takes effect immediately and removes your data as
                 described in our Privacy Policy.
@@ -513,10 +513,10 @@ export default function TermsPage() {
                 General Data Protection Regulation (GDPR). If you have questions about our data
                 practices, contact us at{" "}
                 <a
-                  href="mailto:contact@bidboard.app"
+                  href="mailto:contact@meritously.com"
                   style={{ color: C.indigo, textDecoration: "underline" }}
                 >
-                  contact@bidboard.app
+                  contact@meritously.com
                 </a>
                 .
               </p>
@@ -544,7 +544,7 @@ export default function TermsPage() {
             <Section
               id="contact"
               title="13. Contact"
-              summary="Questions about these Terms? Email us at contact@bidboard.app and we'll get back to you within 5 business days."
+              summary="Questions about these Terms? Email us at contact@meritously.com and we'll get back to you within 5 business days."
             >
               <p style={p}>
                 If you have questions, concerns, or complaints about these Terms or the
@@ -565,10 +565,10 @@ export default function TermsPage() {
                 <p style={{ fontFamily: sans, fontSize: 14, color: C.textMuted, margin: 0 }}>
                   Email:{" "}
                   <a
-                    href="mailto:contact@bidboard.app"
+                    href="mailto:contact@meritously.com"
                     style={{ color: C.indigo, textDecoration: "underline" }}
                   >
-                    contact@bidboard.app
+                    contact@meritously.com
                   </a>
                 </p>
               </div>

@@ -54,7 +54,7 @@ export function SiteFooter() {
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
           <Link href="/security">Security</Link>
-          <a href="mailto:hello@bidboard.app">Contact</a>
+          <a href="mailto:hello@meritously.com">Contact</a>
         </nav>
       </div>
     </footer>
