@@ -11,6 +11,7 @@ if (process.env.VERCEL_ENV !== "production") {
       throw new Error("Missing analytics configuration");
     }
     const migration = await readFile(new URL("./migrations/2026-09-28-analytics.sql", import.meta.url), "utf8");
+    const dimensions = await readFile(new URL("./migrations/2026-10-02-analytics-dimensions.sql", import.meta.url), "utf8");
     sql = postgres(process.env.DATABASE_URL, { max: 1, connect_timeout: 20, idle_timeout: 5, onnotice: () => {} });
     await sql.begin(async (tx) => {
       await tx`SET LOCAL search_path TO public`;
@@ -18,10 +19,11 @@ if (process.env.VERCEL_ENV !== "production") {
       await tx`SET LOCAL statement_timeout = '90s'`;
       await tx`SELECT pg_advisory_xact_lock(hashtext('meritously'), hashtext('analytics-2026-09-28'))`;
       await tx.unsafe(migration);
+      await tx.unsafe(dimensions);
       const rows = await tx`SELECT table_name, column_name, data_type, is_nullable FROM information_schema.columns
         WHERE table_schema = 'public' AND table_name IN ('analytics_events', 'analytics_rate_limits')`;
       const expected = {
-        analytics_events: { id: ['text', 'NO'], kind: ['text', 'NO'], browser_hash: ['text', 'YES'], session_hash: ['text', 'YES'], path: ['text', 'YES'], source: ['text', 'YES'], campaign: ['text', 'YES'], referrer: ['text', 'YES'], created_at: ['timestamp with time zone', 'NO'] },
+        analytics_events: { id: ['text', 'NO'], kind: ['text', 'NO'], browser_hash: ['text', 'YES'], session_hash: ['text', 'YES'], path: ['text', 'YES'], source: ['text', 'YES'], campaign: ['text', 'YES'], referrer: ['text', 'YES'], country: ['text', 'YES'], region: ['text', 'YES'], device: ['text', 'YES'], browser: ['text', 'YES'], os: ['text', 'YES'], created_at: ['timestamp with time zone', 'NO'] },
         analytics_rate_limits: { key: ['text', 'NO'], count: ['integer', 'NO'], expires_at: ['timestamp with time zone', 'NO'] },
       };
       for (const [table, columns] of Object.entries(expected)) {

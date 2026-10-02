@@ -9,6 +9,11 @@ export const analyticsEvents = pgTable("analytics_events", {
   source: text("source"),
   campaign: text("campaign"),
   referrer: text("referrer"),
+  country: text("country"),
+  region: text("region"),
+  device: text("device"),
+  browser: text("browser"),
+  os: text("os"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 }, (t) => [index("analytics_events_created_at").on(t.createdAt), index("analytics_events_browser").on(t.browserHash, t.createdAt)]);
 

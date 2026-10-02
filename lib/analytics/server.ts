@@ -4,6 +4,7 @@ import { cookies, headers } from "next/headers";
 import { sql } from "drizzle-orm";
 import { db } from "@/db";
 import { ANALYTICS_COOKIE, ANALYTICS_OPTOUT, parseAttributionCookie, type Attribution } from "./shared";
+import type { VisitMetadata } from "./metadata";
 
 type Conversion = "signup" | "save" | "newsletter";
 
@@ -42,13 +43,13 @@ export async function requestAttribution(): Promise<Attribution | null> {
   } catch { return null; }
 }
 
-async function writeEvent(kind: "page_view" | Conversion, entity: string, attribution: Attribution | null, path: string | null, createdAt = new Date()) {
+async function writeEvent(kind: "page_view" | Conversion, entity: string, attribution: Attribution | null, path: string | null, createdAt = new Date(), metadata?: VisitMetadata) {
   const id = analyticsHash(`event:${kind}`, entity);
   const browser = attribution ? analyticsHash("browser", attribution.browser) : null;
   const session = attribution ? analyticsHash("session", attribution.session) : null;
   await db.execute(sql`
-    INSERT INTO analytics_events (id, kind, browser_hash, session_hash, path, source, campaign, referrer, created_at)
-    VALUES (${id}, ${kind}, ${browser}, ${session}, ${path}, ${attribution?.source ?? null}, ${attribution?.campaign ?? null}, ${attribution?.referrer ?? null}, ${createdAt.toISOString()}::timestamptz)
+    INSERT INTO analytics_events (id, kind, browser_hash, session_hash, path, source, campaign, referrer, created_at, country, region, device, browser, os)
+    VALUES (${id}, ${kind}, ${browser}, ${session}, ${path}, ${attribution?.source ?? null}, ${attribution?.campaign ?? null}, ${attribution?.referrer ?? null}, ${createdAt.toISOString()}::timestamptz, ${metadata?.country ?? null}, ${metadata?.region ?? null}, ${metadata?.device ?? null}, ${metadata?.browser ?? null}, ${metadata?.os ?? null})
     ON CONFLICT (id) DO UPDATE SET
       browser_hash = COALESCE(analytics_events.browser_hash, EXCLUDED.browser_hash),
       session_hash = CASE WHEN analytics_events.browser_hash IS NULL THEN EXCLUDED.session_hash ELSE analytics_events.session_hash END,
@@ -58,8 +59,8 @@ async function writeEvent(kind: "page_view" | Conversion, entity: string, attrib
   `);
 }
 
-export async function recordPageView(attribution: Attribution, path: string) {
-  await bestEffortAnalytics(() => writeEvent("page_view", `${attribution.browser}:${attribution.session}:${path}`, attribution, path));
+export async function recordPageView(attribution: Attribution, path: string, metadata?: VisitMetadata) {
+  await bestEffortAnalytics(() => writeEvent("page_view", `${attribution.browser}:${attribution.session}:${path}`, attribution, path, new Date(), metadata));
 }
 
 export async function recordConversion(kind: Conversion, entity: string, options: { attribution?: Attribution | null; createdAt?: Date } = {}) {

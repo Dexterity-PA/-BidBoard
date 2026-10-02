@@ -178,6 +178,27 @@ cp .env.example .env.local
 | `ANALYTICS_SECRET` | Stable random secret used to hash analytics identifiers |
 | `ANALYTICS_ADMIN_EMAIL` | Exact Clerk-verified email allowed to open `/admin/analytics` |
 
+### Private analytics
+
+The Clerk-verified owner can open `/admin/analytics` for 7, 30 or 90 UTC
+calendar days through the current moment. Growth and outcome charts, country
+and state/region breakdowns, device categories, sources/campaigns, page groups,
+landing pages, hourly traffic and aggregate CSV exports all share one database
+snapshot. The export endpoint uses the same verified-owner access check.
+
+Traffic labeled `utm_source=internal-check` is excluded by default, including
+other events attached to those sessions. It can be included with the dashboard
+control. Security-link referrals are flagged but are not asserted to be bots.
+Browser identifiers represent browsers, not verified people. Multi-page visits
+count distinct public page groups; there is no duration or bounce-rate inference.
+
+Country and first-level region come from Vercel's request headers only when
+running on Vercel. Raw IPs, raw user-agent strings, cities, postal codes and
+coordinates are not stored. Device/browser/OS values are coarse categories.
+The additive dimension migration leaves old values null, shown as Unknown.
+Comparisons need a complete prior interval within the 90-day retained history;
+earlier dates are marked unavailable, not presented as observed zero traffic.
+
 ### Weekly scholarship digest
 
 `npm run build` first runs `scripts/migrate-newsletter.mjs` and then
