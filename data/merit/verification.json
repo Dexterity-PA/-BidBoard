@@ -535,7 +535,7 @@
     "unresolved": []
   },
   "C025": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://admission.tulane.edu/tuition-aid/merit-scholarships",
       "https://financialaid.tulane.edu/resources/how-financial-aid-works/maintaining-eligibility/merit-scholarship-continuation-requirements",
@@ -543,7 +543,7 @@
       "https://admission.tulane.edu/apply/deadlines-forms",
       "https://financialaid.tulane.edu/undergraduate/prospective"
     ],
-    "notes": "Tulane confirms full tuition and 3.0 GPA renewal. Current admissions requires no separate initial application; 2027 deadline years remain unconfirmed.",
+    "notes": "Official award/program sources confirm the listed current program. Full tuition for four undergraduate years, or five in the accredited five-year architecture track. Maintain 3.0 cumulative GPA and continuous full-time Newcomb-Tulane College enrollment. Admission: November 1 ED I, November 10 EA, January 15 ED II/RD. Aid priority: November 15 ED I, December 15 EA, January 15 ED II, February 15 RD (years unstated). Current merit consideration follows the admission/aid process; Fall 2027 dates are unconfirmed. Complete admission, CSS Profile, FAFSA if eligible, requested supporting documents and optional test scores for fullest merit consideration. International non-U.S. citizens also submit the Declaration & Certification of Finances. No separate initial DHS application starting with the high-school class of 2026; an optional supplement may be uploaded. Incoming first-time undergraduate applicants, including international students. Academic excellence, leadership and community involvement are evaluated; published recipient GPA/test profiles are not minimums. Scores are optional but preferred for scholarship review; financial information may also be evaluated. At least 12 credits each fall/spring; June renewal review and academic/student conduct requirements apply. Cannot combine DHS with another Tulane merit award, ROTC, faculty/staff waiver or Tuition Exchange; partial athletic and qualifying need-based aid may combine. Admissions confirms the newer no-separate-application rule; older DHS aid text still mentions a scholarship application. Current Stamps and Grossman & Cohen are separate awards; a new Paul Tulane award is not established.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -574,11 +574,12 @@
     "unresolved": []
   },
   "C027": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://www.stevenson.edu/admissions-aid/scholarships-financial-aid/types-of-aid/presidential-fellowship/"
+      "https://www.stevenson.edu/admissions-aid/scholarships-financial-aid/types-of-aid/presidential-fellowship/",
+      "https://admissions.stevenson.edu/register/presidentialfellowshipapp"
     ],
-    "notes": "Stevenson confirms four-year tuition support and 3.25 GPA renewal. Confirm the 2027 project deadline and permanent-resident classification.",
+    "notes": "Official award/program sources confirm the listed current program. Full tuition for four years while living on campus, or $34,000 annually for four years off campus. Fees, housing and meals are excluded. Complete admission by November 1 (year unstated), plus fellowship application/Cornerstone Project. Finalist notice mid-November; interviews December-January; results by March 1 (years unstated). Fall 2027 project deadline is unconfirmed. Submit admission and the separate fellowship application/Cornerstone Project in an accepted electronic format. Finalists interview; submitted materials count only after the automated confirmation email. Google Drive/OneDrive project links are not accepted. Freshman applicants with at least 3.7 GPA on a 4.0 scale or 93/100, weighted or unweighted. International students are ineligible; the page does not define how permanent residents are categorized. Maintain 3.25 cumulative GPA, complete assigned Leadership or Service Scholars Program requirements and appropriately represent the university. Cannot combine with other Stevenson awards or defer the fellowship. The linked application system could not be read to establish current project dates.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -592,25 +593,23 @@
     ]
   },
   "C028": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://honors.umd.edu/scholarships-financial-aid/banneker-key-scholars/",
       "https://financialaid.umd.edu/resources-policies/bannekerkey-scholarship-policy",
       "https://admissions.umd.edu/tuition/freshman-merit-scholarships",
       "https://admissions.umd.edu/apply/application-deadlines"
     ],
-    "notes": "Maryland confirms full and partial awards and 3.20 GPA/30-credit renewal. Current cost estimates cover 2026-2027; 2027 stages remain unconfirmed.",
+    "notes": "Official award/program sources confirm the listed current program. Up to eight consecutive undergraduate semesters. Full award: tuition, standard mandatory fees, standard housing/food and book allowance, adjusted for living with parents versus on/off campus. Partial award: $8,000 annually in-state/$12,000 out-of-state plus books; published $1,250 book allowance is a 2026-2027 estimate. The official admission calendar explicitly defines November 1 as the year before fall enrollment, resolving the previous year ambiguity. Scholarship interview/notification month-days remain published recurring stages. Complete EA admission and receive Honors College consideration. Selected applicants interview. Incoming fall freshmen invited to Honors, with academic achievement/leadership. U.S. citizens and eligible noncitizens are considered under UMD’s merit policy; spring admits are excluded. At least 12 credits each semester, 3.20 cumulative GPA without rounding and 30 earned credits per academic year; precollege AP/IB credits do not count. Winter/summer coursework can restore credits/GPA but is not funded. One GPA probationary semester; no credit-completion probation. Annual merit acknowledgement required. No stacking with UMD President’s/Dean’s/transfer merit; total aid capped at attendance costs. Excludes miscellaneous, departmental, health, parking and study-abroad fees, graduate coursework and unused semesters after graduation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
     "unresolved": [
-      "2027-2028 book allowance and living-cost estimates are not published.",
-      "Deadline stages lack confirmed cycle years."
+      "The 2027-2028 book allowance and living-cost estimates are not published; the $1,250 allowance is explicitly a 2026-2027 estimate."
     ]
   },
   "C029": {
@@ -633,14 +632,14 @@
     "unresolved": []
   },
   "C030": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.bu.edu/admissions/tuition-aid/scholarships-financial-aid/first-year-merit/",
       "https://www.bu.edu/finaid/how-aid-works/types-of-aid/scholarships-grants/merit-based/",
       "https://www.bu.edu/admissions/tuition-aid/scholarships-financial-aid/first-year-merit/presidential/",
       "https://www.bu.edu/finaid/how-aid-works/types-of-aid/scholarships-grants/merit-based/how-scholarships-are-renewed/"
     ],
-    "notes": "BU confirms half-tuition Presidential merit and general renewal rules. Current Trustee availability and the 2027 deadline year are unconfirmed.",
+    "notes": "Official award/program sources do not establish the historical named award as a current offering; the record distinguishes it from current general merit. Presidential: half tuition annually for up to four undergraduate years, effective for students entering Fall 2026 onward. Current Trustee full-tuition offering is not established. December 1 admission deadline Apply for admission by December 1. Incoming first-year students from around the world with exceptional academics and leadership; Presidential has no citizenship restriction. General merit renewal requires at least 2.0 GPA, satisfactory completion of 12 credits each semester, disciplinary good standing and any additional award-letter/merit-guide conditions. Admissions currently lists Presidential only; financial-aid pages still reference Trustee. Confirm any individual renewal requirements.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
@@ -655,14 +654,15 @@
     ]
   },
   "C031": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.clarku.edu/financial-aid/types/scholarships/",
       "https://www.clarku.edu/undergraduate-admissions/apply/international-students/",
       "https://www.clarku.edu/financial-aid/apply/us-students/",
-      "https://www.clarku.edu/undergraduate-admissions/apply/process/"
+      "https://www.clarku.edu/undergraduate-admissions/apply/process/",
+      "https://www.clarku.edu/undergraduate-admissions/cost-and-financial-aid/"
     ],
-    "notes": "Clark confirms four-year tuition, campus housing and meals for all citizenships. Specific renewal conditions and 2027 interview dates remain unpublished.",
+    "notes": "Official award/program sources confirm the listed current program. Full tuition, campus housing and meals for four undergraduate years; approximately five recipients. General institutional-aid satisfactory progress applies; specific Presidential renewal criteria are not published. Admission: November 1 ED I/EA; January 15 ED II/RD (years unstated). Selected finalists interview; Fall 2027 scholarship interview dates are unpublished. All applicants considered; no separate application. Finalists interview. Admitted incoming undergraduate applicants, regardless of citizenship, with exceptional academics and leadership. Merit selection does not consider financial need and test scores do not affect merit decisions. General institutional-aid progress requires 2.0 cumulative GPA and 67% completion of attempted credits; Clark-funded aid ordinarily ends after eight semesters. Confirm any additional Presidential renewal terms. International applicants submit certification of finances; admission is need-aware, and expenses beyond tuition/housing/meals remain the student’s responsibility.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -677,14 +677,14 @@
     ]
   },
   "C032": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://admissions.northeastern.edu/cost-financial-aid/merit-scholarships/",
       "https://catalog.northeastern.edu/undergraduate/admission/specialized-entry/",
+      "https://catalog.northeastern.edu/undergraduate/admission/merit-scholarships/",
       "https://studentfinance.northeastern.edu/applying-for-aid/undergraduate/types-of-aid/scholarships/",
-      "https://admissions.northeastern.edu/application-information/international-applicants/"
+      "https://admissions.northeastern.edu/cost-financial-aid/merit-scholarships/"
     ],
-    "notes": "Northeastern confirms automatic first-year merit and contract-based renewal. The old University Scholars award, individual amounts and 2027 dates remain unconfirmed.",
+    "notes": "Official award/program sources do not establish the historical named award as a current offering; the record distinguishes it from current general merit. First-year merit amounts vary; individual award values are not published. Merit ordinarily supports up to eight in-class undergraduate semesters, subject to the scholarship contract. The historical full-tuition University Scholars award is not confirmed. First-year merit consideration requires admission application by January 1 Regular Decision deadline (year unstated). Fall 2027 award-specific dates are unconfirmed. Automatic consideration with admission. First-year admission applicants with exceptional academics and achievements, including international applicants. General merit has no separate initial application; some named awards have additional requirements. Maintain full-time program enrollment, quantitative satisfactory academic progress and the GPA/service requirements in the individual merit contract. GPA shortfall allows one funded probationary semester. Current pages separately list a Stamps full-attendance-cost scholarship with an invited video application and mid-March selection; its precise award/renewal and international rules are not established here. Torch is a separate first-generation/access award, not confirmation of the old University Scholars program.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
@@ -699,16 +699,16 @@
     ]
   },
   "C033": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.wpi.edu/admissions/tuition-aid/types-of-aid/scholarships-grants",
-      "https://www.wpi.edu/news/foisie-contribution",
       "https://www.wpi.edu/admissions/tuition-aid/policies",
       "https://www.wpi.edu/admissions/tuition-aid/types-of-aid/scholarships-grants/wpi-merit",
       "https://www.wpi.edu/admissions/undergraduate/apply/application-options",
-      "https://www.wpi.edu/admissions/tuition-aid/applying-for-aid/international-students"
+      "https://www.wpi.edu/admissions/tuition-aid/applying-for-aid/international-students",
+      "https://www.wpi.edu/admissions/tuition-aid/applying-for-aid/first-year-students"
     ],
-    "notes": "WPI confirms current merit, a $25,000 annual Early Decision minimum and credit-based renewal. Named Foisie terms and 2027 deadline years remain unconfirmed.",
+    "notes": "Official award/program sources do not establish the historical named award as a current offering; the record distinguishes it from current general merit. General merit varies and renews for four years, up to 16 terms or completion of the undergraduate degree. Early Decision admits from Fall 2026 onward receive at least $25,000 annually; historical Foisie full-tuition terms are unconfirmed. Admission: November 1 ED I/EA I; January 5 ED II/EA II; February 1 RD (years unstated). Fall 2027 dates are not explicitly confirmed. Automatic consideration with admission. First-year applicants automatically considered based on academics, recommendations, leadership, activities and service; international applicants can receive merit. Recipients of WPI employee tuition benefits cannot receive academic merit. Remain full-time with at least 12 credits per semester, good academic standing and at least 24 passed credits in A-D terms annually; awards decrease 5% for each three-credit shortfall beginning at 21 credits. AP/transfer/incomplete credits do not count. Scholarship amounts do not increase with tuition, are tuition-capped and ordinarily exclude summer. Early Decision minimum cannot combine with Innovation Award. Historical 2014 Foisie gift supported students with financial need but does not establish a current named full-tuition award.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
@@ -761,14 +761,14 @@
     "unresolved": []
   },
   "C035": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.sfa.msstate.edu/scholarships/details/presidential-endowed-scholarship-package",
       "https://www.sfa.msstate.edu/scholarships/out-state-freshman-scholarships",
       "https://www.admissions.msstate.edu/scholarships",
       "https://www.honors.msstate.edu/"
     ],
-    "notes": "Mississippi State confirms the Fall 2027 package and 3.4 GPA renewal. Scores are due December 1, 2026; check the separate Presidential portal deadline.",
+    "notes": "Official award/program sources confirm the listed current program. Tuition, campus housing at assigned double-occupancy rate and meal plan for up to four undergraduate years/eight semesters; $12,000 enrichment usable after the first year. Nonresidents may also receive full nonresident tuition coverage. General Scholarship Application opens October 1, 2026; December 1, 2026 scholarship priority and qualifying test-score deadline. The separate Presidential application has its own portal deadline, not publicly specified. Gain admission, complete the General Scholarship Application and the separate Presidential Endowed application in the portal, including required essays. Join Shackouls Honors; selection includes an interview. Entering first-time freshmen, Shackouls Honors members, grades 9-11 GPA at least 3.75 plus ACT 30 or SAT 1360. The current award page is tagged Fall 2027, Mississippi/nonresident and international. Maintain at least 3.4 overall college GPA and continuous enrollment of at least 12 credits each semester. Housing support requires continuous campus residency. Package replaces other freshman academic, national-recognition and National Merit packages; total aid cannot exceed attendance costs.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -782,14 +782,12 @@
     ]
   },
   "C036": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://olemiss.edu/finaid/types-of-aid/scholarships/non-resident/entering-freshman/competitive-awards/nr-freshman-competitive/",
-      "https://olemiss.edu/global/international-students-oge/scholarships-international-students/",
-      "https://olemiss.edu/admissions/request-information/",
-      "https://olemiss.edu/global/international-students-oge/admitted-student-international/"
+      "https://olemiss.edu/global/international-students-oge/scholarships-international-students/"
     ],
-    "notes": "For Fall 2027, submit the Freshman Scholarship Application by January 10, 2027. International Stamps candidates should also check the nomination process; its timing is not public.",
+    "notes": "Official award/program sources confirm the listed current program. Up to full cost of attendance after other awards, plus a $12,000 enrichment fund for approved educational activities. Current Stamps-specific duration and academic renewal thresholds are not published on the award pages. For Fall 2027, submit the Freshman Scholarship Application by January 10, 2027, after applying for admission. International candidates should also follow the Stamps nomination route with the global office; its internal timetable is not published. Apply for admission, then complete the separate Freshman Scholarship Application. International candidates should contact the global office for review for nomination by the Senior International Officer. First-time freshmen entering Ole Miss in fall with exceptional academics and leadership. International candidates are eligible through the nomination route; no hard admission test/GPA cutoff is specified for Stamps. Other awards are coordinated within the attendance-cost package. The international page confirms Stamps full attendance costs and enrichment; its generic four-year international merit renewal text is not clearly assigned to Stamps. Confirm the award-specific renewal contract.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -804,12 +802,15 @@
     ]
   },
   "C037A": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.maryville.edu/admissions/financial-aid/scholarships/",
-      "https://www.maryville.edu/admissions/financial-aid/financial-aid-programs/"
+      "https://www.maryville.edu/admissions/financial-aid/financial-aid-programs/",
+      "https://www.maryville.edu/campus-visit-days/",
+      "https://www.maryville.edu/award/",
+      "https://www.maryville.edu/admissions/financial-aid/academic-progress/"
     ],
-    "notes": "Maryville confirms the award and GPA-or-test eligibility. Current renewal terms and dated 2027 competition details remain unconfirmed.",
+    "notes": "Official award/program sources confirm the listed current program. Full tuition, campus room and board at double-occupancy residence-hall rate. Award-specific maximum duration and renewal GPA requirements are not clearly published. December 1 priority application date (recurring) Apply for admission as a first-time, full-time on-campus freshman for fall entry. Selected candidates who meet the minimum criteria are invited to University Scholars Weekend competition and interview. First-time, full-time on-campus fall freshmen with cumulative GPA at least 3.75 on a 4.0 scale OR ACT 27/SAT 1290; writing scores excluded. GPA weighting and a scholarship-specific citizenship restriction are not stated. The ten-consecutive-semester footnote is placed under automatic scholarships and cannot safely establish the competitive award duration. Obtain the award renewal contract.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -824,12 +825,14 @@
     ]
   },
   "C037B": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.maryville.edu/admissions/financial-aid/scholarships/",
-      "https://www.maryville.edu/admissions/financial-aid/financial-aid-programs/"
+      "https://www.maryville.edu/admissions/financial-aid/financial-aid-programs/",
+      "https://www.maryville.edu/campus-visit-days/",
+      "https://www.maryville.edu/admissions/financial-aid/academic-progress/"
     ],
-    "notes": "Maryville confirms the award and GPA-or-test eligibility. Current renewal terms and dated 2027 competition details remain unconfirmed.",
+    "notes": "Official award/program sources confirm the listed current program. Full tuition. Award-specific maximum duration and renewal GPA requirements are not clearly published. December 1 priority application date (recurring) Apply for admission as a first-time, full-time on-campus freshman for fall entry. Selected candidates who meet the minimum criteria are invited to University Scholars Weekend competition and interview. First-time, full-time on-campus fall freshmen with cumulative GPA at least 3.75 on a 4.0 scale OR ACT 27/SAT 1290; writing scores excluded. GPA weighting and a scholarship-specific citizenship restriction are not stated. The ten-consecutive-semester footnote is placed under automatic scholarships and cannot safely establish the competitive award duration. Obtain the award renewal contract.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -844,14 +847,15 @@
     ]
   },
   "C038": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.missouristate.edu/FinancialAid/Scholarships/Freshman.htm",
       "https://www.missouristate.edu/FinancialAid/Scholarships/PresidentialApp.htm",
       "https://www.missouristate.edu/financialaid/scholarships/scholarship-renewal-information.htm",
-      "https://www.missouristate.edu/Admissions/admission-requirements.htm"
+      "https://www.missouristate.edu/Admissions/admission-requirements.htm",
+      "https://www.missouristate.edu/policy/Chapter5/Op5_08_6_Scholarships.htm"
     ],
-    "notes": "Missouri State confirms the active award and 2.75 GPA/30-credit renewal. Amount, score threshold, FAFSA cycle and Fall 2027 deadline need clarification.",
+    "notes": "Official award/program sources confirm the listed current program. The current award amount and covered costs are not published on the scholarship/application pages. Institutional renewal is limited to five academic years or the first bachelor’s degree, whichever comes first. Official pages conflict: scholarship application says November 15 without a cycle year; admission calendar for the Fall 2027 class says December 1. The application page still requests a 2026-27 FAFSA, so Fall 2027 requirements need confirmation. Gain admission, send a sixth-semester transcript and ACT/SAT scores, and complete the separate scholarship application in one sitting with academic details, activities/achievements and a video about interests, goals and career plans. FAFSA required on the application page, but its listed year is outdated for Fall 2027. At least 3.90 cumulative GPA through junior year. The first-year scholarship page requires ACT31/SAT1390 while the application page says ACT30/SAT1370. Qualifying tests through October of senior year; highest composite or superscore used. No GPA weighting or precise citizenship eligibility is stated. For awards from Summer 2026 onward, renewal requires 2.75 cumulative GPA and 30 completed credits per year, reviewed after spring; summer can remedy deficiencies and other-institution/dual credits can count. Confirm the amount, score threshold, FAFSA cycle and conflicting deadline before applying.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -866,7 +870,7 @@
     ]
   },
   "C039": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://enroll.slu.edu/financial-aid/types-of-aid/scholarships.php",
       "https://catalog.slu.edu/academic-policies/student-financial-services/scholarshipfinancial-aid-renewability/",
@@ -874,19 +878,18 @@
       "https://enroll.slu.edu/admission/freshman/instructions.php",
       "https://www.slu.edu/admission/international/frequently-asked-questions.php"
     ],
-    "notes": "SLU confirms full tuition, international eligibility and the separate essay/resume/two-letter application. Renewal GPA and dated 2027 interview requirements remain unconfirmed.",
+    "notes": "Official award/program sources confirm the listed current program. The stated financial aid extension and repeated ten-semester Presidential award amount resolve the apparent four-year/ten-semester duration conflict. December 1 (recurring) Submit freshman admission and all required materials, then the separate Presidential application in Billiken Gateway by the published priority date. Its materials include a 500-word leadership essay, résumé and two recommendations. Selected candidates are invited to interview; follow the current invitation for interview format and visit details. Entry GPA, first-year status and international admission are supported, but the numerical Presidential renewal GPA remains unpublished.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
-      "value": "unconfirmed",
+      "value": "corrected",
       "deadline": "unconfirmed",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "The current page calls the award both four years and ten consecutive semesters; confirm individual award duration.",
-      "December 1 is not explicitly assigned to the Fall 2027 cycle.",
-      "Presidential-specific renewal GPA is not published."
+      "December 1 and the admitted-student interview process are not explicitly assigned to the Fall 2027 cycle.",
+      "Presidential-specific numerical renewal GPA is not published; the individual award requirements govern."
     ]
   },
   "C040A": {
@@ -964,14 +967,14 @@
     "unresolved": []
   },
   "C042": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.saintpeters.edu/enrollment-services/student-financial-aid/scholarships/",
       "https://www.saintpeters.edu/undergraduate-admission/applying-to-saint-peters/freshman/testop/",
       "https://catalogs.saintpeters.edu/undergraduate/generalinformation/admissionsinformation/",
       "https://www.saintpeters.edu/enrollment-services/student-financial-aid/satisfactory-academic-progress/"
     ],
-    "notes": "Saint Peter’s confirms full tuition and eight-semester/120-credit limits. Test-optional applicants need an extra essay; the Fall 2027 award priority date is unpublished.",
+    "notes": "Official award/program sources confirm the listed current program. Full tuition, for up to eight fall/spring semesters or 120 credits; full-time enrollment, good standing and satisfactory academic progress required. General admission is rolling; no Presidential-specific Fall 2027 priority date is published. The catalog gives international fall admission an August 1 deadline without a cycle year. Apply for freshman admission; awards are decided at admission by holistic Admissions Committee review. Test-optional applicants must submit an additional essay of at least 500 words with the transcript and recommendation. Presidential candidates receive additional review and may be asked for further documents. Incoming undergraduate freshmen evaluated by the Admissions Committee without a published Presidential GPA/test floor. Test-optional applicants receive consideration with extra review. A Presidential-specific citizenship restriction is not stated. Scholarships cannot stack or combine with tuition waivers/exchange awards, and total gift aid is capped at direct costs. Study abroad is excluded except ISEP tuition exchange. SAP depends on attempted credits: cumulative GPA minimum rises from 1.5 at 24-47 credits to 2.0 at 96+; completion-rate standards and 150% maximum attempted-credit limit also apply.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -985,14 +988,15 @@
     ]
   },
   "C043": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.stevens.edu/admission-aid/tuition-financial-aid/stevens-scholarships",
       "https://www.stevens.edu/page-basic/admissions-timeline",
       "https://www.stevens.edu/page-basic/how-to-apply-for-aid",
-      "https://www.stevens.edu/page-right-nav/applying-for-financial-aid"
+      "https://www.stevens.edu/page-right-nav/applying-for-financial-aid",
+      "https://www.stevens.edu/page-chapter/terms-and-conditions"
     ],
-    "notes": "Stevens confirms full tuition for eight semesters and 3.2 GPA/SAP renewal for engineering, mathematics or computer science. Admission deadline years remain unstated.",
+    "notes": "Official award/program sources confirm the listed current program. Full tuition for up to eight semesters. Admission: November 15 ED I; December 1 Early Action; January 5 ED II/Regular Decision (years unstated). No separate Neupauer application deadline; Fall 2027 admission cycle dates are not explicitly confirmed. Apply for undergraduate admission on time; automatically considered without a separate Neupauer application. CSS Profile is required for institutional need-based aid and FAFSA for federal/state aid, rather than a separately stated Neupauer merit application. Current scholarship page and institutional terms agree on eight full-time semesters, 3.2 cumulative GPA at spring review and SAP. Failure to meet renewal criteria prevents later reinstatement.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1006,27 +1010,29 @@
     ]
   },
   "C044": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://scholarships.unm.edu/",
       "https://scholarships.unm.edu/Resources/non-lottery-scholarships.html",
       "https://sites.google.com/view/unm-regents-scholars-public/home?authuser=0",
       "https://sites.google.com/view/unm-regents-scholars-public/how-to-apply",
       "https://sites.google.com/view/unm-regents-scholars-public/rs-handbook",
-      "https://drive.google.com/uc?export=download&id=1TT6CJ96YY6udmjp-1v6yWNjOMneXU8q5"
+      "https://drive.google.com/uc?export=download&id=1TT6CJ96YY6udmjp-1v6yWNjOMneXU8q5",
+      "https://scholarship.unm.edu/common/documents/regents-scholarship-handbook.pdf"
     ],
-    "notes": "UNM publishes 2027-28 amounts and 3.3 GPA/15-credit semester renewal. The latest linked handbook is from 2024, so confirm current materials and Honors/service terms.",
+    "notes": "Official award/program sources confirm the listed current program. For 2027-28, approximately $15,500 per year for New Mexico residents or $24,000 for nonresidents, covering base tuition, fees and housing; nonresidents also receive a waiver to resident tuition rates. Four years/eight consecutive fall-spring undergraduate semesters, about 12 new awards annually. Additional board/books coverage described on the undated program site is not itemized in the 2027-28 table. The published 2027-28 grid supports December 1, 2026 admission and scholarship submission; undated later selection dates are not claimed as confirmed current-cycle deadlines. Gain admission and complete the separate Regents application linked through the UNM Scholarship Office/AwardSpring. The program’s application page confirms essay questions and a video. The latest linked 2024 handbook specifies activities/awards, three 350-word essays and a video of at most two minutes; confirm current portal instructions. Corrected the omission of the legacy citizenship restriction. The current grid’s GPA policy and the still-linked older entry criteria cannot be reconciled from the official pages.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
-      "deadline": "unconfirmed",
+      "deadline": "supported",
       "application": "unconfirmed",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "The 2027-28 grid itemizes tuition, fees and housing; the undated legacy handbook also describes board/books and incompatible entry criteria.",
-      "Current portal essay/video limits and detailed Honors/service conditions for 2027 entrants are not confirmed."
+      "The 2027-28 grid itemizes tuition, fees and housing while program/handbook pages additionally describe board and books.",
+      "The still-linked legacy handbook requires U.S. citizenship/permanent residence and old test/valedictorian criteria; the 2027-28 grid and newer handbook do not reconcile those restrictions.",
+      "Current portal essay/video limits and the entering-2027 Honors/service handbook are not public."
     ]
   },
   "C045": {
@@ -1141,7 +1147,7 @@
     "unresolved": []
   },
   "C050": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.rochester.edu/advancement/special-initiatives/scholarships-initiative/",
       "https://www.rochester.edu/newscenter/pedro-vallejo-ramirez-16-named-gates-cambridge-scholar-153192/",
@@ -1150,7 +1156,7 @@
       "https://admissions.rochester.edu/applying/dates-and-deadlines/",
       "https://www.rochester.edu/financial-aid/wp-content/uploads/2026/08/FA-Handbook-2026-27.pdf"
     ],
-    "notes": "Rochester confirms automatic general merit, a published Meliora range and fixed renewable awards. Historical Renaissance/Global terms and 2027 dates remain unconfirmed.",
+    "notes": "Official award/program sources do not establish the historical named award as a current offering; the record distinguishes it from current general merit. Current Meliora merit listing advertises $10,000-$35,000, with an average of $20,000; the range’s payment frequency is not stated there. Merit awards stay fixed and renew for up to three additional years if minimum criteria are met. Historical Renaissance and Global full-tuition terms are not confirmed. Highest merit consideration: all admission materials by December 1. ED I November 1; ED II/RD January 5. These deadlines have no explicit cycle year, so Fall 2027 dates are unconfirmed. All admitted undergraduate first-year and transfer applicants are considered for merit through holistic admission review. Apply through the admission plan and meet the priority materials date; specialized scholarships may require their own application or nomination. Outstanding academic achievement and potential, regardless of financial need. Full-time enrollment (at least 12 credits) and satisfactory academic performance are required to renew. No general merit entry GPA/test floor is published. Only one University merit scholarship per student. Current handbook says fixed awards renew up to three more years; overall aid ordinarily ends after eight semesters/first bachelor’s completion, with separate dual-degree/appeal rules. The 2016 official alumni article confirms a historical Renaissance and Global recipient, not a current award. Award-specific renewal criteria should be confirmed in the offer.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
@@ -1166,14 +1172,14 @@
     ]
   },
   "C051": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://financialaid.appstate.edu/types-aid/scholarships",
       "https://honors.appstate.edu/apply/chancellors-scholarship",
       "https://honors.appstate.edu/apply/first-year-students",
       "https://honors.appstate.edu/apply/faqs"
     ],
-    "notes": "Current Appalachian Excellence and Chancellor’s benefits were checked. Their application routes differ, and Honors pages conflict on the essay deadline. Renewal details and a current Wilson award remain unconfirmed.",
+    "notes": "Official award/program sources do not establish the historical named award as a current offering; the record distinguishes it from current general merit. Appalachian Excellence: up to $3,000 per year for in-state students or $4,000 per year for out-of-state students. Chancellor’s: full tuition, fees, housing, and a meal plan for up to eight semesters, plus a funded first-year study abroad experience. Renewal GPA and Appalachian Excellence duration are not stated on the current pages. The current first-year Honors page explicitly displays a 2027 essay prompt beside its November 15 route, while the Chancellor page still states November 30. This corroborates the active cycle but does not reconcile the conflicting deadlines. Appalachian Excellence consideration is automatic for academically qualified students meeting admission deadlines. Apply to the Honors College through the MyMountaineer Honors essay for automatic Chancellor’s consideration; finalists interview virtually. The financial aid directory still refers to additional portal steps, so follow the current portal instructions. Entering first-year students. The Honors application requires at least a 3.5 unweighted high school GPA; this threshold applies to Chancellor’s consideration, not necessarily Appalachian Excellence. Chancellor’s Scholars participate in Honors and work toward University Honors requirements. First-year Honors students generally live in Cone Hall with an Honors roommate. These are distinct awards with different coverage and application routes. Wilson is not identified as a current award on the pages reviewed. Honors requires a thesis and an international education experience, which can include approved alternatives to study abroad.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
@@ -1183,13 +1189,13 @@
       "eligibility": "supported"
     },
     "unresolved": [
-      "The Honors pages give conflicting essay deadlines and do not consistently identify the application year.",
+      "The first-year Honors page displays a 2027 essay prompt and November 15 submission, but the Chancellor page still says November 30 and leaves interview/acceptance dates without cycle years.",
       "Current pages do not publish the renewal GPA or Appalachian Excellence award duration.",
       "Wilson is not confirmed as a current award."
     ]
   },
   "C052": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.davidson.edu/admission-and-financial-aid/financial-aid/types-financial-aid/scholarships/nomination-scholarships",
       "https://www.davidson.edu/admission-and-financial-aid/financial-aid/types-financial-aid/scholarships/nomination-scholarships/john-m-belk-scholarship/nomination-and-selection-process",
@@ -1198,7 +1204,7 @@
       "https://www.davidson.edu/admission-and-financial-aid/financial-aid/types-financial-aid/scholarships/scholarship-faqs",
       "https://admission.davidson.edu/belknomination/"
     ],
-    "notes": "Belk’s comprehensive coverage and 2027 nomination form were checked. Official pages disagree on the stipend total and do not publish the renewal GPA.",
+    "notes": "Official award/program sources confirm the listed current program. Comprehensive tuition, fees, housing, and food for four years, plus special opportunity stipends. Current official pages conflict on the stipend total: $10,000 on the nomination directory and $6,000 on the general scholarship page. Eight scholars are named in each entering class. For high school graduates in 2027, nomination is due November 1, 2026; admission application November 15, 2026; supporting documents November 30, 2026. Published selection stages run from February semifinalist interviews through March finalist interviews, with awards by April 1; exact 2027 interview dates are not stated. A school counselor, principal/head of school, or community-based college access program representative may nominate up to two students using the official form. Davidson admission staff may also nominate strong applicants. Submit the admission application and required supporting documents, including recommendations, then participate in semifinalist and finalist interviews if selected. Entering first-year students with outstanding academic accomplishment, character, leadership, and service. Domestic and international high schools or eligible college access programs may nominate. Renewal for the remaining three years requires the established GPA, progress toward degree, award-specific conditions, and full participation in college life; the numerical GPA is not published on these pages. The November 15 scholarship application deadline does not itself require selecting binding Early Decision. Confirm the stipend allocation and renewal GPA with the scholarship office.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1213,7 +1219,7 @@
     ]
   },
   "C053": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://ousf.duke.edu/merit-scholarships/robertson-scholars-program/",
       "https://robertsonscholars.org/",
@@ -1222,18 +1228,16 @@
       "https://robertsonscholars.org/application-faqs/",
       "https://robertsonscholars.org/about-us/faqs/"
     ],
-    "notes": "The 2026–27 application timeline, comprehensive benefits, and renewal GPA were confirmed. The FAQ contains conflicting recommendation instructions.",
-    "outcome": "partial",
+    "notes": "Official award/program sources confirm the listed current program. Eight semesters of full tuition, room, board, and most mandatory fees, with funding for up to three summer experiences, conferences, and up to two semesters abroad. Renewal requires a 3.0 GPA at the end of the first year and 3.30 at the end of each subsequent academic year, plus required program participation. Early notification application: October 15, 2026. Regular application: November 15, 2026. Group activities December 2026–February 2027; semifinalist interviews February 2027; finalist interviews early March 2027; recipient campus visits March 31–April 3, 2027. Apply separately to Duke and/or UNC by each university’s admission deadline. FAQ lists midnight on November 15 without a time zone. The FAQ now consistently specifies exactly one recommendation and its deadline sentence refers to a single letter. A fresh direct HTTP request succeeded after the web fetcher returned an access error. The former both-letters conflict is resolved. First-year undergraduate applicants who have not matriculated at another university; transfer and graduate applicants are ineligible. All citizenships and nationalities may apply; international applicants must be able to obtain a U.S. study visa. No preferred state of residence or required major. A gap-year student already admitted to Duke or UNC must wait until matriculation to apply through the current-student route. Scholars matriculate at one university, take at least five courses at the sister institution, and participate in campus switch, retreats, community events, and Community Summer. Admission to either university is required to receive its award; school-specific finalist invitations apply. Applying ED elsewhere is allowed, but notify Robertson if admitted under a binding commitment.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "supported",
-      "application": "unconfirmed",
+      "application": "corrected",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The FAQ requires exactly one recommendation but another sentence refers to both letters; the application portal must resolve this conflict."
-    ]
+    "unresolved": []
   },
   "C054": {
     "checkedAt": "2026-09-29",
@@ -7490,18 +7494,18 @@
     ]
   },
   "P072": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://tallclubfoundation.org/scholarship/scholarship/",
       "https://student.tallclubfoundation.org/"
     ],
-    "notes": "Applications open January 1, 2027. The official pages do not yet give a consistent 2027 closing date.",
+    "notes": "Foundation and student portal identify the same program. Minimum $1,000 confirmed. 2027 opening confirmed; closing date remains inconsistent. Added required activity list and document/photo formats from the current official checklist. Height, residency, age and full-time first-year conditions confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -7509,19 +7513,18 @@
     ]
   },
   "P073": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://new.uschess.org/news/2026-scholar-chessplayer-recipients-announced",
       "https://new.uschess.org/news/2026-scholar-chess-player-awards",
-      "https://www.uschesstrust.org/wp-content/uploads/2007/07/11th-Edition-Guide-To-Scholastic-Chess-7.1.17-USCF.pdf"
+      "https://www.uschesstrust.org/scholar-chessplayer-award"
     ],
-    "notes": "The displayed award and application rules describe the 2026 cycle. The 2027 application dates have not been published.",
+    "notes": "Trust and federation confirm program. $1,500 per recipient confirmed for 2026 only. No 2027 dates found in current Trust and federation pages. Published 2026 materials confirmed, including essay of no more than 500 words. Published 2026 membership, games, service and grade rules confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -7529,12 +7532,12 @@
     ]
   },
   "P074": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://aynrand.org/students/essay-contests",
       "https://aynrand.org/dashboard/"
     ],
-    "notes": "The official dashboard says the entry deadline is coming soon. The next contest deadline and individual prize schedule are not yet published.",
+    "notes": "Official ARI site confirms this named novel contest. Individual contest prize schedule could not be confirmed from accessible official pages. Accessible landing page gives TBD; rendered contest cards fail to load. Official page confirms account-based original essay submission. Public FAQ confirms school levels and worldwide participation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7544,16 +7547,16 @@
       "eligibility": "supported"
     },
     "unresolved": [
-      "The next contest deadline and individual prize schedule have not been published in the current official contest card."
+      "The next contest deadline and individual prize schedule could not be confirmed from current official pages; the contest cards fail to load and the dashboard requires sign-in."
     ]
   },
   "P075": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://aynrand.org/students/essay-contests",
       "https://aynrand.org/dashboard/"
     ],
-    "notes": "The official dashboard says the entry deadline is coming soon. The next contest deadline and individual prize schedule are not yet published.",
+    "notes": "Official ARI site confirms this named novel contest. Individual contest prize schedule could not be confirmed from accessible official pages. Accessible landing page gives TBD; rendered contest cards fail to load. Official page confirms account-based original essay submission. Public FAQ confirms school levels and worldwide participation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7563,42 +7566,42 @@
       "eligibility": "supported"
     },
     "unresolved": [
-      "The next contest deadline and individual prize schedule have not been published in the current official contest card."
+      "The next contest deadline and individual prize schedule could not be confirmed from current official pages; the contest cards fail to load and the dashboard requires sign-in."
     ]
   },
   "P076": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://aynrand.org/students/essay-contests",
       "https://aynrand.org/dashboard/"
     ],
-    "notes": "The official dashboard says the entry deadline is coming soon. The next contest deadline and individual prize schedule are not yet published.",
+    "notes": "Official ARI site confirms this named novel contest. Individual contest prize schedule could not be confirmed from accessible official pages. Accessible landing page gives TBD; rendered contest cards fail to load. Official page confirms account-based original essay submission. Public FAQ confirms school levels and worldwide participation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "unconfirmed",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "corrected"
     },
     "unresolved": [
-      "The next contest deadline and individual prize schedule have not been published in the current official contest card."
+      "The next contest deadline and individual prize schedule could not be confirmed from current official pages; the contest cards fail to load and the dashboard requires sign-in."
     ]
   },
   "P077": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://m3challenge.siam.org/the-challenge/rules-and-guidelines/",
       "https://m3challenge.siam.org/the-challenge/important-dates/",
       "https://m3challenge.siam.org/the-challenge/scholarships-and-recognition/"
     ],
-    "notes": "The current site lists team awards from $1,000 to $20,000, shared among teammates. The 2027 dates and awards are not yet confirmed.",
+    "notes": "SIAM confirms MathWorks competition. Published awards remain tied to 2026 rules. Important Dates shows TBD for all next-cycle events. Team registration and 14-hour modeling submission confirmed in posted rules. Prior-cycle school, grade, age and homeschool conditions confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -7606,14 +7609,14 @@
     ]
   },
   "P078": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.jshs.org/wp-content/uploads/2026/08/JSHS-Core-Rules-of-Competition-2026-27.pdf",
       "https://www.jshs.org/",
       "https://www.jshs.org/students/awards/",
       "https://www.jshs.org/region/arizona/"
     ],
-    "notes": "The current JSHS awards page lists regional and national scholarships and cash prizes. Regional application dates vary; Arizona has not posted its 2026-27 deadline.",
+    "notes": "Official 2026-27 core rules identify JSHS. Regional, oral and poster amounts plus payment schedules confirmed. Arizona remains TBD; applicants need their regional schedule. Regional entry and outside-assistance documentation confirmed by current core rules. Citizenship/permanent residence and original research rules confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7627,32 +7630,32 @@
     ]
   },
   "P079": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://afsa.org/essay-contest",
-      "https://afsa.org/sites/default/files/nhec-study-guide-2025-2026.pdf"
+      "https://afsa.org/sites/default/files/nhec-study-guide-2025-2026.pdf",
+      "https://afsa.org/rules-and-guidelines"
     ],
-    "notes": "The displayed application details describe the 2026 rules. The 2027 prompt and deadline have not been published.",
+    "notes": "AFSA identifies national contest. Prior first prize $2,500 plus travel confirmed. Current page retains closed 2025-2026 cycle, no 2027 prompt or deadline. Prior-cycle essay, primary-source and sponsor requirements confirmed. Prior-cycle overseas permanent-resident eligibility confirmed in dated 2025-2026 guide; main overview omits that category.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
       "application": "corrected",
-      "eligibility": "corrected"
+      "eligibility": "supported"
     },
     "unresolved": [
       "The 2027 prompt and application deadline have not been published in the additional official sources."
     ]
   },
   "P080": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.ashg.org/dna-day/",
-      "https://www.ashg.org/publications-news/press-releases/ashg-announces-winners-of-the-2026-dna-day-essay-contest/",
-      "https://www.ashg.org/wp-content/uploads/2022/01/DNADay2022_SubmissionInstructions_NoPreviousSubmissions-1.pdf"
+      "https://apply.ashg.org/a"
     ],
-    "notes": "The 2026 contest is closed. The 2027 prompt and application dates have not been published.",
+    "notes": "ASHG confirms annual DNA Day contest. Displayed award claim explicitly leaves 2027 amounts unverified. Official program still shows January-March 2026 dates. 750-word limit, references and school/parent submission confirmed in posted guidance. Grades 9-12 worldwide confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7662,7 +7665,7 @@
       "eligibility": "supported"
     },
     "unresolved": [
-      "The 2027 DNA Day essay prompt and application dates have not been published in the official program page or additional submission guidance."
+      "The 2027 DNA Day prompt, application dates and cycle-specific prize schedule are not published in the checked official pages."
     ]
   },
   "P081": {
@@ -7683,12 +7686,12 @@
     "unresolved": []
   },
   "P082": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://alzfdn.org/high-school-seniors-impacted-by-alzheimers-invited-to-apply-for-afas-teen-alzheimers-awareness-scholarship/",
       "https://alzfdn.org/scholarship/"
     ],
-    "notes": "The 2026 award cycle is complete. The 2027 application dates have not been published.",
+    "notes": "AFA confirms program. Completed 2026 top award $5,000 confirmed. Canonical scholarship route redirects to 2026 winners. Prior-cycle essay/video requirements remain supported. Prior-cycle high-school-senior and college-attendance criteria remain supported.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7702,11 +7705,11 @@
     ]
   },
   "P083": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://doodleforgoogle.doodles.google/"
     ],
-    "notes": "Google currently shows the 2025-26 contest. The 2027 entry dates, theme, and prizes have not been posted.",
+    "notes": "Rendered Google site confirms Doodle competition. 2025-26 finalists $10,000; no 2027 amounts. Rendered site announces 2025-26 winner, no next entry window. Prior-cycle original doodle, parental authorization and no-AI rules remain historical. Prior-cycle K-12 and citizenship/permanent-residence criteria remain historical.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7720,19 +7723,19 @@
     ]
   },
   "P084": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.duckbrand.com/stuck-at-prom",
       "https://www.duckbrand.com/stuck-at-prom/official-rules",
       "https://www.duckbrand.com/stuck-at-prom/faqs"
     ],
-    "notes": "The displayed rules describe the completed 2026 contest. The 2027 entry dates and updated rules have not been published.",
+    "notes": "Duck Brand confirms contest. Completed-cycle $10,000 dress and tux winners confirmed. Sponsor announces 2026 winners with no 2027 entry dates. Posted 2026 original-attire submission rules remain supported. Posted 2026 residence exclusions and minimum age remain supported.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "corrected",
+      "application": "supported",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -7740,12 +7743,12 @@
     ]
   },
   "P085": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://vantagewest.org/why-us/community-impact/scholarship-program/",
       "https://vantagewest.org/files/2023/02/2023_Vantage-West-Scholarship_Rules_Acknowledgement.pdf"
     ],
-    "notes": "The 2026 program is closed. The 2027 dates and eligibility rules have not been posted; older Arizona-college and membership rules may change.",
+    "notes": "Credit union identifies scholarship. Current closed 2026 program offered ten $5,000 awards. No 2027 dates posted. 2027 form and materials absent. 2027 membership and school criteria absent; older PDF remains historical.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7791,7 +7794,7 @@
     "unresolved": []
   },
   "P088": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.digitalresponsibility.org/scholarships",
       "https://www.grantpower.com/digital_app_materialize.cfm?id=ewaste",
@@ -7799,7 +7802,7 @@
       "https://www.digitalresponsibility.org/terms-of-service",
       "https://www.digitalresponsibility.org/privacy-policy"
     ],
-    "notes": "Official eligibility language remains inconsistent on residency and applicants under 13. Check with the sponsor if those restrictions affect you.",
+    "notes": "Sponsor-linked form identifies named program. $1,000 award confirmed. Embedded form confirms displayed 2027 date. 140-character statement and online form confirmed. Summary and incorporated rules conflict on residency and applicants under 13.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7813,13 +7816,13 @@
     ]
   },
   "P089": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.unigo.com/scholarships/our-scholarships/all-about-education-scholarship",
       "https://www.unigo.com/scholarships/our-scholarships",
       "https://www.unigo.com/aboutus/faqs"
     ],
-    "notes": "The official advertised amount and prize rules still disagree. Confirm the award amount with Unigo.",
+    "notes": "Official Unigo program identified. Advertisement says $3,000; embedded prize clause remains $1,500. Embedded rules confirm April 30, 2027, 11:59 p.m. Pacific. 250-word original English submission confirmed. Embedded rules confirm age 14 and enrollment by fall 2032.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7833,13 +7836,13 @@
     ]
   },
   "P090": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.unigo.com/scholarships/our-scholarships/fifth-month-scholarship",
       "https://www.unigo.com/scholarships/our-scholarships",
       "https://www.unigo.com/aboutus/faqs"
     ],
-    "notes": "The official eligibility summary and contest rules still disagree. Confirm the applicable age or enrollment rule with Unigo.",
+    "notes": "Official Unigo program identified. $1,500 confirmed. Embedded rules confirm May 30, 2027, 11:59 p.m. Pacific. 250-word letter to five confirmed. Summary says age 14/fall 2026, rules age 13/fall 2032.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7919,7 +7922,7 @@
     "unresolved": []
   },
   "P095": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.digitalresponsibility.org/scholarships",
       "https://www.grantpower.com/digital_app_materialize.cfm?id=privacy",
@@ -7927,7 +7930,7 @@
       "https://www.digitalresponsibility.org/terms-of-service",
       "https://www.digitalresponsibility.org/privacy-policy"
     ],
-    "notes": "Official eligibility language remains inconsistent on residency and applicants under 13. Check with the sponsor if those restrictions affect you.",
+    "notes": "Sponsor-linked form identifies named program. $1,000 award confirmed. Embedded form confirms displayed 2027 date. 140-character statement and online form confirmed. Summary and incorporated rules conflict on residency and applicants under 13.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -7959,13 +7962,13 @@
     "unresolved": []
   },
   "P097": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.unigo.com/scholarships/our-scholarships/do-over-scholarship",
       "https://www.unigo.com/scholarships/our-scholarships",
       "https://www.unigo.com/aboutus/faqs"
     ],
-    "notes": "The official eligibility summary and contest rules still disagree. Confirm the applicable age or enrollment rule with Unigo.",
+    "notes": "Official Unigo program identified. $1,500 confirmed. Embedded rules confirm June 30, 2027, 11:59 p.m. Pacific. 250-word do-over response confirmed. Summary says fall 2026 enrollment; rules fall 2032.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -8011,32 +8014,34 @@
     "unresolved": []
   },
   "P100": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.burgerkingfoundation.org/programs/burger-king-sm-scholars",
       "https://burgerking.scholarsapply.org/",
       "https://scholarshipamerica.org/scholarship/burgerking/"
     ],
-    "notes": "The 2027-2028 cycle opens October 15, 2026. The detailed eligibility rules still describe the previous cohort.",
+    "notes": "Foundation and Scholarship America identify same program. $1,000-$60,000 published in US currency; awards nonrenewable, reapplication allowed. 2026 dates published but cap wording conflicts across sponsor and administrator. Administrator specifies transcript plus first two pages of recent IRS 1040, with SSN/SIN redacted. 2027-28 rules now published but explicitly tentative.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
-      "value": "supported",
-      "deadline": "supported",
-      "application": "supported",
+      "value": "corrected",
+      "deadline": "unconfirmed",
+      "application": "corrected",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "The administrator’s detailed eligibility rules still apply to 2026-2027, so 2027-2028 track-specific requirements remain unpublished."
+      "Detailed 2027-2028 eligibility remains tentative and subject to change before opening.",
+      "Sponsor states a blanket 30,000-application cutoff, but administrator says only community applications are capped and employee applications remain eligible through the deadline."
     ]
   },
   "P101": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
-      "https://tacobellfoundation.org/live-mas-scholarship/"
+      "https://tacobellfoundation.org/live-mas-scholarship/",
+      "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
     ],
-    "notes": "2027 applications are expected to open in fall 2026. The closing date and 2027 award amounts are not yet posted.",
+    "notes": "Taco Bell Foundation confirms Live Más. 2027 amounts unpublished; linked terms still for 2026. FAQ gives fall 2026 opening only, no exact closing date. FAQ supports video or essay; linked 2026 terms bar generative AI and substantive third-party rewriting. Public FAQ supports age/residence/education; returning scholars use separate invitation renewal.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -8194,7 +8199,7 @@
     "unresolved": []
   },
   "P115": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://energyrates.ca/energyrates-ca-scholarship/"
     ],
@@ -8204,7 +8209,7 @@
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "supported",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -8212,7 +8217,7 @@
     ]
   },
   "P116": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://thehawkeronline.com/scholarship/"
     ],
@@ -8222,7 +8227,7 @@
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -8230,7 +8235,7 @@
     ]
   },
   "P117": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://seasonsmalibu.com/scholarship/"
     ],
@@ -8240,7 +8245,7 @@
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -8296,7 +8301,7 @@
     "unresolved": []
   },
   "P121": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.prioritytire.com/scholarship-program"
     ],
@@ -8346,7 +8351,7 @@
     "unresolved": []
   },
   "P124": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://dundeedeco.com/pages/scholarship",
       "https://docs.google.com/forms/d/e/1FAIpQLSepRzkx0G_WIlEybByDMC5qelfvHhDnPT8LoRroJKWgnKSW-g/viewform"
@@ -8600,7 +8605,7 @@
     ]
   },
   "P138": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://custompatchessandiego.com/scholarship/"
     ],
@@ -8995,14 +9000,15 @@
     "unresolved": []
   },
   "P159": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.bennington.edu/events/young-writers-awards",
       "https://admissions.bennington.edu/register/youngcreators",
       "https://www.bennington.edu/news-and-features/9th%E2%80%9312th-grade-students-invited-submit-bennington-college-young-writers-awards-0",
       "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards",
       "https://www.bennington.edu/admissions/apply/financing-your-education",
-      "https://www.bennington.edu/events/bennington-young-creators-awards"
+      "https://www.bennington.edu/events/bennington-young-creators-awards",
+      "https://www.bennington.edu/news-and-features/9th%E2%80%9312th-grade-students-invited-submit-bennington-college-young-writers-awards"
     ],
     "notes": "The current contest page lists cash prizes and four-year Bennington scholarships. Bennington’s general aid page lists a different Young Writers scholarship range, so confirm the college award amount in your offer letter.",
     "outcome": "partial",
@@ -9152,7 +9158,7 @@
     ]
   },
   "P167": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://jea.org/awards/journalist-of-the-year/",
       "https://jea.org/upcoming-dates-and-deadlines-2026-2027/",
@@ -9190,7 +9196,7 @@
     "unresolved": []
   },
   "P169": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.schooltheatre.org/scholarships/",
       "https://foundation.schooltheatre.org/scholarships/",
@@ -9205,11 +9211,12 @@
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "unconfirmed",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "Foundation and Association disagree on the annual opening date, and donor-specific eligibility wording is not identical. The explicit 2027 portal terms remain unavailable."
+      "Foundation and Association disagree on the annual opening date, and donor-specific eligibility wording is not identical. The explicit 2027 portal terms remain unavailable.",
+      "Complete current application materials could not be verified through the linked joint portals."
     ]
   },
   "P170": {
@@ -9689,7 +9696,7 @@
     ]
   },
   "P322": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.smeef.org/sme-education-foundation-scholarships/scholarship-opportunities/",
       "https://www.smeef.org/sme-education-foundation-scholarships/STEM-Scholarships/",
@@ -12300,50 +12307,48 @@
     ]
   },
   "S005": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.collegefortn.org/tennessee-hope-scholarship-3/",
       "https://www.collegefortn.org/tennessee-hope-scholarship-faqs/",
       "https://www.collegefortn.org/tennessee-hope-scholarship-for-home-school/"
     ],
-    "notes": "Published award and academic routes were checked, including homeschool alternatives. The recurring deadlines lack a cycle year, and the institution must confirm remaining general eligibility conditions.",
+    "notes": "Published academic, enrolment and homeschool/out-of-state routes checked. Current programme pages do not fully state citizenship and other general statutory eligibility; institution must confirm those conditions.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "supported",
       "application": "supported",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "Official ongoing programme publishes recurring semester deadlines without a cycle year; no explicit 2027 dated schedule/time zone was found.",
       "Published academic, enrolment and homeschool/out-of-state routes checked. Current programme pages do not fully state citizenship and other general statutory eligibility; institution must confirm those conditions."
     ]
   },
   "S006": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.collegefortn.org/general-assembly-merit-scholarship/",
       "https://www.collegefortn.org/tennessee-hope-scholarship-3/",
       "https://www.collegefortn.org/tennessee-hope-scholarship-faqs/",
       "https://www.collegefortn.org/tennessee-hope-scholarship-for-home-school/"
     ],
-    "notes": "Published award and academic routes were checked, including homeschool alternatives. The recurring deadlines lack a cycle year, and the institution must confirm remaining general eligibility conditions.",
+    "notes": "Published academic, enrolment and homeschool/out-of-state routes checked. Current programme pages do not fully state citizenship and other general statutory eligibility; institution must confirm those conditions.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "supported",
       "application": "supported",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "Official ongoing programme publishes recurring semester deadlines without a cycle year; no explicit 2027 dated schedule/time zone was found.",
       "Published academic, enrolment and homeschool/out-of-state routes checked. Current programme pages do not fully state citizenship and other general statutory eligibility; institution must confirm those conditions."
     ]
   },
   "S007": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.che.sc.gov/students-families-and-military/scholarships-and-grants-sc-residents",
       "https://www.che.sc.gov/sites/che/files/Documents/Students%2C%20Families%2C%20Military/Scholarships/Scholarship_Grant_Flyer_Cobranded_2024_Final.pdf",
@@ -12351,7 +12356,7 @@
       "https://che.sc.gov/sites/che/files/Documents/Counselors%20Page/PFS%20Info%20Packet%20Student_2026_KH.pdf",
       "https://che.sc.gov/sites/che/files/Documents/Counselors%20Page/PFS_Info_Packet_Student_2027.pdf"
     ],
-    "notes": "The Class-of-2027 packet confirms May 1 and July 15 application deadlines and the testing/document process. Eligible two-year independent/private institution scope remains inconsistent across current official guidance.",
+    "notes": "The Class-of-2027 packet broadly says eligible two- or four-year public or private colleges. The May 2026 regulation and institution guidance differ on two-year independent/private colleges. Confirm which specific colleges participate; do not generalize the packet wording to every school.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12479,7 +12484,7 @@
     ]
   },
   "S013": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://nvigate.gov/programs/governor-guinn-millennium-scholarship/",
       "https://nvigate.gov/governor-guinn-millennium-scholarship-faqs/",
@@ -12487,7 +12492,7 @@
       "https://www.nevadatreasurer.gov/uploadedFiles/nevadatreasurergov/content/GGMS/Forms/Application%20for%20homeschooled%20students%202024.pdf?csrt=16519137658854714814",
       "https://www.nevadatreasurer.gov/uploadedFiles/nevadatreasurergov/content/GGMS/Forms/Application%20for%20out%20of%20state%20graduates%202024.pdf?csrt=16519137658854714814"
     ],
-    "notes": "Traditional eligibility, benefits and renewal were checked. Linked homeschool and out-of-state forms are older and require confirmation for 2027.",
+    "notes": "Traditional school route has no separate application. Linked nontraditional forms refer to Board of Regents graduation-year limitations, without a 2027 schedule; those route-specific limits were not confirmed. Traditional and citizenship/renewal guidance fully read. Linked homeschool/out-of-state forms are dated October 2019, so route-specific 2027 requirements need confirmation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12522,87 +12527,83 @@
     "unresolved": []
   },
   "S015": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.msfinancialaid.org/mesg/",
       "https://www.msfinancialaid.org/wp-content/uploads/2026/03/APA_Part613_MESG_May2025_Text_FINAL.pdf",
       "https://www.sfa.msstate.edu/calendars/academic-calendar/2027/fall",
-      "https://www.msfinancialaid.org/students-parents/application-process/maapp-mississippi-aid-application/"
+      "https://www.msfinancialaid.org/students-parents/application-process/maapp-mississippi-aid-application/",
+      "https://www.msfinancialaid.org/students-parents/information-for-homeschool-students/"
     ],
-    "notes": "Current award and renewal rules were checked. The 2027 application deadline is confirmed; some route-specific guidance differs between the overview and regulation.",
+    "notes": "Current regulation and programme overview conflict on homeschool GPA and prior-college credit ceiling (regulation 36, overview 18). Routes were read and qualified; applicants in those categories need programme confirmation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "supported",
+      "application": "corrected",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "Application deadline September 15, 2027 is explicitly confirmed by participating university calendar. State document deadline is given as an annual October 15 rule, without an explicit 2027 dated schedule/time zone.",
       "Current regulation and programme overview conflict on homeschool GPA and prior-college credit ceiling (regulation 36, overview 18). Routes were read and qualified; applicants in those categories need programme confirmation."
     ]
   },
   "S016": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.msfinancialaid.org/mtag/",
       "https://www.msfinancialaid.org/wp-content/uploads/2026/03/APA_Part611_MTAG_May2025_Text_FINAL.pdf",
       "https://www.sfa.msstate.edu/calendars/academic-calendar/2027/fall",
-      "https://www.msfinancialaid.org/students-parents/application-process/maapp-mississippi-aid-application/"
+      "https://www.msfinancialaid.org/students-parents/application-process/maapp-mississippi-aid-application/",
+      "https://www.msfinancialaid.org/students-parents/information-for-homeschool-students/"
     ],
-    "notes": "Current award and renewal rules were checked. The 2027 application deadline is confirmed; some route-specific guidance differs between the overview and regulation.",
-    "outcome": "partial",
+    "notes": "Current official program terms support the published award, application, eligibility and explicitly recurring schedule. No unpublished future cycle date is inferred.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "unconfirmed",
-      "eligibility": "supported"
+      "deadline": "supported",
+      "application": "corrected",
+      "eligibility": "corrected"
     },
-    "unresolved": [
-      "Application deadline September 15, 2027 is explicitly confirmed by participating university calendar. State document deadline is given as an annual October 15 rule, without an explicit 2027 dated schedule/time zone.",
-      "Programme overview asks for FAFSA, while linked current regulation permits a Financial Certification Statement for families ineligible for federal need-based aid. Alternative form acceptance must be confirmed."
-    ]
+    "unresolved": []
   },
   "S017": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://sams.adhe.edu/Scholarship/Details/ACST",
       "https://sams.adhe.edu/Scholarship/Page/ACST/traditional-recipient-info-sheet"
     ],
-    "notes": "Current academic routes and need-based supplements were checked. Annual dates lack a cycle year, and conflicting payment/load instructions need individual confirmation.",
+    "notes": "Main page and recipient/stacked tables conflict on two-year fifth-semester amount and some fourth-year proration/allocation details; confirm individual payment. Nontraditional GPA-only initial route appears in overview but not detailed no-college-credit section; fourth-year load/proration instructions also differ.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
-      "deadline": "unconfirmed",
+      "deadline": "supported",
       "application": "supported",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "Published annual application/summer/hold dates lack an explicit 2027 cycle schedule/time zone.",
       "Main page and recipient/stacked tables conflict on two-year fifth-semester amount and some fourth-year proration/allocation details; confirm individual payment.",
       "Nontraditional GPA-only initial route appears in overview but not detailed no-college-credit section; fourth-year load/proration instructions also differ."
     ]
   },
   "S018": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://sams.adhe.edu/Scholarship/Details/GDS",
       "https://sams.adhe.edu/Scholarship/Page/GDS/gds-information-sheet"
     ],
-    "notes": "Current award cap, renewal and EAD eligibility were checked. The recurring deadlines lack a cycle year, and combined-award allocation tables differ.",
+    "notes": "The combined $10,000 annual cap is explicit, but main page and recipient information sheet disagree on first-year allocation between Governor's Distinguished and Academic Challenge.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
-      "deadline": "unconfirmed",
+      "deadline": "supported",
       "application": "supported",
       "eligibility": "supported"
     },
     "unresolved": [
-      "Published application and score deadlines are recurring, without explicit 2027 cycle dates/time zone.",
       "The combined $10,000 annual cap is explicit, but main page and recipient information sheet disagree on first-year allocation between Governor's Distinguished and Academic Challenge."
     ]
   },
@@ -12624,12 +12625,13 @@
     "unresolved": []
   },
   "S020": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://secure.okcollegestart.org/Financial_Aid_Planning/Scholarships/Academic_Scholarships/Academic_Scholars_Program.aspx",
-      "https://secure.okcollegestart.org/Financial_Aid_Planning/Scholarships/Academic_Scholarships/Academic_Scholars_Program_FAQs.aspx"
+      "https://secure.okcollegestart.org/Financial_Aid_Planning/Scholarships/Academic_Scholarships/Oklahoma_Rising_Scholars_Award.aspx",
+      "https://secure.okcollegestart.org/Financial_Aid_Planning/Scholarships/Academic_Scholarships/Oklahoma_Rising_Scholars_Award_FAQs.aspx",
+      "https://app.smartsheet.com/b/form/8e4437eca07b489bbac223d51540d46e"
     ],
-    "notes": "The programme and renewal rules are active. 2027 funding, score cutoffs, application timing and detailed form materials are not yet confirmed.",
+    "notes": "2027 entry funding not published; fall 2026 automatic table lacks explicit payment-period label, so amounts are qualified rather than annualised. Initial application deadline and specific 2027 dates are not published; acceptance/college and summer stages have separate requirements. Main application/FAQ procedures fully read; sponsor-linked Smartsheet application renders no substantive form fields through web tool, so current detailed materials cannot be confirmed. Programme active and qualification routes published, but 2027 percentile cutoffs and institution-specific nominee criteria were not confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12684,7 +12686,7 @@
     "unresolved": []
   },
   "S023": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://ourdakotadreams.com/k12-students/opportunity-scholarship/",
       "https://ourdakotadreams.com/wp-content/uploads/2026/09/South-Dakota-Opportunity-Scholarship-Handout.pdf",
@@ -12695,7 +12697,7 @@
       "https://ourdakotadreams.com/wp-content/uploads/2026/09/SDOS-Approved-Coursework-Current-Version-posted-09042026.pdf",
       "https://ourdakotadreams.com/wp-content/uploads/2025/11/SDOS_Eligibility_Class-of-2027-and-beyond.pdf"
     ],
-    "notes": "Award and Class of 2027 curriculum/testing requirements were checked. Official sources disagree on spring application timing and do not label 2027 deadlines.",
+    "notes": "Official current pages disagree on spring first-time deadline/preferred date; recurring deadlines have no explicit 2027 year/time zone. Confirm category-specific timing.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12709,7 +12711,7 @@
     ]
   },
   "S024": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://hathawayscholarship.org/eligibility/high-school/",
       "https://www.uwyo.edu/sfa/scholarships/hathaway/index.html",
@@ -12719,17 +12721,16 @@
       "https://hathawayscholarship.org/eligibility/hsec/",
       "https://hathawayscholarship.org/eligibility/college/"
     ],
-    "notes": "Current merit rates and renewal rules were checked. The initiation window is four years; college deadlines and conflicting optional need-supplement limits need confirmation.",
+    "notes": "Base merit rates effective July 1, 2026 confirmed. UW page conflicts between announced 2026 need-supplement increase and older detailed supplement amounts; confirm optional supplement individually.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
-      "deadline": "unconfirmed",
+      "deadline": "supported",
       "application": "supported",
       "eligibility": "supported"
     },
     "unresolved": [
-      "Statewide application windows confirmed, but individual institution 2027 form/material deadlines not established.",
       "Base merit rates effective July 1, 2026 confirmed. UW page conflicts between announced 2026 need-supplement increase and older detailed supplement amounts; confirm optional supplement individually."
     ]
   },
@@ -12751,35 +12752,34 @@
     "unresolved": []
   },
   "S026": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://acpe.alaska.gov/Funding-Solutions/Alaska-Performance-Scholarship",
       "https://acpe.alaska.gov/Portals/0/OTHER/Pubs/APS_FAQs.pdf",
       "https://acpe.alaska.gov/Portals/0/OTHER/Pubs/2024_APS_Checklist_8_20.pdf",
-      "https://acpe.alaska.gov/Portals/0/OTHER/Pubs/2024%20APS%20Eligibility%20Determination%20Application_NonPublicSchools.pdf"
+      "https://acpe.alaska.gov/Portals/0/OTHER/Pubs/2024%20APS%20Eligibility%20Determination%20Application_NonPublicSchools.pdf",
+      "https://acpe.alaska.gov/Portals/0/APS/Pubs/APS_FAQs.pdf"
     ],
-    "notes": "The current June 30 and July 15 deadlines are published as recurring rules. ACPE has not published a distinct 2027 calendar, so cycle-specific dates remain unconfirmed.",
-    "outcome": "partial",
+    "notes": "Current official program terms support the published award, application, eligibility and explicitly recurring schedule. No unpublished future cycle date is inferred.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
-      "value": "supported",
-      "deadline": "unconfirmed",
+      "value": "corrected",
+      "deadline": "supported",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The current June 30 and July 15 deadlines are published as recurring rules. ACPE has not published a distinct 2027 calendar, so cycle-specific dates remain unconfirmed."
-    ]
+    "unresolved": []
   },
   "S027": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.mass.edu/osfa/programs/adams.asp",
       "https://www.mass.edu/osfa/documents/publications/2026/OSFA-2026-2027-Guidelines/26-27-John-and-Abigail-Adams-Scholarship-Program-Guidelines-Final.pdf",
       "https://www.doe.mass.edu/scholarships/adams/default.html",
       "https://www.doe.mass.edu/scholarships/adams/eligibility.html"
     ],
-    "notes": "Current MCAS score equivalents, tuition credit and renewal rules were checked. Campus coverage differs between official sources, and 2027-28 amounts need confirmation.",
+    "notes": "Specific 2027-28 amounts not published; overview UMass credit figures conflict in scope with August 2026 guideline excluding tuition-retaining institutions. Current MCAS/residency/renewal criteria supported, but overview and August 2026 guideline differ on eligible institution scope; confirm intended campus.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12832,7 +12832,7 @@
     "unresolved": []
   },
   "S030": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://heab.state.wi.us/programs.html",
       "https://heab.state.wi.us/features/aes.html",
@@ -12854,11 +12854,12 @@
     ]
   },
   "S031": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://www.hesaa.org/Documents/FactSheets/NJSTARS/FactSheetfor2026HSGrad.pdf"
+      "https://www.hesaa.org/Documents/FactSheets/NJSTARS/FactSheetfor2026HSGrad.pdf",
+      "https://www.hesaa.org/pages/njgrantsapplications.aspx"
     ],
-    "notes": "Published class of 2026 rules were checked. Class of 2027 terms and fall 2027 dates have not been published.",
+    "notes": "Amount/coverage and duration are confirmed for class of 2026 only; 2027 cohort terms unpublished. Fall 2027 and class of 2027 dates not published; prior-cycle deadlines explicitly historical. Class of 2026 requirements and rigor waiver confirmed, but 2027 cohort requirements not yet published.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12934,25 +12935,23 @@
     ]
   },
   "S035": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://boettcherfoundation.org/scholarships/prospective-scholars/",
       "https://boettcherfoundation.org/scholarships/prospective-scholars/eligibility/",
       "https://boettcherfoundation.org/scholarships/prospective-scholars/apply/",
       "https://boettcherfoundation.org/scholarships/prospective-scholars/faqs/"
     ],
-    "notes": "Award models, application stages and eligibility exceptions were checked. The recurring deadline does not state a cycle year or time zone.",
-    "outcome": "partial",
+    "notes": "Current official program terms support the published award, application, eligibility and explicitly recurring schedule. No unpublished future cycle date is inferred.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "Recurring stages and 5 p.m. cutoff confirmed; current cycle year and time zone not explicitly published."
-    ]
+    "unresolved": []
   },
   "S036": {
     "checkedAt": "2026-09-29",
@@ -12997,7 +12996,7 @@
     ]
   },
   "S100": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://wgaesf.org/a-life-changing-opportunity/applying-evans-scholarship",
       "https://wgaesf.org/a-life-changing-opportunity/frequently-asked-questions",
@@ -13005,7 +13004,7 @@
       "https://wgaesf.org/images/downloads/Resources/2026app/2026%20High%20School%20Evaluation.pdf",
       "https://wgaesf.org/images/downloads/Resources/2026app/2026%20Caddie%20Evaluation.pdf"
     ],
-    "notes": "Current Evans materials confirm full tuition and housing for four years, with 2026 senior/college-freshman application dates: Sept. 30 for application materials, Oct. 15 for FAFSA/CSS Profile, and decisions by Apr. 1, 2027. Applicants need two years of caddying, strong preparatory academics, financial need, character and a state-based partner-college plan.",
+    "notes": "The current public applicant guide confirms a four-year tuition-and-housing award and that scholars must meet program standards, but exact academic and housing continuation conditions are not specified in the reviewed public applicant materials.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -13156,12 +13155,12 @@
     ]
   },
   "S108": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://lillyendowment.org/for-grantseekers/lilly-endowment-community-scholarship-program/",
       "https://www.inspiringgreater.org/2026/07/07/class-of-2027-lilly-endowment-community-scholars-program"
     ],
-    "notes": "The statewide Lilly Endowment Community Scholarship provides four years of full tuition, required fees and a book stipend at eligible Indiana four-year colleges. County foundations set deadlines and selection rules. Tippecanoe’s Class of 2027 deadline was Sept. 8, 2026; that date is not statewide.",
+    "notes": "Applicant’s county determines deadline, application form/materials and local eligibility; no statewide deadline is published. State/local materials do not fully state continuation requirements.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -13193,25 +13192,27 @@
     "unresolved": []
   },
   "S110": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://phillips-scholarship.org/apply/new-applicants/",
       "https://phillips-scholarship.org/apply/new-applicants/criteria/",
       "https://phillips-scholarship.org/who-we-are/the-award/",
       "https://phillips-scholarship.org/resources/faqs/",
-      "https://phillips-scholarship.org/apply/new-applicants/steps-to-apply/"
+      "https://phillips-scholarship.org/apply/new-applicants/steps-to-apply/",
+      "https://phillips-scholarship.org/who-we-are/"
     ],
-    "notes": "For 2027, high-school applicants may submit by noon April 2 for Early Response or noon May 3 for the regular deadline. The award is based on unmet need and can renew up to four undergraduate years subject to the stated 2.5 college GPA and continuing need. Current official pages differ on award range.",
+    "notes": "The current 2027 deadlines are now confirmed. The Phillips Award page and broader official overview report different award ranges; confirm the current range with the Fund before presenting a single value. The current 2027-28 Steps requests both college and high-school transcripts and the upcoming chosen-college aid package, but the FAQ allows omitting a high-school transcript after three college semesters and using a current-year aid package for continuing students. The FAQ-linked non-FAFSA form still names 2026-27. Acceptance of those exceptions for 2027-28 is unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
-      "deadline": "supported",
-      "application": "supported",
+      "deadline": "corrected",
+      "application": "unconfirmed",
       "eligibility": "supported"
     },
     "unresolved": [
-      "The current 2027 deadlines are now confirmed. The Phillips Award page and broader official overview report different award ranges; confirm the current range with the Fund before presenting a single value."
+      "The current 2027 deadlines are now confirmed. The Phillips Award page and broader official overview report different award ranges; confirm the current range with the Fund before presenting a single value.",
+      "The current 2027-28 Steps requests both college and high-school transcripts and the upcoming chosen-college aid package, but the FAQ allows omitting a high-school transcript after three college semesters and using a current-year aid package for continuing students. The FAQ-linked non-FAFSA form still names 2026-27. Acceptance of those exceptions for 2027-28 is unconfirmed."
     ]
   },
   "S111": {
@@ -13684,13 +13685,13 @@
     ]
   },
   "S134": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://nevadafund.org/scholarships/",
       "https://nevadafund.org/scholarships/scholarship-resources/",
       "https://nevadafund.org/scholarships/lymbery-certification-scholarship/"
     ],
-    "notes": "Most listed fund deadlines are still from 2026. Lymbery certification appears open year-round, but its directory lists January 1, 2027; confirm the deadline before applying.",
+    "notes": "The Lymbery certification directory date of January 1, 2027 conflicts with its specific year-round rolling application instructions. The 2027–28 general season and fund-specific amounts, renewal and restrictions remain unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",

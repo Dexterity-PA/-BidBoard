@@ -56,7 +56,7 @@ export function auditedSyncRows(records, ledger, manifest, archive) {
 export async function loadAuditedSyncRows() {
   const load = async (file) => JSON.parse(await readFile(new URL(`../data/merit/${file}.json`, import.meta.url), "utf8"));
   const [files, ledger, manifest, archive] = await Promise.all([
-    Promise.all(FILES.map(load)), load("verification"), load("audit-sync-2026-10-01"), load("audit-2026-10-01"),
+    Promise.all(FILES.map(load)), load("verification"), load("audit-sync-2026-10-01-round3"), load("audit-2026-10-01-round3"),
   ]);
   return auditedSyncRows(files.flat(), ledger, manifest, archive);
 }
