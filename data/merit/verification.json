@@ -1266,16 +1266,14 @@
     "unresolved": []
   },
   "C055": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://levinescholars.charlotte.edu/",
       "https://levinescholars.charlotte.edu/nomination-application-process/important-dates/",
       "https://levinescholars.charlotte.edu/nomination-application-process/applicant-profile/",
-      "https://levinescholars.charlotte.edu/apply/",
-      "https://levinescholars.charlotte.edu/apply/faq/",
-      "https://levinescholars.charlotte.edu/apply/for-recommenders/"
+      "https://levinescholars.charlotte.edu/apply/faq/"
     ],
-    "notes": "The full 2026–27 application stages, required materials, eligibility, and four-year coverage were confirmed. Numerical renewal requirements remain unconfirmed.",
+    "notes": "The public pages reviewed do not state the award’s numerical renewal GPA or credit requirements.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1289,20 +1287,19 @@
     ]
   },
   "C056A": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/admissions-scholarships/honors-scholars-program/",
       "https://honorscollege.uncg.edu/incoming-first-year-student-scholarships/",
-      "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/global-honors-admissions/",
-      "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/admissions-scholarships/scholarships/reynolds-scholarship/"
+      "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/global-honors-admissions/"
     ],
-    "notes": "Current Honors award ranges, application materials, and renewal rules were confirmed. The named awards have different restrictions, and Fall 2027 dates are not explicitly published.",
+    "notes": "The application and interview dates are published without cycle years. This grouped listing includes awards with different coverage and eligibility restrictions.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -1311,20 +1308,20 @@
     ]
   },
   "C056B": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/admissions-scholarships/honors-scholars-program/",
       "https://honorscollege.uncg.edu/incoming-first-year-student-scholarships/",
       "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/global-honors-admissions/",
       "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/admissions-scholarships/scholarships/reynolds-scholarship/"
     ],
-    "notes": "Current Reynolds amounts, potential activity funding, North Carolina residency, and Honors renewal rules were confirmed. Fall 2027 dates are not explicitly published.",
+    "notes": "The application and interview dates are published without cycle years.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -1332,12 +1329,12 @@
     ]
   },
   "C057A": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.ncat.edu/admissions/financial-aid/types-of-aid/scholarships/freshmen-scholarships.php",
       "https://www.ncat.edu/admissions/financial-aid/types-of-aid/scholarships/scholarship-dates-and-deadlines.php"
     ],
-    "notes": "Published National Alumni coverage and application materials were checked. Dates conflict, and Fall 2027 eligibility and renewal details remain unconfirmed.",
+    "notes": "The program and general calendar give conflicting deadlines, and Fall 2027 dates are not confirmed. Fall 2027 eligibility and numerical renewal criteria are not confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1352,13 +1349,13 @@
     ]
   },
   "C057B": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.ncat.edu/honors/dowdy-scholars-program/index.php",
       "https://www.ncat.edu/honors/scholarships.php",
       "https://www.ncat.edu/academics/honors/admission-guidelines.php"
     ],
-    "notes": "Dowdy requires U.S. citizen or eligible-noncitizen status and a 3.75 weighted GPA. Its page lists a test-score benchmark while calling tests optional, so confirm how score-free applications are evaluated. The Honors application closes November 15, 2026.",
+    "notes": "The Dowdy page lists SAT 1270 or ACT 27 while calling tests optional; applicability to score-free applicants is unclear. Renewal considers earned hours but does not publish the required number.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1393,42 +1390,47 @@
     "unresolved": []
   },
   "C059": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.salem.edu/financialaid/merit-scholarships/",
+      "https://www.salem.edu/admissions/affordability/",
+      "https://www.salem.edu/admissions/admission-faqs/",
+      "https://www.salem.edu/wp-content/uploads/2024/07/2023-2024-Undergraduate-Catalog.pdf",
       "https://www.salem.edu/financialaid/faqs/",
       "https://catalog.salem.edu/content.php?catoid=34&navoid=1477",
       "https://catalog.salem.edu/content.php?catoid=34&navoid=1474",
-      "https://www.salem.edu/notice-of-nondiscrimination/"
+      "https://www.salem.edu/notice-of-nondiscrimination/",
+      "https://www.salem.edu/academics/registrar/"
     ],
-    "notes": "Current official pages confirm Salem’s merit awards and admission rules. Named scholarships have different requirements, and their Fall 2027 deadlines still need confirmation.",
+    "notes": "Fall 2027 deadlines for individual named scholarships are not confirmed; the Davis Art January 15 date is undated. Current Salem sponsor pages returned HTTP 403/404 and the linked 2026-27 catalog yielded no usable text, so this round could not independently reconfirm amounts, renewal, application materials or eligibility.",
     "outcome": "partial",
     "checks": {
-      "identity": "supported",
-      "value": "supported",
+      "identity": "unconfirmed",
+      "value": "unconfirmed",
       "deadline": "unconfirmed",
-      "application": "supported",
-      "eligibility": "supported"
+      "application": "unconfirmed",
+      "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "Fall 2027 deadlines for individual named scholarships are not confirmed; the Davis Art January 15 date is undated."
+      "Fall 2027 deadlines for individual named scholarships are not confirmed; the Davis Art January 15 date is undated.",
+      "Current Salem sponsor pages returned HTTP 403/404 and the linked 2026-27 catalog yielded no usable text, so this round could not independently reconfirm amounts, renewal, application materials or eligibility."
     ]
   },
   "C060A": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://financialaid.wfu.edu/types-of-aid/scholarships/",
       "https://financialaid.wfu.edu/resources/info-undergrad-recipients/",
       "https://bulletin.wfu.edu/undergraduate/financial-aid/"
     ],
-    "notes": "Current Signature award benefits and automatic consideration were checked. The named awards differ, and Fall 2027 dates and specific renewal rules remain unconfirmed.",
+    "notes": "Fall 2027 November 15 admission deadline is not explicitly dated on the official scholarship page. Award-specific renewal conditions beyond the general recipient policy remain offer-specific.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "unconfirmed"
     },
     "unresolved": [
       "Fall 2027 November 15 admission deadline is not explicitly dated on the official scholarship page.",
@@ -1436,14 +1438,13 @@
     ]
   },
   "C060B": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://financialaid.wfu.edu/types-of-aid/scholarships/",
       "https://financialaid.wfu.edu/resources/info-undergrad-recipients/",
-      "https://bulletin.wfu.edu/undergraduate/financial-aid/",
       "https://prod.wp.cdn.aws.wfu.edu/sites/187/2026/07/Materials-for-the-Presidential-Scholarship-for-Distinguished-Achievement-Application-2026-27.pdf"
     ],
-    "notes": "The annual talent award and linked 2026–27 materials guide were checked. Exact Fall 2027 dates and renewal details remain unconfirmed.",
+    "notes": "Exact Fall 2027 priority and final application dates are not explicitly published. The public pages do not state the renewal duration or award-specific GPA requirements.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1458,14 +1459,14 @@
     ]
   },
   "C061": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://denison.edu/campus/admission/denison-commitment",
       "https://denison.edu/campus/finances/types-of-scholarships-aid",
       "https://catalog.denison.edu/catalog/admission-costs-financial-aid/",
       "https://denison.edu/campus/admission/apply-to-denison"
     ],
-    "notes": "General merit consideration and four-year renewal rules were confirmed. The amount range lacks payment frequency, and admission dates lack cycle years.",
+    "notes": "The published $5,000-to-full-tuition merit range does not specify payment frequency. Admission deadlines are published without cycle years, and named awards may have additional requirements.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1480,14 +1481,13 @@
     ]
   },
   "C062": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.hiram.edu/hiram-guarantee/",
-      "https://www.hiram.edu/admissions-aid/tuition-fees/",
       "https://www.hiram.edu/admissions-aid/financial-aid/scholarships-and-grants/",
       "https://www.hiram.edu/admissions-aid/financial-aid/"
     ],
-    "notes": "Hiram’s 2027–28 award table and four-year stability were checked. Payment frequency, numerical renewal rules, and a current Trustee award remain unconfirmed.",
+    "notes": "The award table does not specify payment frequency or numerical renewal requirements. Trustee is not confirmed as a current scholarship. FAFSA opening instructions conflict, and the typical GPA table omits 2.74.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
@@ -1612,13 +1612,13 @@
     "unresolved": []
   },
   "C067": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.lclark.edu/offices/financial_aid/undergrad/scholarships/merit/",
       "https://docs.lclark.edu/undergraduate/financialassistance/",
       "https://college.lclark.edu/offices/admissions/apply/"
     ],
-    "notes": "Neely’s county restrictions, four-year tuition coverage, and renewal rules were checked. The Fall 2027 application and interview timetable remains unconfirmed.",
+    "notes": "Admission deadlines are published without cycle years, and the 2027 Neely interview date and eligible early rounds are not explicitly confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1632,33 +1632,31 @@
     ]
   },
   "C068": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.arcadia.edu/arcadia-university-admissions/financial-aid/aid-for-undergraduates/",
       "https://www.arcadia.edu/admissions/tuition-financing/policies/",
       "https://www.arcadia.edu/admissions/tuition-financing/policies/sap-policy/",
       "https://www.arcadia.edu/admissions/undergraduate/apply"
     ],
-    "notes": "The 2027–28 award maximum, automatic consideration, and renewal requirements were confirmed. The merit priority date lacks a cycle year.",
-    "outcome": "partial",
+    "notes": "Verified current program terms and the published recurring priority policy; no exact Fall 2027 deadline is asserted.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The January 15 merit priority deadline is published without a cycle year."
-    ]
+    "unresolved": []
   },
   "C069": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://www.pittwire.pitt.edu/features-articles/2026/08/25/rees-chancellors-scholars",
-      "https://www.frederickhonors.pitt.edu/funding-aid/rees-chancellors-scholars-program"
+      "https://www.frederickhonors.pitt.edu/funding-aid/rees-chancellors-scholars-program",
+      "https://www.pittwire.pitt.edu/features-articles/2026/08/25/rees-chancellors-scholars"
     ],
-    "notes": "Tuition, room and board, experiential support, and the application process were checked. Official cohort dates conflict, and renewal terms and the full Fall 2027 timetable remain unconfirmed.",
+    "notes": "Pitt's program page and 2026 cohort announcement conflict on the first cohort. Award duration, experiential funding limits, and renewal requirements are unpublished. The meaning of U.S. residents in the eligibility rule remains unclear.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
@@ -1693,14 +1691,14 @@
     "unresolved": []
   },
   "C071": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://financial-aid.providence.edu/types-of-assistance/institutional-merit-based/",
       "https://academic-affairs.providence.edu/academic-scholarship-standards/",
       "https://financial-aid.providence.edu/policies-and-procedures/renewal-of-aid/",
       "https://admission.providence.edu/apply/"
     ],
-    "notes": "Current academic merit amounts and renewal standards were checked. Roddy has separate rules, and Fall 2027 admission dates remain unconfirmed.",
+    "notes": "Admission dates lack explicit Fall 2027 cycle years. Roddy’s specific renewal standards are not published, and grouped programs have different eligibility rules.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1715,18 +1713,14 @@
     ]
   },
   "C072": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://www.clemson.edu/academics/programs/national-scholars/",
       "https://www.clemson.edu/academics/programs/national-scholars/scholar-selection/",
       "https://www.clemson.edu/cuhonors/admissions/first-year-student.html",
-      "https://www.clemson.edu/academics/programs/national-scholars/program-experience/",
       "https://www.clemson.edu/financial-aid/types-of-aid/clemson-scholarships/named-scholarships.html",
-      "https://www.clemson.edu/financial-aid/policies/scholarship-terms-and-conditions.html",
-      "https://www.clemson.edu/admissions/undergraduate-admissions/apply/first-year.html",
-      "https://www.clemson.edu/admissions/undergraduate-admissions/discover/counselor-information.html"
+      "https://www.clemson.edu/financial-aid/policies/scholarship-terms-and-conditions.html"
     ],
-    "notes": "The Fall 2027 Early Action, Honors Priority, and interview dates are published. Clemson's general named-scholarship page mentions a January 1 FAFSA step, while the National Scholars instructions list only the two applications and include international applicants; check which rule applies.",
+    "notes": "Clemson's general Named Scholarship FAFSA statement is not reconciled with National Scholars' two-application instructions and international eligibility.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1740,13 +1734,13 @@
     ]
   },
   "C073": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.furman.edu/financial-aid/aid-types/merit-based-scholarships/",
       "https://www.furman.edu/financial-aid/understanding-your-financial-aid-package/",
       "https://www.furman.edu/admissions-aid/apply/"
     ],
-    "notes": "Four-year coverage, renewal GPA, and the admissions-based selection process were confirmed. Fall 2027 priority and interview dates remain unconfirmed.",
+    "notes": "The priority deadline and selection stages lack explicit Fall 2027 cycle years and exact interview dates.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1798,14 +1792,14 @@
     "unresolved": []
   },
   "C076": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.rhodes.edu/admission-aid/cost-affordability/rhodes-institutional-aid",
       "https://www.rhodes.edu/admission-aid/apply-rhodes/application-plans-deadlines",
       "https://www.rhodes.edu/admission-aid/apply-rhodes/first-year-application-checklist",
       "https://www.rhodes.edu/admission-aid/international-student-admission/international-application-checklist"
     ],
-    "notes": "Current merit values, automatic consideration, international eligibility, and general renewal rules were checked. Fall 2027 admission dates remain unconfirmed.",
+    "notes": "Admission deadlines lack explicit Fall 2027 cycle years.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -1859,26 +1853,26 @@
     "unresolved": []
   },
   "C078": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://trinity.edu/admissions/aid/types/scholarships",
       "https://trinity.edu/admissions/aid/types/scholarships/murchison",
       "https://trinity.edu/admissions/aid/types/scholarships/trinity-tower",
-      "https://trinity.edu/admissions/aid/types/scholarships/semmes-science"
+      "https://trinity.edu/admissions/aid/types/scholarships/semmes-science",
+      "https://policies.trinity.edu/a8376318-ebd6-421f-be63-acf8c88376a1_f5c16267-8581-4476-9648-c7d3530861af.html"
     ],
-    "notes": "The three awards have different values, deadlines, and application rules. Semmes’s 2027 interview date was confirmed; Tower counts and some cycle dates remain unresolved.",
+    "notes": "Tower’s official pages disagree on whether there are up to 20 or 25 awards. Murchison and Tower deadlines lack explicit cycle years, and Tower’s 2027 competition date is unpublished.",
     "outcome": "partial",
     "checks": {
       "identity": "unconfirmed",
-      "value": "unconfirmed",
+      "value": "corrected",
       "deadline": "unconfirmed",
       "application": "supported",
       "eligibility": "supported"
     },
     "unresolved": [
       "Tower’s official pages disagree on whether there are up to 20 or 25 awards.",
-      "Murchison and Tower deadlines lack explicit cycle years, and Tower’s 2027 competition date is unpublished.",
-      "Murchison’s numerical SAP requirements are not specified on the checked program pages."
+      "Murchison and Tower deadlines lack explicit cycle years, and Tower’s 2027 competition date is unpublished."
     ]
   },
   "C079": {
@@ -1902,36 +1896,37 @@
     "unresolved": []
   },
   "C080A": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://provost.utdallas.edu/mcdermott-programs/eugene-mcdermott-scholars/",
       "https://enroll.utdallas.edu/freshman/application-process/",
       "https://provost.utdallas.edu/mcdermott-programs/eugene-mcdermott-scholars/emsp-award/",
-      "https://provost.utdallas.edu/mcdermott-programs/eugene-mcdermott-scholars/frequently-asked-questions/"
+      "https://provost.utdallas.edu/mcdermott-programs/eugene-mcdermott-scholars/frequently-asked-questions/",
+      "https://provost.utdallas.edu/mcdermott-programs/eugene-mcdermott-scholars/apply-to-the-scholarship/"
     ],
-    "notes": "Coverage, the AES prerequisite, international eligibility, and continuing program obligations were checked. Fall 2027 dates and numerical renewal standards remain unconfirmed.",
+    "notes": "The separate entering-2027 McDermott scholarship deadline is unpublished; the current homepage names 2027 while its linked application page still uses December 1, 2025 admission instructions. Approximate valuation is not a guaranteed entering-2027 award amount; numerical renewal GPA and required engagement hours remain unpublished.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "unconfirmed",
       "application": "supported",
-      "eligibility": "unconfirmed"
+      "eligibility": "corrected"
     },
     "unresolved": [
-      "Separate McDermott application deadline and 2027-specific criteria are not published; its page still shows 2026 cohort dates.",
-      "Approximate award valuation may change for 2027, and numeric renewal GPA/engagement-hour standards are unpublished."
+      "The separate entering-2027 McDermott scholarship deadline is unpublished; the current homepage names 2027 while its linked application page still uses December 1, 2025 admission instructions.",
+      "Approximate valuation is not a guaranteed entering-2027 award amount; numerical renewal GPA and required engagement hours remain unpublished."
     ]
   },
   "C080B": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://enroll.utdallas.edu/freshman/application-process/",
       "https://enroll.utdallas.edu/affordability/freshman-scholarships/academic-excellence-scholarship/",
       "https://enroll.utdallas.edu/affordability/freshman-scholarships/academic-excellence-scholarship/aes-for-prospective-freshmen/",
       "https://enroll.utdallas.edu/affordability/freshman-scholarships/academic-excellence-scholarship/aes-for-current-recipients/"
     ],
-    "notes": "Automatic review, international eligibility, and renewal rules were checked. Fall 2027 amounts and dates are unpublished, and test-score wording needs clarification.",
+    "notes": "Fall 2027 AES award tiers and amounts are unpublished.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -9276,13 +9271,13 @@
     "unresolved": []
   },
   "P300": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.fbla.org/high-school/hs-scholarships-aid/",
       "https://connect.fbla.org/headquarters/files/SFA-Manual.pdf",
       "https://fblapbl.wufoo.com/forms/p1fhxuk20fbmds1/"
     ],
-    "notes": "FBLA lists a $500 award and an April 15 deadline at 5 p.m. Eastern. Its linked materials still reflect the 2026 cycle, so verify the 2027 deadline when the new form appears.",
+    "notes": "The linked FBLA application is still for 2026 and closed; the next deadline is unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -9296,51 +9291,52 @@
     ]
   },
   "P301": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.fbla.org/high-school/hs-scholarships-aid/",
       "https://connect.fbla.org/headquarters/files/SFA-Manual.pdf",
       "https://fblapbl.wufoo.com/forms/2026-pearson-futures-fbla-scholarship-application",
       "https://www.fbla.org/scholarships/fbla-x-futures-scholarship/"
     ],
-    "notes": "The posted FBLA x Futures application is for 2026 and has closed. The October 2027 proof-of-enrollment date is for winners, not a new application deadline.",
+    "notes": "The 2026 application is closed. The October 2027 enrollment-proof date is for winners; the next application deadline is unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "corrected"
     },
     "unresolved": [
       "The next FBLA x Futures application window and deadline have not been announced."
     ]
   },
   "P302": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://tsaweb.org/programs/awards-and-scholarships"
     ],
-    "notes": "TSA lists a $2,500 Elrod award with a recurring May 1 deadline. The 2027 date and full criteria are in the member system or have not been posted publicly.",
+    "notes": "TSA confirms $2,500 and a recurring May 1 deadline. Full eligibility and required materials remain in its member system.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "supported",
       "application": "supported",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "The explicit 2027 Elrod deadline and member-site eligibility/application details are not publicly available."
+      "Full award eligibility and required application materials could not be confirmed without access to the protected member system."
     ]
   },
   "P303": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://tsaweb.org/programs/awards-and-scholarships",
-      "https://nths.org/scholarships/"
+      "https://nths.org/scholarships/",
+      "https://nths.org/scholarships-2/"
     ],
-    "notes": "TSA says three $1,000 awards will be made at its 2027 conference. The exact application deadline and detailed criteria are available only through member materials or have not been dated publicly.",
+    "notes": "Three $1,000 awards are announced for the 2027 TSA conference. The annual window is posted, but detailed member materials and the dated cutoff remain unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -9354,14 +9350,14 @@
     ]
   },
   "P304": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://hosa.org/2024-scholarship-application/",
       "https://hosa.org/scholarships/",
       "https://hosafhp.wufoo.com/forms/w1h3ud271m6fz1u",
       "https://hosa.org/partners/"
     ],
-    "notes": "HOSA’s 2027 scholarship form is available through April 1, 2027. Individual sponsor amounts and restrictions are not listed in the public application.",
+    "notes": "The public 2027 HOSA form confirms April 1. Individual sponsor amounts and additional restrictions could not be confirmed from the accessible official pages.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -9375,14 +9371,14 @@
     ]
   },
   "P305": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.kiwanis.org/kiwanis-childrens-fund-menu-page/scholarship-opportunities-faqs/",
       "https://www.kiwanis.org/who-we-are/kiwanis-childrens-fund/scholarship-opportunities-faqs/",
       "https://www.keyclub.org/news/conventions-and-other-events/",
       "https://www.kiwanis.org/who-we-are/kiwanis-childrens-fund/scholarship-opportunities/"
     ],
-    "notes": "The Children’s Fund currently lists several donor awards with different amounts and rules. Its 2027 application opportunities open November 1, 2026, so check that list for the awards available to you.",
+    "notes": "The 2027 deadline is confirmed. Current donor minimums and restrictions are listed, but the upcoming cycle’s award list remains unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -9396,13 +9392,13 @@
     ]
   },
   "P306": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://educatorsrising.org/recognition/",
       "https://pdkintl.org/scholarship-faq/",
       "https://pdkintl.org/pdk-scholarship/"
     ],
-    "notes": "PDK plans to open 2027-28 applications in December 2026. Its current public instructions list written responses, transcripts and a recommendation, but the 2027 deadline has not been posted.",
+    "notes": "PDK plans a December 2026 opening for 2027-28. Its public closing date remains unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -9510,13 +9506,13 @@
     ]
   },
   "P312": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.jewishscouting.org/eagle-scout-scholarships/",
       "https://www.jewishscouting.org/wp-content/uploads/2024/08/Eagle-Scout-Scholarship-Application-2024-Fillable.pdf",
       "https://www.jewishscouting.org/2026-jewish-eagle-scout-scholarships/"
     ],
-    "notes": "The Weil scholarship remains listed, and 2026 recipients are posted. Its linked application is still dated 2024, so confirm the next deadline and submission instructions when updated.",
+    "notes": "The linked application remains dated 2024 and mixes email submission with postmark timing. The next cycle and governing cutoff remain unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -9530,21 +9526,23 @@
     ]
   },
   "P313": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.vfw.org/community/youth-and-education/scout-of-the-year",
       "https://www.vfw.org/-/media/VFWSite/Files/Community/Youth-and-Education/Scout-of-the-Year/Scout-of-the-Year-Rules-and-Eligibility.pdf?la=en",
       "https://vfw-org-hqagarhxahbybyd9.z01.azurefd.net/-/media/VFWSite/Files/Community/Youth-and-Education/Scout-of-the-Year/ScoutoftheYearBrochureandEntryForm.pdf?v=1&d=20210708T183715Z&la=en",
-      "https://www.vfw.org/media-and-events/latest-releases/archives/2018/7/vfw-names-scout-of-the-year-winners"
+      "https://www.vfw.org/media-and-events/latest-releases/archives/2018/7/vfw-names-scout-of-the-year-winners",
+      "https://vfw-org-hqagarhxahbybyd9.z01.azurefd.net/-/media/VFWSite/Files/Community/Youth-and-Education/Scout-of-the-Year/Scout-of-the-Year-Rules-and-Eligibility.pdf?d=20220914T144112Z&la=en&v=1",
+      "https://vfw-org-hqagarhxahbybyd9.z01.azurefd.net/-/media/VFWSite/Files/Community/Youth-and-Education/Scout-of-the-Year/ScoutoftheYearBrochureandEntryForm.pdf?d=20210708T183715Z&la=en&v=1"
     ],
-    "notes": "VFW’s Scout of the Year entry goes through a local Post. Its current rules do not list a scholarship amount or a dated 2027 deadline.",
+    "notes": "The local Post entry process is confirmed. Current national dollar awards and a specifically dated 2027 cutoff could not be confirmed from accessible national materials.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "unconfirmed",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "corrected"
     },
     "unresolved": [
       "Current national award amounts and explicitly dated 2027 local Post cutoff remain unpublished."
@@ -9570,22 +9568,24 @@
     "unresolved": []
   },
   "P315": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.aatspshh.org/student-scholarships",
-      "https://www.aatspshh.org/_files/ugd/7586a2_bfb40fdd03dc4df28b2dc2b1644eea93.pdf"
+      "https://www.aatspshh.org/_files/ugd/7586a2_bfb40fdd03dc4df28b2dc2b1644eea93.pdf",
+      "https://www.aatspshh.org/_files/ugd/7586a2_69b7d73883f44960a5a6496ef7376d8b.pdf",
+      "https://www.aatspshh.org/_files/ugd/7586a2_039ee5d35dca40cbb339c696b94353b5.pdf"
     ],
-    "notes": "The 2026-27 application instructions and submission form are scheduled for publication by October 8. The linked scoring rubric is available, but the complete current submission procedure remains unpublished.",
+    "notes": "The 2026-27 instructions and signature form are available. The online submission link is scheduled by October 8; the deadline is December 8 at 11:59 PM Eastern.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "supported",
+      "deadline": "corrected",
       "application": "unconfirmed",
-      "eligibility": "supported"
+      "eligibility": "corrected"
     },
     "unresolved": [
-      "The 2026-27 application instructions and submission form are scheduled for publication by October 8. The linked scoring rubric is available, but the complete current submission procedure remains unpublished."
+      "The current Google submission form link is scheduled for publication by October 8 and was not available on the official page."
     ]
   },
   "P316": {
@@ -9658,41 +9658,44 @@
     "unresolved": []
   },
   "P320": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.amstat.org/education/asa-statistics-project-competition-for-grades-7-12",
-      "https://magazine.amstat.org/blog/2026/08/03/2026-poster-and-statistics-projects/"
+      "https://magazine.amstat.org/blog/2026/08/03/2026-poster-and-statistics-projects/",
+      "https://amstat.jotform.com/team/education/project-competition"
     ],
-    "notes": "The official sources give June 1 annually, but do not explicitly identify a 2027 national deadline.",
+    "notes": "ASA explicitly confirms June 1 every year. That recurring policy is supported, while the linked current submission form is closed and reopening is unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "corrected",
+      "application": "unconfirmed",
       "eligibility": "supported"
     },
     "unresolved": [
-      "The official sources give June 1 annually, but do not explicitly identify a 2027 national deadline."
+      "The linked ASA entry form is currently closed; a complete current form and reopening date are not publicly available."
     ]
   },
   "P321": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.amstat.org/education/asa-data-visualization-poster-competition-for-grades-k-12-",
-      "https://magazine.amstat.org/blog/2026/08/03/2026-poster-and-statistics-projects/"
+      "https://magazine.amstat.org/blog/2026/08/03/2026-poster-and-statistics-projects/",
+      "https://amstat.jotform.com/team/education/poster-competition",
+      "https://www.gvsu.edu/stat/michigan-statistics-poster-competition-k-12-146"
     ],
-    "notes": "The official sources give April 1 annually, but do not explicitly identify a 2027 national deadline.",
+    "notes": "ASA explicitly confirms April 1 every year. That recurring policy is supported, while the linked current submission form is closed and reopening is unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "corrected",
+      "application": "unconfirmed",
       "eligibility": "supported"
     },
     "unresolved": [
-      "The official sources give April 1 annually, but do not explicitly identify a 2027 national deadline."
+      "The linked ASA entry form is currently closed; a complete current form and reopening date are not publicly available."
     ]
   },
   "P322": {
@@ -9719,14 +9722,14 @@
     ]
   },
   "P323": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.ashrae.org/communities/student-zone/scholarships-and-grants/high-school-senior-scholarships",
       "https://www.ashrae.org/communities/student-zone/scholarships-and-grants/scholarship-program",
       "https://info.ashrae.org/ScholarshipApplication/",
       "https://www.ashrae.org/about/news/2026/ashrae-awards-225-200-in-society-scholarships-for-2026-2027-academic-year"
     ],
-    "notes": "The official application gives April 1 without a year. A deadline for the 2027 application cycle remains unconfirmed.",
+    "notes": "ASHRAE’s public rules and form confirm the award and annual April 1 policy. A separately dated 2027 cycle notice remains unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -9759,7 +9762,7 @@
     ]
   },
   "P325": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://seg.org/programs/student-programs/scholarships/",
       "https://seg.org/programs/student-programs/scholarship-portfolio/",
@@ -9767,17 +9770,18 @@
       "https://seg.org/wp-content/uploads/2026/03/SEG_Policies-and_Procedures_Manua_March_2026.pdf",
       "https://seg.org/programs/student-programs/apply-for-seg-programs/"
     ],
-    "notes": "The next SEG scholarship round opens November 1, 2026. SEG lists March 1 as its annual application deadline, with supporting documents due March 15; confirm the dated closing notice when the portal opens.",
+    "notes": "The next opening is November 1, 2026. Annual deadlines and common rules are published; the dated next close and upcoming donor restrictions remain unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
-      "value": "supported",
+      "value": "corrected",
       "deadline": "unconfirmed",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "SEG has not explicitly dated the next March 1 close as 2027; individual donor restrictions are published each calendar year."
+      "A dated 2027 closing notice is not separately published.",
+      "The upcoming annual donor restriction list is not yet confirmed."
     ]
   },
   "P326": {
@@ -9853,181 +9857,173 @@
     "unresolved": []
   },
   "P330": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/Complete-C-A-Chart-as-of-080626.pdf",
       "https://www.nfmc-music.org/competitions-awards/",
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/JR-13-1-Stillman-Kelley-final-1.pdf",
       "https://www.nfmc-music.org/competitionscategory/junior-division/",
-      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf"
+      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf",
+      "https://www.nfmc-music.org/wp-content/uploads/2026/09/JRK_Fall2026_proof4.pdf"
     ],
-    "notes": "The published rule lists March 1. A dated 2027 national application deadline was not recovered from the reviewed official sources.",
-    "outcome": "partial",
+    "notes": "The 2026-27 NFMC chart and award rules confirm the deadline and entry requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The reviewed national sources do not separately confirm a dated 2027 Stillman Kelley National Instrumental Awards and Thelma Byrum Piano Award application deadline."
-    ]
+    "unresolved": []
   },
   "P331": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/Complete-C-A-Chart-as-of-080626.pdf",
       "https://www.nfmc-music.org/competitions-awards/",
       "https://www.nfmc-music.org/wp-content/uploads/2019/08/JR-22-1-Edwards-final.pdf",
       "https://www.nfmc-music.org/competitionscategory/junior-division/",
-      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf"
+      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf",
+      "https://www.nfmc-music.org/wp-content/uploads/2026/09/JRK_Fall2026_proof4.pdf"
     ],
-    "notes": "The published rule lists May 1. A dated 2027 national application deadline was not recovered from the reviewed official sources.",
-    "outcome": "partial",
+    "notes": "The 2026-27 NFMC chart and award rules confirm the deadline and entry requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "corrected",
+      "application": "corrected",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The reviewed national sources do not separately confirm a dated 2027 Michael R. Edwards Graduating Senior Performance Award application deadline."
-    ]
+    "unresolved": []
   },
   "P332": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/Complete-C-A-Chart-as-of-080626.pdf",
       "https://www.nfmc-music.org/competitions-awards/",
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/2026-JR-8-1-LFO-Composition-Rules.pdf",
       "https://www.nfmc-music.org/competitionscategory/junior-division/",
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/JR-8-2-LFO-Composition-Application.pdf",
-      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf"
+      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf",
+      "https://www.nfmc-music.org/wp-content/uploads/2026/09/JRK_Fall2026_proof4.pdf"
     ],
-    "notes": "The published rule lists March 1 in odd-numbered years. A dated 2027 national application deadline was not recovered from the reviewed official sources.",
-    "outcome": "partial",
+    "notes": "The 2026-27 NFMC chart and award rules confirm the deadline and entry requirements. Advertised amounts may be adjusted for financial shortfalls with applicant notice.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
-      "value": "supported",
-      "deadline": "unconfirmed",
+      "value": "corrected",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The reviewed national sources do not separately confirm a dated 2027 Lynn Freeman Olson Composition Awards application deadline."
-    ]
+    "unresolved": []
   },
   "P333": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/Complete-C-A-Chart-as-of-080626.pdf",
       "https://www.nfmc-music.org/competitions-awards/",
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/9-1-Cox-Rules-final.pdf",
       "https://www.nfmc-music.org/competitionscategory/junior-division/",
-      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf"
+      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf",
+      "https://www.nfmc-music.org/wp-content/uploads/2026/09/JRK_Fall2026_proof4.pdf"
     ],
-    "notes": "The published rule lists March 1. A dated 2027 national application deadline was not recovered from the reviewed official sources.",
-    "outcome": "partial",
+    "notes": "The 2026-27 NFMC chart and award rules confirm the deadline and entry requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The reviewed national sources do not separately confirm a dated 2027 Mary Alice Cox Awards (Cello or Double Bass) application deadline."
-    ]
+    "unresolved": []
   },
   "P334": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/Complete-C-A-Chart-as-of-080626.pdf",
       "https://www.nfmc-music.org/competitions-awards/",
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/JR-11-1Wendell-Irish-final-1.pdf",
       "https://www.nfmc-music.org/competitionscategory/junior-division/",
-      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf"
+      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf",
+      "https://www.nfmc-music.org/wp-content/uploads/2026/09/JRK_Fall2026_proof4.pdf"
     ],
-    "notes": "The published rule lists March 1. A dated 2027 national application deadline was not recovered from the reviewed official sources.",
-    "outcome": "partial",
+    "notes": "The 2026-27 NFMC chart and award rules confirm the deadline and entry requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The reviewed national sources do not separately confirm a dated 2027 Wendell Irish Viola Awards application deadline."
-    ]
+    "unresolved": []
   },
   "P335": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/Complete-C-A-Chart-as-of-080626.pdf",
       "https://www.nfmc-music.org/competitions-awards/",
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/JR-21-1-1.pdf",
       "https://www.nfmc-music.org/competitionscategory/junior-division/",
-      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf"
+      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf",
+      "https://www.nfmc-music.org/wp-content/uploads/2026/09/JRK_Fall2026_proof4.pdf"
     ],
-    "notes": "The published rule lists March 1. A dated 2027 national application deadline was not recovered from the reviewed official sources.",
-    "outcome": "partial",
+    "notes": "The 2026-27 NFMC chart and award rules confirm the deadline and entry requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "corrected",
+      "application": "corrected",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The reviewed national sources do not separately confirm a dated 2027 Martha Marcks Mack Junior Vocal Award application deadline."
-    ]
+    "unresolved": []
   },
   "P336": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/Complete-C-A-Chart-as-of-080626.pdf",
       "https://www.nfmc-music.org/competitions-awards/",
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/JR-19-1-Caldwell-Final-1.pdf",
       "https://www.nfmc-music.org/competitionscategory/junior-division/",
-      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf"
+      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf",
+      "https://www.nfmc-music.org/wp-content/uploads/2026/09/JRK_Fall2026_proof4.pdf"
     ],
-    "notes": "The published rule lists March 1. A dated 2027 national application deadline was not recovered from the reviewed official sources.",
-    "outcome": "partial",
+    "notes": "The 2026-27 NFMC chart and award rules confirm the deadline and entry requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The reviewed national sources do not separately confirm a dated 2027 Marilyn Caldwell Solo Piano Awards application deadline."
-    ]
+    "unresolved": []
   },
   "P337": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/Complete-C-A-Chart-as-of-080626.pdf",
       "https://www.nfmc-music.org/competitions-awards/",
       "https://www.nfmc-music.org/wp-content/uploads/2017/03/JR-20-1-Bailey-final-1.pdf",
       "https://www.nfmc-music.org/competitionscategory/junior-division/",
-      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf"
+      "https://www.nfmc-music.org/wp-content/uploads/2025/10/JRK_Fall2025_final.pdf",
+      "https://www.nfmc-music.org/wp-content/uploads/2026/09/JRK_Fall2026_proof4.pdf"
     ],
-    "notes": "The published rule lists May 1. A dated 2027 national application deadline was not recovered from the reviewed official sources.",
-    "outcome": "partial",
+    "notes": "The 2026-27 NFMC chart and award rules confirm the deadline and entry requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The reviewed national sources do not separately confirm a dated 2027 Lana M. Bailey Piano Concerto Awards application deadline."
-    ]
+    "unresolved": []
   },
   "P338": {
     "checkedAt": "2026-09-29",
@@ -10675,16 +10671,15 @@
     "unresolved": []
   },
   "P452": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://www.dar.org/national-society/scholarships/history-etc",
-      "https://www.dar.org/outreach/education/scholarships",
       "https://dar.academicworks.com/opportunities/1234",
       "https://dar.academicworks.com/",
-      "https://www.dar.org/national-society/scholarships/scholarship-faqs",
-      "https://www.dar.org/system/files/members/darnet/forms/SCH-1001.pdf"
+      "https://www.dar.org/system/files/members/darnet/forms/SCH-1001.pdf",
+      "https://www.dar.org/national-society/scholarships/general-info",
+      "https://www.dar.org/national-society/scholarships/scholarship-faqs"
     ],
-    "notes": "The application window is November 1, 2026 through January 31, 2027. DAR gives different transcript grade ranges for homeschooled students in its checklist and FAQ, so those applicants should confirm the requirement before submitting.",
+    "notes": "DAR confirms this award and its January 31, 2027 deadline. Added upload and recommendation requirements. Homeschool transcript coverage and the personal-statement page limit still conflict across official instructions.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -10694,20 +10689,20 @@
       "eligibility": "supported"
     },
     "unresolved": [
-      "DAR publishes conflicting homeschool transcript ranges: its general checklist says grade nine through current year, while its FAQ says grades eight through twelve."
+      "The March 2026 checklist and general instructions require homeschool grades nine through the current year, but the FAQ requires grades eight through twelve.",
+      "The portal and March 2026 checklist allow a career statement up to 1,000 words; the FAQ separately warns against a personal statement/resume longer than one page. The intended statement page limit is unclear."
     ]
   },
   "P453": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://www.dar.org/national-society/scholarships/history-etc",
-      "https://www.dar.org/outreach/education/scholarships",
       "https://dar.academicworks.com/opportunities/1233",
       "https://dar.academicworks.com/",
-      "https://www.dar.org/national-society/scholarships/scholarship-faqs",
-      "https://www.dar.org/system/files/members/darnet/forms/SCH-1001.pdf"
+      "https://www.dar.org/system/files/members/darnet/forms/SCH-1001.pdf",
+      "https://www.dar.org/national-society/scholarships/general-info",
+      "https://www.dar.org/national-society/scholarships/scholarship-faqs"
     ],
-    "notes": "The application window is November 1, 2026 through January 31, 2027. DAR gives different transcript grade ranges for homeschooled students in its checklist and FAQ, so those applicants should confirm the requirement before submitting.",
+    "notes": "DAR confirms this award and its January 31, 2027 deadline. Added upload and recommendation requirements. Homeschool transcript coverage and the personal-statement page limit still conflict across official instructions.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -10717,20 +10712,20 @@
       "eligibility": "supported"
     },
     "unresolved": [
-      "DAR publishes conflicting homeschool transcript ranges: its general checklist says grade nine through current year, while its FAQ says grades eight through twelve."
+      "The March 2026 checklist and general instructions require homeschool grades nine through the current year, but the FAQ requires grades eight through twelve.",
+      "The portal and March 2026 checklist allow a career statement up to 1,000 words; the FAQ separately warns against a personal statement/resume longer than one page. The intended statement page limit is unclear."
     ]
   },
   "P454": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://www.dar.org/national-society/scholarships/merit-scholarship",
-      "https://www.dar.org/outreach/education/scholarships",
       "https://dar.academicworks.com/opportunities/1231",
       "https://dar.academicworks.com/",
-      "https://www.dar.org/national-society/scholarships/scholarship-faqs",
-      "https://www.dar.org/system/files/members/darnet/forms/SCH-1001.pdf"
+      "https://www.dar.org/system/files/members/darnet/forms/SCH-1001.pdf",
+      "https://www.dar.org/national-society/scholarships/general-info",
+      "https://www.dar.org/national-society/scholarships/scholarship-faqs"
     ],
-    "notes": "The application window is November 1, 2026 through January 31, 2027. DAR gives different transcript grade ranges for homeschooled students in its checklist and FAQ, so those applicants should confirm the requirement before submitting.",
+    "notes": "DAR confirms this award and its January 31, 2027 deadline. Added upload and recommendation requirements. Homeschool transcript coverage and the personal-statement page limit still conflict across official instructions.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -10740,7 +10735,8 @@
       "eligibility": "supported"
     },
     "unresolved": [
-      "DAR publishes conflicting homeschool transcript ranges: its general checklist says grade nine through current year, while its FAQ says grades eight through twelve."
+      "The March 2026 checklist and general instructions require homeschool grades nine through the current year, but the FAQ requires grades eight through twelve.",
+      "The portal and March 2026 checklist allow a career statement up to 1,000 words; the FAQ separately warns against a personal statement/resume longer than one page. The intended statement page limit is unclear."
     ]
   },
   "P455": {
@@ -10804,22 +10800,23 @@
     "unresolved": []
   },
   "P458": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.firstinspires.org/resources/library/dr-bart-kamen-memorial-scholarship-fund",
       "https://bartkamenmemorialfirstscholarship.submittable.com/submit"
     ],
-    "notes": "FIRST describes the award and renewal duties, but has not posted a 2027 application deadline. The portal has no open call. Applicants considering a foreign institution should confirm the W-9 requirement.",
+    "notes": "FIRST confirms the award and renewal duties. Its initial application remains closed, with no current deadline or full initial materials. Foreign-study eligibility still needs clarification against the W-9 requirement.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "unconfirmed",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "No official 2027 initial application deadline is posted; required W-9 despite accredited foreign-institution eligibility leaves non-U.S. applicant tax-document eligibility unresolved."
+      "No current initial application deadline or complete initial application materials are publicly available.",
+      "The sponsor permits similarly accredited foreign institutions but requires W-9, without explaining non-U.S. applicant tax-document eligibility."
     ]
   },
   "P459": {
@@ -11767,13 +11764,13 @@
     ]
   },
   "P591": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.niaf.org/programs/scholarships/",
       "https://www.niaf.org/programs/available-scholarships/",
       "https://niaf.communityforce.com/Login.aspx"
     ],
-    "notes": "NIAF posts a 2027–28 application window and general eligibility, award range and application steps. Named funds have additional rules, including Italy-study awards; how those interact with general U.S. enrollment/citizenship terms remains unclear.",
+    "notes": "NIAF confirms its 2027-28 dates and common application. How general citizenship/enrollment rules apply to listed international and Italy-study funds remains unclear; donor-specific continuation rules are not complete.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -11827,22 +11824,23 @@
     ]
   },
   "P594": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.acb.org/scholarships",
       "https://members.acb.org/"
     ],
-    "notes": "ACB explicitly posts 2027–28 dates, general legal-blindness/GPA/study rules and the required public application documents. Award-specific repeat terms are not listed; one continuing-student exception still cites 2025/26.",
+    "notes": "ACB confirms 2027-28 deadlines and common requirements. Award-specific continuation terms and the continuing-student admission-proof exception remain incomplete or outdated.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "supported",
-      "application": "supported",
+      "application": "unconfirmed",
       "eligibility": "supported"
     },
     "unresolved": [
-      "Award-specific renewal/repeat rules are not published, and the page’s continuing-student admission-proof exception still references 2025/26."
+      "Complete award-specific renewal/repeat terms are not public.",
+      "The continuing-student admission-proof exception still refers to 2025/26, and the account-only form does not clarify the 2027-28 exception."
     ]
   },
   "P595": {
@@ -12155,19 +12153,19 @@
     ]
   },
   "P632": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.ducks.org/get-involved/youth-programs/du-varsity/ducks-unlimited-national-scholarship-program",
       "https://duckscdn.blob.core.windows.net/imagescontainer/landing-pages/getInvolved/youthPrograms/varsity/scholarship_one_sheet_updated_april_2026.pdf",
       "https://www.ducks.org/get-involved/ducks-unlimited-youth-programs/du-varsity/du-national-scholarship-application"
     ],
-    "notes": "DU’s 2026–2027 sheet confirms award amounts, dates and application materials. It pairs 2027 graduation with fall 2026 college entry, so confirm the intended enrollment cohort.",
+    "notes": "DU confirms its 2027 award schedule and application documents. Added the exact wetlands essay prompt. Its guide still conflicts about the college-entry year.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "supported",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "unconfirmed"
     },
     "unresolved": [
@@ -12175,13 +12173,13 @@
     ]
   },
   "P633": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://agwt.org/scholarships/",
       "https://agwt.org/scholarships/scholarship-rules-procedures-and-criteria/",
       "https://agwt.org/wp-content/uploads/2025/03/Scholarship-Rules-Application-Form-UPDATED-February-2025.pdf"
     ],
-    "notes": "AGWT’s current rules confirm the award limit, amount, eligibility and April 30 receipt cutoff. The accessible application PDF is dated 2025 and conflicts with the newer page’s delivery details.",
+    "notes": "AGWT confirms the named $2,500 awards and 2027 application window. The new delivery form is still unavailable, and the linked 2025 form’s postal address differs from the current page.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12217,11 +12215,12 @@
     ]
   },
   "S001": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.floridastudentfinancialaidsg.org/SAPBFMAIN/SAPBFMAIN",
       "https://www.floridastudentfinancialaidsg.org/PDF/FAS-FMS.pdf",
-      "https://www.floridastudentfinancialaidsg.org/PDF/BFHandbookChapter1.pdf"
+      "https://www.floridastudentfinancialaidsg.org/PDF/BFHandbookChapter1.pdf",
+      "https://www.floridastudentfinancialaidsg.org/PDF/BFHandbookChapter2.pdf"
     ],
     "notes": "2027-28 funding amounts are not published. The 2026-27 table and Class-of-2027 threshold row are verified, but the future funding amount remains unknown.",
     "outcome": "partial",
@@ -12237,11 +12236,12 @@
     ]
   },
   "S002": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.floridastudentfinancialaidsg.org/SAPBFMAIN/SAPBFMAIN",
       "https://www.floridastudentfinancialaidsg.org/PDF/FAS-FMS.pdf",
-      "https://www.floridastudentfinancialaidsg.org/PDF/BFHandbookChapter1.pdf"
+      "https://www.floridastudentfinancialaidsg.org/PDF/BFHandbookChapter1.pdf",
+      "https://www.floridastudentfinancialaidsg.org/PDF/BFHandbookChapter2.pdf"
     ],
     "notes": "2027-28 funding amounts are not published. The 2026-27 table and Class-of-2027 threshold row are verified, but the future funding amount remains unknown.",
     "outcome": "partial",
@@ -12257,7 +12257,7 @@
     ]
   },
   "S003": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.gafutures.org/hope-state-aid-programs/hope-zell-miller-scholarships/hope-scholarship/initial-academic-eligibility/",
       "https://www.gafutures.org/hope-state-aid-programs/hope-zell-miller-scholarships/hope-scholarship/eligibility/",
@@ -12282,7 +12282,7 @@
     ]
   },
   "S004": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.gafutures.org/hope-state-aid-programs/hope-zell-miller-scholarships/zell-miller-scholarship/initial-academic-eligibility/",
       "https://www.gafutures.org/hope-state-aid-programs/hope-zell-miller-scholarships/zell-miller-scholarship/eligibility/",
@@ -12407,7 +12407,7 @@
     "unresolved": []
   },
   "S010": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://mylosfa.la.gov/tops/the-tops-opportunity-award/",
       "https://mylosfa.la.gov/tops/the-tops-performance-award/",
@@ -12424,17 +12424,17 @@
       "https://mylosfa.la.gov/wp-content/uploads/2026/07/Award-Amounts.pdf",
       "https://losfa.egnyte.com/dl/MhjG678vPrqp"
     ],
-    "notes": "The current annual Opportunity formula and $20 floor are verified, but its score cutoff depends on the prior-year Louisiana average. LOSFA has not published a numerical Class-of-2027 cutoff, so the next cohort threshold remains unconfirmed.",
+    "notes": "The numerical Class-of-2027 Opportunity score cutoff is not published; its annual formula uses the prior-year Louisiana ACT average with a minimum ACT 20. Future 2027-28 institution-specific payment amounts also remain unconfirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "supported",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "The current annual Opportunity formula and $20 floor are verified, but its score cutoff depends on the prior-year Louisiana average. LOSFA has not published a numerical Class-of-2027 cutoff, so the next cohort threshold remains unconfirmed."
+      "The numerical Class-of-2027 Opportunity score cutoff is not published; its annual formula uses the prior-year Louisiana ACT average with a minimum ACT 20. Future 2027-28 institution-specific payment amounts also remain unconfirmed."
     ]
   },
   "S011": {
@@ -12465,7 +12465,7 @@
     "unresolved": []
   },
   "S012": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.kheaa.com/web/resources/pubs/gettingin/GI_Ch2pt2.pdf",
       "https://www.kheaa.com/web/scholarships-grants.faces"
@@ -12648,7 +12648,7 @@
     ]
   },
   "S021": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://dhewd.mo.gov/ppc/grants-scholarships/bright-flight"
     ],
@@ -12659,7 +12659,7 @@
       "value": "unconfirmed",
       "deadline": "supported",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "unconfirmed"
     },
     "unresolved": [
       "The latest published Missouri estimate is for 2026 graduates only. Exact Class-of-2027 score cutoffs and corresponding award amounts are not published, so a 2027 applicant’s award remains unconfirmed."
@@ -12794,7 +12794,7 @@
     ]
   },
   "S028": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.mass.edu/osfa/programs/valedictorian.asp",
       "https://www.mass.edu/osfa/documents/publications/2026/OSFA-2026-2027-Guidelines/26-27-Tuition-Waivers-Program-Guidelines-Final.pdf"
@@ -12875,7 +12875,7 @@
     ]
   },
   "S032": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://ushe.edu/state-scholarships-aid/opportunity-scholarship/"
     ],
@@ -12893,12 +12893,13 @@
     ]
   },
   "S033": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.kansasregents.gov/resources/PDF/Students/Student_Financial_Aid/KSS_26-27.pdf",
-      "https://kansasregents.gov/students/student_financial_aid/general_info"
+      "https://kansasregents.gov/students/student_financial_aid/general_info",
+      "https://kansasregents.gov/qualified_admissions/524-kansas-scholars-program"
     ],
-    "notes": "Scholar designation and aid procedures were checked. The document’s cycle labels leave fall 2027 funding and dates unconfirmed.",
+    "notes": "2026-27 funding limits confirmed; 2027-28 funding not established. July 1 is recurring without an explicit cycle year; precise 2027 dates unconfirmed. General requirements supported, but cohort PDF combines 2026-27 aid-year and 2026-27 graduation wording; fall 2027 terms need confirmation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12914,12 +12915,12 @@
     ]
   },
   "S034": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://portal.ct.gov/-/media/sde/performance/fafsa/frequently-asked-questions--roberta-b-willis-need-merit-scholarship.pdf",
       "https://portal.ct.gov/ohe/knowledge-base/articles/for-students/connecticut-student-aid-programs"
     ],
-    "notes": "The nomination and academic routes were checked. Confirm the 2027-28 income cutoff, award terms and eligible college programs.",
+    "notes": "Current overview repeats amounts, but detailed FAQ labels them AY 2025-26; 2027-28 award/renewal terms unconfirmed. February 15 is displayed without explicit cycle year/time zone; 2027 nomination/material dates not established. 2027-28 SAI cap and complete program scope unconfirmed; overview’s four-year-institution wording and two-year-program award require clarification.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12954,34 +12955,34 @@
     "unresolved": []
   },
   "S036": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://terryfoundation.org/apply/",
       "https://terryfoundation.org/apply/traditional-scholarship-faqs/",
-      "https://aggie.tamu.edu/paying-for-college/apply-for-scholarships/terry-foundation-scholars.html"
+      "https://www.depts.ttu.edu/scholarships/terrys/"
     ],
-    "notes": "The Foundation confirms that partner universities set deadlines, and the Texas A&M page supplies only an institution-specific example without a complete fall-2027 calendar. Partner-specific Class-of-2027 deadlines remain unconfirmed.",
+    "notes": "Texas Tech publishes a full 2027 selection timeline, but other affiliated universities’ full fall-2027 dates remain unconfirmed. Texas Tech also retains a 2026-27 admission-year label beside its 2027 graduation requirement.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
-      "eligibility": "supported"
+      "application": "corrected",
+      "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "The Foundation confirms that partner universities set deadlines, and the Texas A&M page supplies only an institution-specific example without a complete fall-2027 calendar. Partner-specific Class-of-2027 deadlines remain unconfirmed."
+      "Texas Tech publishes a full 2027 selection timeline, but other affiliated universities’ full fall-2027 dates remain unconfirmed. Texas Tech also retains a 2026-27 admission-year label beside its 2027 graduation requirement."
     ]
   },
   "S037": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.sterlingscholar.org/",
       "https://www.sterlingscholar.org/students",
       "https://www.sterlingscholar.org/regions",
       "https://cdn.prod.website-files.com/653c0659e520c1c507139c06/6a8f4b29d69a33b2c6e72262_2026-27%20SS%20Electronic%20Handbook%20Wasatch%20Front%20Region.docx"
     ],
-    "notes": "The new 2026-27 Wasatch Front handbook confirms 2027 portfolio dates and cash awards. Other regional dates and 2027-28 college benefits need confirmation.",
+    "notes": "Current Wasatch cash awards confirmed; other regional amounts and 2027-28 college scholarship terms not established. Wasatch portfolio stages confirmed, but final/interview dates remain TBD and other regional/school nomination dates are not established.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -13094,20 +13095,20 @@
     "unresolved": []
   },
   "S105": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://nextsteps.idaho.gov/scholarship-idaho/idaho-governors-cup-or-academic",
       "https://www.idahogovernorscup.org/scholarship",
       "https://www.idahogovernorscup.org/scholarship-renewal-form",
       "https://scholarships.idaho.gov/"
     ],
-    "notes": "The Governor’s Cup Academic track is for Idaho residents graduating from an Idaho high school or home school, with 3.5 unweighted GPA, full-time Idaho college enrollment and public-service commitment. The current portal remains labeled 2026-27; 2027-28 dates and continuing award terms are not confirmed.",
+    "notes": "The 2027-28 application dates and full current award-renewal conditions are not published in reviewed official sources; the accessible portal remains labeled 2026-27.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -13115,20 +13116,20 @@
     ]
   },
   "S106": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.tilfoundation.org/scholarships/apply/",
       "https://www.tilfoundation.org/scholarships/eligibility-requirements/",
       "https://www.tilfoundation.org/scholarships/list/",
       "https://www.tilfoundation.org/scholarships/faqs/"
     ],
-    "notes": "The 2027 TILF application runs March 1-May 21. Required items include a transcript/test-score evidence if taken, school-administrator recommendation, parent/guardian IRS Form 1040 pages 1-2 or explanation, and college aid letter or FAFSA Summary with SAI. Individual donors set separate award amounts and restrictions; one listed amount conflict remains.",
+    "notes": "The TILF common application and exact 2027 documents are now public. The grouped donor directory still contains materially different amounts, conditions and at least one inconsistent individual award value.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "supported",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
@@ -13136,12 +13137,12 @@
     ]
   },
   "S107": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.mshsl.org/triple-award",
       "https://www.mshsl.org/sites/default/files/2026-09/2026-2027-triple-a-nomination-form-fillable.pdf"
     ],
-    "notes": "The MSHSL 2026-27 form confirms Triple A eligibility and the nomination route through the student’s school and region. Each school/region sets its own deadline. The official page describes a four-year $1,000 scholarship but does not clarify the amount’s payment schedule or continuation conditions.",
+    "notes": "Applicant-specific school/administrative-region nomination deadlines must be obtained locally; current official materials do not clarify whether the $1,000 award is total or annual or give full continuation/payment conditions.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -13216,14 +13217,14 @@
     ]
   },
   "S111": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.rodeohouston.com/scholarships-and-grants/",
       "https://www.rodeohouston.com/scholarships-and-grants/how-to-apply/",
       "https://www.rodeohouston.com/wp-content/uploads/2026/04/2026-Achievement-Scholarship-Guidelines.pdf",
       "https://www.rodeohouston.com/wp-content/uploads/2025/10/2026-Metropolitan-Guidelines.pdf"
     ],
-    "notes": "Houston Rodeo’s current public page reports 2026 scholarship offerings; its 2026 Achievement award is for existing college Rodeo Scholars, not graduating seniors. The 2027 senior-cycle dates, forms, values and eligibility rules remain unpublished; the February 2, 2026 deadline is not carried forward.",
+    "notes": "The 2027 senior application dates, category-specific forms, new-cycle values and current continuation rules are not published. The posted Achievement award applies separately to existing college Rodeo Scholars.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -13237,12 +13238,12 @@
     ]
   },
   "S112": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.nhbar.org/civics-essay-contest/",
       "https://nhba.s3.amazonaws.com/wp-content/uploads/2026/04/03160221/2026-Civics-Essay-Contest-Ceremony-Press-Release.pdf"
     ],
-    "notes": "The sponsor confirmed the prior cash prizes and said a new contest would be announced in fall 2026. The new prompt, deadline and award terms have not been posted.",
+    "notes": "The sponsor has not posted the 2026-27 cash awards, application dates, prompt, materials or eligibility.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -13256,14 +13257,14 @@
     ]
   },
   "S113": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://oregonstudentaid.gov/scholarships/osac-scholarship-application/",
       "https://oregonstudentaid.gov/scholarships/",
       "https://oregonstudentaid.gov/daca-undocumented-students/",
       "https://oregonstudentaid.gov/scholarships/faq/"
     ],
-    "notes": "OSAC opens the 2027-28 application on November 1, 2026. Confirm the closing date and each selected fund’s rules; a few funds allow nonresidents, and temporary-purpose international students are not eligible.",
+    "notes": "The February 15 and March 1 closing dates are not explicitly dated to the 2027-28 cycle, and individual donor amounts, materials and eligibility vary.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -13277,14 +13278,14 @@
     ]
   },
   "S114": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.mainecf.org/find-a-scholarship/",
       "https://www.mainecf.org/find-a-scholarship/available-scholarships/available-statewide/",
       "https://www.mainecf.org/find-a-scholarship/help-for-applicants/scholarship-faqs/",
       "https://www.mainecf.org/find-a-scholarship/help-for-applicants/scholarship-rules/"
     ],
-    "notes": "MaineCF funds have different deadlines and eligibility rules. Awardees must return a Terms of Award letter; check each fund for its current application date and materials.",
+    "notes": "Donor-specific 2027 deadlines, individual award amounts, continuation, materials and eligibility remain variable or unpublished.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
