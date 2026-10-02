@@ -189,7 +189,7 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p style={{ ...prose(14), color: C.textFaint }}>
-              Last updated: September 28, 2026
+              Last updated: October 2, 2026
             </p>
             <p style={{ ...prose(15), marginTop: 12 }}>
               This policy explains what data Meritously collects, why we collect it, and how
