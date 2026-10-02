@@ -17,7 +17,7 @@ interface WelcomeEmailProps {
 
 export function WelcomeEmail({
   firstName,
-  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app",
+  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://meritously.com",
 }: WelcomeEmailProps) {
   const name = firstName ? `, ${firstName}` : "";
 
@@ -91,7 +91,7 @@ export function WelcomeEmail({
 
       <Text style={mutedText}>
         Questions?{" "}
-        <Link href="mailto:hello@bidboard.app" style={{ color: "#0F5D3E" }}>
+        <Link href="mailto:hello@meritously.com" style={{ color: "#0F5D3E" }}>
           Get in touch.
         </Link>
       </Text>

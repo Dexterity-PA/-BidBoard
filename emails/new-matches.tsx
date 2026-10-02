@@ -36,7 +36,7 @@ function formatAmount(
 
 export function NewMatchesEmail({
   matches,
-  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app",
+  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://meritously.com",
 }: NewMatchesEmailProps) {
   const count = matches.length;
 

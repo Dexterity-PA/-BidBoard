@@ -40,7 +40,7 @@ export function WeeklyDigestEmail({
   newMatches,
   recentActivity,
   totalWon,
-  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app",
+  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://meritously.com",
 }: WeeklyDigestEmailProps) {
   return (
     <EmailLayout preview="📊 Your Meritously week in review">
@@ -185,7 +185,7 @@ export function WeeklyDigestEmail({
           href={`${appUrl}/settings/notifications`}
           style={{ color: "#0F5D3E" }}
         >
-          bidboard.app/settings/notifications
+          meritously.com/settings/notifications
         </Link>
       </Text>
     </EmailLayout>

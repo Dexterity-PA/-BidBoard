@@ -57,5 +57,5 @@ curl -H "Authorization: Bearer dev-cron-secret-replace-before-deploy" \
 | Variable | Description |
 |----------|-------------|
 | `RESEND_API_KEY` | Resend API key for sending emails |
-| `RESEND_FROM_EMAIL` | Sender address (default: `notifications@bidboard.app`) |
+| `RESEND_FROM_EMAIL` | Sender address (default: `notifications@meritously.com`) |
 | `CRON_SECRET` | Shared secret for cron route auth, set in Vercel project settings |

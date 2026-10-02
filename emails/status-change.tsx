@@ -50,7 +50,7 @@ export function StatusChangeEmail({
   scholarshipProvider,
   status,
   applicationUrl,
-  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app",
+  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://meritously.com",
 }: StatusChangeEmailProps) {
   const config = STATUS_CONFIG[status];
   const ctaHref =
@@ -94,7 +94,7 @@ export function StatusChangeEmail({
         <Text style={mutedText}>
           Track all your applications at{" "}
           <Link href={`${appUrl}/tracker`} style={{ color: "#0F5D3E" }}>
-            bidboard.app/tracker
+            meritously.com/tracker
           </Link>
         </Text>
       )}

@@ -12,7 +12,7 @@ import {
   Img,
 } from "@react-email/components";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://meritously.com";
 
 interface EmailLayoutProps {
   preview?: string;

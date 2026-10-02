@@ -30,7 +30,7 @@ function daysLabel(n: number) {
 
 export function DeadlineReminderEmail({
   scholarships,
-  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app",
+  appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://meritously.com",
 }: DeadlineReminderEmailProps) {
   const count = scholarships.length;
   const preview =
