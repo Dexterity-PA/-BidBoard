@@ -12,7 +12,7 @@ export type NotificationType =
 export const RATE_LIMIT_EXEMPT: NotificationType[] = ["payment_events"];
 
 export const FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL ?? "notifications@bidboard.app";
+  process.env.RESEND_FROM_EMAIL ?? "notifications@meritously.com";
 
 let _resend: Resend | undefined;
 export function getResend(): Resend {
