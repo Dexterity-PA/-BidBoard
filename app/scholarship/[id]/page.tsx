@@ -11,7 +11,7 @@ import { getDetailListing } from "@/lib/merit/catalog";
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-export function formatAmount(amountMin: number | null, amountMax: number | null): string {
+function formatAmount(amountMin: number | null, amountMax: number | null): string {
   if (amountMin == null && amountMax == null) return "-";
   const min = amountMin ?? 0;
   const max = amountMax ?? min;
@@ -26,13 +26,13 @@ export function formatAmount(amountMin: number | null, amountMax: number | null)
   return min === max ? fmt(min) : `${fmt(min)}-${fmt(max)}`;
 }
 
-export function daysUntil(dateStr: string | null): number | null {
+function daysUntil(dateStr: string | null): number | null {
   if (!dateStr) return null;
   const d = new Date(dateStr + "T12:00:00");
   return Math.ceil((d.getTime() - Date.now()) / 86_400_000);
 }
 
-export function formatDate(dateStr: string | null): string {
+function formatDate(dateStr: string | null): string {
   if (!dateStr) return "-";
   const [year, month, day] = dateStr.split("-").map(Number);
   return new Date(year, month - 1, day).toLocaleDateString("en-US", {

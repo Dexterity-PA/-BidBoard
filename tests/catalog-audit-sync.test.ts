@@ -45,6 +45,20 @@ describe("completed catalog audit publication", () => {
     expect(row.previous_deadline).toBe("2026-10-15");
     expect(row.deadline).toBe("2026-12-01");
     expect(row.is_verified).toBe(true);
+    expect(row.is_new).toBe(false);
+  });
+
+  it("permits insertions only for explicitly new active records without a prior deadline", () => {
+    const added = { ...manifest, records: [{ id: "C901", previousDeadline: null, isNew: true }] };
+    expect(auditedSyncRows([record], { C901: checked }, added, archive)[0].is_new).toBe(true);
+    expect(() => auditedSyncRows([record], { C901: checked }, {
+      ...manifest, records: [{ ...manifest.records[0], isNew: true }],
+    }, archive)).toThrow("Invalid new catalog target");
+    const retired = { ...record, status: "excluded" as const };
+    expect(() => auditedSyncRows([retired], { C901: checked }, added, makeArchive(retired))).toThrow("Invalid new catalog target");
+    expect(() => auditedSyncRows([record], { C901: checked }, {
+      ...manifest, records: [{ id: "C901", previousDeadline: null, isNew: "true" }],
+    }, archive)).toThrow("Invalid new catalog target");
   });
 
   it("rejects missing reviews, duplicate targets, and evidence/archive disagreement", () => {

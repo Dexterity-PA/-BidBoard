@@ -1,4 +1,4 @@
-// Updates only catalog-owned rows covered by the completed, committed audit.
+// Publishes only catalog-owned rows covered by the completed, committed audit.
 // Existing saved notes, statuses, and edited application deadlines are preserved.
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
@@ -30,6 +30,10 @@ export function auditedSyncRows(records, ledger, manifest, archive) {
   return targets.map((target) => {
     const record = byId.get(target.id);
     const evidence = ledger[target.id];
+    if ((target.isNew !== undefined && typeof target.isNew !== "boolean") ||
+        (target.isNew === true && (target.previousDeadline !== null || record?.status === "excluded"))) {
+      throw new Error("Invalid new catalog target");
+    }
     if (!record || !evidence?.outcome || archive.records[target.id]?.outcome !== evidence.outcome ||
         (target.previousDeadline !== null && !/^\d{4}-\d{2}-\d{2}$/.test(target.previousDeadline))) throw new Error("Invalid audited correction target");
     if (archive.records[target.id].finalRecordHash !== canonicalRecordHash(record)) throw new Error("Catalog record differs from the reviewed evidence");
@@ -45,14 +49,14 @@ export function auditedSyncRows(records, ledger, manifest, archive) {
     if (canonicalRecordHash(evidence) !== canonicalRecordHash(expectedEvidence)) throw new Error("Compact verification differs from the source-review archive");
     const row = rows.find((candidate) => candidate.slug.startsWith(target.id.toLowerCase() + "-"));
     if (!row || row.source !== SOURCE) throw new Error("Audit target has no unique catalog row");
-    return { ...row, previous_deadline: target.previousDeadline };
+    return { ...row, previous_deadline: target.previousDeadline, is_new: target.isNew === true };
   });
 }
 
 export async function loadAuditedSyncRows() {
   const load = async (file) => JSON.parse(await readFile(new URL(`../data/merit/${file}.json`, import.meta.url), "utf8"));
   const [files, ledger, manifest, archive] = await Promise.all([
-    Promise.all(FILES.map(load)), load("verification"), load("audit-sync-2026-09-29-deep"), load("audit-2026-09-29-deep"),
+    Promise.all(FILES.map(load)), load("verification"), load("audit-sync-2026-10-01"), load("audit-2026-10-01"),
   ]);
   return auditedSyncRows(files.flat(), ledger, manifest, archive);
 }
@@ -64,7 +68,8 @@ export function auditSyncParameters(sql, rows) {
 }
 
 // A single parameterized statement locks its exact scholarship targets and is
-// safe to rerun. It does not insert/delete scholarships or delete user records.
+// safe to rerun. Only explicitly new audited listings may be inserted. A slug
+// owned by another source fails coverage validation and rolls back the batch.
 export const AUDIT_SYNC_SQL = `
   WITH desired AS MATERIALIZED (
     SELECT * FROM jsonb_to_recordset($1::jsonb) AS x(
@@ -72,11 +77,23 @@ export const AUDIT_SYNC_SQL = `
       amount_min integer, amount_max integer, amount_type text, deadline date,
       application_url text, eligible_states text[], requires_essay boolean,
       source_url text, is_verified boolean, last_verified timestamp,
-      is_active boolean, category text, previous_deadline date
+      is_active boolean, category text, previous_deadline date, is_new boolean
     )
   ), targets AS MATERIALIZED (
     SELECT s.id, d.* FROM scholarships s JOIN desired d ON s.slug = d.slug
     WHERE s.source = $2 FOR UPDATE OF s
+  ), inserted_scholarships AS (
+    INSERT INTO scholarships (
+      slug, name, provider, provider_url, description, amount_min, amount_max, amount_type,
+      deadline, application_url, eligible_states, requires_essay, source, source_url,
+      is_verified, last_verified, is_active, category, updated_at
+    )
+    SELECT slug, name, provider, provider_url, description, amount_min, amount_max, amount_type,
+      deadline, application_url, eligible_states, requires_essay, $2, source_url,
+      is_verified, last_verified, is_active, category, now()
+    FROM desired WHERE is_new = true
+    ON CONFLICT (slug) DO NOTHING
+    RETURNING id
   ), fixed_applications AS (
     UPDATE applications a SET deadline = t.deadline, updated_at = now()
     FROM targets t
@@ -105,7 +122,8 @@ export const AUDIT_SYNC_SQL = `
     ) RETURNING s.id
   )
   SELECT (SELECT count(*) FROM desired)::int AS reviewed,
-    (SELECT count(*) FROM targets)::int AS matched,
+    ((SELECT count(*) FROM targets) + (SELECT count(*) FROM inserted_scholarships))::int AS matched,
+    (SELECT count(*) FROM inserted_scholarships)::int AS inserted,
     (SELECT count(*) FROM fixed_scholarships)::int AS scholarships,
     (SELECT count(*) FROM fixed_applications)::int AS applications
 `;
@@ -133,7 +151,7 @@ async function main() {
       }
       return result;
     });
-    console.log(`[catalog audit] Reviewed=${counts.reviewed}; matched=${counts.matched}; scholarship corrections=${counts.scholarships}; untouched saved deadlines corrected=${counts.applications}.`);
+    console.log(`[catalog audit] Reviewed=${counts.reviewed}; matched=${counts.matched}; new scholarships=${counts.inserted}; scholarship corrections=${counts.scholarships}; untouched saved deadlines corrected=${counts.applications}.`);
   } catch (error) {
     const code = typeof error?.code === "string" && /^[A-Z0-9_]{1,40}$/.test(error.code) ? error.code : "UNKNOWN";
     console.error(`[catalog audit] Failed (${code}). Check audit evidence, database availability and schema permissions.`);
