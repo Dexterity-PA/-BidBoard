@@ -3,28 +3,85 @@ import { sql } from "drizzle-orm";
 import { db } from "@/db";
 import type { AnalyticsDays } from "./presentation";
 
-export type AnalyticsTotals = { page_views: number; visits: number; browsers: number; returning_browsers: number; new_browsers: number; signups: number; saves: number; newsletter: number; multi_page_visits: number; converted_visits: number; geo_visits: number };
-export type AnalyticsSource = { source: string; campaign: string; visits: number; signups: number; saves: number; newsletter: number };
-export type DailyTraffic = { date: string; visits: number; page_views: number; new_browsers: number; signups: number; saves: number; newsletter: number };
+export type AnalyticsTotals = {
+  page_views: number;
+  visits: number;
+  browsers: number;
+  returning_browsers: number;
+  new_browsers: number;
+  signups: number;
+  saves: number;
+  newsletter: number;
+  multi_page_visits: number;
+  converted_visits: number;
+  geo_visits: number;
+};
+export type AnalyticsSource = {
+  source: string;
+  campaign: string;
+  visits: number;
+  signups: number;
+  saves: number;
+  newsletter: number;
+};
+export type DailyTraffic = {
+  date: string;
+  visits: number;
+  page_views: number;
+  new_browsers: number;
+  signups: number;
+  saves: number;
+  newsletter: number;
+};
 export type Breakdown = { label: string; visits: number };
-export type RegionTraffic = { country: string | null; region: string | null; visits: number };
+export type RegionTraffic = {
+  country: string | null;
+  region: string | null;
+  visits: number;
+};
 export type PageTraffic = { path: string; views: number; visits: number };
 export type AnalyticsReport = {
-  totals: AnalyticsTotals; previous: AnalyticsTotals; comparable: boolean;
-  daily: DailyTraffic[]; countries: RegionTraffic[]; regions: RegionTraffic[];
-  devices: Breakdown[]; browsers: Breakdown[]; operatingSystems: Breakdown[];
-  sources: AnalyticsSource[]; pages: PageTraffic[]; landingPages: Breakdown[];
+  totals: AnalyticsTotals;
+  previous: AnalyticsTotals;
+  comparable: boolean;
+  daily: DailyTraffic[];
+  countries: RegionTraffic[];
+  regions: RegionTraffic[];
+  devices: Breakdown[];
+  browsers: Breakdown[];
+  operatingSystems: Breakdown[];
+  sources: AnalyticsSource[];
+  pages: PageTraffic[];
+  landingPages: Breakdown[];
   hourly: { hour: number; visits: number }[];
-  quality: { internal_visits: number; scanner_referrals: number; first_event: string | null; last_event: string | null; first_dimensions: string | null };
-  days: AnalyticsDays; includeInternal: boolean; since: string; generatedAt: string;
+  quality: {
+    internal_visits: number;
+    scanner_referrals: number;
+    first_event: string | null;
+    last_event: string | null;
+    first_dimensions: string | null;
+  };
+  days: AnalyticsDays;
+  includeInternal: boolean;
+  since: string;
+  generatedAt: string;
 };
 
 /** Every panel uses one database snapshot and the same internal-traffic filter. */
-export function analyticsReportQuery(days: AnalyticsDays, includeInternal = false, now = new Date()) {
-  const since = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - (days - 1) * 86400_000);
+export function analyticsReportQuery(
+  days: AnalyticsDays,
+  includeInternal = false,
+  now = new Date(),
+) {
+  const since = new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) -
+      (days - 1) * 86400_000,
+  );
   const previousSince = new Date(since.getTime() - days * 86400_000);
   const previousEnd = new Date(now.getTime() - days * 86400_000);
-  return { since: since.toISOString(), query: sql`
+  return {
+    since: since.toISOString(),
+    query: sql`
     WITH bounds AS (SELECT ${since.toISOString()}::timestamptz AS start_at, ${now.toISOString()}::timestamptz AS end_at,
       ${previousSince.toISOString()}::timestamptz AS previous_start, ${previousEnd.toISOString()}::timestamptz AS previous_end),
     retained AS (SELECT * FROM analytics_events WHERE created_at >= ${new Date(now.getTime() - 90 * 86400_000).toISOString()}::timestamptz AND created_at <= (SELECT end_at FROM bounds)),
@@ -94,13 +151,40 @@ export function analyticsReportQuery(days: AnalyticsDays, includeInternal = fals
         'first_dimensions', (SELECT min(created_at) FROM retained WHERE country IS NOT NULL OR device IS NOT NULL)
       )
     ) AS report
-  ` };
+  `,
+  };
 }
-const emptyTotals: AnalyticsTotals = { page_views: 0, visits: 0, browsers: 0, returning_browsers: 0, new_browsers: 0, signups: 0, saves: 0, newsletter: 0, multi_page_visits: 0, converted_visits: 0, geo_visits: 0 };
-export async function analyticsReport(days: AnalyticsDays, includeInternal = false): Promise<AnalyticsReport> {
+const emptyTotals: AnalyticsTotals = {
+  page_views: 0,
+  visits: 0,
+  browsers: 0,
+  returning_browsers: 0,
+  new_browsers: 0,
+  signups: 0,
+  saves: 0,
+  newsletter: 0,
+  multi_page_visits: 0,
+  converted_visits: 0,
+  geo_visits: 0,
+};
+export async function analyticsReport(
+  days: AnalyticsDays,
+  includeInternal = false,
+): Promise<AnalyticsReport> {
   const now = new Date();
   const { since, query } = analyticsReportQuery(days, includeInternal, now);
   const result = await db.execute(query);
-  const report = result.rows[0].report as Omit<AnalyticsReport, 'days' | 'includeInternal' | 'since' | 'generatedAt'>;
-  return { ...report, totals: report.totals || { ...emptyTotals }, previous: report.previous || { ...emptyTotals }, days, includeInternal, since, generatedAt: now.toISOString() };
+  const report = result.rows[0].report as Omit<
+    AnalyticsReport,
+    "days" | "includeInternal" | "since" | "generatedAt"
+  >;
+  return {
+    ...report,
+    totals: report.totals || { ...emptyTotals },
+    previous: report.previous || { ...emptyTotals },
+    days,
+    includeInternal,
+    since,
+    generatedAt: now.toISOString(),
+  };
 }
