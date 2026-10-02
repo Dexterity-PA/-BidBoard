@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy | Meritously",
   description:
     "Meritously's Privacy Policy. Learn what data we collect, how we use it, and how we protect it.",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy | Meritously",
     description:
       "Meritously's Privacy Policy. Learn what data we collect, how we use it, and how we protect it.",
-    url: "https://bidboard.app/privacy",
+    url: "https://meritously.com/privacy",
     siteName: "Meritously",
     type: "website",
   },

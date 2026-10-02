@@ -4,6 +4,8 @@ import DeadlineBoard, { type BoardRow } from "@/components/merit/DeadlineBoard";
 import NewsletterForm from "@/components/merit/NewsletterForm";
 import { LISTINGS, awardTier, coverageHint, maxDollars, type MeritListing } from "@/lib/merit/catalog";
 
+export const metadata = { alternates: { canonical: "/" } };
+
 function valueLabel(l: MeritListing): string | null {
   const hint = coverageHint(l);
   if (hint) return hint;

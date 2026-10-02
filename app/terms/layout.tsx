@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms of Service | Meritously",
   description:
     "Meritously's Terms of Service. Read the terms governing use of our merit scholarship finder.",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
     title: "Terms of Service | Meritously",
     description:
       "Meritously's Terms of Service. Read the terms governing use of our merit scholarship finder.",
-    url: "https://bidboard.app/terms",
+    url: "https://meritously.com/terms",
     siteName: "Meritously",
     type: "website",
   },

@@ -2,7 +2,7 @@
 
 Meritously is a free, student-built merit scholarship finder. Students can browse a source-linked catalog, answer four optional profile questions to find potential matches, and create an account to save awards and track deadlines. Matching is a starting point, not a guarantee of eligibility; students confirm the full requirements on each award's official page.
 
-The live site remains at [bidboard.app](https://www.bidboard.app). The repository name and working email addresses keep the original domain. Some older research and strategy tools remain in the codebase but are not part of the current public homepage.
+The live site is [meritously.com](https://meritously.com). The original bidboard.app domain redirects visitors to the same paths on meritously.com. Some older research and strategy tools remain in the codebase but are not part of the current public homepage.
 
 ## Scholarship source reviews
 
@@ -171,7 +171,7 @@ cp .env.example .env.local
 | `OPENAI_API_KEY` | OpenAI API key (text-embedding-3-small) |
 | `RESEND_API_KEY` | Resend API key |
 | `RESEND_FROM_EMAIL` | Verified sending address (e.g. `notifications@yourdomain.com`) |
-| `NEXT_PUBLIC_APP_URL` | Public base URL (e.g. `https://www.bidboard.app`) |
+| `NEXT_PUBLIC_APP_URL` | Public base URL (e.g. `https://meritously.com`) |
 | `CRON_SECRET` | Random secret for protecting cron endpoints (`openssl rand -hex 32`) |
 | `NEWSLETTER_SECRET` | Optional stable secret for newsletter unsubscribe links; falls back to `CRON_SECRET` |
 | `ANALYTICS_ENABLED` | Set to `true` to enable first-party outreach measurement |

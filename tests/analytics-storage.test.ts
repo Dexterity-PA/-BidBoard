@@ -41,6 +41,7 @@ describe("analytics data minimization", () => {
   it("keeps only bounded campaign labels and referring hostname", () => {
     expect(campaignLabel("School-Fall_2026")).toBe("school-fall_2026");
     expect(referringHostname("https://www.google.com/search?q=private&token=secret")).toBe("www.google.com");
+    expect(referringHostname("https://meritously.com/scholarships?token=secret")).toBeNull();
     expect(referringHostname("https://www.bidboard.app/scholarships?token=secret")).toBeNull();
     expect(referringHostname("https://192.0.2.1/private")).toBeNull();
     expect(referringHostname("https://name:secret@example.com/")).toBeNull();

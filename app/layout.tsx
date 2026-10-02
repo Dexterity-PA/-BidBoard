@@ -25,14 +25,14 @@ const description =
   "Find potential merit scholarship matches with four answers. Browse college awards and competitions with official sources, then save awards and track deadlines for free.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.bidboard.app"),
+  metadataBase: new URL("https://meritously.com"),
   title,
   description,
   icons: { icon: "/icon.svg" },
   openGraph: {
     title,
     description,
-    url: "https://bidboard.app",
+    url: "https://meritously.com",
     siteName: "Meritously",
     type: "website",
   },

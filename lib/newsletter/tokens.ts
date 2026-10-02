@@ -50,7 +50,7 @@ export function cooldownKey(kind: "ip" | "email", value: string) {
 }
 
 export function newsletterAppUrl() {
-  const url = new URL(process.env.NEXT_PUBLIC_APP_URL || "https://www.bidboard.app");
+  const url = new URL(process.env.NEXT_PUBLIC_APP_URL || "https://meritously.com");
   if (!/^https?:$/.test(url.protocol)) throw new Error("Newsletter app URL is invalid");
   return url.origin;
 }

@@ -42,7 +42,7 @@ export default function SocialPreview({
         }}
       >
         <span>Free for students.</span>
-        <span>bidboard.app</span>
+        <span>meritously.com</span>
       </div>
     </div>
   );

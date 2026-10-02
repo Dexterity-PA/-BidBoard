@@ -29,7 +29,7 @@ export function referringHostname(value: unknown): string | null {
     const host = url.hostname.toLowerCase().replace(/\.$/, "");
     if (!["https:", "http:"].includes(url.protocol) || url.username || url.password || host.length > 253 ||
         !/^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,63}$/.test(host) ||
-        /(?:^|\.)(?:bidboard\.app|localhost|local|internal|test|invalid|example)$/.test(host)) return null;
+        /(?:^|\.)(?:meritously\.com|bidboard\.app|localhost|local|internal|test|invalid|example)$/.test(host)) return null;
     return host;
   } catch { return null; }
 }

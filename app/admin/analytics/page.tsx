@@ -46,7 +46,7 @@ export default async function AnalyticsPage() {
       <p>Browsers are random browser identifiers, not people. Returning browsers have at least two recorded visits within retained history. Clearing storage, switching devices, privacy preferences and blockers affect these counts.</p>
       <p>Account creation, successful saves per account and award, and confirmed digest opt-ins are deduplicated within 90 days of retained history. These are activity totals, not the current subscriber or tracker size. No historic user list was imported; recent accounts can appear when a visit completes after signup.</p>
       <p>Source attribution comes from the current visit. Confirmations opened in another browser and webhook-only signups can be unattributed. Automated traffic filters are limited; these are outreach estimates.</p>
-      <p>For outreach, use labels without names or emails, for example <code>https://www.bidboard.app/?utm_source=school-newsletter&amp;utm_campaign=fall-2026</code>. Labels accept up to 48 letters, digits, underscores or hyphens.</p>
+      <p>For outreach, use labels without names or emails, for example <code>https://meritously.com/?utm_source=school-newsletter&amp;utm_campaign=fall-2026</code>. Labels accept up to 48 letters, digits, underscores or hyphens.</p>
     </section>
   </main>;
 }

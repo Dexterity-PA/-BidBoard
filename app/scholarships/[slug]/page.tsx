@@ -35,6 +35,7 @@ export async function generateMetadata({
   const l = getDetailListing(slug);
   if (!l) return { title: "Scholarship not found | Meritously" };
   return {
+    alternates: { canonical: `/scholarships/${l.slug}` },
     title: `${l.name}, ${l.provider} | Meritously`,
     description: `${l.value} Deadline: ${l.deadline}.`.slice(0, 300),
     ...(l.status === "excluded" ? { robots: { index: false, follow: true } } : {}),

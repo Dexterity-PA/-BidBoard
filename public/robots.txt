@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /dashboard/
 
-Sitemap: https://bidboard.app/sitemap.xml
+Sitemap: https://meritously.com/sitemap.xml

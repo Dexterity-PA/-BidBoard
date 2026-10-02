@@ -251,7 +251,7 @@ export default function TermsPage() {
               <p style={p}>
                 These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement
                 between you and Meritously, Inc. (&quot;Meritously,&quot; &quot;we,&quot; &quot;our,&quot; or
-                &quot;us&quot;). By accessing or using bidboard.app or any Meritously application, API,
+                &quot;us&quot;). By accessing or using meritously.com or any Meritously application, API,
                 or service (collectively, the &quot;Service&quot;), you acknowledge that you have
                 read, understood, and agree to be bound by these Terms and our{" "}
                 <Link href="/privacy" style={{ color: C.indigo, textDecoration: "underline" }}>

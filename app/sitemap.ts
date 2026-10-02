@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getVerification, LISTINGS } from "@/lib/merit/catalog";
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://bidboard.app";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://meritously.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

@@ -623,7 +623,7 @@ export default function PrivacyPage() {
               without changing meaning) will not trigger a notification, but will still
               update the date. The current version of this policy is always available at{" "}
               <Link href="/privacy" style={{ color: C.indigo, textDecoration: "none" }}>
-                bidboard.app/privacy
+                meritously.com/privacy
               </Link>
               .
             </p>

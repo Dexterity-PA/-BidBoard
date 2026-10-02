@@ -36,7 +36,7 @@ beforeEach(() => {
   vi.resetAllMocks();
   vi.stubEnv("NEWSLETTER_SECRET", "newsletter-test-secret-only");
   vi.stubEnv("CRON_SECRET", "cron-test-secret-only");
-  vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://www.bidboard.app");
+  vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://meritously.com");
   mock.send.mockResolvedValue({ data: { id: "provider-message-id" }, error: null });
   mock.claimCooldown.mockResolvedValue(true);
   mock.reservePendingSubscription.mockResolvedValue({ id: subscriberId, email: "student@example.com", status: "pending" });
@@ -227,7 +227,7 @@ describe("confirmed-only weekly delivery", () => {
 
 describe("public API contracts", () => {
   function json(path: string, body: unknown) {
-    return new Request(`https://www.bidboard.app${path}`, { method: "POST", headers: { "content-type": "application/json", "x-forwarded-for": "192.0.2.1" }, body: JSON.stringify(body) });
+    return new Request(`https://meritously.com${path}`, { method: "POST", headers: { "content-type": "application/json", "x-forwarded-for": "192.0.2.1" }, body: JSON.stringify(body) });
   }
 
   it("gives existing confirmed and new requests the same generic response", async () => {
@@ -246,14 +246,14 @@ describe("public API contracts", () => {
   });
 
   it("accepts confirmation forms and signed one-click unsubscribe POSTs", async () => {
-    const confirmation = await confirmRoute(new Request("https://www.bidboard.app/api/newsletter/confirm", { method: "POST", body: new URLSearchParams({ token: confirmationToken() }) }));
+    const confirmation = await confirmRoute(new Request("https://meritously.com/api/newsletter/confirm", { method: "POST", body: new URLSearchParams({ token: confirmationToken() }) }));
     expect(await confirmation.json()).toEqual({ ok: true, status: "confirmed" });
-    const response = await unsubscribeRoute(new Request(`https://www.bidboard.app/api/newsletter/unsubscribe?token=${unsubscribeToken(subscriberId)}`, { method: "POST", body: "List-Unsubscribe=One-Click" }));
+    const response = await unsubscribeRoute(new Request(`https://meritously.com/api/newsletter/unsubscribe?token=${unsubscribeToken(subscriberId)}`, { method: "POST", body: "List-Unsubscribe=One-Click" }));
     expect(await response.json()).toEqual({ ok: true, status: "unsubscribed" });
   });
 
   it("rejects unauthenticated cron requests before querying recipients", async () => {
-    const response = await cronRoute(new Request("https://www.bidboard.app/api/cron/weekly-digest"));
+    const response = await cronRoute(new Request("https://meritously.com/api/cron/weekly-digest"));
     expect(response.status).toBe(401);
     expect(mock.reserveDigestBatch).not.toHaveBeenCalled();
   });

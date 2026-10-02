@@ -16,7 +16,7 @@ vi.mock("@/lib/analytics/server", async (importOriginal) => ({
 import { DELETE, POST } from "@/app/api/analytics/visit/route";
 import { ANALYTICS_COOKIE } from "@/lib/analytics/shared";
 
-const origin = "https://www.bidboard.app";
+const origin = "https://meritously.com";
 const now = new Date("2026-09-28T18:00:00Z");
 const attribution = {
   browser: "11111111-1111-4111-8111-111111111111",
