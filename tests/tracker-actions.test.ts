@@ -3,7 +3,7 @@ import { PgDialect } from "drizzle-orm/pg-core";
 import type { SQL } from "drizzle-orm";
 
 const mocks = vi.hoisted(() => ({
-  auth: vi.fn(), currentUser: vi.fn(), after: vi.fn(),
+  auth: vi.fn(), currentUser: vi.fn(), after: vi.fn(), syncAccount: vi.fn(),
   select: vi.fn(), selectWhere: vi.fn(), selectLimit: vi.fn(),
   insert: vi.fn(), insertValues: vi.fn(), insertConflict: vi.fn(), insertReturning: vi.fn(), recordConversion: vi.fn(),
   update: vi.fn(), updateValues: vi.fn(), updateWhere: vi.fn(), updateReturning: vi.fn(),
@@ -13,6 +13,7 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock("@clerk/nextjs/server", () => ({ auth: mocks.auth, currentUser: mocks.currentUser }));
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/accounts/sync", () => ({ syncAccount: mocks.syncAccount }));
 vi.mock("next/server", () => ({ after: mocks.after }));
 vi.mock("@/db", () => ({ db: {
   select: mocks.select, insert: mocks.insert, update: mocks.update, delete: mocks.delete,
@@ -21,7 +22,7 @@ vi.mock("@/lib/activity", () => ({ logActivity: mocks.logActivity }));
 vi.mock("@/lib/email/send/status-change", () => ({ sendStatusChangeEmail: mocks.sendStatusChangeEmail }));
 vi.mock("@/lib/analytics/server", () => ({ recordConversion: mocks.recordConversion }));
 
-import { applications, scholarshipMatches, users } from "@/db/schema";
+import { applications, scholarshipMatches } from "@/db/schema";
 import { ensureUserRow } from "@/lib/ensure-user";
 import {
   saveToTracker, updateApplicationStatus, updateApplicationNotes,
@@ -29,7 +30,7 @@ import {
 } from "@/app/actions/tracker";
 import { saveMerit } from "@/app/actions/merit";
 
-const userId = "test-owner";
+const userId = "user_test_owner";
 const dialect = new PgDialect();
 let followUps: (() => Promise<unknown>)[];
 
@@ -170,17 +171,16 @@ describe("saving an award", () => {
   });
 
   it("recovers a missing webhook row using the authenticated Clerk account", async () => {
-    mocks.selectLimit.mockResolvedValue([]);
+    mocks.selectLimit.mockResolvedValueOnce([]);
     mocks.currentUser.mockResolvedValue({
-      id: userId, firstName: "Test", lastName: "Student",
-      primaryEmailAddress: { emailAddress: "student@example.test" },
+      id: userId, firstName: "Test", lastName: "Student", updatedAt: 1800000000000, createdAt: 1800000000000,
+      primaryEmailAddress: { id: "primary", emailAddress: "student@example.test" },
     });
     await ensureUserRow(userId);
-    expect(mocks.insert).toHaveBeenCalledWith(users);
-    expect(mocks.insertValues).toHaveBeenCalledWith({
-      id: userId, firstName: "Test", lastName: "Student", email: "student@example.test",
-    });
-    expect(mocks.insertConflict).toHaveBeenCalledWith({ target: users.id });
+    expect(mocks.syncAccount).toHaveBeenCalledWith(expect.objectContaining({
+      id: userId, email: "student@example.test", deleted: false,
+    }));
+    expect(mocks.insert).not.toHaveBeenCalled();
   });
 
   it("rejects a Clerk account mismatch during missing-row recovery", async () => {

@@ -1,3 +1,4 @@
+import { observeJob } from "@/lib/health/server";
 import { NextResponse } from "next/server";
 import { runNewsletterDigest } from "@/lib/newsletter/digest";
 
@@ -11,7 +12,7 @@ export async function GET(req: Request) {
   }
 
   try {
-    const result = await runNewsletterDigest();
+    const result = await observeJob("weekly-digest", runNewsletterDigest);
     return NextResponse.json({ ok: result.failed === 0, ...result }, { status: result.failed ? 503 : 200 });
   } catch {
     return NextResponse.json({ error: "Cron failed" }, { status: 500 });

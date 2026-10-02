@@ -16,7 +16,7 @@ type Cell =
 
 type Row = {
   feature: string
-  bidboard: Cell
+  meritously: Cell
   goingmerry: Cell
   fastweb: Cell
   scholarshipscom: Cell
@@ -31,56 +31,56 @@ const TABS: { id: Competitor; label: string }[] = [
 const ROWS: Row[] = [
   {
     feature: 'EV-based matching',
-    bidboard: { kind: 'yes', note: 'Every scholarship scored by expected value.' },
+    meritously: { kind: 'yes', note: 'Every scholarship scored by expected value.' },
     goingmerry: { kind: 'no', note: 'Generic keyword matching only.' },
     fastweb: { kind: 'no', note: 'Profile-based, no EV ranking.' },
     scholarshipscom: { kind: 'no', note: 'Directory listings, no ranking.' },
   },
   {
     feature: 'AI essay help',
-    bidboard: { kind: 'yes', note: 'Essay recycling + tailored drafts.' },
+    meritously: { kind: 'yes', note: 'Essay recycling + tailored drafts.' },
     goingmerry: { kind: 'no' },
     fastweb: { kind: 'no' },
     scholarshipscom: { kind: 'no' },
   },
   {
     feature: 'Unlimited scholarships',
-    bidboard: { kind: 'yes' },
+    meritously: { kind: 'yes' },
     goingmerry: { kind: 'yes' },
     fastweb: { kind: 'yes' },
     scholarshipscom: { kind: 'yes' },
   },
   {
     feature: 'Verified amounts',
-    bidboard: { kind: 'yes', note: 'Award figures verified against source.' },
+    meritously: { kind: 'yes', note: 'Award figures verified against source.' },
     goingmerry: { kind: 'no' },
     fastweb: { kind: 'no', note: 'Often outdated.' },
     scholarshipscom: { kind: 'no' },
   },
   {
     feature: 'Live updates',
-    bidboard: { kind: 'yes', note: 'Daily scrape + drift detection.' },
+    meritously: { kind: 'yes', note: 'Daily scrape + drift detection.' },
     goingmerry: { kind: 'no' },
     fastweb: { kind: 'no' },
     scholarshipscom: { kind: 'no' },
   },
   {
     feature: 'Counselor tools',
-    bidboard: { kind: 'yes', note: '50 student seats + ROI dashboards.' },
+    meritously: { kind: 'yes', note: '50 student seats + ROI dashboards.' },
     goingmerry: { kind: 'yes', note: 'Counselor portal (defunct).' },
     fastweb: { kind: 'no' },
     scholarshipscom: { kind: 'no' },
   },
   {
     feature: 'Price',
-    bidboard: { kind: 'text', value: 'Free', tone: 'accent' },
+    meritously: { kind: 'text', value: 'Free', tone: 'accent' },
     goingmerry: { kind: 'text', value: 'Free', tone: 'neutral' },
     fastweb: { kind: 'text', value: 'Free (ad-funded)', tone: 'neutral' },
     scholarshipscom: { kind: 'text', value: 'Free (ad-funded)', tone: 'neutral' },
   },
   {
     feature: 'Status',
-    bidboard: { kind: 'text', value: 'Active', tone: 'accent' },
+    meritously: { kind: 'text', value: 'Active', tone: 'accent' },
     goingmerry: { kind: 'text', value: 'Shut down Mar 2026', tone: 'warn' },
     fastweb: { kind: 'text', value: 'Active', tone: 'neutral' },
     scholarshipscom: { kind: 'text', value: 'Active', tone: 'neutral' },
@@ -449,7 +449,7 @@ export default function ComparisonSection() {
                     alignItems: 'center',
                   }}
                 >
-                  <CellView cell={row.bidboard} />
+                  <CellView cell={row.meritously} />
                 </div>
                 <div
                   style={{

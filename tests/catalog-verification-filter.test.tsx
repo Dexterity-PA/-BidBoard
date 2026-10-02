@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import CatalogBrowser from "@/components/merit/CatalogBrowser";
 import { getVerification, type MeritListing } from "@/lib/merit/catalog";
 
@@ -15,8 +15,8 @@ vi.mock("@/lib/merit/match", async (importOriginal) => ({
 
 afterEach(cleanup);
 
-describe("catalog source verification filter", () => {
-  it("hides incomplete, old and missing reviews even when a program is classified Listed", () => {
+describe("internal catalog source reviews", () => {
+  it("keeps review states internal without public badges or filters", () => {
     const records: MeritListing[] = ["current", "partial", "stale", "unknown"].map((id) => ({
       id, slug: id, name: `${id} scholarship`, provider: "Example Foundation", type: "scholarship",
       status: "live", value: "$1,000", deadline: "Not published", deadlineDate: null,
@@ -29,11 +29,11 @@ describe("catalog source verification filter", () => {
     }));
     render(<CatalogBrowser listings={records} initial={{}} />);
     expect(screen.getByText("4 listings")).toBeTruthy();
-    fireEvent.click(screen.getByRole("checkbox", { name: /Unconfirmed listings/ }));
-    expect(screen.getByRole("link", { name: /current scholarship/ })).toBeTruthy();
-    for (const id of ["partial", "stale", "unknown"]) {
-      expect(screen.queryByRole("link", { name: new RegExp(`${id} scholarship`) })).toBeNull();
+    expect(screen.queryByRole("checkbox", { name: /Unconfirmed listings/ })).toBeNull();
+    for (const id of ["current", "partial", "stale", "unknown"]) {
+      expect(screen.getByRole("link", { name: new RegExp(`${id} scholarship`) })).toBeTruthy();
     }
-    expect(screen.getByText("1 listing")).toBeTruthy();
+    expect(screen.queryByText(/Fully verified|Partially verified|Not verified|Recheck needed/)).toBeNull();
+    expect(getVerification(records[1])?.outcome).toBe("partial");
   });
 });

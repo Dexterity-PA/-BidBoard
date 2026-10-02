@@ -94,7 +94,8 @@ describe("durable analytics writes", () => {
   });
   it("enforces a durable network rate limit without persisting raw addresses", async () => {
     expect(await allowAnalyticsRequest("192.0.2.55", new Date("2026-09-28T10:00:00Z"))).toBe(true);
-    expect(query().sql).toContain("WHERE analytics_rate_limits.count < 120 RETURNING key");
+    expect(query().sql).toMatch(/WHERE analytics_rate_limits.count < \$\d+ RETURNING key/);
+    expect(query().params).toContain(120);
     expect(query().params).not.toContain("192.0.2.55");
     mock.execute.mockResolvedValue({ rows: [] });
     expect(await allowAnalyticsRequest("192.0.2.55")).toBe(false);

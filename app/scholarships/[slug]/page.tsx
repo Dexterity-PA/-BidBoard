@@ -17,7 +17,6 @@ import {
   getVerification,
   requirements,
   timelineSteps,
-  verificationLabel,
   verificationState,
   type MeritListing,
 } from "@/lib/merit/catalog";
@@ -281,7 +280,6 @@ export default async function ListingPage({
                   </li>
                 ))}
               </ul>
-              {verification?.outcome && <p className="m-fine"><strong>{verificationLabel(verification)}</strong></p>}
               <p className="m-fine">
                 {verification
                   ? <>{verification.outcome === "unavailable" ? "Review attempted" : "Last checked"} {formatISODate(verification.checkedAt)}. </>

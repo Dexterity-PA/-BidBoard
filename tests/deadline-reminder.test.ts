@@ -75,14 +75,14 @@ describe("deadline reminder delivery", () => {
       .mockResolvedValueOnce({ success: false, reason: "Provider rejected the message" })
       .mockResolvedValueOnce({ success: true });
 
-    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1 });
+    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 0, failed: 1 });
     expect(mocks.insert).not.toHaveBeenCalled();
     expect(dedupe).toEqual([]);
 
-    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 1, skipped: 0 });
+    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 1, skipped: 0, failed: 0 });
     expect(dedupe).toEqual([{ userId: "test-user", scholarshipId: 12, type: "deadline_1d" }]);
 
-    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1 });
+    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1, failed: 0 });
     expect(mocks.sendEmail).toHaveBeenCalledTimes(2);
     expect(mocks.insert).toHaveBeenCalledTimes(1);
   });
@@ -90,7 +90,7 @@ describe("deadline reminder delivery", () => {
   it("does not send or deduplicate a reminder when preferences disallow it", async () => {
     mocks.getDeadlineReminderDays.mockResolvedValue([]);
 
-    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1 });
+    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1, failed: 0 });
     expect(mocks.sendEmail).not.toHaveBeenCalled();
     expect(mocks.insert).not.toHaveBeenCalled();
   });
@@ -99,7 +99,7 @@ describe("deadline reminder delivery", () => {
     mocks.getDeadlineReminderDays.mockResolvedValue([3, 7, 14]);
     awardsByDay[1] = [{ ...award, applicationId: 8, scholarshipId: 13, deadline: "2026-10-01" }];
 
-    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 1, skipped: 0 });
+    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 1, skipped: 0, failed: 0 });
     expect(mocks.getDeadlineReminderDays).toHaveBeenCalledExactlyOnceWith("test-user");
     expect(mocks.sendEmail).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({
       metadata: { scholarshipIds: [13] },
@@ -111,7 +111,7 @@ describe("deadline reminder delivery", () => {
   it("does not send an empty email when every pending reminder day is opted out", async () => {
     mocks.getDeadlineReminderDays.mockResolvedValue([3, 7, 14]);
 
-    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1 });
+    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1, failed: 0 });
     expect(mocks.sendEmail).not.toHaveBeenCalled();
     expect(mocks.insert).not.toHaveBeenCalled();
   });
@@ -119,7 +119,7 @@ describe("deadline reminder delivery", () => {
   it("does not deduplicate a rate-limited reminder", async () => {
     mocks.sendEmail.mockResolvedValue({ success: false, reason: "rate_limited" });
 
-    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1 });
+    await expect(runDeadlineReminderCron()).resolves.toEqual({ sent: 0, skipped: 1, failed: 0 });
     expect(mocks.insert).not.toHaveBeenCalled();
   });
 });

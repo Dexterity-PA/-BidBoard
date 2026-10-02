@@ -1,5 +1,6 @@
 "use client";
 
+import { reportPageError } from "@/lib/health/client";
 import { useEffect } from "react";
 
 export default function GlobalError({
@@ -10,6 +11,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
+    reportPageError("root");
     console.error("[Meritously] Global error:", error);
   }, [error]);
 

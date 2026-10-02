@@ -1,5 +1,6 @@
 "use client";
 
+import { reportPageError } from "@/lib/health/client";
 import { useEffect } from "react";
 import Link from "next/link";
 
@@ -25,6 +26,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
+    reportPageError("app");
     console.error("[Meritously] Runtime error:", error);
   }, [error]);
 

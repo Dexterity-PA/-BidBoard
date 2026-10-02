@@ -23,6 +23,7 @@ vi.mock("next/navigation", () => ({
   },
 }));
 vi.mock("@/lib/analytics/report", () => ({ analyticsReport: mocks.report }));
+vi.mock("@/lib/health/server", () => ({ healthSnapshot: async () => null }));
 vi.mock("@/lib/analytics/server", () => ({ analyticsEnabled: () => true }));
 import AnalyticsPage from "@/app/admin/analytics/page";
 import styles from "@/app/admin/analytics/page.module.css";

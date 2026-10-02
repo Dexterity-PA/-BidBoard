@@ -176,7 +176,8 @@ cp .env.example .env.local
 | `NEWSLETTER_SECRET` | Optional stable secret for newsletter unsubscribe links; falls back to `CRON_SECRET` |
 | `ANALYTICS_ENABLED` | Set to `true` to enable first-party outreach measurement |
 | `ANALYTICS_SECRET` | Stable random secret used to hash analytics identifiers |
-| `ANALYTICS_ADMIN_EMAIL` | Exact Clerk-verified email allowed to open `/admin/analytics` |
+| `ANALYTICS_ADMIN_EMAIL` | Exact Clerk-verified email allowed to open `/admin/analytics`; also receives owner failure alerts |
+| `HEALTH_ALERTS_ENABLED` | Set to `true` in production to send owner failure alerts through Resend |
 
 ### Private analytics
 
@@ -297,3 +298,21 @@ The three email cron routes are secured by the `CRON_SECRET` header. Configure t
 ### Clerk Webhooks
 
 In the Clerk dashboard, add a webhook pointing to `https://yourdomain.com/api/auth/webhook` and subscribe to the `user.created` and `user.updated` events. Copy the signing secret into `CLERK_WEBHOOK_SECRET`.
+
+### Private app health
+
+The owner analytics dashboard shows account-sync failures, coarse page-render errors,
+and the latest deadline-reminder and newsletter runs. History expires after 30 days.
+With `HEALTH_ALERTS_ENABLED=true`, production sends owner alerts to `ANALYTICS_ADMIN_EMAIL`.
+Each failure category sends at most one email per UTC day; browser errors require
+three reports within 15 minutes. Provider acceptance and failed owner alerts appear
+in the dashboard. An alert delivery failure does not recursively send another alert.
+
+The daily `/api/cron/health-check` runs at 17:00 UTC and checks missing or stalled
+email jobs. Job monitoring starts at deployment, so earlier missed runs are not
+reported as new failures. Ensure the existing signed Clerk webhook subscribes to
+`user.created`, `user.updated`, and `user.deleted` for account synchronization.
+
+Release builds run TypeScript checks and the test suite before applying additive
+production migrations. Tests use an isolated database configuration and cannot
+send production owner alerts.

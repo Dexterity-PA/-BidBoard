@@ -7,6 +7,7 @@ const mock = vi.hoisted(() => ({
   confirmSubscription: vi.fn(), unsubscribe: vi.fn(), reserveDigestBatch: vi.fn(),
   claimRetryBatch: vi.fn(), confirmedBatchRecipients: vi.fn(), saveBatchPayload: vi.fn(), finishBatch: vi.fn(), hasUnclaimedRecipients: vi.fn(),
 }));
+vi.mock("@/lib/health/server", () => ({ observeJob: (_job: string, work: () => Promise<unknown>) => work() }));
 vi.mock("@/lib/email/client", () => ({ FROM_EMAIL: "newsletter@example.com", getResend: () => ({ emails: { send: mock.send }, batch: { send: mock.batchSend } }) }));
 vi.mock("@/lib/newsletter/repository", () => ({
   claimCooldown: mock.claimCooldown, releaseCooldown: mock.releaseCooldown,

@@ -48,15 +48,16 @@ const SKIP_STATUSES = ["submitted", "won", "lost", "skipped"];
 export async function runDeadlineReminderCron(): Promise<{
   sent: number;
   skipped: number;
+  failed: number;
 }> {
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  today.setUTCHours(0, 0, 0, 0);
 
   const allPending: PendingReminder[] = [];
 
   for (const days of REMINDER_DAYS) {
     const targetDate = new Date(today);
-    targetDate.setDate(targetDate.getDate() + days);
+    targetDate.setUTCDate(targetDate.getUTCDate() + days);
     const targetDateStr = targetDate.toISOString().slice(0, 10);
 
     const rows = await db
@@ -97,6 +98,7 @@ export async function runDeadlineReminderCron(): Promise<{
 
   let sent = 0;
   let skipped = 0;
+  let failed = 0;
 
   for (const [userId, reminders] of byUser) {
     const allowedDays = await getDeadlineReminderDays(userId);
@@ -164,10 +166,12 @@ export async function runDeadlineReminderCron(): Promise<{
           .onConflictDoNothing();
       }
       sent++;
-    } else {
+    } else if (["preference_disabled", "rate_limited"].includes(result.reason ?? "")) {
       skipped++;
+    } else {
+      failed++;
     }
   }
 
-  return { sent, skipped };
+  return { sent, skipped, failed };
 }
