@@ -541,6 +541,12 @@ export default function PrivacyPage() {
               begins after 30 minutes without a tracked page navigation. Identifiers are
               hashed before database storage. We do not track you across websites or
               share these measurements with advertising networks.
+              We also record approximate country and state or region provided by our
+              hosting service, along with broad device, browser and operating system
+              categories. We do not store raw IP addresses, raw browser user agents,
+              city, postal code, GPS coordinates or precise location in these analytics.
+              Measurements are retained for up to 90 days. Older measurements may
+              have no regional or device information.
             </p>
 
             <p style={subHeading}>What We Don't Use</p>

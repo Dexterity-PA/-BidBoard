@@ -2,6 +2,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 import { ANALYTICS_COOKIE, ANALYTICS_OPTOUT, analyticsPath, cleanAttribution } from "@/lib/analytics/shared";
 import { allowAnalyticsRequest, analyticsEnabled, recordConversion, recordPageView, trackingDeclined } from "@/lib/analytics/server";
+import { visitMetadata } from "@/lib/analytics/metadata";
 
 export const runtime = "nodejs";
 
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
     if (!path || !attribution) return new NextResponse(null, { status: 400 });
     const ip = (request.headers.get("x-vercel-forwarded-for") || request.headers.get("x-forwarded-for") || "unknown").split(",")[0].trim();
     if (!await allowAnalyticsRequest(ip)) return new NextResponse(null, { status: 429 });
-    await recordPageView(attribution, path);
+    await recordPageView(attribution, path, visitMetadata(request.headers));
     // Count a verified Clerk-created account, never a client-provided signup event.
     // This complements the webhook and can attach the current visit's source.
     const { userId } = await auth();

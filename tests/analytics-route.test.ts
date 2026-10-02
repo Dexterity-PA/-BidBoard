@@ -103,7 +103,7 @@ describe("public analytics endpoint boundaries", () => {
     expect(mocks.allowed).toHaveBeenCalledWith("192.0.2.1");
     expect(mocks.page).toHaveBeenCalledExactlyOnceWith({
       ...attribution, source: null, campaign: null,
-    }, "/scholarships/[award]");
+    }, "/scholarships/[award]", { country: null, region: null, device: null, browser: null, os: null });
     expect(mocks.conversion).not.toHaveBeenCalled();
     const cookie = response.cookies.get(ANALYTICS_COOKIE);
     expect(cookie?.httpOnly).toBe(true);

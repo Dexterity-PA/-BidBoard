@@ -3,50 +3,48 @@ import Link from "next/link";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import { isAnalyticsAdmin } from "@/lib/analytics/access";
-import { analyticsReport, type AnalyticsTotals } from "@/lib/analytics/report";
+import { analyticsReport, type AnalyticsTotals, type Breakdown } from "@/lib/analytics/report";
 import { analyticsEnabled } from "@/lib/analytics/server";
+import { analyticsOptions, countryName, regionName, growthLabel } from "@/lib/analytics/presentation";
+import TrafficChart from "./TrafficChart";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Analytics | Meritously", robots: { index: false, follow: false } };
+const number = (value: number) => value.toLocaleString("en-US");
+const rate = (value: number, total: number) => total ? `${(100 * value / total).toFixed(1)}%` : "0.0%";
+const pageName = (path: string) => path === "/" ? "Homepage" : path === "/scholarships" ? "Scholarship browser" : "Award detail pages";
+const timestamp = (value: string | null) => value ? new Date(value).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "UTC" }) + " UTC" : "No data yet";
 
-const metrics: [keyof AnalyticsTotals, string][] = [
-  ["visits", "Visits"], ["page_views", "Page views"], ["browsers", "Browsers"],
-  ["returning_browsers", "Returning browsers"], ["signups", "New accounts"],
-  ["saves", "Awards saved"], ["newsletter", "Confirmed digest opt-ins"],
-];
+function Bars({ rows, total, unit = "visits" }: { rows: Breakdown[]; total: number; unit?: string }) {
+  return rows.length ? <ul className={styles.bars}>{rows.map(row => <li key={row.label}><div><span>{row.label}</span><strong>{number(row.visits)} <small>{rate(row.visits,total)}</small></strong></div><div className={styles.barTrack}><span style={{width:rate(row.visits,total)}} /></div></li>)}</ul> : <p className={styles.empty}>No {unit} recorded yet.</p>;
+}
 
-export default async function AnalyticsPage() {
+export default async function AnalyticsPage({ searchParams }: { searchParams?: Promise<Record<string,string|string[]|undefined>> } = {}) {
   const { userId } = await auth();
   if (!userId || !process.env.ANALYTICS_ADMIN_EMAIL) notFound();
   const user = await currentUser();
   if (!isAnalyticsAdmin(user, process.env.ANALYTICS_ADMIN_EMAIL, userId)) notFound();
-
-  let reports;
-  try { reports = await Promise.all(([7, 30] as const).map(async (days) => ({ days, ...await analyticsReport(days) }))); }
+  const {days, includeInternal} = analyticsOptions(await searchParams || {});
+  let report;
+  try { report = await analyticsReport(days, includeInternal); }
   catch { return <main className={styles.main}><Link href="/">Meritously</Link><h1>Analytics</h1><p>Analytics is temporarily unavailable. No counts are shown until the database can be read.</p></main>; }
-
+  const {totals, previous, quality} = report;
+  const link = (nextDays = days, internal = includeInternal) => `?days=${nextDays}${internal ? "&internal=1" : ""}`;
+  const primary: [keyof AnalyticsTotals, string, string][] = [["visits","Visits","Distinct recorded sessions"],["browsers","Browsers","Browser identifiers, not people"],["page_views","Page views","Each page counted once per visit"],["new_browsers","New browsers","First seen in retained history"]];
+  const countries = report.countries.map(row => ({label:countryName(row.country),visits:row.visits}));
+  const regions = report.regions.map(row => ({label:regionName(row.country,row.region),visits:row.visits}));
   return <main className={styles.main}>
-    <Link href="/">Meritously</Link>
-    <h1>Outreach analytics</h1>
-    <p>Private owner dashboard. {analyticsEnabled() ? "Measurement is enabled." : "Measurement is disabled."} Windows end now; times use UTC.</p>
-    {reports.map(({ days, totals, sources }) => <section key={days} className={styles.section}>
-      <h2>Last {days} days</h2>
-      <dl className={styles.cards}>{metrics.map(([key, label]) => <div key={key}><dt>{label}</dt><dd>{Number(totals?.[key] ?? 0).toLocaleString("en-US")}</dd></div>)}</dl>
-      <h3>Sources and campaigns</h3>
-      <div className={styles.tableScroll} tabIndex={0} role="region" aria-label={`Sources for the last ${days} days`}>
-        <table><thead><tr><th scope="col">Source</th><th scope="col">Campaign</th><th scope="col">Visits</th><th scope="col">Accounts</th><th scope="col">Saves</th><th scope="col">Digest opt-ins</th></tr></thead>
-          <tbody>{sources.map((row, index) => <tr key={index}><th scope="row">{row.source}</th><td>{row.campaign || "None"}</td><td>{row.visits}</td><td>{row.signups}</td><td>{row.saves}</td><td>{row.newsletter}</td></tr>)}</tbody>
-        </table>
-      </div>
-      {sources.length === 0 && <p>No measurements in this window yet.</p>}
-    </section>)}
-    <section className={styles.section}><h2>Reading these numbers</h2>
-      <p>A visit ends after 30 minutes without a tracked page navigation. Each discovery page counts once per visit; reloads do not add views. Award detail pages are grouped together.</p>
-      <p>Browsers are random browser identifiers, not people. Returning browsers have at least two recorded visits within retained history. Clearing storage, switching devices, privacy preferences and blockers affect these counts.</p>
-      <p>Account creation, successful saves per account and award, and confirmed digest opt-ins are deduplicated within 90 days of retained history. These are activity totals, not the current subscriber or tracker size. No historic user list was imported; recent accounts can appear when a visit completes after signup.</p>
-      <p>Source attribution comes from the current visit. Confirmations opened in another browser and webhook-only signups can be unattributed. Automated traffic filters are limited; these are outreach estimates.</p>
-      <p>For outreach, use labels without names or emails, for example <code>https://meritously.com/?utm_source=school-newsletter&amp;utm_campaign=fall-2026</code>. Labels accept up to 48 letters, digits, underscores or hyphens.</p>
-    </section>
+    <header className={styles.header}><div><Link href="/" className={styles.brand}>Meritously</Link><h1>Audience & growth</h1><p>Understand how people find scholarships and take their next step.</p></div><span className={styles.status}>{analyticsEnabled() ? "Measurement enabled" : "Measurement disabled"}</span></header>
+    <div className={styles.toolbar}><nav aria-label="Reporting period" className={styles.periods}>{([7,30,90] as const).map(window => <Link key={window} href={link(window)} aria-current={days===window ? "page" : undefined}>Last {window} days</Link>)}</nav><div className={styles.actions}><Link href={link(days,!includeInternal)}>{includeInternal ? "Exclude internal tests" : "Include internal tests"}</Link><Link href={`/api/analytics/export?days=${days}${includeInternal ? "&internal=1" : ""}`}>Export CSV</Link><Link href={link()}>Refresh</Link></div></div>
+    <p className={styles.context}>UTC calendar days through now. Updated {timestamp(report.generatedAt)}. {includeInternal ? "Internal tests included." : `${number(quality.internal_visits)} internal test visits excluded.`}</p>
+    <dl className={styles.cards}>{primary.map(([key,label,note]) => <div key={key}><dt>{label}</dt><dd>{number(totals[key])}</dd><p>{growthLabel(totals[key],previous[key],report.comparable)}</p><small>{note}</small></div>)}</dl>
+    <section className={styles.panel}><div className={styles.panelHeading}><div><h2>Traffic over time</h2><p>Daily activity and cumulative browser growth.</p></div><span className={styles.tag}>Last {days} days</span></div><TrafficChart daily={report.daily} firstEvent={quality.first_event} /><details className={styles.details}><summary>View daily numbers</summary><div className={styles.tableScroll}><table><thead><tr><th>Date (UTC)</th><th>Visits</th><th>Page views</th><th>New browsers</th><th>Accounts</th><th>Saves</th><th>Digest opt-ins</th></tr></thead><tbody>{report.daily.map(row => <tr key={row.date}><th>{row.date}</th>{[row.visits,row.page_views,row.new_browsers,row.signups,row.saves,row.newsletter].map((value,i) => <td key={i}>{quality.first_event && row.date >= quality.first_event.slice(0,10) ? number(value) : "Unavailable"}</td>)}</tr>)}</tbody></table></div></details></section>
+    <section className={styles.section}><div className={styles.panelHeading}><div><h2>Where visits come from</h2><p>Approximate country and state or region. {number(totals.geo_visits)} of {number(totals.visits)} visits have location data.</p></div><span className={styles.tag}>{rate(totals.geo_visits,totals.visits)} coverage</span></div><div className={styles.twoColumns}><div className={styles.panel}><h3>Countries</h3><Bars rows={countries} total={totals.visits} /></div><div className={styles.panel}><h3>States & regions</h3><Bars rows={regions} total={totals.visits} /></div></div><p className={styles.caption}>Regional collection starts with this update. Older visits remain Unknown. Network location can differ from a visitor&apos;s actual location.</p></section>
+    <section className={styles.section}><h2>Engagement & outcomes</h2><dl className={styles.outcomes}><div><dt>Multi-page visits</dt><dd>{number(totals.multi_page_visits)} <small>{rate(totals.multi_page_visits,totals.visits)}</small></dd><p>Visits with two or more tracked page groups.</p></div><div><dt>Returning browsers</dt><dd>{number(totals.returning_browsers)}</dd><p>Seen in an earlier visit within retained history.</p></div><div><dt>Visits with an outcome</dt><dd>{number(totals.converted_visits)} <small>{rate(totals.converted_visits,totals.visits)}</small></dd><p>Recorded account, save or confirmed digest opt-in linked to a visit.</p></div><div><dt>Pages per visit</dt><dd>{totals.visits ? (totals.page_views/totals.visits).toFixed(2) : "0.00"}</dd><p>Unique tracked page groups per visit.</p></div></dl><div className={styles.twoColumns}><div className={styles.panel}><h3>Recorded outcomes</h3><dl className={styles.conversions}>{([["signups","New accounts"],["saves","Awards saved"],["newsletter","Confirmed digest opt-ins"]] as const).map(([key,label]) => <div key={key}><dt>{label}</dt><dd>{number(totals[key])}</dd></div>)}</dl><p className={styles.caption}>Independent activity totals, including outcomes without browser attribution. These are not a sequential funnel.</p></div><div className={styles.panel}><h3>Outcomes over time</h3><TrafficChart daily={report.daily} firstEvent={quality.first_event} conversions /></div></div></section>
+    <section className={styles.panel}><h2>Sources & campaigns</h2><p>Compare distribution channels with the outcomes they generate.</p><div className={styles.tableScroll}><table><thead><tr><th>Source</th><th>Campaign</th><th>Visits</th><th>Share</th><th>Accounts</th><th>Saves</th><th>Digest opt-ins</th></tr></thead><tbody>{report.sources.map((row,i) => <tr key={i}><th>{row.source}</th><td>{row.campaign||"None"}</td><td>{number(row.visits)}</td><td>{rate(row.visits,totals.visits)}</td><td>{number(row.signups)}</td><td>{number(row.saves)}</td><td>{number(row.newsletter)}</td></tr>)}</tbody></table></div>{!report.sources.length && <p className={styles.empty}>No sources recorded yet.</p>}</section>
+    <section className={styles.section}><h2>Pages & visit timing</h2><div className={styles.twoColumns}><div className={styles.panel}><h3>Page activity</h3><div className={styles.tableScroll}><table><thead><tr><th>Page group</th><th>Page views</th><th>Visits</th></tr></thead><tbody>{report.pages.map(row => <tr key={row.path}><th>{pageName(row.path)}</th><td>{number(row.views)}</td><td>{number(row.visits)}</td></tr>)}</tbody></table></div><h3>First page in a visit</h3><Bars rows={report.landingPages.map(row => ({...row,label:pageName(row.label)}))} total={totals.visits} /></div><div className={styles.panel}><h3>Visits by hour (UTC)</h3><div className={styles.hourly} role="img" aria-label="Visits by hour in UTC"><div>{report.hourly.map(row => <span key={row.hour} style={{height:`${Math.max(2,100*row.visits/Math.max(1,...report.hourly.map(h=>h.visits)))}%`}} title={`${String(row.hour).padStart(2,"0")}:00 UTC: ${row.visits} visits`} />)}</div><p><span>00:00</span><span>12:00</span><span>23:00</span></p></div><details className={styles.details}><summary>View hourly numbers</summary><div className={styles.tableScroll}><table><thead><tr><th>Hour (UTC)</th><th>Visits</th></tr></thead><tbody>{report.hourly.map(row=><tr key={row.hour}><th>{String(row.hour).padStart(2,"0")}:00</th><td>{row.visits}</td></tr>)}</tbody></table></div></details><p className={styles.caption}>Each visit is assigned to its first recorded page in this period.</p></div></div></section>
+    <section className={styles.section}><h2>Devices & browsers</h2><div className={styles.threeColumns}>{[["Devices",report.devices],["Browsers",report.browsers],["Operating systems",report.operatingSystems]].map(([title,rows])=><div className={styles.panel} key={String(title)}><h3>{String(title)}</h3><Bars rows={rows as Breakdown[]} total={totals.visits} /></div>)}</div></section>
+    <section className={`${styles.panel} ${styles.quality}`}><h2>Measurement quality</h2><dl><div><dt>Earliest retained measurement</dt><dd>{timestamp(quality.first_event)}</dd></div><div><dt>Latest measurement</dt><dd>{timestamp(quality.last_event)}</dd></div><div><dt>Regional & device collection</dt><dd>{timestamp(quality.first_dimensions)}</dd></div><div><dt>Security-link referrals</dt><dd>{number(quality.scanner_referrals)} visits</dd></div></dl><p>Browser identifiers are not verified people. Security-link referrals can be either people or automated checks. Direct / unknown means no source was captured.</p><p>Only the homepage, scholarship browser and grouped award details are measured. Reloads do not add page views. Award details are grouped, so browsing several awards does not count as several page groups.</p><p>History is retained for 90 days; new and returning browsers refer to that retained history. Missing historical region or device data stays Unknown. Growth comparisons appear only when enough history exists. Privacy preferences and blockers can reduce counts.</p><p>For outreach, label links such as <code>https://meritously.com/?utm_source=school-newsletter&amp;utm_campaign=fall-2026</code>.</p></section>
   </main>;
 }

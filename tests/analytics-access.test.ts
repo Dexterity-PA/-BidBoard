@@ -18,7 +18,7 @@ beforeEach(() => {
   mocks.auth.mockResolvedValue({ userId: "owner-id" });
   mocks.currentUser.mockResolvedValue(owner);
   mocks.notFound.mockImplementation(() => { throw new Error("NEXT_NOT_FOUND"); });
-  mocks.report.mockResolvedValue({ totals: {}, sources: [] });
+  mocks.report.mockResolvedValue({ totals: {visits:0,browsers:0,page_views:0,new_browsers:0,returning_browsers:0,multi_page_visits:0,converted_visits:0,geo_visits:0,signups:0,saves:0,newsletter:0}, previous: {}, sources: [], daily: [], countries: [], regions: [], devices: [], browsers: [], operatingSystems: [], pages: [], landingPages: [], hourly: [], quality: {internal_visits:0,scanner_referrals:0,first_event:null,last_event:null,first_dimensions:null}, generatedAt:"2026-10-02T12:00:00Z", comparable:false });
 });
 afterEach(() => vi.unstubAllEnvs());
 
@@ -70,13 +70,11 @@ describe("owner analytics access", () => {
     expect(mocks.report).not.toHaveBeenCalled();
   });
 
-  it("loads both report windows for the verified owner", async () => {
+  it("loads the selected report for the verified owner", async () => {
     const page = await AnalyticsPage();
     expect(page).toBeTruthy();
     expect(mocks.notFound).not.toHaveBeenCalled();
-    expect(mocks.report).toHaveBeenCalledTimes(2);
-    expect(mocks.report).toHaveBeenNthCalledWith(1, 7);
-    expect(mocks.report).toHaveBeenNthCalledWith(2, 30);
+    expect(mocks.report).toHaveBeenCalledExactlyOnceWith(30, false);
   });
 
   it("stops unconfigured dashboards before reading analytics", async () => {
