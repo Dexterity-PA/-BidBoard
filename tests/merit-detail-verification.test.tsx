@@ -29,6 +29,13 @@ async function renderPage() {
 }
 
 describe("scholarship verification copy", () => {
+  it.each(["live", "watchlist"] as const)("keeps the %s catalog status internal without showing a confidence badge", async (status) => {
+    mocks.listing.mockReturnValue({ ...LISTINGS[0], status });
+    mocks.verification.mockReturnValue(null);
+    const html = await renderPage();
+    expect(html).not.toMatch(/<span[^>]*>(Listed|Unconfirmed)<\/span>/);
+    expect(mocks.listing.mock.results[0].value.status).toBe(status);
+  });
   it("keeps a retired award readable without promoting a new application or save", async () => {
     mocks.listing.mockReturnValue({ ...LISTINGS[0], status: "excluded", deadlineDate: null });
     mocks.verification.mockReturnValue({ checkedAt: "2026-09-29", sourceUrls: LISTINGS[0].sources,

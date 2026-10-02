@@ -404,15 +404,8 @@ export function DateBlock({ iso, today, emptyLabel = "No confirmed date" }: { is
 }
 
 function StatusBadge({ l }: { l: MeritListing }) {
-  if (l.status === "excluded") return null;
-  const cls =
-    l.status === "live"
-      ? "m-badge-verified"
-      : l.status === "watchlist"
-        ? "m-badge-watch"
-        : l.status === "mixed-need"
-          ? "m-badge-need"
-          : "m-badge-dir";
+  if (l.status !== "mixed-need" && l.status !== "directory") return null;
+  const cls = l.status === "mixed-need" ? "m-badge-need" : "m-badge-dir";
   return <span className={`m-badge ${cls}`}>{STATUS_LABEL[l.status]}</span>;
 }
 
