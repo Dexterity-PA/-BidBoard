@@ -87,14 +87,7 @@ export default async function ListingPage({
   // Tags already covered by "What you'll need" are not repeated as badges.
   const REQ_TAGS = new Set(["automatic-consideration", "checkbox-opt-in", "separate-application", "honors-application", "nomination", "invitation-only", "recommendations", "essay", "essays", "short-essay", "video", "portfolio", "research-required", "speech", "interview", "finalist-round", "membership", "local-route", "acceptance-required", "fafsa-required", "fee"]);
   const shownTags = l.tags.filter((t) => TAG_LABEL[t] && !REQ_TAGS.has(t));
-  const statusClass =
-    l.status === "live"
-      ? "m-badge-verified"
-      : l.status === "watchlist"
-        ? "m-badge-watch"
-        : l.status === "mixed-need"
-          ? "m-badge-need"
-          : "m-badge-dir";
+  const statusClass = l.status === "mixed-need" ? "m-badge-need" : "m-badge-dir";
 
   return (
     <div className="m-page">
@@ -111,7 +104,7 @@ export default async function ListingPage({
             <h1 className="m-detail-title">{l.name}</h1>
             <div className="m-detail-badges">
               {retired && <span className="m-badge">Retired</span>}
-              {l.status !== "excluded" && (
+              {(l.status === "mixed-need" || l.status === "directory") && (
                 <span className={`m-badge ${statusClass}`}>{STATUS_LABEL[l.status]}</span>
               )}
               <span className="m-badge">{TYPE_LABEL[l.type]}</span>
