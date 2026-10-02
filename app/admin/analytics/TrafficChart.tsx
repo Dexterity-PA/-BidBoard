@@ -113,7 +113,7 @@ export default function TrafficChart({
               role="img"
               aria-label={`${labels[metric]} from ${dateLabel(measured[0].date)} to ${dateLabel(measured[measured.length - 1].date)}. Explore exact counts with the date slider or daily table.`}
             >
-              <title>{labels[metric]} over time</title>
+              <title>{`${labels[metric]} over time`}</title>
               {[0, 0.5, 1].map((f) => (
                 <g key={f}>
                   <line
@@ -145,9 +145,7 @@ export default function TrafficChart({
                   fill="#17634b"
                   onMouseEnter={() => setSelected(i)}
                 >
-                  <title>
-                    {dateLabel(measured[i].date)}: {v} {labels[metric]}
-                  </title>
+                  <title>{`${dateLabel(measured[i].date)}: ${v} ${labels[metric]}`}</title>
                 </circle>
               ))}
               <line
