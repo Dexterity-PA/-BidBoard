@@ -105,21 +105,18 @@
     "sourceUrls": [
       "https://www.udel.edu/apply/undergraduate-admissions/explore-majors-and-enrichment/honors/",
       "https://www.udel.edu/students/student-financial-services/undergraduate/",
-      "https://www.udel.edu/apply/undergraduate-admissions/apply-to-ud/",
       "https://www.udel.edu/apply/undergraduate-admissions/apply-to-ud/freshman-admissions/"
     ],
-    "notes": "The November 1 Honors/Early Action cutoff and later invitation dates have no explicit Fall 2027 year on the program/admissions timeline.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The November 1 Honors/Early Action cutoff and later invitation dates have no explicit Fall 2027 year on the program/admissions timeline."
-    ]
+    "unresolved": []
   },
   "C007": {
     "checkedAt": "2026-10-01",
@@ -213,21 +210,21 @@
     "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.agnesscott.edu/admission/undergraduate-admission/scholarships-financial-aid/",
-      "https://www.agnesscott.edu/about/index.html",
       "https://www.agnesscott.edu/admission/undergraduate-admission/scholarships-financial-aid/understanding-financial-aid.html",
-      "https://www.agnesscott.edu/admission/undergraduate-admission/scholarships-financial-aid/cost-of-agnes.html"
+      "https://www.agnesscott.edu/admission/undergraduate-admission/scholarships-financial-aid/cost-of-agnes.html",
+      "https://www.agnesscott.edu/admission/undergraduate-admission/high-school-students/index.html"
     ],
-    "notes": "Invited Presidential essay extension to February 6 has no explicit 2027 cycle year.",
+    "notes": "The public February 6 invited essay deadline is described as an extension without a dated cycle; current invitation-specific essay timing cannot be independently confirmed.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
       "deadline": "unconfirmed",
-      "application": "supported",
+      "application": "corrected",
       "eligibility": "supported"
     },
     "unresolved": [
-      "Invited Presidential essay extension to February 6 has no explicit 2027 cycle year."
+      "The public February 6 invited essay deadline is described as an extension without a dated cycle; current invitation-specific essay timing cannot be independently confirmed."
     ]
   },
   "C012": {
@@ -339,20 +336,19 @@
     "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.iit.edu/admissions-aid/tuition-and-aid/scholarships/first-year-student-scholarships/duchossois-leadership-scholars-program",
-      "https://www.iit.edu/admissions-aid/tuition-and-aid/scholarships/first-year-student-scholarships/camras-scholars-program"
+      "https://www.iit.edu/resources-admitted-students/undergraduate/events-and-orientation/leadership-symposium",
+      "https://apply.illinoistech.edu/register/ugscholarshipform"
     ],
-    "notes": "Duchossois November 15 and Leadership Symposium stages have no explicit Fall 2027 dates.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "Duchossois November 15 and Leadership Symposium stages have no explicit Fall 2027 dates."
-    ]
+    "unresolved": []
   },
   "C017B": {
     "checkedAt": "2026-10-01",
@@ -543,18 +539,16 @@
       "https://admission.tulane.edu/apply/deadlines-forms",
       "https://financialaid.tulane.edu/undergraduate/prospective"
     ],
-    "notes": "Official award/program sources confirm the listed current program. Full tuition for four undergraduate years, or five in the accredited five-year architecture track. Maintain 3.0 cumulative GPA and continuous full-time Newcomb-Tulane College enrollment. Admission: November 1 ED I, November 10 EA, January 15 ED II/RD. Aid priority: November 15 ED I, December 15 EA, January 15 ED II, February 15 RD (years unstated). Current merit consideration follows the admission/aid process; Fall 2027 dates are unconfirmed. Complete admission, CSS Profile, FAFSA if eligible, requested supporting documents and optional test scores for fullest merit consideration. International non-U.S. citizens also submit the Declaration & Certification of Finances. No separate initial DHS application starting with the high-school class of 2026; an optional supplement may be uploaded. Incoming first-time undergraduate applicants, including international students. Academic excellence, leadership and community involvement are evaluated; published recipient GPA/test profiles are not minimums. Scores are optional but preferred for scholarship review; financial information may also be evaluated. At least 12 credits each fall/spring; June renewal review and academic/student conduct requirements apply. Cannot combine DHS with another Tulane merit award, ROTC, faculty/staff waiver or Tuition Exchange; partial athletic and qualifying need-based aid may combine. Admissions confirms the newer no-separate-application rule; older DHS aid text still mentions a scholarship application. Current Stamps and Grossman & Cohen are separate awards; a new Paul Tulane award is not established.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "Fall 2027 admission and aid dates are not explicitly dated in current pages."
-    ]
+    "unresolved": []
   },
   "C026": {
     "checkedAt": "2026-09-29",
@@ -993,21 +987,18 @@
       "https://www.stevens.edu/admission-aid/tuition-financial-aid/stevens-scholarships",
       "https://www.stevens.edu/page-basic/admissions-timeline",
       "https://www.stevens.edu/page-basic/how-to-apply-for-aid",
-      "https://www.stevens.edu/page-right-nav/applying-for-financial-aid",
       "https://www.stevens.edu/page-chapter/terms-and-conditions"
     ],
-    "notes": "Official award/program sources confirm the listed current program. Full tuition for up to eight semesters. Admission: November 15 ED I; December 1 Early Action; January 5 ED II/Regular Decision (years unstated). No separate Neupauer application deadline; Fall 2027 admission cycle dates are not explicitly confirmed. Apply for undergraduate admission on time; automatically considered without a separate Neupauer application. CSS Profile is required for institutional need-based aid and FAFSA for federal/state aid, rather than a separately stated Neupauer merit application. Current scholarship page and institutional terms agree on eight full-time semesters, 3.2 cumulative GPA at spring review and SAP. Failure to meet renewal criteria prevents later reinstatement.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "corrected"
     },
-    "unresolved": [
-      "The admission deadlines are not explicitly assigned to the Fall 2027 cycle."
-    ]
+    "unresolved": []
   },
   "C044": {
     "checkedAt": "2026-10-01",
@@ -1315,18 +1306,16 @@
       "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/global-honors-admissions/",
       "https://honorscollege.uncg.edu/lloyd-international-honors-college/academics/admissions-scholarships/scholarships/reynolds-scholarship/"
     ],
-    "notes": "The application and interview dates are published without cycle years.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "corrected",
+      "deadline": "corrected",
+      "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The application and interview dates are published without cycle years."
-    ]
+    "unresolved": []
   },
   "C057A": {
     "checkedAt": "2026-10-01",
@@ -1740,18 +1729,16 @@
       "https://www.furman.edu/financial-aid/understanding-your-financial-aid-package/",
       "https://www.furman.edu/admissions-aid/apply/"
     ],
-    "notes": "The priority deadline and selection stages lack explicit Fall 2027 cycle years and exact interview dates.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The priority deadline and selection stages lack explicit Fall 2027 cycle years and exact interview dates."
-    ]
+    "unresolved": []
   },
   "C074": {
     "checkedAt": "2026-09-29",
@@ -1799,18 +1786,16 @@
       "https://www.rhodes.edu/admission-aid/apply-rhodes/first-year-application-checklist",
       "https://www.rhodes.edu/admission-aid/international-student-admission/international-application-checklist"
     ],
-    "notes": "Admission deadlines lack explicit Fall 2027 cycle years.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "Admission deadlines lack explicit Fall 2027 cycle years."
-    ]
+    "unresolved": []
   },
   "C077A": {
     "checkedAt": "2026-09-29",
@@ -1855,24 +1840,24 @@
   "C078": {
     "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://trinity.edu/admissions/aid/types/scholarships",
       "https://trinity.edu/admissions/aid/types/scholarships/murchison",
       "https://trinity.edu/admissions/aid/types/scholarships/trinity-tower",
       "https://trinity.edu/admissions/aid/types/scholarships/semmes-science",
+      "https://docs.google.com/document/d/1ceFr1jKIG7PYbWsY4FgugQyRb3XIo9KVRfcLXARngFQ/edit?tab=t.0",
       "https://policies.trinity.edu/a8376318-ebd6-421f-be63-acf8c88376a1_f5c16267-8581-4476-9648-c7d3530861af.html"
     ],
-    "notes": "Tower’s official pages disagree on whether there are up to 20 or 25 awards. Murchison and Tower deadlines lack explicit cycle years, and Tower’s 2027 competition date is unpublished.",
+    "notes": "The Tower award page gives conflicting limits of up to 25 and up to 20 scholarships. The exact 2027 Scholars Day competition date is not published.",
     "outcome": "partial",
     "checks": {
-      "identity": "unconfirmed",
-      "value": "corrected",
+      "identity": "corrected",
+      "value": "unconfirmed",
       "deadline": "unconfirmed",
-      "application": "supported",
-      "eligibility": "supported"
+      "application": "corrected",
+      "eligibility": "corrected"
     },
     "unresolved": [
-      "Tower’s official pages disagree on whether there are up to 20 or 25 awards.",
-      "Murchison and Tower deadlines lack explicit cycle years, and Tower’s 2027 competition date is unpublished."
+      "The Tower award page gives conflicting limits of up to 25 and up to 20 scholarships.",
+      "The exact 2027 Scholars Day competition date is not published."
     ]
   },
   "C079": {
@@ -1940,7 +1925,7 @@
     ]
   },
   "C081": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.smu.edu/provost/saes/academic-enrichment/honors-and-scholars-programs/presidents-scholars/scholarship-information",
       "https://www.smu.edu/provost/saes/academic-enrichment/honors-and-scholars-programs/presidents-scholars/scholarship-information/application",
@@ -1948,18 +1933,16 @@
       "https://www.smu.edu/enrollment-services/student-financial-services/scholarships",
       "https://www.smu.edu/enrollment-services/student-financial-services/apply-for-aid"
     ],
-    "notes": "The award and its separate conditional housing and meal benefit are confirmed. Fall 2027 dates are not explicitly published; this scholarship requires test scores even though general admission is test optional.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "corrected",
+      "application": "corrected",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "Fall 2027 cycle years and the exact finalist interview date are not explicitly published."
-    ]
+    "unresolved": []
   },
   "C082": {
     "checkedAt": "2026-09-29",
@@ -2092,24 +2075,24 @@
     "unresolved": []
   },
   "C088": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.jeffersonscholars.org/scholarships/selection",
       "https://www.jeffersonscholars.org/scholarships",
       "https://www.jeffersonscholars.org/scholarships/walentas-faqs",
       "https://admission.virginia.edu/admission/deadlines-instructions"
     ],
-    "notes": "The foundation lists December 1 for counselor and nominee materials but does not label the cycle year. Nomination and UVA admission are separate. The Jefferson award is intended to cover UVA's full cost of attendance for four years, plus enrichment.",
+    "notes": "The current Foundation sources confirm eight full-time semesters but do not establish additional scholarship-specific continuation/renewal conditions.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
-      "value": "supported",
-      "deadline": "unconfirmed",
+      "value": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
     "unresolved": [
-      "The Foundation has not explicitly labeled December 1 with a 2026-27 cycle year on its public selection page."
+      "The current Foundation sources confirm eight full-time semesters but do not establish additional scholarship-specific continuation/renewal conditions."
     ]
   },
   "C089": {
@@ -2242,25 +2225,24 @@
     ]
   },
   "C096": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://admission.tulane.edu/tuition-aid/merit-scholarships",
-      "https://admission.tulane.edu/apply/instructions/",
+      "https://financialaid.tulane.edu/resources/how-financial-aid-works/maintaining-eligibility/merit-scholarship-continuation-requirements",
       "https://admission.tulane.edu/apply/deadlines-forms",
-      "https://financialaid.tulane.edu/resources/how-financial-aid-works/maintaining-eligibility/merit-scholarship-continuation-requirements"
+      "https://financialaid.tulane.edu/undergraduate/prospective",
+      "https://admission.tulane.edu/apply/instructions/"
     ],
-    "notes": "The partial-merit maximum and current general renewal policy are confirmed. Early Action is November 10; explicit cycle years are not published.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "Admission and aid deadline years are not explicitly identified for the current cycle."
-    ]
+    "unresolved": []
   },
   "C097": {
     "checkedAt": "2026-09-29",
@@ -2307,24 +2289,22 @@
     ]
   },
   "C099": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www2.lehigh.edu/admissions/tuition-affording-college/merit-scholarships",
       "https://www2.lehigh.edu/admissions/apply",
       "https://www2.lehigh.edu/admissions/admissions-requirements"
     ],
-    "notes": "The named award amounts and 3.0 GPA/full-time renewal rules are confirmed. Admission deadline cycle years are not explicit.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "Admission deadline years are not explicitly identified for the current cycle."
-    ]
+    "unresolved": []
   },
   "C100": {
     "checkedAt": "2026-09-29",
@@ -3245,25 +3225,23 @@
     "unresolved": []
   },
   "C217": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://go.okstate.edu/scholarships-financial-aid/types-of-aid/scholarships-and-grants/freshman-scholarships/out-of-state-scholarships",
       "https://go.okstate.edu/admissions/freshman/dates-deadlines",
       "https://go.okstate.edu/admissions/apply",
       "https://go.okstate.edu/admissions/high-school-counselors"
     ],
-    "notes": "OSU has published its 2027-28 out-of-state award grid. Its scholarship timeline lists November 1 and February 1 without calendar years, so confirm the 2027 cycle dates before relying on them.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "OSU has not explicitly dated the fall 2027 early, priority or final scholarship-material deadlines."
-    ]
+    "unresolved": []
   },
   "C218": {
     "checkedAt": "2026-09-29",
@@ -3363,23 +3341,25 @@
     ]
   },
   "C223": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.memphis.edu/scholarships/ftf/out-of-state.php",
       "https://www.memphis.edu/scholarships/pdfs/2027_cohort_out_of_state_freshman_scholarship_opportunities_web.pdf",
-      "https://www.memphis.edu/admissions/apply/"
+      "https://www.memphis.edu/admissions/apply/",
+      "https://www.memphis.edu/scholarships/faq/",
+      "https://www.memphis.edu/scholarships/servicehours/"
     ],
-    "notes": "Memphis publishes a 2027-cohort award chart and lists December 1 priority consideration, with GPA and score updates through March 1. The pages do not state the calendar years for those dates.",
+    "notes": "The grouped academic-award sources do not identify which named awards require service or the applicable number of hours; the public FAQ says if applicable and individual award conditions govern.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "corrected",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "The calendar years for 2027-cohort December 1 priority and March 1 score update deadlines remain unstated."
+      "The grouped academic-award sources do not identify which named awards require service or the applicable number of hours; the public FAQ says if applicable and individual award conditions govern."
     ]
   },
   "C224": {
@@ -4100,21 +4080,24 @@
     "unresolved": []
   },
   "C329": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
-      "https://www.ithaca.edu/tuition-financial-aid/undergraduate-financial-aid/types-financial-aid/scholarships/ithaca-scholarships-new-students"
+      "https://www.ithaca.edu/tuition-financial-aid/undergraduate-financial-aid/types-financial-aid/scholarships/ithaca-scholarships-new-students",
+      "https://www.ithaca.edu/admission/undergraduate-admission/apply-ic/application-deadlines",
+      "https://catalog.ithaca.edu/undergrad/financial-aid/academic-standing-progress/",
+      "https://catalog.ithaca.edu/undergrad/financial-aid/duration-limitations-awards/"
     ],
-    "notes": "Checked full tuition and fees, application and international eligibility. The November 1 deadline has no cycle year.",
+    "notes": "Actual Presidential supplemental questions, required materials and limits are available only through IC Connect after an admission application; no complete public current checklist or preview was found or inspected.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
-      "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "value": "corrected",
+      "deadline": "corrected",
+      "application": "unconfirmed",
       "eligibility": "supported"
     },
     "unresolved": [
-      "Official Presidential page gives November 1 without a cycle year; a dated fall 2027 alternative was not found."
+      "Actual Presidential supplemental questions, required materials and limits are available only through IC Connect after an admission application; no complete public current checklist or preview was found or inspected."
     ]
   },
   "C330": {
@@ -4138,24 +4121,22 @@
     ]
   },
   "C331": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://honors.utsa.edu/topscholars/apply.html",
       "https://honors.utsa.edu/topscholars/index.html",
-      "https://honors.utsa.edu/admissions/info-sessions.html"
+      "https://utsa.academicworks.com/opportunities/13048"
     ],
-    "notes": "Confirmed last-dollar coverage of tuition, fees, room and board, plus renewal rules. The deadline is published without a cycle year.",
-    "outcome": "partial",
+    "notes": "Published award terms and application steps verified. Deadlines are stated as recurring policy unless the official application explicitly supplies a cycle date.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
-      "value": "corrected",
-      "deadline": "unconfirmed",
-      "application": "supported",
-      "eligibility": "supported"
+      "value": "supported",
+      "deadline": "corrected",
+      "application": "corrected",
+      "eligibility": "corrected"
     },
-    "unresolved": [
-      "The deadline is printed as a recurring senior-year December 1 rule; fall 2026 information sessions are dated but the deadline itself lacks a cycle year."
-    ]
+    "unresolved": []
   },
   "C332": {
     "checkedAt": "2026-09-29",
@@ -8216,36 +8197,32 @@
     "sourceUrls": [
       "https://thehawkeronline.com/scholarship/"
     ],
-    "notes": "The sponsor gives annual dates without confirming the next cycle year. Check the current offering before preparing an entry.",
-    "outcome": "partial",
+    "notes": "The sponsor’s standing annual rules confirm October 1, $300, eligibility and the complete email-entry instructions.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "corrected",
+      "deadline": "supported",
+      "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The official scholarship page publishes October 1 annually and October 20 award timing without any cycle year. No 2026 or 2027-specific offering was located."
-    ]
+    "unresolved": []
   },
   "P117": {
     "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://seasonsmalibu.com/scholarship/"
     ],
-    "notes": "The sponsor gives annual dates without confirming the next cycle year. Check the current offering before preparing an entry.",
-    "outcome": "partial",
+    "notes": "The annual two-round policy and current embedded form confirm the award, eligibility and entry requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "corrected",
+      "deadline": "supported",
+      "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "Current page names the Summer 2026 winner, but the May 31 and November 30 application rounds and notification dates remain undated. No explicit next-cycle calendar was located."
-    ]
+    "unresolved": []
   },
   "P118": {
     "checkedAt": "2026-09-29",
@@ -9705,20 +9682,21 @@
       "https://www.smeef.org/sme-education-foundation-scholarships/STEM-Scholarships/",
       "https://www.smeef.org/sme-education-foundation-scholarships/scholarship-application-tips/",
       "https://scholarships.smeef.org/applications/",
-      "https://production.smeef.org/sme-education-foundation-scholarships/scholarship-application-tips/",
-      "https://production.smeef.org/about-smeef/newsroom/press-releases/2026/sme-education-foundation-awards-record-breaking-scholarship-awards-totaling-over-$1.5-million"
+      "https://production.smeef.org/about-smeef/newsroom/press-releases/2026/sme-education-foundation-awards-record-breaking-scholarship-awards-totaling-over-$1.5-million",
+      "https://production.smeef.org/sme-education-foundation-scholarships/scholarship-application-tips/"
     ],
-    "notes": "The 2027-28 application opens November 1, 2026. SME lists February 1 as its annual close but has not dated this round’s close. Individual award terms vary.",
+    "notes": "The standing annual dates and common requirements are confirmed. Current availability conflicts across official pages, and the next-cycle form is not yet inspectable.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "supported",
+      "application": "unconfirmed",
       "eligibility": "supported"
     },
     "unresolved": [
-      "SME has not explicitly dated the February 1 close for the 2027-28 application round."
+      "The next-cycle form and any additional current tasks are unavailable for public inspection.",
+      "Official pages conflict on current application availability."
     ]
   },
   "P323": {
@@ -9729,18 +9707,16 @@
       "https://info.ashrae.org/ScholarshipApplication/",
       "https://www.ashrae.org/about/news/2026/ashrae-awards-225-200-in-society-scholarships-for-2026-2027-academic-year"
     ],
-    "notes": "ASHRAE’s public rules and form confirm the award and annual April 1 policy. A separately dated 2027 cycle notice remains unconfirmed.",
-    "outcome": "partial",
+    "notes": "Current rules and the public application confirm the annual April 1 deadline and all material award requirements.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
+      "deadline": "supported",
       "application": "supported",
       "eligibility": "supported"
     },
-    "unresolved": [
-      "The official application gives April 1 without a year. A deadline for the 2027 application cycle remains unconfirmed."
-    ]
+    "unresolved": []
   },
   "P324": {
     "checkedAt": "2026-09-29",
@@ -10321,21 +10297,21 @@
     ]
   },
   "P426": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://www.peoplesbancorp.com/about-us/commitment-to-communities/robert-e-evans-scholarship/"
     ],
-    "notes": "The Robert E. Evans Scholarship opens January 4, 2027. The bank lists March 31 as its recurring deadline, but has not explicitly dated the 2027 close. Individual amounts vary.",
+    "notes": "The bank confirms its annual March 31 policy and January 4, 2027 opening. The complete upcoming application is still unavailable.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "supported",
+      "application": "unconfirmed",
       "eligibility": "supported"
     },
     "unresolved": [
-      "The page has not explicitly labeled March 31 as the 2027 cutoff; exact 2027 closing time and any changed supplemental tasks remain to be posted."
+      "Complete next-cycle application, supplemental materials and payment terms have not been published."
     ]
   },
   "P427": {
@@ -10740,46 +10716,49 @@
     ]
   },
   "P455": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://nths.org/scholarships-2/",
+      "https://nths.org/",
       "https://kb.nths.org/article/scholarships",
       "https://nths.org/wp-content/uploads/2021/10/2022-NTHS-SCHOLARSHIP-CATALOG.pdf",
       "https://nths.org/portal/scholarships/?view=pop&sch=jonh",
-      "https://nths.org/giving/"
+      "https://nths.org/giving/",
+      "https://nths.org/2026-scholarship-winners/"
     ],
-    "notes": "NTHS currently advertises 275 awards of $1,000 for active members. Its public dates recur from September 1 to May 1 without a stated cycle year; verify the current window in the member portal.",
+    "notes": "The annual window, membership and $1,000 awards are confirmed. Current application terms and selection rules remain behind member login.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
+      "deadline": "supported",
+      "application": "unconfirmed",
       "eligibility": "supported"
     },
     "unresolved": [
-      "NTHS has not dated the September 1 to May 1 window to the 2026-27 scholarship cycle."
+      "The current application terms and selection method could not be confirmed without member access."
     ]
   },
   "P456": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-01",
     "sourceUrls": [
       "https://nths.org/scholarships-2/",
       "https://kb.nths.org/article/scholarships",
       "https://nths.org/wp-content/uploads/2021/10/2022-NTHS-SCHOLARSHIP-CATALOG.pdf",
-      "https://nths.org/byf-scholarship/"
+      "https://nths.org/byf-scholarship/",
+      "https://media-upload-nths.s3.amazonaws.com/wp-content/uploads/2024/01/22141336/BYF-Codes.docx"
     ],
-    "notes": "NTHS currently advertises five $2,000 awards for eligible construction students. Its public application dates have no cycle year; members should check the portal for the current window.",
+    "notes": "The annual window, five $2,000 awards and discipline list are confirmed. Complete current application and selection requirements remain member-protected.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "supported",
-      "deadline": "unconfirmed",
-      "application": "supported",
-      "eligibility": "supported"
+      "deadline": "supported",
+      "application": "unconfirmed",
+      "eligibility": "corrected"
     },
     "unresolved": [
-      "NTHS has not dated the October 1 to April 1 window to the 2026-27 scholarship cycle."
+      "The complete current supporting-material and selection requirements could not be confirmed without member access."
     ]
   },
   "P457": {
@@ -12311,9 +12290,14 @@
     "sourceUrls": [
       "https://www.collegefortn.org/tennessee-hope-scholarship-3/",
       "https://www.collegefortn.org/tennessee-hope-scholarship-faqs/",
-      "https://www.collegefortn.org/tennessee-hope-scholarship-for-home-school/"
+      "https://www.collegefortn.org/tennessee-hope-scholarship-for-home-school/",
+      "https://www.collegefortn.org/wp-content/uploads/2025/09/91880_Senior-Next-Guide-Class-of-2026_Fillable.pdf",
+      "https://www.mtsu.edu/financial-aid/tels/",
+      "https://www.mtsu.edu/financial-aid/wp-content/uploads/sites/42/2024/04/LOTFOD.pdf",
+      "https://ws.edu/cost-aid/types/scholarships/lottery/index.aspx",
+      "https://publications.tnsosfiles.com/rules/1640/1640-01-19.pdf"
     ],
-    "notes": "Published academic, enrolment and homeschool/out-of-state routes checked. Current programme pages do not fully state citizenship and other general statutory eligibility; institution must confirm those conditions.",
+    "notes": "Citizenship, residency, award and application rules confirmed. Exact current state-aid disqualifications involving Selective Service, drug-free rules and state loan/refund obligations still need confirmation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12323,7 +12307,7 @@
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "Published academic, enrolment and homeschool/out-of-state routes checked. Current programme pages do not fully state citizenship and other general statutory eligibility; institution must confirm those conditions."
+      "Current application of state-specific Selective Service and drug-free disqualifications, and exact state-loan default/state-aid refund scope, could not be confirmed from accessible current official HOPE guidance. Citizenship, residence, standard academic rules and institutional processing are resolved."
     ]
   },
   "S006": {
@@ -12332,9 +12316,14 @@
       "https://www.collegefortn.org/general-assembly-merit-scholarship/",
       "https://www.collegefortn.org/tennessee-hope-scholarship-3/",
       "https://www.collegefortn.org/tennessee-hope-scholarship-faqs/",
-      "https://www.collegefortn.org/tennessee-hope-scholarship-for-home-school/"
+      "https://www.collegefortn.org/tennessee-hope-scholarship-for-home-school/",
+      "https://www.collegefortn.org/wp-content/uploads/2025/09/91880_Senior-Next-Guide-Class-of-2026_Fillable.pdf",
+      "https://www.mtsu.edu/financial-aid/tels/",
+      "https://www.mtsu.edu/financial-aid/wp-content/uploads/sites/42/2024/04/LOTFOD.pdf",
+      "https://ws.edu/cost-aid/types/scholarships/lottery/index.aspx",
+      "https://publications.tnsosfiles.com/rules/1640/1640-01-19.pdf"
     ],
-    "notes": "Published academic, enrolment and homeschool/out-of-state routes checked. Current programme pages do not fully state citizenship and other general statutory eligibility; institution must confirm those conditions.",
+    "notes": "Citizenship, residency, award and application rules confirmed. Exact current state-aid disqualifications involving Selective Service, drug-free rules and state loan/refund obligations still need confirmation.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
@@ -12344,7 +12333,7 @@
       "eligibility": "unconfirmed"
     },
     "unresolved": [
-      "Published academic, enrolment and homeschool/out-of-state routes checked. Current programme pages do not fully state citizenship and other general statutory eligibility; institution must confirm those conditions."
+      "Current application of state-specific Selective Service and drug-free disqualifications, and exact state-loan default/state-aid refund scope, could not be confirmed from accessible current official HOPE guidance. Citizenship, residence, standard academic rules and institutional processing are resolved."
     ]
   },
   "S007": {
@@ -15613,5 +15602,71 @@
     "unresolved": [
       "Linked application inaccessible with HTTP 401; open/closed status and fields not confirmed."
     ]
+  },
+  "C552": {
+    "checkedAt": "2026-10-01",
+    "sourceUrls": [
+      "https://trinity.edu/admissions/aid/types/scholarships/murchison",
+      "https://trinity.edu/admissions/apply",
+      "https://trinity.edu/admissions/apply/requirements",
+      "https://policies.trinity.edu/a8376318-ebd6-421f-be63-acf8c88376a1_f5c16267-8581-4476-9648-c7d3530861af.html",
+      "https://trinity.edu/admissions/aid/types/international"
+    ],
+    "notes": "Award-specific official terms and required application materials are supported.",
+    "outcome": "verified",
+    "checks": {
+      "identity": "supported",
+      "value": "supported",
+      "deadline": "supported",
+      "application": "supported",
+      "eligibility": "supported"
+    },
+    "unresolved": []
+  },
+  "C553": {
+    "checkedAt": "2026-10-01",
+    "sourceUrls": [
+      "https://trinity.edu/admissions/aid/types/scholarships/trinity-tower",
+      "https://trinity.edu/admissions/apply",
+      "https://trinity.edu/admissions/apply/requirements",
+      "https://policies.trinity.edu/a8376318-ebd6-421f-be63-acf8c88376a1_f5c16267-8581-4476-9648-c7d3530861af.html",
+      "https://trinity.edu/admissions/aid/types/international"
+    ],
+    "notes": "The Tower award page gives conflicting limits of up to 25 and up to 20 scholarships. The exact 2027 Scholars Day competition date is not published.",
+    "outcome": "partial",
+    "checks": {
+      "identity": "supported",
+      "value": "unconfirmed",
+      "deadline": "unconfirmed",
+      "application": "supported",
+      "eligibility": "supported"
+    },
+    "unresolved": [
+      "The Tower award page gives conflicting limits of up to 25 and up to 20 scholarships.",
+      "The exact 2027 Scholars Day competition date is not published."
+    ]
+  },
+  "C554": {
+    "checkedAt": "2026-10-01",
+    "sourceUrls": [
+      "https://trinity.edu/admissions/aid/types/scholarships/semmes-science",
+      "https://docs.google.com/document/d/1ceFr1jKIG7PYbWsY4FgugQyRb3XIo9KVRfcLXARngFQ/edit?tab=t.0",
+      "https://docs.google.com/document/d/1ceFr1jKIG7PYbWsY4FgugQyRb3XIo9KVRfcLXARngFQ/export?format=txt",
+      "https://admissions.trinity.edu/apply/form?id=cd1d2537-fdfa-4796-972e-5342420c8411",
+      "https://trinity.edu/admissions/apply",
+      "https://trinity.edu/admissions/apply/requirements",
+      "https://policies.trinity.edu/a8376318-ebd6-421f-be63-acf8c88376a1_f5c16267-8581-4476-9648-c7d3530861af.html",
+      "https://trinity.edu/admissions/aid/types/international"
+    ],
+    "notes": "Award-specific official terms and required application materials are supported.",
+    "outcome": "verified",
+    "checks": {
+      "identity": "supported",
+      "value": "supported",
+      "deadline": "supported",
+      "application": "supported",
+      "eligibility": "supported"
+    },
+    "unresolved": []
   }
 }
