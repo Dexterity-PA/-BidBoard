@@ -1,0 +1,45 @@
+name: Refresh security dependency lock
+
+on:
+  push:
+    branches: [codex/security-lock-2026-10-18]
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/security-lock-2026-10-18'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Resolve targeted security updates
+        run: |
+          npm pkg set dependencies.next=16.3.8 devDependencies.eslint-config-next=16.3.8
+          npm install --package-lock-only --ignore-scripts
+          npm update source-map-js --package-lock-only --ignore-scripts
+      - name: Print dependency patch for review
+        if: always()
+        run: |
+          printf '%s\n' 'BEGIN_SECURITY_LOCK_PATCH'
+          git diff --no-ext-diff --no-color -- package.json package-lock.json
+          printf '%s\n' 'END_SECURITY_LOCK_PATCH'
+      - name: Preserve dependency files for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-dependency-lock
+          path: |
+            package.json
+            package-lock.json
+          if-no-files-found: error
+          retention-days: 7
+      - run: npm ci
+      - run: npm run check:release
+      - run: npm audit --omit=dev --audit-level=high
