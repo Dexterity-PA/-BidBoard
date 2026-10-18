@@ -41,7 +41,7 @@ const HOW_OPTIONS = [
 ];
 
 const ELIG_OPTIONS = [
-  { value: "", label: "Anyone" },
+  { value: "", label: "All eligibility options" },
   { value: "pr-eligible", label: "Permanent residents eligible" },
   { value: "international-eligible", label: "International students eligible" },
   { value: "test-optional", label: "Test optional" },
@@ -261,13 +261,13 @@ export default function CatalogBrowser({
           <legend className="m-filter-label">Show</legend>
           <label className="m-toggle">
             <input type="checkbox" checked={hideClosed} onChange={(e) => setHideClosed(e.target.checked)} />
-            <span>Hide listings with only past dates</span>
+            <span>Hide awards whose listed dates have passed</span>
           </label>
           <label className="m-toggle">
             <input type="checkbox" checked={includeNeed} onChange={(e) => setIncludeNeed(e.target.checked)} />
             <span>
               Merit + need awards
-              <small>Awards that also weigh financial need</small>
+              <small>Also consider financial need</small>
             </span>
           </label>
         </fieldset>
@@ -294,8 +294,8 @@ export default function CatalogBrowser({
           <div className="m-matchbar">
             <span>
               {onlyMatches
-                ? `Showing potential matches. ${hiddenByProfile} listings hidden based on your answers. Confirm full eligibility on the official pages.`
-                : "Showing all awards, including those outside your profile filters."}
+                ? `Based on your answers, we’ve hidden ${hiddenByProfile} awards that may not fit. Check each award’s full requirements.`
+                : "Showing all awards, including ones that may not fit your answers."}
             </span>
             <span className="m-matchbar-actions">
               <button type="button" className="m-clear" onClick={() => setOnlyMatches((v) => !v)}>
@@ -318,7 +318,7 @@ export default function CatalogBrowser({
           </div>
         ) : (
           <div className="m-matchbar m-matchbar-empty">
-            <span>Find potential matches with four answers. Check each award&apos;s full requirements before applying.</span>
+            <span>Tell us a little about yourself to narrow the list.</span>
             <button type="button" className="m-btn m-btn-primary m-btn-sm" onClick={() => setEditing(true)}>
               Get my matches
             </button>
@@ -350,7 +350,7 @@ export default function CatalogBrowser({
 
         {results.length === 0 ? (
           <div className="m-empty">
-            <p className="m-body">No listings match these filters. Try removing one.</p>
+            <p className="m-body">No awards match these filters. Try clearing one to see more.</p>
             <button type="button" className="m-btn m-btn-ghost m-btn-sm" onClick={clearAll}>
               Clear all filters
             </button>

@@ -88,22 +88,21 @@ export default function HomePage() {
               <h1 className="lp-title">Find your next merit scholarship.</h1>
               <p className="lp-sub">
                 Explore {total}{" "}college merit programs, scholarships and competitions.
-                Four optional answers help you find a place to start.
+                Tell us a little about yourself to narrow the list.
               </p>
               <div className="lp-actions">
                 <Link href="/scholarships?match=1" className="m-btn m-btn-primary">
-                  Find potential matches
+                  Find my matches
                 </Link>
                 <Link href="/scholarships" className="m-btn m-btn-ghost">
                   Browse all awards
                 </Link>
               </div>
-              <p className="lp-caption">Free to browse and match. No account needed.</p>
+              <p className="lp-caption">No account needed to browse or find matches.</p>
             </div>
             <section className="lp-preview" aria-labelledby="lp-preview-title">
               <div className="lp-preview-head">
-                <h2 id="lp-preview-title">A look inside the catalog</h2>
-                <p>Different paths to merit aid.</p>
+                <h2 id="lp-preview-title">A few awards to explore</h2>
               </div>
               <ul className="lp-preview-list">
                 {preview.map((listing) => (
@@ -117,14 +116,7 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <p className="lp-preview-note">Examples from the catalog. Check each award&apos;s official eligibility rules.</p>
             </section>
-          </div>
-          <div className="m-wrap">
-            <div className="lp-community">
-              <p>Used by <strong>10,000+ people.</strong></p>
-              <a href="#about" className="lp-inline-link">About Meritously</a>
-            </div>
           </div>
         </section>
 
@@ -157,8 +149,7 @@ export default function HomePage() {
           <div className="m-wrap">
             <div className="lp-head">
               <div>
-                <h2 id="lp-next" className="lp-section-title">Coming up next</h2>
-                <p className="lp-head-caption">Awards with upcoming dates in the catalog.</p>
+                <h2 id="lp-next" className="lp-section-title">Upcoming deadlines</h2>
               </div>
               <Link href="/scholarships" className="lp-head-link">
                 Browse all awards
@@ -203,29 +194,27 @@ export default function HomePage() {
             <div>
               <h2 id="lp-about-title" className="lp-section-title">About Meritously</h2>
               <p>
-                A free place to find merit scholarships and keep your next steps together.
+                Find scholarships worth applying for, then keep your deadlines and applications in one place.
               </p>
               <ol className="lp-how-steps">
-                <li><h3>Narrow the list</h3><p>Four optional answers help guide your search.</p></li>
-                <li><h3>Check the requirements</h3><p>Confirm eligibility and deadlines on the official source.</p></li>
-                <li><h3>Build your shortlist</h3><p>Save awards and track your progress with a free account.</p></li>
+                <li><h3>Find a few that fit</h3><p>Browse by award, deadline or interest. Answer four optional questions for a more focused list.</p></li>
+                <li><h3>Get the details</h3><p>See what each award offers, who can apply and what you need to submit.</p></li>
+                <li><h3>Keep track</h3><p>Save awards to your tracker, add notes and check off tasks as you go.</p></li>
               </ol>
               <p>
-                Have a correction or a question?{" "}
+                Spot a mistake or have a question?{" "}
                 <a href="mailto:hello@meritously.com" className="lp-inline-link">Get in touch.</a>
               </p>
             </div>
             <div>
-              <h2 className="lp-section-title">What &ldquo;checked&rdquo; means</h2>
-              <p>
-                Listings link to official sources and show individual check dates where recorded.
-                Unconfirmed information is labeled, so you can see what still needs checking.
-                Always confirm the current requirements before applying.
-              </p>
-              <p>
-                Awards that also consider financial need are labeled separately. Sweepstakes,
-                popularity votes and need-only aid aren&apos;t included.
-              </p>
+              <h2 className="lp-section-title">Do I need a separate application?</h2>
+              <p>It depends on the award. Look for how to apply in each listing.</p>
+              <ul className="lp-how-steps lp-application-types">
+                <li><h3>Automatic consideration</h3><p>The college considers you when you apply for admission. Check whether there&apos;s an earlier scholarship deadline.</p></li>
+                <li><h3>Separate application</h3><p>You&apos;ll need to submit a scholarship application too. Leave time for any essays or recommendations it asks for.</p></li>
+                <li><h3>School nomination</h3><p>Your school may need to nominate you before you can apply. Ask your counselor about the school&apos;s deadline.</p></li>
+              </ul>
+              <p><Link href="/scholarships" className="lp-inline-link">Browse awards by how you apply</Link></p>
             </div>
           </div>
         </section>
@@ -233,9 +222,9 @@ export default function HomePage() {
           <div className="m-wrap">
             <div className="lp-updates-panel">
               <div>
-                <h2 id="lp-updates-title" className="lp-section-title">Keep up with upcoming awards.</h2>
-                <p className="m-body">One weekly email with upcoming deadlines and a short list of awards. No account needed.</p>
-                <p className="m-fine">Want reminders for your saved awards? <Link href="/settings/notifications" className="lp-inline-link">Choose your reminder preferences.</Link></p>
+                <h2 id="lp-updates-title" className="lp-section-title">Deadlines, delivered weekly.</h2>
+                <p className="m-body">Get a short list of awards and approaching deadlines in your inbox.</p>
+                <p className="m-fine">Already saving awards? <Link href="/settings/notifications" className="lp-inline-link">Set up deadline reminders.</Link></p>
               </div>
               <div><NewsletterForm /></div>
             </div>

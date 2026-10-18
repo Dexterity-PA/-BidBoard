@@ -45,13 +45,13 @@ export default async function PlannerPage() {
         <div className="text-center max-w-md">
           <h1 className="text-2xl font-bold text-white mb-2">No matches yet</h1>
           <p className="text-slate-400 mb-6">
-            Run the scholarship matcher to score scholarships against your profile first.
+            Find scholarship matches first, then come back to plan your applications.
           </p>
           <a
             href="/api/scholarships/matches"
             className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-lg px-6 py-2.5 transition-colors duration-150"
           >
-            Run Matching
+            Find my matches
           </a>
         </div>
       </main>

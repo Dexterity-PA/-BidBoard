@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { User, Star, Bell, CreditCard, Shield } from "lucide-react";
+import { User, Star, Bell, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ProfileSection } from "./profile-section";
 import { PreferencesSection } from "./preferences-section";
 import { NotificationsSection } from "./notifications-section";
-import { BillingSection } from "./billing-section";
 import { AccountSection } from "./account-section";
 import type { SettingsData } from "../types";
 
@@ -14,7 +13,6 @@ const TABS = [
   { id: "profile",       label: "Profile",                 Icon: User       },
   { id: "preferences",   label: "Scholarship Preferences", Icon: Star       },
   { id: "notifications", label: "Notifications",           Icon: Bell       },
-  { id: "billing",       label: "Plan",                    Icon: CreditCard },
   { id: "account",       label: "Account",                 Icon: Shield     },
 ] as const;
 
@@ -53,8 +51,6 @@ export function SettingsShell({ data }: { data: SettingsData }) {
         return <PreferencesSection {...props} onDirty={(d) => markUnsaved("preferences", d)} />;
       case "notifications":
         return <NotificationsSection {...props} onDirty={(d) => markUnsaved("notifications", d)} />;
-      case "billing":
-        return <BillingSection {...props} />;
       case "account":
         return <AccountSection showToast={showToast} />;
     }

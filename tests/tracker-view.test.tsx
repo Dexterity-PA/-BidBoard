@@ -47,7 +47,7 @@ describe("tracker confirmed writes", () => {
   it("keeps a removed award and its notes while avoiding a dead catalog link", () => {
     render(<TrackerView initial={[{ ...award, inactive: true, catalogTracked: true }]} />);
     expect(screen.queryByRole("link", { name: award.name })).toBeNull();
-    expect(screen.getByText(/Removed from the active catalog/).textContent).toContain("deadline reminders are paused");
+    expect(screen.getByText(/This award is no longer listed/).textContent).toContain("reminders are paused");
     openDetails();
     expect((screen.getByLabelText("Notes") as HTMLTextAreaElement).value).toBe("Original notes");
     expect(deleteApplication).not.toHaveBeenCalled();
@@ -56,7 +56,7 @@ describe("tracker confirmed writes", () => {
   it("links a saved retirement to its reviewed notice while reminders stay paused", () => {
     render(<TrackerView initial={[{ ...award, inactive: true, catalogTracked: true, retiredDetailAvailable: true }]} />);
     expect(screen.getByRole("link", { name: award.name }).getAttribute("href")).toBe(award.href);
-    expect(screen.getByText(/Removed from the active catalog/).textContent).toContain("deadline reminders are paused");
+    expect(screen.getByText(/This award is no longer listed/).textContent).toContain("reminders are paused");
     openDetails();
     expect((screen.getByLabelText("Notes") as HTMLTextAreaElement).value).toBe("Original notes");
     expect(deleteApplication).not.toHaveBeenCalled();
@@ -88,10 +88,10 @@ describe("tracker confirmed writes", () => {
     expect(screen.getByText(award.name)).toBeTruthy();
     expect((screen.getByRole("button", { name: "Removing…" }) as HTMLButtonElement).disabled).toBe(true);
     await act(async () => request.reject(new Error("network unavailable")));
-    expect(screen.getByRole("alert").textContent).toContain("Could not remove");
+    expect(screen.getByRole("alert").textContent).toContain("couldn’t be removed");
     expect(screen.getByText(award.name)).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "Remove from tracker" }));
-    await screen.findByText("Your tracker is empty.");
+    await screen.findByText("Start your shortlist.");
     expect(deleteApplication).toHaveBeenCalledTimes(2);
   });
 
@@ -167,7 +167,7 @@ describe("tracker confirmed writes", () => {
     expect(screen.queryByRole("textbox", { name: "Notes" })).toBeNull();
     fireEvent.click(screen.getByRole("tab", { name: /Active/ }));
     expect((screen.getByRole("textbox", { name: "Notes" }) as HTMLTextAreaElement).value).toBe("Keep this draft");
-    expect(screen.getByRole("alert").textContent).toContain("Could not save");
+    expect(screen.getByRole("alert").textContent).toContain("Your notes didn’t save");
   });
 });
 

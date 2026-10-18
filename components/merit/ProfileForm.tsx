@@ -41,11 +41,10 @@ export default function ProfileForm({
   return (
     <form className="m-profile" onSubmit={submit} aria-label="Your profile for matching">
       <div className="m-profile-head">
-        <h2 className="m-h3">Find potential matches</h2>
+        <h2 className="m-h3">Find scholarships that fit</h2>
         <p className="m-fine">
-          Answer what you can. Your profile is saved only in this browser. We filter using
-          these four details, but other eligibility rules may apply. Check the official pages
-          before applying.
+          Skip any question you like. Your answers stay in this browser and help narrow the list.
+          Each award may have other requirements, so check its official page before applying.
         </p>
       </div>
       <div className="m-profile-grid">
@@ -86,7 +85,7 @@ export default function ProfileForm({
           />
         </label>
         <label className="m-filter-group">
-          <span className="m-filter-label">Intended field</span>
+          <span className="m-filter-label">What do you want to study?</span>
           <select className="m-select" value={field} onChange={(e) => setField(e.target.value as Field)}>
             {(Object.keys(FIELD_LABEL) as Field[]).map((f) => (
               <option key={f} value={f}>

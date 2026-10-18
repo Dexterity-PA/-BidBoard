@@ -150,7 +150,7 @@ export default function TermsPage() {
                 fontWeight: 500,
               }}
             >
-              Last updated: April 16, 2026
+              Last updated: October 18, 2026
             </p>
             <h1
               style={{
@@ -175,9 +175,7 @@ export default function TermsPage() {
                 maxWidth: 560,
               }}
             >
-              These Terms govern your use of Meritously. We&apos;ve written them in plain English
-              so they&apos;re actually readable, but the formal language below is what&apos;s legally
-              binding.
+              These terms explain your responsibilities and ours. Each section starts with a short summary; the full terms below it are legally binding.
             </p>
           </div>
         </div>
@@ -312,7 +310,7 @@ export default function TermsPage() {
             <Section
               id="accounts"
               title="4. User Accounts & Security"
-              summary="You're responsible for your account and everything that happens under it. Use a strong password, don't share your login, and tell us right away if you think someone has broken in."
+              summary="Keep your login details safe and tell us right away if you suspect someone else has accessed your account. You’re responsible for activity under your account."
             >
               <p style={p}>
                 To access certain features of the Service, you must create an account. You agree
@@ -360,7 +358,7 @@ export default function TermsPage() {
             <Section
               id="cancellation"
               title="6. Account Closure"
-              summary="You can close your account anytime in settings. Because Meritously is free, there are no charges and nothing to refund."
+              summary="You can close your account in settings at any time. There are no outstanding charges or refunds."
             >
               <p style={p}>
                 You may stop using Meritously or delete your account at any time through your
@@ -383,7 +381,7 @@ export default function TermsPage() {
             <Section
               id="ip"
               title="7. Intellectual Property"
-              summary="Meritously owns the platform: its code, design, and technology. You own your essays and personal data. We only use your content to provide the service, not to claim ownership of it."
+              summary="You own the content you submit, including your essays. Meritously owns the platform and uses your content only as described below."
             >
               <p style={p}>
                 Meritously and its licensors retain all intellectual property rights in and to
@@ -449,7 +447,7 @@ export default function TermsPage() {
             <Section
               id="warranties"
               title="9. Disclaimer of Warranties"
-              summary="Meritously is provided as-is. We work hard to keep it reliable and accurate, but we can't make legal guarantees about uptime, scholarship results, or outcomes. Whether you win a scholarship is up to you and the awarding organization."
+              summary="We can’t guarantee that Meritously will always be available or that every listing will stay accurate. Awarding organizations set their own rules and decide who receives an award."
             >
               <p style={p}>
                 THE SERVICE IS PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS WITHOUT
@@ -472,7 +470,7 @@ export default function TermsPage() {
             <Section
               id="liability"
               title="10. Limitation of Liability"
-              summary="If something goes wrong with Meritously, our legal liability is capped. We're not responsible for things like missed scholarship opportunities. Our total liability to you is capped at what you've paid us in the past year."
+              summary="The terms below limit our liability, including for missed scholarship opportunities. Where the law allows, our total liability is capped at the greater of $100 or the fees you paid us in the previous 12 months."
             >
               <p style={p}>
                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, MERITOUSLY AND ITS OFFICERS,
@@ -497,7 +495,7 @@ export default function TermsPage() {
             <Section
               id="privacy"
               title="11. Privacy Policy"
-              summary="Your privacy matters to us. Our Privacy Policy explains what data we collect, how we use it, and your rights. It's part of these Terms."
+              summary="Our Privacy Policy explains what data we collect, how we use it and your rights. It forms part of these terms."
             >
               <p style={p}>
                 Your use of the Service is also governed by our{" "}

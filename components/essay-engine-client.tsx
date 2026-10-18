@@ -107,7 +107,7 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
     setAdapting(true);
     await new Promise((r) => setTimeout(r, 1500));
     setAdapting(false);
-    alert("AI essay adaptation coming soon!");
+    alert("Essay adaptation isn’t available yet.");
   }
 
   // ── Empty state ──────────────────────────────────────────────────────────
@@ -119,13 +119,13 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
           <IconEmpty className="h-14 w-14 text-gray-300 mb-5" />
           <h2 className="text-base font-semibold text-gray-900 mb-1">No essays yet</h2>
           <p className="text-sm text-gray-500 mb-6 max-w-xs">
-            Add your first essay to start recycling it across multiple scholarship prompts.
+            Save an essay here so you can refer back to it for future applications.
           </p>
           <Link
             href="/essays/new"
             className="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700"
           >
-            Add Your First Essay
+            Add your first essay
           </Link>
         </div>
       </div>
@@ -256,7 +256,7 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
                   className="flex shrink-0 items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 disabled:opacity-70"
                 >
                   <IconSparkle className={cn("h-4 w-4", adapting && "animate-spin")} />
-                  {adapting ? "Adapting…" : "Adapt to New Prompt"}
+                  {adapting ? "Adapting…" : "Adapt to a new prompt"}
                 </button>
               </div>
 
@@ -284,7 +284,7 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
               ) : (
                 <div className="flex flex-col items-center justify-center py-16 text-center">
                   <IconPencil className="h-10 w-10 text-gray-300 mb-3" />
-                  <p className="text-sm text-gray-500">No essay body saved yet.</p>
+                  <p className="text-sm text-gray-500">There’s no essay text saved here yet.</p>
                 </div>
               )}
             </div>
@@ -294,7 +294,7 @@ export function EssayEngineClient({ essays }: { essays: Essay[] }) {
           <div className="flex flex-1 flex-col items-center justify-center text-center px-8">
             <IconPencil className="h-12 w-12 text-gray-300 mb-4" />
             <p className="text-sm font-semibold text-gray-700 mb-1">Select an essay</p>
-            <p className="text-xs text-gray-500">Choose an essay from the list to view and adapt it.</p>
+            <p className="text-xs text-gray-500">Choose an essay from the list to read it.</p>
           </div>
         )}
       </div>

@@ -93,7 +93,7 @@ describe("account email preferences", () => {
     expect(reminderSwitch().getAttribute("aria-checked")).toBe("true");
 
     await act(async () => request.reject(new Error("Database unavailable")));
-    expect(screen.getByRole("alert").textContent).toContain("Failed to save");
+    expect(screen.getByRole("alert").textContent).toContain("That change didn’t save");
     expect(reminderSwitch().getAttribute("aria-checked")).toBe("false");
     expect(reminderSwitch().disabled).toBe(false);
     fireEvent.click(reminderSwitch());
@@ -107,7 +107,7 @@ describe("account email preferences", () => {
     vi.mocked(unsubscribeAll).mockRejectedValueOnce(new Error("Database unavailable"));
     render(<EmailPrefsForm prefs={prefs} />);
     fireEvent.click(bulkButton());
-    expect((await screen.findByRole("alert")).textContent).toContain("Failed to unsubscribe");
+    expect((await screen.findByRole("alert")).textContent).toContain("We couldn’t turn off your emails");
     expect(screen.getByRole("switch", { name: "Welcome email" }).getAttribute("aria-checked")).toBe("true");
     expect(screen.getByRole("switch", { name: "Status changes" }).getAttribute("aria-checked")).toBe("true");
     expect(reminderSwitch().getAttribute("aria-checked")).toBe("false");

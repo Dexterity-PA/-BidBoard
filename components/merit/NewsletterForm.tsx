@@ -28,7 +28,7 @@ export default function NewsletterForm() {
       if (!response.ok || !result.ok) throw new Error("Subscription not confirmed");
       setSubmitted(true);
     } catch {
-      setError("Could not process your request. Please try again in a few minutes.");
+      setError("We couldn’t sign you up just now. Please try again in a few minutes.");
     } finally {
       setPending(false);
       inFlight.current = false;
@@ -54,9 +54,9 @@ export default function NewsletterForm() {
         <span>Email me the weekly scholarship digest.</span>
       </label>
       <button type="submit" className="m-btn m-btn-primary" disabled={pending || !consent}>
-        {pending ? "Subscribing…" : "Subscribe to the digest"}
+        {pending ? "Subscribing…" : "Send me the weekly email"}
       </button>
-      <p className="m-fine">Confirm your email to join. Unsubscribe any time. <Link href="/privacy">Privacy policy</Link></p>
+      <p className="m-fine">We’ll send a confirmation link. Unsubscribe any time. <Link href="/privacy">Privacy policy</Link></p>
       {error && <p className="m-fine" role="alert" style={{ color: "var(--m-red)" }}>{error}</p>}
     </form>
   );

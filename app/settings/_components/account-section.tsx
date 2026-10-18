@@ -25,9 +25,9 @@ export function AccountSection({ showToast }: Props) {
         a.download = "meritously-data.json";
         a.click();
         URL.revokeObjectURL(url);
-        showToast("success", "Your data export has started downloading.");
+        showToast("success", "Your download has started.");
       } catch {
-        showToast("error", "Failed to export data.");
+        showToast("error", "We couldn’t download your data. Please try again.");
       }
     });
   }
@@ -39,7 +39,7 @@ export function AccountSection({ showToast }: Props) {
         await deleteAccount();
         // deleteAccount redirects to "/" on success, this line won't be reached
       } catch {
-        showToast("error", "Failed to delete account. Please try again.");
+        showToast("error", "We couldn’t delete your account. Please try again.");
         setDeleteOpen(false);
       }
     });
@@ -49,7 +49,7 @@ export function AccountSection({ showToast }: Props) {
     <div className="space-y-8">
       <div>
         <h2 className="text-lg font-semibold text-gray-900">Account</h2>
-        <p className="text-sm text-gray-500 mt-0.5">Security, data, and account management.</p>
+        <p className="text-sm text-gray-500 mt-0.5">Manage your sign-in details and personal data.</p>
       </div>
 
       {/* Change password */}
@@ -61,7 +61,7 @@ export function AccountSection({ showToast }: Props) {
           rel="noreferrer"
           className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700"
         >
-          Change password via Clerk <ExternalLink className="h-3.5 w-3.5" />
+          Change password <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </div>
 
@@ -74,7 +74,7 @@ export function AccountSection({ showToast }: Props) {
           rel="noreferrer"
           className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700"
         >
-          Manage social logins via Clerk <ExternalLink className="h-3.5 w-3.5" />
+          Manage connected accounts <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </div>
 
@@ -82,7 +82,7 @@ export function AccountSection({ showToast }: Props) {
       <div className="space-y-2">
         <p className="text-sm font-semibold text-gray-700">Export my data</p>
         <p className="text-sm text-gray-500">
-          Download all your profile, applications, and essay data as JSON.
+          Download your profile, applications and essays in a JSON file.
         </p>
         <button
           type="button"
@@ -94,12 +94,11 @@ export function AccountSection({ showToast }: Props) {
         </button>
       </div>
 
-      {/* Danger zone */}
+      {/* Delete your account */}
       <div className="rounded-xl border border-red-200 bg-red-50 p-5 space-y-3">
-        <p className="text-sm font-semibold text-red-800">Danger zone</p>
+        <p className="text-sm font-semibold text-red-800">Delete your account</p>
         <p className="text-sm text-red-700">
-          Permanently deletes your account and all associated data: profile, matches, essays,
-          applications. This cannot be undone.
+          Deleting your account removes your profile, matches, essays and applications. You can’t undo this.
         </p>
         <button
           type="button"

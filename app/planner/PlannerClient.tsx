@@ -41,10 +41,10 @@ export function PlannerClient({ matches }: { matches: MatchCardScholarship[] }) 
         {/* ── Header ── */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white tracking-tight">
-            Monthly Strategy Planner
+            Plan your application time
           </h1>
           <p className="text-slate-400 mt-1 text-sm">
-            Maximize your scholarship expected value within your available hours this month.
+            Choose how much time you have this month to see a suggested list of applications.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export function PlannerClient({ matches }: { matches: MatchCardScholarship[] }) 
           <div className="w-px h-6 bg-slate-600 hidden sm:block" />
           <div>
             <span className="text-2xl font-bold text-white tabular-nums">{totalHours.toFixed(1)}</span>
-            <span className="text-slate-400 text-sm ml-1.5">hrs committed</span>
+            <span className="text-slate-400 text-sm ml-1.5">hours planned</span>
           </div>
           <div className="w-px h-6 bg-slate-600 hidden sm:block" />
           <div>
@@ -100,7 +100,7 @@ export function PlannerClient({ matches }: { matches: MatchCardScholarship[] }) 
         {selected.length === 0 ? (
           <div className="text-center py-16 text-slate-500 text-sm">
             No scholarships fit within {hours} {hours === 1 ? "hour" : "hours"}.
-            Try increasing your budget.
+            Try adding more time.
           </div>
         ) : (
           <div className="space-y-4">

@@ -24,7 +24,7 @@ const schema = z.object({
     .optional()
     .refine(
       (v) => !v || (Number.isInteger(Number(v)) && Number(v) >= 2024 && Number(v) <= 2035),
-      { message: "Must be between 2024 and 2035" }
+      { message: "Enter a year from 2024 to 2035" }
     ),
   schoolName:     z.string().optional(),
   gpa:            z.string().regex(/^([0-3](\.\d{0,2})?|4(\.0{0,2})?)$/, "0.0-4.0").or(z.literal("")).optional(),
@@ -80,7 +80,7 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
         onSaved();
         showToast("success", "Profile saved.");
       } catch {
-        showToast("error", "Failed to save profile. Please try again.");
+        showToast("error", "Your profile didn’t save. Please try again.");
       }
     });
   }
@@ -90,7 +90,7 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
       <div>
         <h2 className="text-lg font-semibold text-gray-900">Profile</h2>
         <p className="text-sm text-gray-500 mt-0.5">
-          Your personal information used for scholarship matching.
+          Update your name, school and academic details.
         </p>
       </div>
 
@@ -144,13 +144,13 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
           className={inputCls(false) + " bg-gray-50 text-gray-500 cursor-not-allowed"}
         />
         <p className="mt-1 text-xs text-gray-400">
-          Email is managed by your Clerk account.
+          You can change your email in your sign-in settings.
         </p>
       </Field>
 
       {/* School + grad year */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Field label="High school / college name">
+        <Field label="School or college">
           <input
             {...register("schoolName")}
             className={inputCls(false)}
@@ -171,7 +171,7 @@ export function ProfileSection({ data, showToast, onSaved, onDirty }: Props) {
 
       {/* GPA + major */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Field label="GPA (0.0 - 4.0)" error={errors.gpa?.message}>
+        <Field label="GPA (4.0 scale)" error={errors.gpa?.message}>
           <input
             {...register("gpa")}
             className={inputCls(!!errors.gpa)}

@@ -38,10 +38,10 @@ export default async function NotificationsSettingsPage() {
       </Link>
 
       <h1 className="text-2xl font-semibold text-gray-900 mb-1">
-        Email Notifications
+        Email notifications
       </h1>
       <p className="text-sm text-gray-500 mb-1">
-        Manage which emails Meritously sends you.
+        Choose which emails you’d like to receive.
       </p>
       <p className="text-xs text-gray-400 mb-8">
         Last updated: {formatUpdatedAt(updatedAt)}
@@ -53,8 +53,8 @@ export default async function NotificationsSettingsPage() {
       <section className="m-page" style={{ minHeight: 0 }} aria-labelledby="digest-heading">
         <h2 id="digest-heading" className="m-h3">Weekly scholarship digest</h2>
         <p className="m-body" style={{ margin: "12px 0 24px" }}>
-          A general roundup of upcoming awards. This is a separate subscription from your
-          tracked-award reminders. Confirm your email to join, and unsubscribe in any digest.
+          A weekly roundup of awards and deadlines. Sign up separately from your saved-award
+          reminders; every email includes an unsubscribe link.
         </p>
         <NewsletterForm />
       </section>

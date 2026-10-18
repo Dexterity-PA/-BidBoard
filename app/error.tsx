@@ -119,7 +119,7 @@ export default function Error({
               margin: "0 0 16px",
             }}
           >
-            Something broke.
+            Something went wrong.
           </h1>
 
           {/* Subtext */}
@@ -132,7 +132,7 @@ export default function Error({
               margin: "0 0 12px",
             }}
           >
-            We&apos;ve logged it. Try again, or head back to safety.
+            We couldn’t load this page. Try again, or go back to the homepage.
           </p>
 
           {/* Error digest for support */}

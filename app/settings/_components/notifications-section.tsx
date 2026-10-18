@@ -15,7 +15,7 @@ export const NotificationsSection: FC<Props> = () => {
       <div>
         <h2 className="text-lg font-semibold text-gray-900">Email notifications</h2>
         <p className="text-sm text-gray-500 mt-1">
-          Manage deadline reminders and other account emails in one place. Your existing choices are kept.
+          Choose which reminders and account emails you want to receive.
         </p>
       </div>
       <Link href="/settings/notifications" className="m-btn m-btn-primary">

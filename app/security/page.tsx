@@ -8,7 +8,7 @@ const SERIF = 'var(--font-instrument-serif), Georgia, serif'
 export const metadata: Metadata = {
   title: 'Security | Meritously',
   description:
-    'How Meritously handles your data: encryption, storage, retention, and the guarantees we make to every student.',
+    'How Meritously stores your data and how to contact us about security.',
 }
 
 export default function SecurityPage() {
@@ -46,7 +46,7 @@ export default function SecurityPage() {
             margin: '0 0 32px',
           }}
         >
-          Your data stays yours.
+          Your data and security.
         </h1>
         <p
           style={{
@@ -57,13 +57,11 @@ export default function SecurityPage() {
             margin: '0 0 24px',
           }}
         >
-          We encrypt your profile at rest and in transit, store it in US-based
-          Postgres infrastructure managed by Neon, and never sell or share it
-          with third parties. You can export everything we know about you, or
-          delete your account with everything it contains, with one click in
-          settings. If Meritously ever changes hands or winds down, we&rsquo;ll
-          give you a full CSV of your matches, essays, and deadline pipeline
-          before the lights go off.
+          Your profile is encrypted when it’s stored and when it’s sent. Our database
+          is hosted in the US by Neon. We don’t sell your data. You can download
+          your saved account data or delete your account in settings. If Meritously
+          changes owners or closes, we’ll provide a CSV of your matches, essays
+          and application deadlines first.
         </p>
         <p
           style={{
@@ -73,7 +71,7 @@ export default function SecurityPage() {
             lineHeight: 1.7,
           }}
         >
-          Questions or disclosures?{' '}
+          Have a security question or found a vulnerability?{' '}
           <Link
             href="mailto:security@meritously.com"
             style={{ color: 'var(--bb-primary)', textDecoration: 'none' }}

@@ -20,9 +20,9 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const title = "Meritously: free merit scholarship finder";
+const title = "Meritously: find your next merit scholarship";
 const description =
-  "Find potential merit scholarship matches with four answers. Browse college awards and competitions with official sources, then save awards and track deadlines for free.";
+  "Find merit scholarships, college awards and competitions. See who can apply, save the awards you like and keep track of your deadlines.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meritously.com"),
@@ -65,7 +65,7 @@ export default function RootLayout({
         signUp: {
           start: {
             title: "Join Meritously",
-            subtitle: "Create a free account to save awards and track deadlines.",
+            subtitle: "Save awards and keep track of your deadlines.",
           },
           emailLink: { subtitle: "Continue to Meritously." },
         },

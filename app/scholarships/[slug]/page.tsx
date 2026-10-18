@@ -118,7 +118,7 @@ export default async function ListingPage({
               <span className="m-card-deadline">
                 {retired ? "No longer offered" : l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
               </span>
-              {!retired && freshness === "stale" && verification?.outcome !== "unavailable" && <p className="m-fine">This listing was checked at least 90 days ago. Confirm current dates and rules before applying.</p>}
+              {!retired && freshness === "stale" && verification?.outcome !== "unavailable" && <p className="m-fine">It’s been at least 90 days since we checked this award. Check the current dates and rules before applying.</p>}
               {l.sources[0] && (
                 <a
                   href={l.sources[0]}
@@ -150,25 +150,23 @@ export default async function ListingPage({
             <div className="m-detail-content">
               {retired && (
                 <p className="m-notice m-notice-watch">
-                  This program has ended. This page is kept for saved records and past applications.
+                  This program has ended. We’ve kept this page so you can still refer to past applications.
                 </p>
               )}
               {l.status === "watchlist" && (
                 <p className="m-notice m-notice-watch">
-                  This is a real program, but some details for the current cycle are not
-                  published or not yet confirmed. Check the official source before you plan
-                  around it.
+                  Some details for the current application cycle haven’t been published or confirmed yet.
+                  Check the official page before making plans.
                 </p>
               )}
               {l.status === "mixed-need" && (
                 <p className="m-notice m-notice-need">
-                  Financial need is part of how this award is decided, alongside merit.
+                  This award considers financial need as well as merit.
                 </p>
               )}
               {l.status === "directory" && (
                 <p className="m-notice m-notice-dir">
-                  This is a group of awards reached through one application. Each award inside it
-                  has its own rules.
+                  One application covers several awards. Each award has its own requirements.
                 </p>
               )}
 
@@ -276,8 +274,8 @@ export default async function ListingPage({
               <p className="m-fine">
                 {verification
                   ? <>{verification.outcome === "unavailable" ? "Review attempted" : "Last checked"} {formatISODate(verification.checkedAt)}. </>
-                  : <>An individual check date has not been recorded for this listing. </>}
-                {retired ? "The official source records the program's retirement." : "Confirm current dates and rules on the official page before applying."}
+                  : <>We haven’t recorded a check date for this award yet. </>}
+                {retired ? "The official source records the program's retirement." : "Check the current deadline and requirements on the official page before applying."}
               </p>
               {verification?.notes && <p className="m-fine">{verification.notes}</p>}
               {!!verification?.unresolved?.length && (
@@ -286,7 +284,7 @@ export default async function ListingPage({
                 </ul>
               )}
               <a href={reportHref} className="m-arrow-link" style={{ fontSize: 13 }}>
-                Report a problem with this listing
+                Spot a mistake? Let us know
               </a>
             </aside>
           </div>

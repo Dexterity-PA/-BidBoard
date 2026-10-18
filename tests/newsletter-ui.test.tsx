@@ -39,7 +39,7 @@ describe("newsletter signup", () => {
     render(<NewsletterForm />);
     const email = screen.getByRole("textbox", { name: "Email address" }) as HTMLInputElement;
     const checkbox = screen.getByRole("checkbox", { name: "Email me the weekly scholarship digest." }) as HTMLInputElement;
-    const submit = screen.getByRole("button", { name: "Subscribe to the digest" }) as HTMLButtonElement;
+    const submit = screen.getByRole("button", { name: "Send me the weekly email" }) as HTMLButtonElement;
     expect(email.required).toBe(true);
     expect(email.type).toBe("email");
     expect(checkbox.required).toBe(true);
@@ -55,7 +55,7 @@ describe("newsletter signup", () => {
   it("requests confirmation without claiming the email is already confirmed", async () => {
     render(<NewsletterForm />);
     fillSubscription();
-    fireEvent.click(screen.getByRole("button", { name: "Subscribe to the digest" }));
+    fireEvent.click(screen.getByRole("button", { name: "Send me the weekly email" }));
 
     const status = await screen.findByRole("status");
     expect(status.textContent).toContain("confirmation link");
@@ -70,13 +70,13 @@ describe("newsletter signup", () => {
     fetchMock.mockResolvedValueOnce(response(false, status));
     render(<NewsletterForm />);
     const { email, consent } = fillSubscription();
-    fireEvent.click(screen.getByRole("button", { name: "Subscribe to the digest" }));
+    fireEvent.click(screen.getByRole("button", { name: "Send me the weekly email" }));
 
     expect((await screen.findByRole("alert")).textContent).toContain("Please try again");
     expect(email.value).toBe("student@example.test");
     expect(consent.checked).toBe(true);
     expect(screen.queryByRole("status")).toBeNull();
-    const retry = screen.getByRole("button", { name: "Subscribe to the digest" }) as HTMLButtonElement;
+    const retry = screen.getByRole("button", { name: "Send me the weekly email" }) as HTMLButtonElement;
     expect(retry.disabled).toBe(false);
     fireEvent.click(retry);
     await screen.findByRole("status");
@@ -87,11 +87,11 @@ describe("newsletter signup", () => {
     fetchMock.mockRejectedValueOnce(new Error("Offline"));
     render(<NewsletterForm />);
     const { email, consent } = fillSubscription();
-    fireEvent.click(screen.getByRole("button", { name: "Subscribe to the digest" }));
+    fireEvent.click(screen.getByRole("button", { name: "Send me the weekly email" }));
     await screen.findByRole("alert");
     expect(email.value).toBe("student@example.test");
     expect(consent.checked).toBe(true);
-    fireEvent.click(screen.getByRole("button", { name: "Subscribe to the digest" }));
+    fireEvent.click(screen.getByRole("button", { name: "Send me the weekly email" }));
     await screen.findByRole("status");
   });
 
@@ -130,13 +130,13 @@ describe("newsletter email-link actions", () => {
       body: JSON.stringify({ token: "synthetic-test-token" }),
     });
     if (action === "unsubscribe") {
-      expect(screen.getByRole("status").textContent).toContain("reminder preferences are unchanged");
+      expect(screen.getByRole("status").textContent).toContain("reminders will keep their current settings");
     }
   });
 
   it.each(["confirm", "unsubscribe"] as const)("does not submit %s without a token", (action) => {
     render(<NewsletterAction action={action} />);
-    expect(screen.getByRole("alert").textContent).toContain("missing its code");
+    expect(screen.getByRole("alert").textContent).toContain("link is incomplete");
     expect(screen.queryByRole("button")).toBeNull();
     expect(fetchMock).not.toHaveBeenCalled();
   });
@@ -164,7 +164,7 @@ describe("newsletter email-link actions", () => {
     fetchMock.mockResolvedValueOnce(response(false, 400));
     render(<NewsletterAction action="confirm" token="expired-token" />);
     fireEvent.click(screen.getByRole("button", { name: "Confirm subscription" }));
-    expect((await screen.findByRole("alert")).textContent).toContain("subscribe again for a new link");
+    expect((await screen.findByRole("alert")).textContent).toContain("sign up again for a new one");
     expect(screen.queryByRole("status")).toBeNull();
   });
 
@@ -173,7 +173,7 @@ describe("newsletter email-link actions", () => {
     render(<NewsletterAction action="unsubscribe" token="invalid-token" />);
     fireEvent.click(screen.getByRole("button", { name: "Unsubscribe" }));
     const error = await screen.findByRole("alert");
-    expect(error.textContent).toContain("latest digest email");
+    expect(error.textContent).toContain("latest weekly email");
     expect(error.textContent).not.toContain("subscribe again");
     expect(screen.queryByRole("status")).toBeNull();
   });

@@ -9,11 +9,11 @@ export function AnalyticsPreference() {
   function disable() {
     document.cookie = `${ANALYTICS_OPTOUT}=1; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
     try { clearAnalyticsBrowser(); } catch { /* Blocking storage already prevents browser measurement. */ }
-    setMessage("Browser analytics is turned off for this browser. Account, save and confirmed subscription totals remain, without browser attribution.");
+    setMessage("Analytics is off in this browser. We still count account signups, saved awards and confirmed subscriptions, but don’t link those counts to your browser.");
   }
   function enable() {
     document.cookie = `${ANALYTICS_OPTOUT}=; Path=/; Max-Age=0; SameSite=Lax`;
-    setMessage("Browser analytics can resume on your next scholarship page visit. Your browser's Do Not Track or Global Privacy Control still takes priority.");
+    setMessage("Analytics can resume on your next visit. We’ll still respect Do Not Track or Global Privacy Control if either is enabled in your browser.");
   }
   return <div style={{ marginTop: 16 }}>
     <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>

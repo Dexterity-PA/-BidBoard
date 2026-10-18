@@ -75,9 +75,9 @@ export function PreferencesSection({ data, showToast, onSaved, onDirty }: Props)
           gradeLevel,
         });
         onSaved();
-        showToast("success", "Preferences saved. Matches will update within 24 hours.");
+        showToast("success", "Preferences saved.");
       } catch {
-        showToast("error", "Failed to save preferences.");
+        showToast("error", "Your preferences didn’t save. Please try again.");
       }
     });
   }
@@ -85,8 +85,8 @@ export function PreferencesSection({ data, showToast, onSaved, onDirty }: Props)
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-gray-900">Scholarship Preferences</h2>
-        <p className="text-sm text-gray-500 mt-0.5">These values feed your matching algorithm.</p>
+        <h2 className="text-lg font-semibold text-gray-900">Scholarship preferences</h2>
+        <p className="text-sm text-gray-500 mt-0.5">Choose the kinds of awards you’re interested in.</p>
       </div>
 
       {/* Min award amount */}
@@ -128,7 +128,7 @@ export function PreferencesSection({ data, showToast, onSaved, onDirty }: Props)
 
       {/* Max hours */}
       <div className="space-y-1 max-w-xs">
-        <label className="text-sm font-medium text-gray-700">Max hours willing to apply per scholarship</label>
+        <label className="text-sm font-medium text-gray-700">Time you can spend on each application (hours)</label>
         <input
           type="number"
           min={1}
@@ -179,7 +179,7 @@ export function PreferencesSection({ data, showToast, onSaved, onDirty }: Props)
           {isPending ? "Saving…" : "Save preferences"}
         </button>
         <p className="text-xs text-gray-400">
-          Updating preferences re-runs your matches within 24 hours.
+          Your preferences are saved to your account.
         </p>
       </div>
     </form>

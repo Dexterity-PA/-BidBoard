@@ -189,12 +189,10 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p style={{ ...prose(14), color: C.textFaint }}>
-              Last updated: October 2, 2026
+              Last updated: October 18, 2026
             </p>
             <p style={{ ...prose(15), marginTop: 12 }}>
-              This policy explains what data Meritously collects, why we collect it, and how
-              we protect it. We've written it in plain English first, with the formal
-              language below each summary.
+              Here’s what we collect, how we use it and the choices you have. Each section starts with a short summary.
             </p>
           </div>
 
@@ -323,7 +321,7 @@ export default function PrivacyPage() {
                 background: C.indigoTint,
               }}
             >
-              <strong>We never sell your data. Full stop.</strong> Your name, email,
+              <strong>We don’t sell your data.</strong> Your name, email,
               profile, essays, and activity are not sold, rented, or traded to any third
               party for any purpose: advertising, marketing lists, data brokers, or
               otherwise. This is a hard commitment, not a policy that can be quietly
@@ -360,9 +358,7 @@ export default function PrivacyPage() {
             <h2 style={sectionHeading}>Third-Party Services</h2>
 
             <div style={calloutBox}>
-              <strong>Plain English:</strong> We use a small, carefully chosen set of
-              vendors to run Meritously. Each one sees only the data it needs to do its job.
-              None of them can sell your data.
+              <strong>Plain English:</strong> We use the services listed below to run Meritously. Each receives the information it needs to provide its service and is not allowed to sell your data.
             </div>
 
             {[
@@ -454,9 +450,7 @@ export default function PrivacyPage() {
             <h2 style={sectionHeading}>Your Rights</h2>
 
             <div style={calloutBox}>
-              <strong>Plain English:</strong> You can see, correct, export, or delete your
-              data. Email us at contact@meritously.com and we'll handle it promptly,
-              no runaround.
+              <strong>Plain English:</strong> You can view, correct, download or delete your data. For help, email contact@meritously.com.
             </div>
 
             <p style={prose()}>
@@ -613,9 +607,7 @@ export default function PrivacyPage() {
             <h2 style={sectionHeading}>Changes to This Policy</h2>
 
             <div style={calloutBox}>
-              <strong>Plain English:</strong> If we make a meaningful change to how we
-              handle your data, we'll email you and update the date at the top of this
-              page. We won't make changes quietly.
+              <strong>Plain English:</strong> If we make a meaningful change to how we handle your data, we’ll email you and update the date on this page.
             </div>
 
             <p style={prose()}>
@@ -648,8 +640,7 @@ export default function PrivacyPage() {
             <h2 style={sectionHeading}>Contact</h2>
 
             <div style={calloutBox}>
-              <strong>Plain English:</strong> Questions about your data? Email us. We're a
-              small team and we respond to real people, not bots.
+              <strong>Plain English:</strong> Questions about your data? Email contact@meritously.com.
             </div>
 
             <p style={prose()}>

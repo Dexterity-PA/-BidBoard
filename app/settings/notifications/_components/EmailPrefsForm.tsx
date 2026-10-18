@@ -26,7 +26,7 @@ const PREF_ROWS: { type: NotificationType; label: string; description: string }[
   {
     type: "deadline_reminders",
     label: "Deadline reminders",
-    description: "Alerts before tracked awards close. Turning this on enables reminders 14, 7, 3 and 1 day before.",
+    description: "Get reminders 14, 7, 3 and 1 day before a saved award’s deadline.",
   },
   {
     type: "status_changes",
@@ -58,7 +58,7 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
       } catch {
         // Revert on failure
         setPrefs((prev) => ({ ...prev, [key]: !newValue }));
-        setErrors((prev) => ({ ...prev, [type]: "Failed to save. Try again." }));
+        setErrors((prev) => ({ ...prev, [type]: "That change didn’t save. Please try again." }));
       } finally {
         writing.current = false;
         setPendingTypes((prev) => {
@@ -87,7 +87,7 @@ export function EmailPrefsForm({ prefs: initialPrefs }: { prefs: BoolPrefs }) {
           paymentEvents:     false,
         });
       } catch {
-        setUnsubError("Failed to unsubscribe. Try again.");
+        setUnsubError("We couldn’t turn off your emails. Please try again.");
       } finally {
         writing.current = false;
       }

@@ -18,7 +18,7 @@ export default function DeadlineBoard({ rows, show = 8, initialToday }: { rows: 
   useEffect(() => setToday(localToday()), []);
   const visible = (today ? rows.filter((r) => r.date >= today) : rows).slice(0, show);
 
-  if (!visible.length) return <p className="lp-empty">No upcoming dates to show right now. <Link href="/scholarships" className="lp-inline-link">Browse the catalog for more awards.</Link></p>;
+  if (!visible.length) return <p className="lp-empty">No upcoming deadlines to show right now. <Link href="/scholarships" className="lp-inline-link">Browse more awards.</Link></p>;
 
   return (
     <ol className="lp-board" aria-label="Upcoming award deadlines">

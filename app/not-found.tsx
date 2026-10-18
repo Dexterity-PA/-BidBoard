@@ -118,7 +118,7 @@ export default function NotFound() {
               margin: "0 0 16px",
             }}
           >
-            This scholarship doesn&apos;t exist.
+            We couldn’t find that page.
           </h1>
 
           {/* Subtext */}
@@ -131,8 +131,7 @@ export default function NotFound() {
               margin: "0 0 40px",
             }}
           >
-            The page you&apos;re looking for isn&apos;t in our database.
-            Try searching for what you need.
+            The link may have changed. Browse scholarships to find what you’re looking for.
           </p>
 
           {/* CTAs */}
@@ -163,7 +162,7 @@ export default function NotFound() {
                 cursor: "pointer",
               }}
             >
-              Back to dashboard
+              Open my tracker
             </Link>
             <Link
               href="/scholarships"

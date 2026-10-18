@@ -23,7 +23,7 @@ export function SiteHeader() {
               Sign in
             </Link>
             <Link href="/sign-up" className="m-btn m-btn-primary m-btn-sm">
-              <span className="m-hide-sm-text">Get started free</span>
+              <span className="m-hide-sm-text">Get started</span>
               <span className="m-only-sm">Sign up</span>
             </Link>
           </SignedOut>
@@ -45,7 +45,7 @@ export function SiteFooter() {
       <div className="m-wrap m-footer-row">
         <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
           <LogoMark className="m-brand-mark" />
-          Meritously is free. Always confirm details on the official source.
+          Meritously
         </span>
         <nav className="m-footer-links" aria-label="Footer">
           <Link href="/scholarships">Browse</Link>

@@ -68,10 +68,10 @@ export default function TrackerView({ initial }: { initial: TrackedAward[] }) {
   if (awards.length === 0) {
     return (
       <div className="m-empty">
-        <h1 className="m-h2">Your tracker is empty.</h1>
+        <h1 className="m-h2">Start your shortlist.</h1>
         <p className="m-body">
-          Open any award and choose Save to tracker. It shows up here with its deadline, timeline and
-          checklist.
+          Find an award you like and choose Save to tracker. You can keep notes, check off tasks
+          and follow its deadlines here.
         </p>
         <div className="m-hero-actions">
           <Link href="/scholarships?match=1" className="m-btn m-btn-primary">
@@ -98,7 +98,7 @@ export default function TrackerView({ initial }: { initial: TrackedAward[] }) {
       </div>
 
       <p className="m-fine" style={{ marginBottom: 20 }}>
-        Want deadline reminders? <Link href="/settings/notifications" className="m-text-link">Choose your email preferences</Link>.
+        Want deadline reminders? <Link href="/settings/notifications" className="m-text-link">Set up email reminders</Link>.
       </p>
       <div className="m-seg-row" role="tablist" aria-label="Filter by status">
         {VIEWS.map((v) => (
@@ -187,7 +187,7 @@ function TrackedRow({
   function saveNotes() {
     if (notes === a.notes) return;
     void save("notes", () => updateApplicationNotes(a.id, notes), () => onPatch({ notes }),
-      "Could not save your notes. Your draft is still here. Try Save notes again.");
+      "Your notes didn’t save, but your draft is still here. Try Save notes again.");
   }
 
   return (
@@ -200,7 +200,7 @@ function TrackedRow({
             <Link href={a.href} className="m-row-name m-track-name">{a.name}</Link>
           )}
           <span className="m-row-value">{a.award}</span>
-          {a.inactive && <span className="m-track-next">Removed from the active catalog. Your saved notes remain; deadline reminders are paused.</span>}
+          {a.inactive && <span className="m-track-next">This award is no longer listed. Your notes are still here, and reminders are paused.</span>}
           {!a.inactive && a.catalogTracked && !a.deadline && a.officialDeadline && (
             <span className="m-track-next">Catalog deadline: {formatISODate(a.officialDeadline)}. No reminder date is saved.</span>
           )}
@@ -231,7 +231,7 @@ function TrackedRow({
             onChange={(e) => {
               const status = e.target.value;
               void save("status", () => updateApplicationStatus(a.id, status), () => onPatch({ status }),
-                "Could not update the status. Choose the status again to retry.");
+                "The status didn’t save. Choose it again to retry.");
             }}
           >
             {STATUSES.map(([v, label]) => (
@@ -276,7 +276,7 @@ function TrackedRow({
                     onChange={(e) => {
                       const checklist = { ...a.checklist, [r]: e.target.checked };
                       void save("checklist", () => updateApplicationChecklist(a.id, checklist), () => onPatch({ checklist }),
-                        "Could not save the checklist. Select the item again to retry.");
+                        "That checklist change didn’t save. Select the item again to retry.");
                     }}
                   />
                   <span>{r}</span>
@@ -310,7 +310,7 @@ function TrackedRow({
             )}
             <button type="button" className="m-btn m-btn-ghost m-btn-sm" disabled={pending !== null}
               onClick={() => void save("remove", () => deleteApplication(a.id), onRemove,
-                "Could not remove this award. Try Remove from tracker again.")}>
+                "This award couldn’t be removed. Try Remove from tracker again.")}>
               {pending === "remove" ? "Removing…" : "Remove from tracker"}
             </button>
           </div>

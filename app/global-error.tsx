@@ -63,7 +63,7 @@ export default function GlobalError({
               margin: "0 0 16px",
             }}
           >
-            Meritously hit a critical error.
+            We couldn’t load Meritously.
           </h1>
 
           {/* Subtext */}
@@ -76,7 +76,7 @@ export default function GlobalError({
               margin: "0 0 40px",
             }}
           >
-            Something went wrong at the root level. Reload to try again.
+            Please reload the page to try again.
           </p>
 
           {/* Reload button */}

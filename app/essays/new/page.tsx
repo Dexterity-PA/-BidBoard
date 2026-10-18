@@ -52,7 +52,7 @@ export default function NewEssayPage() {
         <div className="mb-6">
           <h1 className="text-xl font-bold text-gray-900 tracking-tight">Add Essay</h1>
           <p className="text-sm text-gray-500 mt-0.5">
-            Save an essay to your library for recycling across scholarships.
+            Keep your essays together so you can adapt them for other applications.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function NewEssayPage() {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. Leadership Essay (Gates Scholarship 2025)"
+                placeholder="e.g. My leadership essay"
                 required
                 className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-300 transition-colors"
               />
@@ -94,7 +94,7 @@ export default function NewEssayPage() {
             {/* Content */}
             <div className="space-y-1.5">
               <label htmlFor="content" className="block text-sm font-medium text-gray-700">
-                Essay Content <span className="text-red-500">*</span>
+                Your essay <span className="text-red-500">*</span>
               </label>
               <textarea
                 id="content"

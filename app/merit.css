@@ -589,15 +589,13 @@
 .lp-preview-name { grid-column: 1 / -1; font-size: 17px; line-height: 1.3; letter-spacing: -0.02em; font-weight: 600; }
 .lp-preview-provider { grid-column: 1 / -1; font-size: 12px; line-height: 1.5; color: var(--m-muted); }
 .lp-preview-value { grid-column: 2; grid-row: 1; font-size: 12px; line-height: 1.5; color: var(--m-green); font-weight: 600; text-align: right; }
-.lp-preview-note { margin: 16px 0 0; font-size: 12px; line-height: 1.5; color: var(--m-muted); max-width: 46ch; }
 .lp-how-steps { margin: 24px 0; padding-left: 22px; display: grid; gap: 18px; list-style: decimal; }
 .lp-how-steps li { padding-left: 8px; }
 .lp-how-steps li::marker { color: var(--m-green); font-weight: 600; }
+.lp-application-types { list-style: none; padding-left: 0; }
+.lp-application-types li { padding-left: 0; }
 .lp-how-steps h3 { margin: 0 0 5px; font-size: 15px; font-weight: 600; line-height: 1.4; }
 .lp-about .lp-how-steps p { margin: 0; color: var(--m-muted); font-size: 14px; line-height: 1.55; }
-.lp-community { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; padding: 24px 0; margin-top: 28px; border-bottom: 1px solid var(--m-rule); font-size: 14px; line-height: 1.5; }
-.lp-community p { margin: 0; color: var(--m-muted); }
-.lp-community strong { font-weight: 600; color: var(--m-ink); }
 .lp-search-grid { display: grid; grid-template-columns: 1fr minmax(0, 620px); align-items: center; gap: 16px 32px; }
 .lp-search-caption { margin: 6px 0 0; color: var(--m-muted); font-size: 14px; line-height: 1.5; }
 .lp-search { display: flex; gap: 8px; margin: 0; }
@@ -741,7 +739,6 @@
   .lp-preview { padding: 20px; }
   .lp-preview-award { padding: 16px; }
   .lp-preview-name { font-size: 16px; }
-  .lp-community { margin-top: 12px; font-size: 13px; }
   .lp-about-grid { grid-template-columns: 1fr; gap: 32px; }
   .lp-search { flex-direction: column; }
   .lp-search-input { flex: 0 0 auto; }

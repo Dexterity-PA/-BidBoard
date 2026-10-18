@@ -14,7 +14,7 @@ export default function DeadlineList({ items }: { items: DeadlineItem[] }) {
   if (upcoming.length === 0) {
     return (
       <div className="m-empty">
-        <p className="m-body">No upcoming dates. Save awards to your tracker to see their deadlines here.</p>
+        <p className="m-body">No upcoming deadlines yet. Save an award to your tracker and its dates will appear here.</p>
         <Link href="/scholarships" className="m-btn m-btn-primary m-btn-sm">
           Browse awards
         </Link>

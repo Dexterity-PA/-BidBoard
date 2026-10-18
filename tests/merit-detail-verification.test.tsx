@@ -65,7 +65,7 @@ describe("scholarship verification copy", () => {
   it("clearly identifies an unknown individual date without repeating the old blanket date", async () => {
     mocks.verification.mockReturnValue(null);
     const html = await renderPage();
-    expect(html).toContain("An individual check date has not been recorded for this listing.");
+    expect(html).toContain("We haven’t recorded a check date for this award yet.");
     expect(html).not.toContain("Sep 24, 2026");
     expect(html).not.toContain("Last checked");
   });
@@ -75,14 +75,14 @@ describe("scholarship verification copy", () => {
     const html = await renderPage();
     expect(html).toContain("Last checked Sep 29, 2026.");
     expect(html).toContain("Deadline confirmed; renewal requirements still need checking.");
-    expect(html).not.toContain("at least 90 days ago");
+    expect(html).not.toContain("at least 90 days since");
   });
 
   it("warns about a stale check beside the apply action", async () => {
     mocks.verification.mockReturnValue({ checkedAt: "2026-07-01", sourceUrls: LISTINGS[0].sources, notes: "Official award terms checked." });
     const html = await renderPage();
     expect(html).toContain("Last checked Jul 1, 2026.");
-    expect(html).toContain("This listing was checked at least 90 days ago.");
-    expect(html.indexOf("at least 90 days ago")).toBeLessThan(html.indexOf("Open official page"));
+    expect(html).toContain("It’s been at least 90 days since we checked this award.");
+    expect(html.indexOf("at least 90 days since")).toBeLessThan(html.indexOf("Open official page"));
   });
 });

@@ -48,9 +48,8 @@ export default async function DeadlinesPage() {
         </Link>
       </div>
       <p className="m-body">
-        Dates recorded for the awards you are working on, in order, alongside your saved
-        targets. Finished awards and awards removed from the active
-        catalog are left out.
+        See what’s coming up for the awards you’re working on, including any target dates
+        you’ve saved. Completed applications and awards that are no longer listed stay off this list.
       </p>
       <DeadlineList items={items} />
     </div>

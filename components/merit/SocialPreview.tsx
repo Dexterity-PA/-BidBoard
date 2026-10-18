@@ -41,7 +41,7 @@ export default function SocialPreview({
           paddingTop: 22, fontSize: 22, color: "#0f5d3e",
         }}
       >
-        <span>Free for students.</span>
+        <span>Find your next scholarship.</span>
         <span>meritously.com</span>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default function OGImage() {
   return new ImageResponse(
     <SocialPreview
       title="Terms of Service"
-      description="The terms for using Meritously, your free merit scholarship finder."
+      description="The terms for using Meritously."
     />,
     size,
   );
