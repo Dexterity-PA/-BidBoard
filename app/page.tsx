@@ -36,18 +36,15 @@ function nextDeadlines(now: Date): BoardRow[] {
     }));
 }
 
-/** This month and the next two, with how many confirmed deadlines are still ahead in each. */
+/** This month and the next two. Counts depend on each student's filters and local date. */
 function upcomingMonths(now: Date) {
-  // Deadlines already past this month don't count toward it.
-  const from = new Date(now.getTime() - 86_400_000).toISOString().slice(0, 10);
-  const out: { key: string; label: string; count: number }[] = [];
+  const out: { key: string; label: string }[] = [];
   for (let i = 0; i < 3; i++) {
     const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + i, 1));
     const key = d.toISOString().slice(0, 7);
     out.push({
       key,
       label: d.toLocaleString("en-US", { month: "long", timeZone: "UTC" }),
-      count: LISTINGS.filter((l) => l.deadlineDate?.startsWith(key) && l.deadlineDate >= from).length,
     });
   }
   return out;
@@ -169,9 +166,6 @@ export default function HomePage() {
                 <li key={k.type}>
                   <Link href={`/scholarships?type=${k.type}`}>
                     {k.label}
-                    <span className="lp-count">
-                      {LISTINGS.filter((l) => l.type === k.type).length}
-                    </span>
                   </Link>
                 </li>
               ))}
@@ -181,7 +175,6 @@ export default function HomePage() {
                 <li key={m.key}>
                   <Link href={`/scholarships?month=${m.key}`}>
                     Due in {m.label}
-                    <span className="lp-count">{m.count}</span>
                   </Link>
                 </li>
               ))}

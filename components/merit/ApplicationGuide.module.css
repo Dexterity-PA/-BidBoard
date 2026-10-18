@@ -1,0 +1,127 @@
+.guide {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--m-rule, #e6e8e6);
+}
+
+.title {
+  margin: 0 0 10px;
+  color: var(--m-ink, #0c0f0d);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+}
+
+.introduction {
+  margin: 0 0 24px;
+  color: var(--m-muted, #5a615c);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.subheading {
+  margin: 22px 0 8px;
+  color: var(--m-ink, #0c0f0d);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.requirements {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.requirementNote {
+  margin: 0 0 10px;
+  color: var(--m-muted, #5a615c);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.guide .citation {
+  color: var(--m-green, #0f5d3e);
+  font-size: 12px;
+  white-space: nowrap;
+  text-underline-offset: 3px;
+}
+
+.note {
+  margin: 0;
+  color: var(--m-muted, #5a615c);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.tips {
+  display: grid;
+  gap: 18px;
+  margin: 18px 0 24px;
+  padding-left: 24px;
+}
+
+.tip {
+  padding-left: 5px;
+  font-size: 14px;
+}
+
+.tip::marker {
+  color: var(--m-green, #0f5d3e);
+  font-weight: 600;
+}
+
+.tipTitle {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.tipText {
+  margin: 0;
+  color: var(--m-muted, #5a615c);
+  line-height: 1.7;
+}
+
+.sources {
+  padding: 14px 0;
+  border-top: 1px solid var(--m-rule, #e6e8e6);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.sourceSummary {
+  width: fit-content;
+  color: var(--m-green, #0f5d3e);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.sourceList {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+  padding-left: 20px;
+}
+
+.sourceList a {
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -37536,6 +37536,15 @@
             "eligibility: Students graduating in 2026-2027 from eligible U.S., Puerto Rico or select DoD high schools, with at least a 3.0 unweighted GPA and plans to pursue a degree at an accredited U.S. institution. Eligible statuses include U.S. citizen, national, permanent resident, refugee, asylee, Cuban-Haitian entrant or humanitarian parolee. Certain children and grandchildren of Coca-Cola employees, owners and retirees are excluded.",
             "Explicitly identifies the 2027 cycle, $20,000 x 150 awards, eligible class/status/geography and GPA; Phase 1 deadline; Phase 1/2 materials; interviews and April confirmation weekend."
           ]
+        },
+        {
+          "url": "https://www.coca-colascholarsfoundation.org/apply/",
+          "accessedAt": "2026-10-18",
+          "method": "official-public-source-read; focused field amendment",
+          "supports": [
+            "Page explicitly marks 2027 application closed and confirms Sept 30 2026 at 5pm Eastern, $20,000 x150, eligible school/citizenship categories and phase-specific process."
+          ],
+          "retrievalRef": "turn17view0"
         }
       ],
       "checks": {
@@ -37557,17 +37566,27 @@
         },
         "deadline": {
           "status": "supported",
-          "note": "The official current 2027 application sets Phase 1 close at September 30, 2026, 5 p.m. Eastern, and gives later milestones as November, late January/early February, and April. The catalog states those published intervals and does not claim exact invitation-only dates.",
+          "note": "The official current 2027 application sets Phase 1 close at September 30, 2026, 5 p.m. Eastern, and gives later milestones as November, late January/early February, and April. The catalog states those published intervals and does not claim exact invitation-only dates. October 18 focused amendment: the official application page now explicitly labels initial entry for 2027 closed; the September 30, 2026 at 5 p.m. Eastern cutoff remains unchanged.",
           "sourceUrls": [
             "https://www.coca-colascholarsfoundation.org/about/faq",
+            "https://www.coca-colascholarsfoundation.org/apply/"
+          ],
+          "originalReviewDate": "2026-09-29",
+          "amendedAt": "2026-10-18",
+          "amendmentSourceUrls": [
             "https://www.coca-colascholarsfoundation.org/apply/"
           ]
         },
         "application": {
           "status": "supported",
-          "note": "Official 2027 selection-process page specifies Phase 1 has no essay, transcript or recommendation; Phase 2 requires essays, transcript and one recommendation; Regional Finalists interview; invited scholars attend the April weekend to confirm selection.",
+          "note": "Official 2027 selection-process page specifies Phase 1 has no essay, transcript or recommendation; Phase 2 requires essays, transcript and one recommendation; Regional Finalists interview; invited scholars attend the April weekend to confirm selection. October 18 focused amendment: November Phase 2 work is restricted to invited semifinalists; it is not a reopened initial-entry application.",
           "sourceUrls": [
             "https://www.coca-colascholarsfoundation.org/about/faq",
+            "https://www.coca-colascholarsfoundation.org/apply/"
+          ],
+          "originalReviewDate": "2026-09-29",
+          "amendedAt": "2026-10-18",
+          "amendmentSourceUrls": [
             "https://www.coca-colascholarsfoundation.org/apply/"
           ]
         },
@@ -37580,10 +37599,21 @@
           ]
         }
       },
-      "changes": [],
+      "changes": [
+        {
+          "field": "notes",
+          "before": "Achievement-based selection considers leadership, academics and service, rather than financial need. Eligible immigration status must already be established when applying; pending applications do not qualify. No already-graduated/gap-year or ordinary American/expat-school-abroad applicants; only listed DoD exceptions.",
+          "after": "Achievement-based selection considers leadership, academics and service, rather than financial need. Eligible immigration status must already be established when applying; pending applications do not qualify. No already-graduated/gap-year or ordinary American/expat-school-abroad applicants; only listed DoD exceptions. The 2027 initial application is closed; November materials are only for invited semifinalists.",
+          "reason": "October 18, 2026: initial 2027 entry is confirmed closed; November applications are invitation-only semifinalist work. Other fields retain their earlier review evidence.",
+          "reviewedAt": "2026-10-18",
+          "sourceUrls": [
+            "https://www.coca-colascholarsfoundation.org/apply/"
+          ]
+        }
+      ],
       "unresolved": [],
-      "publicNote": "The official 2027 Coca-Cola Scholars application confirms the $20,000 award, Phase 1 deadline and four-stage process, with published later-stage windows and required materials.",
-      "finalRecordHash": "5c30d60e4b31bfb177fed31ef2f0048b6acb1b3f153f5133dd9ef0a9061422b2",
+      "publicNote": "The official 2027 Coca-Cola Scholars application confirms the $20,000 award, Phase 1 deadline and four-stage process, with published later-stage windows and required materials. Rechecked October 18, 2026: the 2027 initial application is closed. November applications are only for invited semifinalists. Other details were last checked September 29, 2026.",
+      "finalRecordHash": "1369b069af9c262daebdd23a67b47ba27f41692d9aa395d7b62d6a5eff51c8fa",
       "deepReview": {
         "previousOutcome": "partial",
         "newSources": [
@@ -37601,7 +37631,76 @@
           "The earlier concern about exact later-stage dates is resolved for the displayed claim: current 2027 official process publishes November, late January/early February and April windows, and the catalog uses only those stated intervals. The phase-specific required materials and events are also stated publicly."
         ],
         "remainingReason": ""
-      }
+      },
+      "amendments": [
+        {
+          "amendedAt": "2026-10-18",
+          "scope": "October 18, 2026: initial 2027 entry is confirmed closed; November applications are invitation-only semifinalist work. Other fields retain their earlier review evidence.",
+          "researchBatch": "data/merit/verification-2026-10-18.json",
+          "preservedWholeRecordReviewDate": "2026-09-29",
+          "changedCatalogFields": [
+            "notes"
+          ],
+          "amendedChecks": [
+            "deadline",
+            "application"
+          ],
+          "previousChecks": {
+            "deadline": {
+              "status": "supported",
+              "note": "The official current 2027 application sets Phase 1 close at September 30, 2026, 5 p.m. Eastern, and gives later milestones as November, late January/early February, and April. The catalog states those published intervals and does not claim exact invitation-only dates.",
+              "sourceUrls": [
+                "https://www.coca-colascholarsfoundation.org/about/faq",
+                "https://www.coca-colascholarsfoundation.org/apply/"
+              ]
+            },
+            "application": {
+              "status": "supported",
+              "note": "Official 2027 selection-process page specifies Phase 1 has no essay, transcript or recommendation; Phase 2 requires essays, transcript and one recommendation; Regional Finalists interview; invited scholars attend the April weekend to confirm selection.",
+              "sourceUrls": [
+                "https://www.coca-colascholarsfoundation.org/about/faq",
+                "https://www.coca-colascholarsfoundation.org/apply/"
+              ]
+            }
+          },
+          "previousPublicNote": "The official 2027 Coca-Cola Scholars application confirms the $20,000 award, Phase 1 deadline and four-stage process, with published later-stage windows and required materials.",
+          "retainedUnresolved": [],
+          "sourceEvidence": [
+            {
+              "url": "https://www.coca-colascholarsfoundation.org/apply/",
+              "accessedAt": "2026-10-18",
+              "method": "official-public-source-read; focused field amendment",
+              "supports": [
+                "Page explicitly marks 2027 application closed and confirms Sept 30 2026 at 5pm Eastern, $20,000 x150, eligible school/citizenship categories and phase-specific process."
+              ],
+              "retrievalRef": "turn17view0"
+            }
+          ],
+          "fullEntryEqualityAudit": {
+            "baselineCommit": "814bb3ee63af1e4b9f768ddbaf67a51cb58e1c40",
+            "previousArchivedRecordHash": "5c30d60e4b31bfb177fed31ef2f0048b6acb1b3f153f5133dd9ef0a9061422b2",
+            "approvedPatchMatchesEntireCurrentRecord": true,
+            "unmodifiedFields": [
+              "id",
+              "provider",
+              "name",
+              "type",
+              "status",
+              "value",
+              "deadline",
+              "deadlineDate",
+              "apply",
+              "eligibility",
+              "tags",
+              "sources",
+              "minGpa",
+              "gpaScale",
+              "citizenship"
+            ],
+            "finalRecordHash": "1369b069af9c262daebdd23a67b47ba27f41692d9aa395d7b62d6a5eff51c8fa"
+          }
+        }
+      ]
     },
     "P002": {
       "id": "P002",
@@ -52119,6 +52218,24 @@
           "supports": [
             "A dated September 2025 policy expansion supports current contest tiers, but the general aid page still lists $2,500-$15,000 for Young Writers merit; award-letter reconciliation and complete renewal terms remain unresolved."
           ]
+        },
+        {
+          "url": "https://admissions.bennington.edu/register/youngcreators",
+          "accessedAt": "2026-10-18",
+          "method": "official-public-source-read; focused field amendment",
+          "supports": [
+            "Portal explicitly titled2026-27, establishes November 1 cycle and distinguishes one entry per discipline from one winning discipline."
+          ],
+          "retrievalRef": "turn30view0"
+        },
+        {
+          "url": "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards",
+          "accessedAt": "2026-10-18",
+          "method": "official-public-source-read; focused field amendment",
+          "supports": [
+            "Current rules provide ET time, categories, strict word count, cash/scholarship tiers, grade 12 application prerequisite and total AI ban."
+          ],
+          "retrievalRef": "turn29view1"
         }
       ],
       "checks": {
@@ -52175,8 +52292,8 @@
           ]
         },
         "eligibility": {
-          "status": "supported",
-          "note": "Grades 9-12 worldwide; no graduates, gap-year or transfer entrants. College scholarship requires Bennington enrollment.",
+          "status": "corrected",
+          "note": "Grades 9-12 worldwide; no graduates, gap-year or transfer entrants. College scholarship requires Bennington enrollment. October 18 focused amendment: the explicitly labelled 2026-27 registration portal permits one entry per discipline and winning in only one discipline. The writing award itself remains limited to one writing category. Other prior eligibility findings are retained.",
           "sourceUrls": [
             "https://www.bennington.edu/events/young-writers-awards",
             "https://admissions.bennington.edu/register/youngcreators",
@@ -52185,17 +52302,121 @@
             "https://www.bennington.edu/admissions/apply/financing-your-education",
             "https://www.bennington.edu/events/bennington-young-creators-awards",
             "https://www.bennington.edu/news-and-features/9th%E2%80%9312th-grade-students-invited-submit-bennington-college-young-writers-awards"
+          ],
+          "originalReviewDate": "2026-10-01",
+          "amendedAt": "2026-10-18",
+          "amendmentSourceUrls": [
+            "https://admissions.bennington.edu/register/youngcreators",
+            "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards"
           ]
         }
       },
       "changes": [
-        "Attached dated policy-expansion evidence while retaining the unresolved conflicting financial-aid overview."
+        "Attached dated policy-expansion evidence while retaining the unresolved conflicting financial-aid overview.",
+        {
+          "field": "eligibility",
+          "before": "Currently enrolled grades 9 to 12 worldwide, including homeschooled students. Graduates, gap-year and transfer students are excluded. One submission per discipline and one award discipline per student; simultaneous submissions to other competitions/publications are allowed.",
+          "after": "Currently enrolled grades 9 to 12 worldwide, including homeschooled students. Graduates, gap-year and transfer students are excluded. One submission per discipline; students may enter multiple disciplines but may win in only one discipline; simultaneous submissions to other competitions/publications are allowed.",
+          "reason": "October 18, 2026: entry in multiple disciplines is permitted, but a student may win only one discipline. The prior unresolved college-scholarship value conflict and renewal limitations remain; other fields retain their earlier review evidence.",
+          "reviewedAt": "2026-10-18",
+          "sourceUrls": [
+            "https://admissions.bennington.edu/register/youngcreators",
+            "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards"
+          ]
+        },
+        {
+          "field": "notes",
+          "before": "Free entry. AI may not be used for brainstorming, creating, drafting, revising or collaboration. Seniors must complete their Bennington application before entering. Student ownership and future publication rights remain, while winning/distinguished work may be showcased. College scholarships require enrollment at Bennington; complete renewal conditions are not published on the award pages.",
+          "after": "Free entry. AI may not be used for brainstorming, creating, drafting, revising or collaboration. Seniors must complete their Bennington application before entering. Student ownership and future publication rights remain, while winning/distinguished work may be showcased. College scholarships require enrollment at Bennington; complete renewal conditions are not published on the award pages. The current 2026-27 portal permits one entry per discipline but a win in only one discipline.",
+          "reason": "October 18, 2026: entry in multiple disciplines is permitted, but a student may win only one discipline. The prior unresolved college-scholarship value conflict and renewal limitations remain; other fields retain their earlier review evidence.",
+          "reviewedAt": "2026-10-18",
+          "sourceUrls": [
+            "https://admissions.bennington.edu/register/youngcreators",
+            "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards"
+          ]
+        }
       ],
       "unresolved": [
         "Bennington’s current contest page lists full tuition, half tuition and $25,000 annually for Young Writers award tiers, while its general financial-aid page lists $2,500-$15,000 annually for a Young Writers Merit Scholarship. The relationship between these official descriptions is unclear."
       ],
-      "publicNote": "The current contest page lists cash prizes and four-year Bennington scholarships. Bennington’s general aid page lists a different Young Writers scholarship range, so confirm the college award amount in your offer letter.",
-      "finalRecordHash": "a209e7b8d284858aa27b1bd4dbc224b8a56a4b2908b5b99769d946e9a55136ef"
+      "publicNote": "The current contest page lists cash prizes and four-year Bennington scholarships. Bennington’s general aid page lists a different Young Writers scholarship range, so confirm the college award amount in your offer letter. Rechecked October 18, 2026: students may enter multiple disciplines but may win in only one. Writing entries must stay within one writing category. Complete scholarship renewal conditions are not published. Other details were last checked October 1, 2026.",
+      "finalRecordHash": "1bc7e3b6405faa1d93a543b972d4d1e97cd1238d854c8ae997f77a70800f1aca",
+      "amendments": [
+        {
+          "amendedAt": "2026-10-18",
+          "scope": "October 18, 2026: entry in multiple disciplines is permitted, but a student may win only one discipline. The prior unresolved college-scholarship value conflict and renewal limitations remain; other fields retain their earlier review evidence.",
+          "researchBatch": "data/merit/verification-2026-10-18.json",
+          "preservedWholeRecordReviewDate": "2026-10-01",
+          "changedCatalogFields": [
+            "eligibility",
+            "notes"
+          ],
+          "amendedChecks": [
+            "eligibility"
+          ],
+          "previousChecks": {
+            "eligibility": {
+              "status": "supported",
+              "note": "Grades 9-12 worldwide; no graduates, gap-year or transfer entrants. College scholarship requires Bennington enrollment.",
+              "sourceUrls": [
+                "https://www.bennington.edu/events/young-writers-awards",
+                "https://admissions.bennington.edu/register/youngcreators",
+                "https://www.bennington.edu/news-and-features/9th%E2%80%9312th-grade-students-invited-submit-bennington-college-young-writers-awards-0",
+                "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards",
+                "https://www.bennington.edu/admissions/apply/financing-your-education",
+                "https://www.bennington.edu/events/bennington-young-creators-awards",
+                "https://www.bennington.edu/news-and-features/9th%E2%80%9312th-grade-students-invited-submit-bennington-college-young-writers-awards"
+              ]
+            }
+          },
+          "previousPublicNote": "The current contest page lists cash prizes and four-year Bennington scholarships. Bennington’s general aid page lists a different Young Writers scholarship range, so confirm the college award amount in your offer letter.",
+          "retainedUnresolved": [
+            "Bennington’s current contest page lists full tuition, half tuition and $25,000 annually for Young Writers award tiers, while its general financial-aid page lists $2,500-$15,000 annually for a Young Writers Merit Scholarship. The relationship between these official descriptions is unclear."
+          ],
+          "sourceEvidence": [
+            {
+              "url": "https://admissions.bennington.edu/register/youngcreators",
+              "accessedAt": "2026-10-18",
+              "method": "official-public-source-read; focused field amendment",
+              "supports": [
+                "Portal explicitly titled2026-27, establishes November 1 cycle and distinguishes one entry per discipline from one winning discipline."
+              ],
+              "retrievalRef": "turn30view0"
+            },
+            {
+              "url": "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards",
+              "accessedAt": "2026-10-18",
+              "method": "official-public-source-read; focused field amendment",
+              "supports": [
+                "Current rules provide ET time, categories, strict word count, cash/scholarship tiers, grade 12 application prerequisite and total AI ban."
+              ],
+              "retrievalRef": "turn29view1"
+            }
+          ],
+          "fullEntryEqualityAudit": {
+            "baselineCommit": "814bb3ee63af1e4b9f768ddbaf67a51cb58e1c40",
+            "previousArchivedRecordHash": "a209e7b8d284858aa27b1bd4dbc224b8a56a4b2908b5b99769d946e9a55136ef",
+            "approvedPatchMatchesEntireCurrentRecord": true,
+            "unmodifiedFields": [
+              "id",
+              "provider",
+              "name",
+              "type",
+              "status",
+              "value",
+              "deadline",
+              "deadlineDate",
+              "apply",
+              "tags",
+              "sources",
+              "minGpa",
+              "gpaScale",
+              "citizenship"
+            ],
+            "finalRecordHash": "1bc7e3b6405faa1d93a543b972d4d1e97cd1238d854c8ae997f77a70800f1aca"
+          }
+        }
+      ]
     },
     "P160": {
       "id": "P160",
@@ -85005,6 +85226,24 @@
             "deadline: November 11, 2026",
             "eligibility: Seniors completing four years of high school in the U.S., a territory or U.S. military base and graduating spring 2027, intending an accredited four-year degree in fall 2027. At least 3.75 unweighted GPA, an SAT/ACT/AP/IB score and unmet financial need; family income ceiling $95,000. U.S. citizenship is not required."
           ]
+        },
+        {
+          "url": "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+          "accessedAt": "2026-10-18",
+          "method": "official-public-source-read; focused field amendment",
+          "supports": [
+            "2027 eligibility and 2026 application calendar explicit; prescribes 11th-grade core teacher and second academic recommender, counselor report and transcript steps."
+          ],
+          "retrievalRef": "turn19view1"
+        },
+        {
+          "url": "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/",
+          "accessedAt": "2026-10-18",
+          "method": "official-public-source-read; focused field amendment",
+          "supports": [
+            "FAQ confirms official transcript via counselor, no online four-year funding, four-year/renewal terms, and disclosure of AI use."
+          ],
+          "retrievalRef": "turn26view4"
         }
       ],
       "checks": {
@@ -85034,17 +85273,28 @@
         },
         "application": {
           "status": "supported",
-          "note": "Current 2027 How-to specifies applicant unofficial transcript and self-report; program FAQ specifies counselor official transcript through Common App. How-to also permits a later official-copy request from semifinalists; neither instruction says the other submission is excluded.",
+          "note": "Current 2027 How-to specifies applicant unofficial transcript and self-report; program FAQ specifies counselor official transcript through Common App. How-to also permits a later official-copy request from semifinalists; neither instruction says the other submission is excluded. October 18 focused amendment: one academic recommendation must come from an 11th-grade core-subject teacher; the second from another core-subject teacher or professor since ninth grade. The FAQ requests disclosure of AI use. Preserve the previously reconciled applicant-unofficial/counselor-official transcript instructions.",
           "sourceUrls": [
+            "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+            "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
+          ],
+          "originalReviewDate": "2026-09-29",
+          "amendedAt": "2026-10-18",
+          "amendmentSourceUrls": [
             "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
             "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
           ]
         },
         "eligibility": {
           "status": "supported",
-          "note": "Seniors completing four years of high school in the U.S., a territory or U.S. military base and graduating spring 2027, intending an accredited four-year degree in fall 2027. At least 3.75 unweighted GPA, an SAT/ACT/AP/IB score and unmet financial need; family income ceiling $95,000. U.S. citizenship is not required.",
+          "note": "Seniors completing four years of high school in the U.S., a territory or U.S. military base and graduating spring 2027, intending an accredited four-year degree in fall 2027. At least 3.75 unweighted GPA, an SAT/ACT/AP/IB score and unmet financial need; family income ceiling $95,000. U.S. citizenship is not required. October 18 focused amendment: the program FAQ explicitly excludes accredited online four-year degree programs. Other eligibility details retain the earlier review evidence.",
           "sourceUrls": [
             "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+            "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
+          ],
+          "originalReviewDate": "2026-09-29",
+          "amendedAt": "2026-10-18",
+          "amendmentSourceUrls": [
             "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
           ]
         }
@@ -85059,11 +85309,33 @@
             "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
             "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
           ]
+        },
+        {
+          "field": "apply",
+          "before": "Apply through Common App by November 11, 2026 with short essays, financial and test information, self-reported grades and an unofficial transcript. Invite two academic teachers and a counselor for recommendations and the School Report. The FAQ says the counselor submits an official high-school transcript through Common App; an additional official copy may be requested from semifinalists.",
+          "after": "Apply through Common App by November 11, 2026 with short essays, financial and test information, self-reported grades and an unofficial transcript. Invite two academic recommenders: one must be an 11th-grade core-subject teacher, and the second another core-subject teacher or professor who has worked with you since ninth grade. Invite a counselor for the recommendation and School Report. The FAQ says the counselor submits an official transcript through Common App; an additional official copy may be requested from semifinalists. Report any AI use as requested in the application.",
+          "reason": "October 18, 2026: focused amendments clarify academic recommender qualifications, AI-use disclosure and the exclusion of online four-year programs; other fields retain their earlier review evidence.",
+          "reviewedAt": "2026-10-18",
+          "sourceUrls": [
+            "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+            "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
+          ]
+        },
+        {
+          "field": "notes",
+          "before": "",
+          "after": "Accredited online four-year degree programs are not funded. Sponsor pages do not state a deadline time or time zone.",
+          "reason": "October 18, 2026: focused amendments clarify academic recommender qualifications, AI-use disclosure and the exclusion of online four-year programs; other fields retain their earlier review evidence.",
+          "reviewedAt": "2026-10-18",
+          "sourceUrls": [
+            "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+            "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
+          ]
         }
       ],
       "unresolved": [],
-      "publicNote": "For the 2027 application, submit an unofficial transcript in Common App and have your counselor provide the school report and official transcript. Additional documents may be requested from semifinalists.",
-      "finalRecordHash": "643e087478dfe20cd6ddcce76078809f617be27c473b85e9a9b63615abc03bbf",
+      "publicNote": "For the 2027 application, submit an unofficial transcript in Common App and have your counselor provide the school report and official transcript. Additional documents may be requested from semifinalists. Rechecked October 18, 2026: one academic recommender must be an 11th-grade core-subject teacher; the second must be another core-subject teacher or professor who has worked with you since ninth grade. Disclose AI use as requested. Online four-year degree programs are not covered. Other details were last checked September 29, 2026.",
+      "finalRecordHash": "8537201eae96895823a726c3eecb5310be90a899f3c526969e0993e07bd3a795",
       "deepReview": {
         "previousOutcome": "partial",
         "newSources": [],
@@ -85083,7 +85355,85 @@
           "Reconciled applicant-uploaded unofficial transcript and counselor-submitted official transcript as distinct roles; later semifinalist request remains possible."
         ],
         "remainingReason": "All material displayed terms are supported by current official evidence."
-      }
+      },
+      "amendments": [
+        {
+          "amendedAt": "2026-10-18",
+          "scope": "October 18, 2026: focused amendments clarify academic recommender qualifications, AI-use disclosure and the exclusion of online four-year programs; other fields retain their earlier review evidence.",
+          "researchBatch": "data/merit/verification-2026-10-18.json",
+          "preservedWholeRecordReviewDate": "2026-09-29",
+          "changedCatalogFields": [
+            "apply",
+            "notes"
+          ],
+          "amendedChecks": [
+            "application",
+            "eligibility"
+          ],
+          "previousChecks": {
+            "application": {
+              "status": "supported",
+              "note": "Current 2027 How-to specifies applicant unofficial transcript and self-report; program FAQ specifies counselor official transcript through Common App. How-to also permits a later official-copy request from semifinalists; neither instruction says the other submission is excluded.",
+              "sourceUrls": [
+                "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+                "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
+              ]
+            },
+            "eligibility": {
+              "status": "supported",
+              "note": "Seniors completing four years of high school in the U.S., a territory or U.S. military base and graduating spring 2027, intending an accredited four-year degree in fall 2027. At least 3.75 unweighted GPA, an SAT/ACT/AP/IB score and unmet financial need; family income ceiling $95,000. U.S. citizenship is not required.",
+              "sourceUrls": [
+                "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+                "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
+              ]
+            }
+          },
+          "previousPublicNote": "For the 2027 application, submit an unofficial transcript in Common App and have your counselor provide the school report and official transcript. Additional documents may be requested from semifinalists.",
+          "retainedUnresolved": [],
+          "sourceEvidence": [
+            {
+              "url": "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+              "accessedAt": "2026-10-18",
+              "method": "official-public-source-read; focused field amendment",
+              "supports": [
+                "2027 eligibility and 2026 application calendar explicit; prescribes 11th-grade core teacher and second academic recommender, counselor report and transcript steps."
+              ],
+              "retrievalRef": "turn19view1"
+            },
+            {
+              "url": "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/",
+              "accessedAt": "2026-10-18",
+              "method": "official-public-source-read; focused field amendment",
+              "supports": [
+                "FAQ confirms official transcript via counselor, no online four-year funding, four-year/renewal terms, and disclosure of AI use."
+              ],
+              "retrievalRef": "turn26view4"
+            }
+          ],
+          "fullEntryEqualityAudit": {
+            "baselineCommit": "814bb3ee63af1e4b9f768ddbaf67a51cb58e1c40",
+            "previousArchivedRecordHash": "643e087478dfe20cd6ddcce76078809f617be27c473b85e9a9b63615abc03bbf",
+            "approvedPatchMatchesEntireCurrentRecord": true,
+            "unmodifiedFields": [
+              "id",
+              "provider",
+              "name",
+              "type",
+              "status",
+              "value",
+              "deadline",
+              "deadlineDate",
+              "eligibility",
+              "tags",
+              "sources",
+              "minGpa",
+              "gpaScale",
+              "citizenship"
+            ],
+            "finalRecordHash": "8537201eae96895823a726c3eecb5310be90a899f3c526969e0993e07bd3a795"
+          }
+        }
+      ]
     },
     "W003": {
       "id": "W003",
@@ -85102,6 +85452,15 @@
             "application: Online scholarship application, program code ElksMVS if requested. Top 20 finalists must attend the Chicago leadership weekend April 29-May 2, 2027 to receive $30,000.",
             "eligibility: Current U.S. citizen high-school seniors, not graduates; permanent residents do not qualify. No Elks family relationship required. Scholarship, leadership and need are considered. Award requires full-time enrollment in an accredited U.S. four-year undergraduate degree program."
           ]
+        },
+        {
+          "url": "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm",
+          "accessedAt": "2026-10-18",
+          "method": "official-public-source-read; focused field amendment",
+          "supports": [
+            "Submitted still lacks Counselor Report; Complete includes it. FAQ describes later transcript/FAFSA, essay/evaluation stages and waived standardized tests. Two-year college start toward a four-year degree allowed."
+          ],
+          "retrievalRef": "turn29view0"
         }
       ],
       "checks": {
@@ -85128,23 +85487,138 @@
         },
         "application": {
           "status": "supported",
-          "note": "Online scholarship application, program code ElksMVS if requested. Top 20 finalists must attend the Chicago leadership weekend April 29-May 2, 2027 to receive $30,000.",
+          "note": "Online scholarship application, program code ElksMVS if requested. Top 20 finalists must attend the Chicago leadership weekend April 29-May 2, 2027 to receive $30,000. October 18 focused amendment: ISTS Submitted status still lacks a Counselor Report; Complete includes it. Quarter finalists upload transcript and FAFSA Submission Summary; national semifinalists submit an additional essay and teacher evaluation. SAT/ACT scores are waived.",
           "sourceUrls": [
-            "https://www.elks.org/scholars/mvs.cfm"
+            "https://www.elks.org/scholars/mvs.cfm",
+            "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
+          ],
+          "originalReviewDate": "2026-09-29",
+          "amendedAt": "2026-10-18",
+          "amendmentSourceUrls": [
+            "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
           ]
         },
         "eligibility": {
           "status": "supported",
-          "note": "Current U.S. citizen high-school seniors, not graduates; permanent residents do not qualify. No Elks family relationship required. Scholarship, leadership and need are considered. Award requires full-time enrollment in an accredited U.S. four-year undergraduate degree program.",
+          "note": "Current U.S. citizen high-school seniors, not graduates; permanent residents do not qualify. No Elks family relationship required. Scholarship, leadership and need are considered. Award requires full-time enrollment in an accredited U.S. four-year undergraduate degree program. October 18 focused amendment: the official MVS FAQ permits the first two years at a two-year college when pursuing the four-year degree. Existing citizen/senior/full-time degree restrictions remain supported by earlier evidence.",
           "sourceUrls": [
-            "https://www.elks.org/scholars/mvs.cfm"
+            "https://www.elks.org/scholars/mvs.cfm",
+            "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
+          ],
+          "originalReviewDate": "2026-09-29",
+          "amendedAt": "2026-10-18",
+          "amendmentSourceUrls": [
+            "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
           ]
         }
       },
-      "changes": [],
+      "changes": [
+        {
+          "field": "apply",
+          "before": "Online scholarship application, program code ElksMVS if requested. Top 20 finalists must attend the Chicago leadership weekend April 29-May 2, 2027 to receive $30,000.",
+          "after": "Apply online through ISTS, using ElksMVS if prompted. Request the Counselor Report and confirm the application status is Complete; Submitted alone means the report is unfinished. Quarter finalists upload a transcript and FAFSA Submission Summary. National semifinalists submit an additional essay and teacher evaluation; SAT/ACT scores are waived. Top 20 finalists must attend the Chicago leadership weekend April 29-May 2, 2027 to receive $30,000.",
+          "reason": "October 18, 2026: focused application and eligibility additions confirm the Counselor Report, later selection-stage materials, score waiver and two-year-to-four-year degree route; other fields retain their earlier review evidence.",
+          "reviewedAt": "2026-10-18",
+          "sourceUrls": [
+            "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
+          ]
+        },
+        {
+          "field": "eligibility",
+          "before": "Current U.S. citizen high-school seniors, not graduates; permanent residents do not qualify. No Elks family relationship required. Scholarship, leadership and need are considered. Award requires full-time enrollment in an accredited U.S. four-year undergraduate degree program.",
+          "after": "Current U.S. citizen high-school seniors, not graduates; permanent residents do not qualify. No Elks family relationship required. Scholarship, leadership and need are considered. Award requires full-time enrollment in an accredited U.S. four-year undergraduate degree program. Starting at a two-year college for the first two years of the four-year degree program is permitted.",
+          "reason": "October 18, 2026: focused application and eligibility additions confirm the Counselor Report, later selection-stage materials, score waiver and two-year-to-four-year degree route; other fields retain their earlier review evidence.",
+          "reviewedAt": "2026-10-18",
+          "sourceUrls": [
+            "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
+          ]
+        },
+        {
+          "field": "sources",
+          "before": [
+            "https://www.elks.org/scholars/mvs.cfm"
+          ],
+          "after": [
+            "https://www.elks.org/scholars/mvs.cfm",
+            "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
+          ],
+          "reason": "October 18, 2026: focused application and eligibility additions confirm the Counselor Report, later selection-stage materials, score waiver and two-year-to-four-year degree route; other fields retain their earlier review evidence.",
+          "reviewedAt": "2026-10-18",
+          "sourceUrls": [
+            "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
+          ]
+        }
+      ],
       "unresolved": [],
-      "publicNote": "Official sources confirm this program. The published award, application process, deadline and eligibility were checked.",
-      "finalRecordHash": "1aee22cd5cc4597594b404d6e874bb0b8e480dfa8d9b525c228a30d867ac70f6"
+      "publicNote": "Official sources confirm this program. The published award, application process, deadline and eligibility were checked. Rechecked October 18, 2026: the Counselor Report is required for Complete status. Later rounds require a transcript, FAFSA Submission Summary, an essay and a teacher evaluation; SAT/ACT scores are waived. Students may start at a two-year college while pursuing a four-year degree. Other details were last checked September 29, 2026.",
+      "finalRecordHash": "795a0e4e4a847f6bc91601f737f8f9b996b21994ac46bc6e7796af71cd79e180",
+      "amendments": [
+        {
+          "amendedAt": "2026-10-18",
+          "scope": "October 18, 2026: focused application and eligibility additions confirm the Counselor Report, later selection-stage materials, score waiver and two-year-to-four-year degree route; other fields retain their earlier review evidence.",
+          "researchBatch": "data/merit/verification-2026-10-18.json",
+          "preservedWholeRecordReviewDate": "2026-09-29",
+          "changedCatalogFields": [
+            "apply",
+            "eligibility",
+            "sources"
+          ],
+          "amendedChecks": [
+            "application",
+            "eligibility"
+          ],
+          "previousChecks": {
+            "application": {
+              "status": "supported",
+              "note": "Online scholarship application, program code ElksMVS if requested. Top 20 finalists must attend the Chicago leadership weekend April 29-May 2, 2027 to receive $30,000.",
+              "sourceUrls": [
+                "https://www.elks.org/scholars/mvs.cfm"
+              ]
+            },
+            "eligibility": {
+              "status": "supported",
+              "note": "Current U.S. citizen high-school seniors, not graduates; permanent residents do not qualify. No Elks family relationship required. Scholarship, leadership and need are considered. Award requires full-time enrollment in an accredited U.S. four-year undergraduate degree program.",
+              "sourceUrls": [
+                "https://www.elks.org/scholars/mvs.cfm"
+              ]
+            }
+          },
+          "previousPublicNote": "Official sources confirm this program. The published award, application process, deadline and eligibility were checked.",
+          "retainedUnresolved": [],
+          "sourceEvidence": [
+            {
+              "url": "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm",
+              "accessedAt": "2026-10-18",
+              "method": "official-public-source-read; focused field amendment",
+              "supports": [
+                "Submitted still lacks Counselor Report; Complete includes it. FAQ describes later transcript/FAFSA, essay/evaluation stages and waived standardized tests. Two-year college start toward a four-year degree allowed."
+              ],
+              "retrievalRef": "turn29view0"
+            }
+          ],
+          "fullEntryEqualityAudit": {
+            "baselineCommit": "814bb3ee63af1e4b9f768ddbaf67a51cb58e1c40",
+            "previousArchivedRecordHash": "1aee22cd5cc4597594b404d6e874bb0b8e480dfa8d9b525c228a30d867ac70f6",
+            "approvedPatchMatchesEntireCurrentRecord": true,
+            "unmodifiedFields": [
+              "id",
+              "provider",
+              "name",
+              "type",
+              "status",
+              "value",
+              "deadline",
+              "deadlineDate",
+              "notes",
+              "tags",
+              "minGpa",
+              "gpaScale",
+              "citizenship"
+            ],
+            "finalRecordHash": "795a0e4e4a847f6bc91601f737f8f9b996b21994ac46bc6e7796af71cd79e180"
+          }
+        }
+      ]
     },
     "C540": {
       "id": "C540",

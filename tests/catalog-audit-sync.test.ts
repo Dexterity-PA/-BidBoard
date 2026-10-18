@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { auditedSyncRows, auditSyncParameters, canonicalRecordHash } from "@/scripts/sync-catalog-audit.mjs";
+import { auditedSyncRows, auditSyncParameters, canonicalRecordHash, loadAuditedSyncRows } from "@/scripts/sync-catalog-audit.mjs";
 import postgres from "postgres";
 import type { MeritRecord } from "@/lib/merit/catalog";
 
@@ -24,6 +24,12 @@ function makeArchive(item: MeritRecord = record, evidence = checked) {
 const archive = makeArchive();
 
 describe("completed catalog audit publication", () => {
+  it("validates the actual catalog against its release archive without connecting to a database", async () => {
+    const rows = await loadAuditedSyncRows();
+    expect(rows.length).toBeGreaterThan(0);
+    expect(new Set(rows.map((row: { slug: string }) => row.slug)).size).toBe(rows.length);
+  });
+
   it("sends a JSON array through the production driver's JSONB serializer", async () => {
     const sql = postgres("postgresql://audit:unused@127.0.0.1:1/audit");
     try {
