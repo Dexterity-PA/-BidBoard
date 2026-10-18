@@ -6118,7 +6118,7 @@
       "https://www.coca-colascholarsfoundation.org/about/faq",
       "https://www.coca-colascholarsfoundation.org/apply/"
     ],
-    "notes": "The official 2027 Coca-Cola Scholars application confirms the $20,000 award, Phase 1 deadline and four-stage process, with published later-stage windows and required materials.",
+    "notes": "The official 2027 Coca-Cola Scholars application confirms the $20,000 award, Phase 1 deadline and four-stage process, with published later-stage windows and required materials. Rechecked October 18, 2026: the 2027 initial application is closed. November applications are only for invited semifinalists. Other details were last checked September 29, 2026.",
     "outcome": "verified",
     "checks": {
       "identity": "supported",
@@ -8982,14 +8982,14 @@
       "https://www.bennington.edu/events/bennington-young-creators-awards",
       "https://www.bennington.edu/news-and-features/9th%E2%80%9312th-grade-students-invited-submit-bennington-college-young-writers-awards"
     ],
-    "notes": "The current contest page lists cash prizes and four-year Bennington scholarships. Bennington’s general aid page lists a different Young Writers scholarship range, so confirm the college award amount in your offer letter.",
+    "notes": "The current contest page lists cash prizes and four-year Bennington scholarships. Bennington’s general aid page lists a different Young Writers scholarship range, so confirm the college award amount in your offer letter. Rechecked October 18, 2026: students may enter multiple disciplines but may win in only one. Writing entries must stay within one writing category. Complete scholarship renewal conditions are not published. Other details were last checked October 1, 2026.",
     "outcome": "partial",
     "checks": {
       "identity": "supported",
       "value": "unconfirmed",
       "deadline": "supported",
       "application": "supported",
-      "eligibility": "supported"
+      "eligibility": "corrected"
     },
     "unresolved": [
       "Bennington’s current contest page lists full tuition, half tuition and $25,000 annually for Young Writers award tiers, while its general financial-aid page lists $2,500-$15,000 annually for a Young Writers Merit Scholarship. The relationship between these official descriptions is unclear."
@@ -14986,7 +14986,7 @@
       "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
       "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
     ],
-    "notes": "For the 2027 application, submit an unofficial transcript in Common App and have your counselor provide the school report and official transcript. Additional documents may be requested from semifinalists.",
+    "notes": "For the 2027 application, submit an unofficial transcript in Common App and have your counselor provide the school report and official transcript. Additional documents may be requested from semifinalists. Rechecked October 18, 2026: one academic recommender must be an 11th-grade core-subject teacher; the second must be another core-subject teacher or professor who has worked with you since ninth grade. Disclose AI use as requested. Online four-year degree programs are not covered. Other details were last checked September 29, 2026.",
     "outcome": "verified",
     "checks": {
       "identity": "supported",
@@ -15000,9 +15000,10 @@
   "W003": {
     "checkedAt": "2026-09-29",
     "sourceUrls": [
-      "https://www.elks.org/scholars/mvs.cfm"
+      "https://www.elks.org/scholars/mvs.cfm",
+      "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
     ],
-    "notes": "Official sources confirm this program. The published award, application process, deadline and eligibility were checked.",
+    "notes": "Official sources confirm this program. The published award, application process, deadline and eligibility were checked. Rechecked October 18, 2026: the Counselor Report is required for Complete status. Later rounds require a transcript, FAFSA Submission Summary, an essay and a teacher evaluation; SAT/ACT scores are waived. Students may start at a two-year college while pursuing a four-year degree. Other details were last checked September 29, 2026.",
     "outcome": "verified",
     "checks": {
       "identity": "supported",

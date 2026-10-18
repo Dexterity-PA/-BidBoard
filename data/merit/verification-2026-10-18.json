@@ -1,0 +1,711 @@
+{
+  "schemaVersion": 1,
+  "batch": "focused-upcoming-awards-2026-10-18",
+  "checkedAt": "2026-10-18",
+  "referenceTimezone": "America/Phoenix",
+  "scope": "Independent focused source recheck of 11 existing records, primarily deadlines within six weeks. Four supported field patches are integrated into the catalog and audit ledgers; the remaining findings are retained as research evidence.",
+  "method": "Primary sponsor/administrator pages and current official forms read with web research. Search used for discovery only. Inaccessible or stale retrieval is recorded without inferring a future date. SourceEvidence summaries are paraphrases, not quotations. No submission, authentication, publishing or person-directed messages.",
+  "counts": {
+    "records": 11,
+    "supported": 9,
+    "partial": 2,
+    "recommendedRecordPatches": 4
+  },
+  "records": [
+    {
+      "id": "W003",
+      "name": "Most Valuable Student Scholarship",
+      "catalogFile": "outside-2.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2027 award / fall 2027 entry",
+      "outcome": "supported-with-material-application-additions",
+      "oldValues": {
+        "deadline": "November 12, 2026, 11:59 p.m. Pacific",
+        "deadlineDate": "2026-11-12",
+        "value": "500 four-year awards: 20 of $30,000 total and 480 of $4,000 total.",
+        "eligibility": "Current U.S. citizen high-school seniors, not graduates; permanent residents do not qualify. No Elks family relationship required. Scholarship, leadership and need are considered. Award requires full-time enrollment in an accredited U.S. four-year undergraduate degree program.",
+        "apply": "Online scholarship application, program code ElksMVS if requested. Top 20 finalists must attend the Chicago leadership weekend April 29-May 2, 2027 to receive $30,000.",
+        "notes": "",
+        "sources": [
+          "https://www.elks.org/scholars/mvs.cfm"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-11-12",
+        "deadlineTime": "23:59",
+        "deadlineTimezonePublished": "Pacific Time; FAQ prints PST",
+        "value": "20 four-year awards of $30,000 and 480 of $4,000.",
+        "eligibility": "Current U.S.-citizen high-school seniors; need considered; full-time four-year undergraduate degree. Initial two-year college study toward that degree is permitted.",
+        "applicationMethod": "ISTS online, ElksMVS code. A Counselor Report is necessary for Complete status. Quarter finalists upload transcript and FAFSA Submission Summary; national semifinalists submit another essay and teacher evaluation; ACT/SAT waived. Top 20 attend Chicago April 29-May 2, 2027."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.elks.org/scholars/mvs.cfm",
+          "retrievalRef": "turn14view0",
+          "summary": "2027-labelled deadline and Leadership Weekend, award totals and citizen/senior eligibility match catalog."
+        },
+        {
+          "url": "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm",
+          "retrievalRef": "turn29view0",
+          "summary": "Submitted still lacks Counselor Report; Complete includes it. FAQ describes later transcript/FAFSA, essay/evaluation stages and waived standardized tests. Two-year college start toward a four-year degree allowed."
+        }
+      ],
+      "ambiguities": [
+        "Main page award table retains a 2026 heading, but preceding 2027 paragraph independently states current award counts and totals.",
+        "FAQ says one ENF scholarship may be accepted; separate Legacy terms may conflict. Do not add a universal stacking prohibition without resolving award-specific terms."
+      ],
+      "recommendedPatch": {
+        "apply": "Apply online through ISTS, using ElksMVS if prompted. Request the Counselor Report and confirm the application status is Complete; Submitted alone means the report is unfinished. Quarter finalists upload a transcript and FAFSA Submission Summary. National semifinalists submit an additional essay and teacher evaluation; SAT/ACT scores are waived. Top 20 finalists must attend the Chicago leadership weekend April 29-May 2, 2027 to receive $30,000.",
+        "sources": [
+          "https://www.elks.org/scholars/mvs.cfm",
+          "https://www.elks.org/scholarWeb/resources/mvsFAQ.cfm"
+        ],
+        "eligibility": "Current U.S. citizen high-school seniors, not graduates; permanent residents do not qualify. No Elks family relationship required. Scholarship, leadership and need are considered. Award requires full-time enrollment in an accredited U.S. four-year undergraduate degree program. Starting at a two-year college for the first two years of the four-year degree program is permitted."
+      },
+      "publicationPolicy": "Approved field patches integrated with dated amendment evidence. Prior whole-record review dates, outcomes and unresolved items are preserved. No visible verification badge.",
+      "integration": {
+        "status": "applied",
+        "appliedAt": "2026-10-18",
+        "fields": [
+          "apply",
+          "sources",
+          "eligibility"
+        ],
+        "verificationLedgerUpdated": true,
+        "reason": "Source-backed field amendments are archived with prior checks and dates preserved; the compact ledger is derived from expectedEvidence without advancing the whole-record checkedAt date.",
+        "archivePath": "data/merit/audit-2026-10-01-round5.json",
+        "fullEntryEqualityAudit": {
+          "baselineCommit": "814bb3ee63af1e4b9f768ddbaf67a51cb58e1c40",
+          "previousArchivedRecordHash": "1aee22cd5cc4597594b404d6e874bb0b8e480dfa8d9b525c228a30d867ac70f6",
+          "approvedPatchMatchesEntireCurrentRecord": true,
+          "unmodifiedFields": [
+            "id",
+            "provider",
+            "name",
+            "type",
+            "status",
+            "value",
+            "deadline",
+            "deadlineDate",
+            "notes",
+            "tags",
+            "minGpa",
+            "gpaScale",
+            "citizenship"
+          ],
+          "finalRecordHash": "795a0e4e4a847f6bc91601f737f8f9b996b21994ac46bc6e7796af71cd79e180"
+        }
+      }
+    },
+    {
+      "id": "P025",
+      "name": "Regeneron Science Talent Search",
+      "catalogFile": "outside-1.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2027 competition",
+      "outcome": "supported",
+      "oldValues": {
+        "deadline": "Application and all recommendations November 5, 2026 at 8 p.m. Eastern. Guaranteed support-request cutoff November 4, 2026 at 8 p.m. Eastern. Scholars January 7, 2027; finalists January 21, 2027; mandatory finals March 11-17, 2027; top awards March 16, 2027.",
+        "deadlineDate": "2026-11-05",
+        "value": "Each top-300 scholar receives $2,000 (with separate $2,000 school award). Top-40 finalist awards: $25,000 minimum, top ten $40,000-$250,000. Awards under $20,000 require documentation within two years; larger awards paid annually for education while enrolled in good standing, beginning within six years of award and ending within eight years of high-school matriculation.",
+        "eligibility": "Final secondary-school year, not graduated by deadline and no prior STS entry; over 13, with required minor consent, and under 21 for adult entrants. Any citizenship with full-time residence and school enrollment in listed U.S./territory areas; qualifying U.S. citizens at overseas schools need citizenship/accreditation proof. Pre-collegiate team research cannot be split into individual submissions; independent work alongside adult researchers can qualify.",
+        "apply": "Submit online one independent original research project, up-to-20-page research report PDF, short essays, activities, disclosures and applicable research approvals. Request educator and project recommendations and counselor high-school report/transcript through the system; no mailed materials. Scores optional. All material and recommendations due together. Finalists complete additional assigned forms/tasks and attend finals.",
+        "notes": "Maintain individual-project eligibility through June 1, 2027. Disclose paid mentoring, family/conflicts, AI and other support. No generative AI drafting of report/application/citations; permitted research assistance must be disclosed/cited. Scholar payments require W-9; finalist award conditions and forfeiture rules apply.",
+        "sources": [
+          "https://www.societyforscience.org/regeneron-sts/",
+          "https://www.societyforscience.org/regeneron-sts/official-rules/",
+          "https://www.societyforscience.org/regeneron-sts/application-requirements/",
+          "https://www.societyforscience.org/regeneron-sts/sts-awards/",
+          "https://sspcdn.blob.core.windows.net/files/Documents/SEP/STS/2027/Application/Official-Rules.pdf",
+          "https://sspcdn.blob.core.windows.net/files/Documents/SEP/STS/2027/Application/Research-Report-Guidelines.pdf",
+          "https://sspcdn.blob.core.windows.net/files/Documents/SEP/STS/2027/Application/Educator-Rec.pdf",
+          "https://sspcdn.blob.core.windows.net/files/Documents/SEP/STS/2027/Application/Project-Rec.pdf",
+          "https://sspcdn.blob.core.windows.net/files/Documents/SEP/STS/2027/Application/High-School-Report.pdf",
+          "https://sspcdn.blob.core.windows.net/files/Documents/SEP/STS/2027/Application/AI-Usage-Chart.pdf"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-11-05",
+        "deadlineTime": "20:00",
+        "deadlineTimezonePublished": "Eastern Time",
+        "value": "300 scholars: $2,000 each, plus separate $2,000 school award. Forty finalists: $25,000 minimum; top ten $40,000-$250,000.",
+        "eligibility": "Final-secondary-year individual researchers, over 13; applicable residence/school or overseas-U.S.-citizen conditions. No previous STS entry or team-project split.",
+        "applicationMethod": "Official online portal, research report up to 20 pages, short responses, research approvals and adult recommendations. Every component due together. Guaranteed support cutoff November 4 at 8 p.m. Eastern."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.societyforscience.org/regeneron-sts/",
+          "retrievalRef": "turn19view0",
+          "summary": "2027 timeline confirms Nov 5 deadline, Jan 7 scholars, Jan 21 finalists and March 11-17 finals."
+        },
+        {
+          "url": "https://sspcdn.blob.core.windows.net/files/Documents/SEP/STS/2027/Application/Official-Rules.pdf",
+          "retrievalRef": "turn23view1",
+          "summary": "2027 rules pp5-9 substantiate deadline including recommendations, preceding-day support cutoff, age/school/residence/individual-project conditions and online research materials; generative AI cannot draft entries."
+        },
+        {
+          "url": "https://www.societyforscience.org/regeneron-sts/sts-awards/",
+          "retrievalRef": "turn24view2",
+          "summary": "Award tiers independently confirm $2,000 scholar/school awards and finalist range."
+        }
+      ],
+      "ambiguities": [
+        "No catalog correction identified in audited primary fields.",
+        "Current award-payment duration wording retained from prior audit, not exhaustively re-audited here."
+      ],
+      "recommendedPatch": {},
+      "publicationPolicy": "Research only; root integration required. No visible verification badge."
+    },
+    {
+      "id": "P024",
+      "name": "Voice of Democracy",
+      "catalogFile": "outside-1.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2026-2027 competition",
+      "outcome": "supported",
+      "oldValues": {
+        "deadline": "October 31, 2026 at midnight to the participating sponsoring VFW Post; no time zone stated.",
+        "deadlineDate": "2026-10-31",
+        "value": "$35,000 national first prize, paid directly to an American college/university or vocational/technical school; other national awards up to $21,000. State first-place winners receive at least $1,000 and the Valley Forge leadership trip; local/district awards vary.",
+        "eligibility": "Grades 9-12 by October 31, in U.S./territory schools or home study, or qualifying overseas dependents schools; under age 20. Citizenship not required: lawful permanent residents OR pending-not-denied permanent-residence applicants who intend earliest lawful citizenship. Foreign-exchange, GED and adult-education students excluded.",
+        "apply": "Submit an original English recording in your own voice, 3-5 minutes (maximum five-second tolerance), typed essay and complete entry form about what a veteran taught you about America. No music/poetry/effects or identifying details. Parent/guardian signs even if entrant is 18+. Use local Post instructions: physical device, permitted email, or Post-provided Scholars App link; no direct national entry.",
+        "notes": "One entry at one Post yearly. Inappropriate AI use prohibited. Current 2026-27 rules do not state the formerly listed prior-state-winner exclusion. National-level participants consent to travel and nonexclusive promotion of their essay/audio/name/likeness; requests for SSN/photo may occur.",
+        "sources": [
+          "https://vfwfoundation.org/programs/youth-education/voice-of-democracy/",
+          "https://www.vfw.org/community/youth-and-education/youth-scholarships",
+          "https://vfw-org-hqagarhxahbybyd9.z01.azurefd.net/-/media/VFWSite/Files/Community/Youth-and-Education/Voice-of-Democracy-Entry-Form-Fillable.pdf?d=20260410T233747Z&la=en&v=1"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-10-31",
+        "deadlineTime": "midnight",
+        "deadlineTimezonePublished": null,
+        "value": "$35,000 national first prize; state first-place minimum $1,000 plus Valley Forge trip.",
+        "eligibility": "Grades 9-12 by deadline; under 20; listed U.S./territory/overseas dependent-school route and permanent-residence conditions. Foreign exchange, GED/adult education excluded.",
+        "applicationMethod": "Original own-voice English 3-5 minute MP3, typed essay and signed form to participating local Post. Post determines physical, approved email or Scholars App route. Parent/guardian signs even for 18+ entrants."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://vfwfoundation.org/programs/youth-education/voice-of-democracy/",
+          "retrievalRef": "turn23view0",
+          "summary": "Current theme, Oct 31 midnight deadline, local Post route and first/state prize levels confirmed."
+        },
+        {
+          "url": "https://vfw-org-hqagarhxahbybyd9.z01.azurefd.net/-/media/VFWSite/Files/Community/Youth-and-Education/Voice-of-Democracy-Entry-Form-Fillable.pdf?d=20260410T233747Z&la=en&v=1",
+          "retrievalRef": "turn24view3",
+          "summary": "Current 2026-27 form confirms eligibility, MP3 timing tolerance, materials, parent signature, Post-only submission and restrictions."
+        }
+      ],
+      "ambiguities": [
+        "National form publishes midnight but no time zone. Confirm receipt instructions with sponsoring Post; do not infer Eastern or Arizona time.",
+        "Other national award ceiling in catalog not re-audited from current form."
+      ],
+      "recommendedPatch": {},
+      "publicationPolicy": "Research only; root integration required. No visible verification badge."
+    },
+    {
+      "id": "W002",
+      "name": "College Scholarship Program",
+      "catalogFile": "outside-2.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2027 College Scholarship Program",
+      "outcome": "supported-with-material-application-additions",
+      "oldValues": {
+        "deadline": "November 11, 2026",
+        "deadlineDate": "2026-11-11",
+        "value": "Up to $55,000 per year for up to four undergraduate years, after institutional aid; annual renewal considers GPA at least 3.0, need, conduct and progress.",
+        "eligibility": "Seniors completing four years of high school in the U.S., a territory or U.S. military base and graduating spring 2027, intending an accredited four-year degree in fall 2027. At least 3.75 unweighted GPA, an SAT/ACT/AP/IB score and unmet financial need; family income ceiling $95,000. U.S. citizenship is not required.",
+        "apply": "Apply through Common App by November 11, 2026 with short essays, financial and test information, self-reported grades and an unofficial transcript. Invite two academic teachers and a counselor for recommendations and the School Report. The FAQ says the counselor submits an official high-school transcript through Common App; an additional official copy may be requested from semifinalists.",
+        "notes": "",
+        "sources": [
+          "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+          "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-11-11",
+        "deadlineTime": null,
+        "deadlineTimezonePublished": null,
+        "value": "Up to $55,000 per year for at most four undergraduate years; last-dollar after institutional aid; annual renewal review.",
+        "eligibility": "U.S./territory/military-base four-year high-school completion, spring 2027 graduation, fall 2027 accredited four-year enrollment, 3.75 unweighted GPA, required SAT/ACT/AP/IB score and family-income ceiling $95,000; citizenship not required.",
+        "applicationMethod": "Common App. Two academic recommendations: one 11th-grade core teacher, second core teacher/professor since ninth grade. Counselor recommendation/School Report; self-reported grades and unofficial transcript; FAQ separately requires counselor-submitted official transcript."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.jkcf.org/our-scholarships/college-scholarship-program/",
+          "retrievalRef": "turn14view2",
+          "summary": "Main page confirms currently open and Nov 11 2026 close, up to $55,000 and last-dollar funding."
+        },
+        {
+          "url": "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+          "retrievalRef": "turn19view1",
+          "summary": "2027 eligibility and 2026 application calendar explicit; prescribes 11th-grade core teacher and second academic recommender, counselor report and transcript steps."
+        },
+        {
+          "url": "https://www.jkcf.org/our-scholarships/college-scholarship-program/faqs/",
+          "retrievalRef": "turn26view4",
+          "summary": "FAQ confirms official transcript via counselor, no online four-year funding, four-year/renewal terms, and disclosure of AI use."
+        }
+      ],
+      "ambiguities": [
+        "No submission clock time or zone found on reviewed sponsor pages. Do not invent 11:59 p.m.",
+        "How-to-apply says unofficial transcript now/official may be requested later; FAQ says counselor submits official transcript. Retain both instructions transparently.",
+        "Same how-to-apply page alternates annual gross and adjusted gross income wording. Retain generic family-income ceiling, refer individual cases to sponsor."
+      ],
+      "recommendedPatch": {
+        "apply": "Apply through Common App by November 11, 2026 with short essays, financial and test information, self-reported grades and an unofficial transcript. Invite two academic recommenders: one must be an 11th-grade core-subject teacher, and the second another core-subject teacher or professor who has worked with you since ninth grade. Invite a counselor for the recommendation and School Report. The FAQ says the counselor submits an official transcript through Common App; an additional official copy may be requested from semifinalists. Report any AI use as requested in the application.",
+        "notes": "Accredited online four-year degree programs are not funded. Sponsor pages do not state a deadline time or time zone."
+      },
+      "publicationPolicy": "Approved field patches integrated with dated amendment evidence. Prior whole-record review dates, outcomes and unresolved items are preserved. No visible verification badge.",
+      "integration": {
+        "status": "applied",
+        "appliedAt": "2026-10-18",
+        "fields": [
+          "apply",
+          "notes"
+        ],
+        "verificationLedgerUpdated": true,
+        "reason": "Source-backed field amendments are archived with prior checks and dates preserved; the compact ledger is derived from expectedEvidence without advancing the whole-record checkedAt date.",
+        "archivePath": "data/merit/audit-2026-10-01-round5.json",
+        "fullEntryEqualityAudit": {
+          "baselineCommit": "814bb3ee63af1e4b9f768ddbaf67a51cb58e1c40",
+          "previousArchivedRecordHash": "643e087478dfe20cd6ddcce76078809f617be27c473b85e9a9b63615abc03bbf",
+          "approvedPatchMatchesEntireCurrentRecord": true,
+          "unmodifiedFields": [
+            "id",
+            "provider",
+            "name",
+            "type",
+            "status",
+            "value",
+            "deadline",
+            "deadlineDate",
+            "eligibility",
+            "tags",
+            "sources",
+            "minGpa",
+            "gpaScale",
+            "citizenship"
+          ],
+          "finalRecordHash": "8537201eae96895823a726c3eecb5310be90a899f3c526969e0993e07bd3a795"
+        }
+      }
+    },
+    {
+      "id": "P001",
+      "name": "Coca-Cola Scholars",
+      "catalogFile": "outside-1.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2027 scholars; initial application closed",
+      "outcome": "supported-closed-cycle",
+      "oldValues": {
+        "deadline": "September 30, 2026, 5 p.m. Eastern",
+        "deadlineDate": "2026-09-30",
+        "value": "$20,000 total to each of 150 scholars; recipients have up to ten years to use/defer funds for accredited college/university tuition and other Foundation-approved educational expenses, such as on-campus housing, a computer or textbooks.",
+        "eligibility": "Students graduating in 2026-2027 from eligible U.S., Puerto Rico or select DoD high schools, with at least a 3.0 unweighted GPA and plans to pursue a degree at an accredited U.S. institution. Eligible statuses include U.S. citizen, national, permanent resident, refugee, asylee, Cuban-Haitian entrant or humanitarian parolee. Certain children and grandchildren of Coca-Cola employees, owners and retirees are excluded.",
+        "apply": "Submit Phase 1 online with school/courses, activities, service and leadership information; no essays, transcript or recommendations are required initially and unsolicited supplemental materials are not accepted. Semifinalists complete a November application with essays, transcript and one recommendation. Regional finalists interview in late January/early February; selected scholars must attend the April Atlanta Scholars Weekend to confirm selection.",
+        "notes": "Achievement-based selection considers leadership, academics and service, rather than financial need. Eligible immigration status must already be established when applying; pending applications do not qualify. No already-graduated/gap-year or ordinary American/expat-school-abroad applicants; only listed DoD exceptions.",
+        "sources": [
+          "https://www.coca-colascholarsfoundation.org/apply/",
+          "https://www.coca-colascholarsfoundation.org/about/faq"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-09-30",
+        "deadlineTime": "17:00",
+        "deadlineTimezonePublished": "Eastern",
+        "entryStatus": "closed",
+        "value": "150 scholars receive $20,000 each.",
+        "eligibility": "2026-27 high-school graduates from sponsor-listed U.S./Puerto Rico/DoD schools, at least overall B/3.0 GPA and listed eligible immigration statuses; employee/retiree family exclusions.",
+        "applicationMethod": "Phase1 online only, no initial essays/transcript/recommendations. Invited semifinalists complete November phase2 essays, transcript and recommendation. April Scholars Weekend required after final selection."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.coca-colascholarsfoundation.org/apply/",
+          "retrievalRef": "turn17view0",
+          "summary": "Page explicitly marks 2027 application closed and confirms Sept 30 2026 at 5pm Eastern, $20,000 x150, eligible school/citizenship categories and phase-specific process."
+        }
+      ],
+      "ambiguities": [
+        "Do not roll initial-entry deadline to November: November is invitation-only semifinalist work.",
+        "Specific unweighted GPA wording and ten-year spending period retained from prior FAQ audit; not re-established from this apply page."
+      ],
+      "recommendedPatch": {
+        "notes": "Achievement-based selection considers leadership, academics and service, rather than financial need. Eligible immigration status must already be established when applying; pending applications do not qualify. No already-graduated/gap-year or ordinary American/expat-school-abroad applicants; only listed DoD exceptions. The 2027 initial application is closed; November materials are only for invited semifinalists."
+      },
+      "publicationPolicy": "Approved field patches integrated with dated amendment evidence. Prior whole-record review dates, outcomes and unresolved items are preserved. No visible verification badge.",
+      "integration": {
+        "status": "applied",
+        "appliedAt": "2026-10-18",
+        "fields": [
+          "notes"
+        ],
+        "verificationLedgerUpdated": true,
+        "reason": "Source-backed field amendments are archived with prior checks and dates preserved; the compact ledger is derived from expectedEvidence without advancing the whole-record checkedAt date.",
+        "archivePath": "data/merit/audit-2026-10-01-round5.json",
+        "fullEntryEqualityAudit": {
+          "baselineCommit": "814bb3ee63af1e4b9f768ddbaf67a51cb58e1c40",
+          "previousArchivedRecordHash": "5c30d60e4b31bfb177fed31ef2f0048b6acb1b3f153f5133dd9ef0a9061422b2",
+          "approvedPatchMatchesEntireCurrentRecord": true,
+          "unmodifiedFields": [
+            "id",
+            "provider",
+            "name",
+            "type",
+            "status",
+            "value",
+            "deadline",
+            "deadlineDate",
+            "apply",
+            "eligibility",
+            "tags",
+            "sources",
+            "minGpa",
+            "gpaScale",
+            "citizenship"
+          ],
+          "finalRecordHash": "1369b069af9c262daebdd23a67b47ba27f41692d9aa395d7b62d6a5eff51c8fa"
+        }
+      }
+    },
+    {
+      "id": "P162",
+      "name": "AAN Neuroscience Research Prize",
+      "catalogFile": "outside-3.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2027 prize asserted in catalog; fresh primary confirmation blocked",
+      "outcome": "partial-retrieval-conflict",
+      "oldValues": {
+        "deadline": "Applications opened July 29, 2026; complete application closes October 20, 2026 at 11:59 p.m. CT. Notifications by the end of January 2027.",
+        "deadlineDate": "2026-10-20",
+        "value": "Three AAN winners receive $1,000 each and a 2027 AAN Annual Meeting poster presentation. Each student and one parent or mentor receive coach airfare, two hotel nights, meeting registration and $100 per day for up to two days. One Bhuwan Garg winner receives $1,000 and a 2027 Child Neurology Society poster presentation, with student/parent-or-mentor airfare, three lodging nights, ground transport and registration. Travel benefits depend on the in-person meeting proceeding.",
+        "eligibility": "Students enrolled in and attending grades 9 to 12 in the United States, regardless of age. Individual original neuroscience research and original written work are required; group projects are excluded, but a formal laboratory is not required. Family of judges, AAN Science Committee members or AAN staff are ineligible.",
+        "apply": "Use the official online application with a maximum 300-word abstract, research report and bibliography. Complete electronic signatures from a parent/guardian, teacher and mentor by the application deadline. First-round judging reviews the abstract; finalists receive full-report review.",
+        "notes": "Research must concern the brain or nervous system. Behavioral or psychology projects need a clear neurophysiology connection. Travel packages differ between the three AAN prizes and the Bhuwan Garg prize.",
+        "sources": [
+          "https://www.aan.com/research/neuroscience-research-prize",
+          "https://aan.secure-platform.com/a/solicitations/682/home"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": null,
+        "deadlineTime": null,
+        "deadlineTimezonePublished": null,
+        "value": "Retrieved prior-cycle primary page: three AAN and one Bhuwan Garg prize of $1,000; different meeting/travel packages.",
+        "eligibility": "Retrieved page supports U.S. grades 9-12, individual original neuroscience research, no formal lab required, staff/judge family exclusions.",
+        "applicationMethod": "Retrieved page requires application, abstract up to 300 words, report, bibliography and parent/teacher/mentor e-signatures. Linked 682 portal redirects to authentication."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.aan.com/research/neuroscience-research-prize",
+          "retrievalRef": "turn16view0",
+          "summary": "Reader result, last crawled three months ago, still says closed Oct 21 2025 and 2026 meetings; does not establish current 2027 calendar."
+        },
+        {
+          "url": "https://aan.secure-platform.com/a/solicitations/682/home",
+          "retrievalRef": "turn16view1",
+          "summary": "Reader could not access authentication redirect; no current-cycle application details inspected."
+        }
+      ],
+      "ambiguities": [
+        "IMPORTANT: catalog Oct 20 2026 11:59pm CT / July 29 opening /2027 meetings NOT freshly confirmed here. This is a retrieval conflict, not proof the prior catalog source check was wrong.",
+        "Current-cycle date must remain explicitly unconfirmed in this batch. Do not change to Oct 21 2026 or infer annual recurrence.",
+        "Fresh browser/direct sponsor fetch or authenticated current-cycle instructions are needed before changing the catalog."
+      ],
+      "recommendedPatch": {},
+      "publicationPolicy": "Research only; root integration required. No visible verification badge."
+    },
+    {
+      "id": "P041",
+      "name": "Stephen J. Brady Stop Hunger Scholarship",
+      "catalogFile": "outside-1.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2026-27 scholarship; precise official-rules retrieval blocked",
+      "outcome": "partial",
+      "oldValues": {
+        "deadline": "Online applications August 20, 2026-October 20, 2026 at 11:59 PM PST as printed in rules. Winners notified February 2027 and must complete payment/travel documentation by February 12, 2027. Required paid trip May 5-7, 2027, Scottsdale, Arizona.",
+        "deadlineDate": "2026-10-20",
+        "value": "$10,000 one-time academic scholarship, paid directly to approved postsecondary school or qualified 529 plan for younger scholars. Tuition/related fees/required books/supplies/equipment; no cash payment. Disbursement around July 2027, undisburseable funds forfeited December 31, 2027.",
+        "eligibility": "Ages 5-25 on August 20, 2026, enrolled in accredited U.S. institution kindergarten through graduate school. U.S. citizen or permanent resident living in 50 states; sustained unpaid U.S. hunger-relief service during previous 12 months helping nonfamily members. Sodexo/Foundation employees ineligible; nonemployee family may apply.",
+        "apply": "Complete online ISTS application and supply all requested information/recommender email; only first complete application considered, no mailed/faxed forms or later additions. Selected minors need parent affidavit/assignment of rights within seven days; winners must answer sponsor requests promptly and provide payment/travel details by February 12, 2027. Attend full mandatory event agenda; inability to attend revokes scholarship.",
+        "notes": "Up to five national scholars, sponsor may vary count. Separate $5,000 grant goes to approved tax-exempt U.S. hunger-relief charity, not student; honorable mentions only $1,000 charity grant. Trip pays for scholar and up to two approved immediate-family guests; submission/publicity rights granted.",
+        "sources": [
+          "https://www.us.stop-hunger.org/grants/youth-scholarships",
+          "https://storage.pardot.com/786623/1786551826HB3H159Q/Stephen_J._Brady_Scholarship_Official_Rules_2026_27.pdf"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": null,
+        "recurringDeadlineMonthDay": "10-20",
+        "deadlineTime": null,
+        "deadlineTimezonePublished": null,
+        "value": "$10,000 student academic scholarship plus separate $5,000 charity grant.",
+        "eligibility": "Main page states ages 5-25 and hunger-relief leadership/impact. Citizenship/residence and service details require linked rules.",
+        "applicationMethod": "Official site links Apply Now to ISTS; full rules not readable. Main page gives mandatory 2027 Charity Classic May 5-7 in Scottsdale."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.us.stop-hunger.org/grants/youth-scholarships",
+          "retrievalRef": "turn16view2",
+          "summary": "Main page publishes annual Aug20-Oct 20 period, $10,000 student/$5,000 charity benefits and May 5-7 2027 event."
+        },
+        {
+          "url": "https://go.sodexo.com/TR/StephenJBradyScholarshipOfficialRules202627",
+          "retrievalRef": "turn23view2",
+          "summary": "Official-rules redirect returned no readable text."
+        },
+        {
+          "url": "https://storage.pardot.com/786623/1786551826HB3H159Q/Stephen_J._Brady_Scholarship_Official_Rules_2026_27.pdf",
+          "retrievalRef": "turn24view1",
+          "summary": "Existing catalog rules URL inaccessible through reader; precise 2026 date/time, age-date and eligibility cannot be refreshed."
+        }
+      ],
+      "ambiguities": [
+        "Do not mark exact 2026 deadline or PST clock freshly verified on annual month/day policy alone.",
+        "Preserve existing catalog date pending an independent direct current rules check; research limitation does not disprove prior evidence."
+      ],
+      "recommendedPatch": {},
+      "publicationPolicy": "Research only; root integration required. No visible verification badge."
+    },
+    {
+      "id": "P163",
+      "name": "NCWIT Aspirations in Computing High School Award",
+      "catalogFile": "outside-3.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2026-27 AiC High School Award",
+      "outcome": "supported",
+      "oldValues": {
+        "deadline": "Applications September 1, 2026 to October 27, 2026 at 10 p.m. ET. Optional educator endorsement November 5, 2026 at 10 p.m. ET. Under-18 applicants need parent/guardian approval to join the AiC Community before applying.",
+        "deadlineDate": "2026-10-27",
+        "value": "National Winners receive cash and a trip to the Bank of America celebration; the current prize chart does not state the cash amount. National Winners and Honorable Mentions receive an engraved award. Regional Affiliate Winners, Honorable Mentions and Rising Stars receive an engraved medallion. Recognition at a regional event is at the affiliate's discretion.",
+        "eligibility": "Grades 9 to 12, age 13 or older at account creation, involved in technology and attending a school in the U.S., Puerto Rico, Guam, U.S. Virgin Islands or on a U.S. overseas military base. Under-18 students need guardian approval for Community membership. National designations additionally require U.S. citizenship, permanent residence or the IRS substantial presence test, plus a U.S. tax identification or Social Security number. NCWIT staff, contractors, board members and their specified family/household members are excluded. Prior National Winners cannot win again; regional repeat awards are discretionary.",
+        "apply": "Join the free AiC Community, then submit the online award application in English or Spanish. It includes four required written responses of 25 to 250 words each, activities, technology access, family education and AI-use disclosure; project/portfolio links are optional. One optional educator endorsement may be requested after submission and is strongly recommended for national consideration.",
+        "notes": "Canada has a separate award route. There is no gender restriction in the current award eligibility rules. AI tools are allowed with disclosure and authentic personal responses. National Winners must return tax information and a notarized travel waiver and book travel on time or risk forfeiture; award value may be reported on Form 1099.",
+        "sources": [
+          "https://www.aspirations.org/award-programs/aic-high-school-award",
+          "https://www.aspirations.org/award-programs/guide-to-preparing-your-application",
+          "https://www.aspirations.org/frequently-asked-questions",
+          "https://www.aspirations.org/get-involved/join-the-aic-community",
+          "https://s3.us-west-2.amazonaws.com/ncwit-file-uploads/editor/2026%20AiC%20HSA%20Prize%20Chart.png"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-10-27",
+        "deadlineTime": "22:00",
+        "deadlineTimezonePublished": "ET",
+        "value": "National Winner: cash (amount not printed), engraved award and celebration trip. National Honorable Mention engraved award; regional designations medallion, event at affiliate discretion.",
+        "eligibility": "Technology-involved grades 9-12, age13+, AiC membership and applicable parent approval/school locations; additional residence/tax-ID conditions for national awards. No gender restriction in current rules.",
+        "applicationMethod": "AiC membership then online application; four 25-250-word responses, activities/context and AI-use disclosure. Educator endorsement optional, due Nov 5 2026 at10pm ET."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.aspirations.org/award-programs/aic-high-school-award",
+          "retrievalRef": "turn16view3",
+          "summary": "Explicit current-cycle dates/zone and national-vs-regional eligibility; endorsement is optional."
+        },
+        {
+          "url": "https://www.aspirations.org/award-programs/guide-to-preparing-your-application",
+          "retrievalRef": "turn27view1",
+          "summary": "Current guide supports four responses, English/Spanish, optional project URLs and AI disclosure."
+        },
+        {
+          "url": "https://s3.us-west-2.amazonaws.com/ncwit-file-uploads/editor/2026%20AiC%20HSA%20Prize%20Chart.png",
+          "retrievalRef": "turn30view2",
+          "summary": "Official prize-chart image inspected: national cash/trip but no cash figure; regional medallions and discretionary recognition."
+        }
+      ],
+      "ambiguities": [
+        "Cash amount is not published in chart. Do not import historical dollar values.",
+        "National extra eligibility conditions must not be generalized to regional awards."
+      ],
+      "recommendedPatch": {},
+      "publicationPolicy": "Research only; root integration required. No visible verification badge."
+    },
+    {
+      "id": "P040",
+      "name": "NHS Scholarship",
+      "catalogFile": "outside-1.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2026-27 NHS scholarship",
+      "outcome": "supported",
+      "oldValues": {
+        "deadline": "Open September 3, 2026; complete application including adviser certification and separate recommendation due November 20, 2026 at 5 PM Eastern. Notifications mid-January 2027; finalist DC trip late February 2027.",
+        "deadlineDate": "2026-11-20",
+        "value": "575 awards of $3,200; 25 finalist awards of $5,625, with one finalist receiving $25,000 total instead. One-time/nonrenewable; paid to U.S. institution in July/August for qualified undergraduate tuition/fees/books/supplies/equipment, used within two years. Top 25 finalists and advisers receive paid DC trip.",
+        "eligibility": "High-school senior or expecting diploma during current academic year; active NHS member in good standing in active school chapter, verified account, planning accredited U.S. college/university, military institute or trade school. Chapter-specific GPA/service obligations apply; no uniform scholarship GPA threshold stated. No applicant limit per chapter; current resource guide states maximum one winner per school.",
+        "apply": "Create NHS student account and obtain adviser verification first. Complete academic profile, NHS-pillar essay, 3-8 service activities, NHS/1-6 other leadership roles and certification. Request separate adviser certification and non-adviser/non-family adult recommendation through portal; both forms must be finished before student can submit. External recommendation letters are not accepted.",
+        "notes": "Current resource guide suggests educator recommendation; FAQ permits a non-adviser/non-family adult able to address NHS pillars. Award cannot be paid as cash or refunded to student.",
+        "sources": [
+          "https://www.nationalhonorsociety.org/the-nhs-scholarship/",
+          "https://www.nationalhonorsociety.org/the-nhs-scholarship/scholarship-faq/",
+          "https://www.nationalhonorsociety.org/wp-content/uploads/2025/09/NPA26-115_NHS_Grant-Resources_F.pdf"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-11-20",
+        "deadlineTime": "17:00",
+        "deadlineTimezonePublished": "ET",
+        "value": "575 x$3,200;24 x$5,625;one national winner $25,000. Nonrenewable, paid to institution.",
+        "eligibility": "Current graduating NHS members in good standing with active chapter and adviser-verified student account; accredited U.S. higher-education destination.",
+        "applicationMethod": "Adviser account verification before portal access. Application essay/service/leadership plus separate adviser certification and non-adviser/non-family adult recommendation; both forms completed before student can submit."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.nationalhonorsociety.org/the-nhs-scholarship/",
+          "retrievalRef": "turn17view1",
+          "summary": "Explicit Sept 3-Nov 20 2026 5pm ET application window and Jan/Feb2027 stages."
+        },
+        {
+          "url": "https://www.nationalhonorsociety.org/the-nhs-scholarship/scholarship-faq/",
+          "retrievalRef": "turn20view2",
+          "summary": "Award tiers, nonrenewable institution payment, international eligibility and broad allowed U.S. institutions confirmed."
+        },
+        {
+          "url": "https://www.nationalhonorsociety.org/wp-content/uploads/2025/09/NPA26-115_NHS_Grant-Resources_F.pdf",
+          "retrievalRef": "turn27view0",
+          "summary": "Despite 2025 URL path, PDF explicitly carries 2026 deadline and 2027 timeline. Clarifies separate certification and recommendation and maximum one winner per school."
+        }
+      ],
+      "ambiguities": [
+        "FAQ notification subsection still discusses Feb 4 2026; use main-page and current-guide mid-Jan 2027 instead.",
+        "Guide says college/university; current main page/FAQ expressly include military/trade school.",
+        "No universal scholarship GPA floor: local chapter good-standing rules govern."
+      ],
+      "recommendedPatch": {},
+      "publicationPolicy": "Research only; root integration required. No visible verification badge."
+    },
+    {
+      "id": "P502",
+      "name": "Chick-fil-A Community Scholars",
+      "catalogFile": "outside-6.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2027 scholars /2027-28 enrollment",
+      "outcome": "supported",
+      "oldValues": {
+        "deadline": "2027 cycle: August 21-November 3, 2026, at 3:00 p.m. Central Time. At least one online recommendation is due within three business days after November 3, 2026; applicants notified spring 2027.",
+        "deadlineDate": "2026-11-03",
+        "value": "Up to $25,000 (one-time award, may be disbursed over 1 to 6 years); 13 awards per year, plus a year-long leadership development and mentorship program",
+        "eligibility": "Current high school seniors, undergraduates or graduate students with at least 3.0 cumulative GPA, who will be 18 by July 15, 2027 and reside in the U.S., Puerto Rico or Canada at application and award. Plan full-time undergraduate/graduate study in 2027-28 at an accredited two/four-year, vocational/technical or CEGEP institution. Service, activities or leadership in the preceding 12 months and willingness to join the one-year Scholars program are required. DACA and international students are expressly eligible.",
+        "apply": "Apply through Scholarship America with complete current transcript, first two pages of parents’ IRS1040/T1 (or own if not dependent), and at least one online recommendation (up to three may be listed). Upload all required documents electronically and redact sensitive account/SSN data.",
+        "notes": "Up to 13 awards of up to $25000, one-time only; may be disbursed over one to six years, then unused funds forfeited. Past recipients cannot reapply. Education expenses paid to school, not student loans or refunds. Finalists must demonstrate financial need. Chick-fil-A employees and dependents/spouses of employees or Operators are ineligible.",
+        "sources": [
+          "https://www.chick-fil-a.com/community-scholars",
+          "https://scholarshipamerica.org/scholarship/cfacommunityscholars/"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-11-03",
+        "deadlineTime": "15:00",
+        "deadlineTimezonePublished": "Central Time",
+        "value": "Up to 13 one-time awards, up to $25,000 each; allowed disbursement over 1-6 years.",
+        "eligibility": "Senior/undergraduate/graduate students,3.0 GPA,18 byJuly 15 2027, U.S./Puerto Rico/Canada residents,full-time 2027-28 study, recent community involvement; specified Chick-fil-A worker/family exclusions; DACA/international permitted.",
+        "applicationMethod": "Scholarship America online; complete transcript, first 2 income-tax-return pages redacted, at least one recommendation due within 3 business days after application deadline. Up to 3 recommenders."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://scholarshipamerica.org/scholarship/cfacommunityscholars/",
+          "retrievalRef": "turn26view3",
+          "summary": "Administrator confirms current 2027 program dates, precise3 p.m. Central close, eligibility, award size/duration and document/recommendation requirements."
+        },
+        {
+          "url": "https://www.chick-fil-a.com/community-scholars",
+          "retrievalRef": "turn27view2",
+          "summary": "Sponsor independently confirms Nov 3 2026, thirteen $25,000 awards,school payment and leadership engagement."
+        }
+      ],
+      "ambiguities": [
+        "Sponsor headline says thirteen $25,000; administrator terms say up to 13/up to $25,000. Retain cautious up-to wording.",
+        "Do not turn relative three-business-day recommendation rule into an unsourced fixed deadline/time."
+      ],
+      "recommendedPatch": {},
+      "publicationPolicy": "Research only; root integration required. No visible verification badge."
+    },
+    {
+      "id": "P159",
+      "name": "Bennington Young Writers Awards",
+      "catalogFile": "outside-3.json",
+      "checkedAt": "2026-10-18",
+      "cycle": "2026-27 Young Creator Awards",
+      "outcome": "supported-with-eligibility-wording-correction",
+      "oldValues": {
+        "deadline": "For the 2026-27 awards, September 1, 2026 at 9 a.m. ET through November 1, 2026 at 11:59 p.m. ET; winners announced spring 2027.",
+        "deadlineDate": "2026-11-01",
+        "value": "Cash by category: $2,000 first, $1,000 second, $500 third; distinguished submissions $250. First-place winners enrolling at Bennington receive full tuition for four years; distinguished recipients half tuition for four years; finalists $25,000 per year for four years. Additional scholarship renewal conditions are not published in the contest rules.",
+        "eligibility": "Currently enrolled grades 9 to 12 worldwide, including homeschooled students. Graduates, gap-year and transfer students are excluded. One submission per discipline and one award discipline per student; simultaneous submissions to other competitions/publications are allowed.",
+        "apply": "Submit one typed English entry in one writing category: one fiction story/excerpt, one nonfiction essay/excerpt, or one to three poems, with a strict total limit of 1,500 words including titles, headers, footers and citations. A teacher must review and approve it; homeschooled entrants use a non-parent mentor. Grades 9 to 11 register for the YCA portal; grade 12 completes the free, nonbinding Common or Coalition application and then receives submission instructions.",
+        "notes": "Free entry. AI may not be used for brainstorming, creating, drafting, revising or collaboration. Seniors must complete their Bennington application before entering. Student ownership and future publication rights remain, while winning/distinguished work may be showcased. College scholarships require enrollment at Bennington; complete renewal conditions are not published on the award pages.",
+        "sources": [
+          "https://www.bennington.edu/events/young-writers-awards",
+          "https://www.bennington.edu/events/bennington-young-creators-awards",
+          "https://admissions.bennington.edu/register/youngcreators",
+          "https://www.bennington.edu/news-and-features/9th%E2%80%9312th-grade-students-invited-submit-bennington-college-young-writers-awards-0",
+          "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards",
+          "https://www.bennington.edu/admissions/apply/financing-your-education",
+          "https://www.bennington.edu/news-and-features/9th%E2%80%9312th-grade-students-invited-submit-bennington-college-young-writers-awards"
+        ]
+      },
+      "currentFindings": {
+        "deadlineDate": "2026-11-01",
+        "deadlineTime": "23:59",
+        "deadlineTimezonePublished": "ET",
+        "value": "Per category cash $2,000 / $1,000 / $500; distinguished $250. Bennington enrollment scholarships full tuition/half tuition / $25,000 annually for 4 years by designation.",
+        "eligibility": "Grades9-12 worldwide; not high-school graduates. One entry per discipline; may win only one discipline.",
+        "applicationMethod": "English typed writing,one category,strict 1,500-word cap,teacher/mentor approval. Grades9-11 register/YCA portal;grade 12 first completes free nonbinding Bennington Common/Coalition application. No AI use, including brainstorming or revision."
+      },
+      "sourceEvidence": [
+        {
+          "url": "https://www.bennington.edu/events/bennington-young-creators-awards/bennington-young-writers-awards",
+          "retrievalRef": "turn29view1",
+          "summary": "Current rules provide ET time, categories, strict word count, cash/scholarship tiers, grade 12 application prerequisite and total AI ban."
+        },
+        {
+          "url": "https://admissions.bennington.edu/register/youngcreators",
+          "retrievalRef": "turn30view0",
+          "summary": "Portal explicitly titled2026-27, establishes November 1 cycle and distinguishes one entry per discipline from one winning discipline."
+        }
+      ],
+      "ambiguities": [
+        "Catalog says one award discipline per student, which can imply entry limited to a single discipline. Official current portal allows entries per discipline but winning only one discipline.",
+        "Scholarship renewal conditions beyond four-year label not fully published."
+      ],
+      "recommendedPatch": {
+        "eligibility": "Currently enrolled grades 9 to 12 worldwide, including homeschooled students. Graduates, gap-year and transfer students are excluded. One submission per discipline; students may enter multiple disciplines but may win in only one discipline; simultaneous submissions to other competitions/publications are allowed.",
+        "notes": "Free entry. AI may not be used for brainstorming, creating, drafting, revising or collaboration. Seniors must complete their Bennington application before entering. Student ownership and future publication rights remain, while winning/distinguished work may be showcased. College scholarships require enrollment at Bennington; complete renewal conditions are not published on the award pages. The current 2026-27 portal permits one entry per discipline but a win in only one discipline."
+      },
+      "publicationPolicy": "Approved field patches integrated with dated amendment evidence. Prior whole-record review dates, outcomes and unresolved items are preserved. No visible verification badge.",
+      "integration": {
+        "status": "applied",
+        "appliedAt": "2026-10-18",
+        "fields": [
+          "eligibility",
+          "notes"
+        ],
+        "verificationLedgerUpdated": true,
+        "reason": "Source-backed field amendments are archived with prior checks and dates preserved; the compact ledger is derived from expectedEvidence without advancing the whole-record checkedAt date.",
+        "archivePath": "data/merit/audit-2026-10-01-round5.json",
+        "fullEntryEqualityAudit": {
+          "baselineCommit": "814bb3ee63af1e4b9f768ddbaf67a51cb58e1c40",
+          "previousArchivedRecordHash": "a209e7b8d284858aa27b1bd4dbc224b8a56a4b2908b5b99769d946e9a55136ef",
+          "approvedPatchMatchesEntireCurrentRecord": true,
+          "unmodifiedFields": [
+            "id",
+            "provider",
+            "name",
+            "type",
+            "status",
+            "value",
+            "deadline",
+            "deadlineDate",
+            "apply",
+            "tags",
+            "sources",
+            "minGpa",
+            "gpaScale",
+            "citizenship"
+          ],
+          "finalRecordHash": "1bc7e3b6405faa1d93a543b972d4d1e97cd1238d854c8ae997f77a70800f1aca"
+        }
+      }
+    }
+  ]
+}

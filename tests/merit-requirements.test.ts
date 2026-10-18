@@ -5,6 +5,13 @@ import { buildRowsFromRecords } from "@/scripts/seed-merit.mjs";
 const checklist = (apply: string, tags: string[] = []) => requirements({ ...LISTINGS[0], apply, deadline: "Not published", tags });
 
 describe("source-based application checklists", () => {
+  it("distinguishes Bennington's entry allowance from its winning restriction", () => {
+    const listing = LISTINGS.find((record) => record.id === "P159")!;
+    expect(listing.eligibility).toContain("may enter multiple disciplines");
+    expect(listing.eligibility).toContain("may win in only one discipline");
+    expect(listing.apply).toContain("one writing category");
+  });
+
   it("does not turn explicitly excluded or optional materials into requirements", () => {
     expect(checklist("Automatic with admission application; no essays or letters.", ["automatic-consideration", "test-optional"])).toEqual([
       "No separate application: you are considered when you apply for admission",

@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import SaveMeritButton from "@/components/merit/SaveMeritButton";
 import MatchNote from "@/components/merit/MatchNote";
+import DeadlineExport from "@/components/merit/DeadlineExport";
+import ApplicationGuide from "@/components/merit/ApplicationGuide";
 import { isMeritSaved } from "@/app/actions/merit";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import {
@@ -131,6 +133,21 @@ export default async function ListingPage({
               )}
               {!retired && (
                 <>
+                  <DeadlineExport deadline={{
+                    id: l.id,
+                    name: l.name,
+                    provider: l.provider,
+                    deadlineDate: l.deadlineDate,
+                    deadlineConfirmed:
+                      freshness === "current" &&
+                      verification?.outcome !== "unavailable" &&
+                      verification?.outcome !== "retired" &&
+                      ["supported", "corrected"].includes(verification?.checks?.deadline ?? ""),
+                    deadlineDescription: l.deadline,
+                    officialUrl: verification?.sourceUrls[0] ?? l.sources[0] ?? null,
+                    eligibilityUrl: `https://meritously.com/scholarships/${l.slug}#eligibility`,
+                    eligibility: l.eligibility,
+                  }} />
                   <MatchNote record={l} />
                   <SignedIn>
                     <SaveMeritButton slug={l.slug} initiallySaved={saved} />
@@ -211,7 +228,7 @@ export default async function ListingPage({
                   </div>
                 )}
                 {l.eligibility && (
-                  <div className="m-fact">
+                  <div className="m-fact" id="eligibility">
                     <dt>{retired ? "Former eligibility" : "Who can apply"}</dt>
                     <dd>{l.eligibility}</dd>
                   </div>
@@ -237,6 +254,8 @@ export default async function ListingPage({
                   </div>
                 )}
               </dl>
+
+              {!retired && <ApplicationGuide listingId={l.id} />}
 
               {more.length > 0 && (
                 <section className="m-related" aria-labelledby="related-title">
