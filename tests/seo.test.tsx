@@ -13,11 +13,12 @@ import DirectoryPage from "@/app/scholarships/directory/page";
 import ScholarshipTopicPage, { generateMetadata as topicMetadata } from "@/app/scholarships/topics/[topic]/page";
 import { generateMetadata } from "@/app/scholarships/[slug]/page";
 import sitemap from "@/app/sitemap";
+import blogSitemap from "@/app/blog/sitemap";
 import manifest from "@/app/manifest";
 import { LISTINGS, MERIT_RECORDS } from "@/lib/merit/catalog";
 import { SITE_URL, listingStructuredData, serializeJsonLd, siteStructuredData } from "@/lib/merit/seo";
 import { SCHOLARSHIP_TOPICS, TOPIC_BY_TYPE, topicPath, topicListings } from "@/lib/merit/topics";
-import { GUIDES, getTopicGuides, guidePath } from "@/lib/merit/blog";
+import { GUIDES, getTopicGuides, guideModifiedAt, guidePath } from "@/lib/merit/blog";
 import { TOPIC_GUIDE_PICKS } from "@/lib/merit/blog-discovery";
 
 it("links every public award from server-rendered HTML and excludes retired awards", () => {
@@ -37,6 +38,19 @@ it("includes exactly the public catalog and directory in the production sitemap"
     ...SCHOLARSHIP_TOPICS.map((topic) => `${SITE_URL}${topicPath(topic.slug)}`),
     ...LISTINGS.map((listing) => `${SITE_URL}/scholarships/${listing.slug}`),
   ]));
+});
+
+it("offers a blog-only sitemap with the same canonical URLs and editorial dates as the main sitemap", () => {
+  const entries = blogSitemap();
+  const main = new Map(sitemap().map((entry) => [entry.url, entry]));
+  expect(entries).toHaveLength(GUIDES.length);
+  expect(new Set(entries.map((entry) => entry.url)).size).toBe(GUIDES.length);
+  for (const guide of GUIDES) {
+    const entry = entries.find((item) => item.url === `${SITE_URL}${guidePath(guide.slug)}`);
+    expect(entry?.lastModified).toBe(guideModifiedAt(guide));
+    expect(main.get(entry!.url)?.lastModified).toBe(entry?.lastModified);
+  }
+  expect(readFileSync("public/robots.txt", "utf8")).toContain(`Sitemap: ${SITE_URL}/blog/sitemap.xml`);
 });
 
 it("gives every award matching search and social metadata with its own canonical URL", async () => {
