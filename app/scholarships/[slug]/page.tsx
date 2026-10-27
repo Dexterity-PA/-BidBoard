@@ -6,6 +6,8 @@ import SaveMeritButton from "@/components/merit/SaveMeritButton";
 import MatchNote from "@/components/merit/MatchNote";
 import { isMeritSaved } from "@/app/actions/merit";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
+import { listingDescription, listingStructuredData, pageMetadata, serializeJsonLd } from "@/lib/merit/seo";
+import { getScholarshipTopic, TOPIC_BY_TYPE, topicPath } from "@/lib/merit/topics";
 import {
   LISTINGS,
   STATUS_LABEL,
@@ -32,11 +34,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const l = getDetailListing(slug);
-  if (!l) return { title: "Scholarship not found | Meritously" };
+  if (!l) notFound();
   return {
-    alternates: { canonical: `/scholarships/${l.slug}` },
-    title: `${l.name}, ${l.provider} | Meritously`,
-    description: `${l.value} Deadline: ${l.deadline}.`.slice(0, 300),
+    ...pageMetadata(`/scholarships/${l.slug}`, `${l.name}, ${l.provider} | Meritously`, listingDescription(l)),
     ...(l.status === "excluded" ? { robots: { index: false, follow: true } } : {}),
   };
 }
@@ -74,6 +74,7 @@ export default async function ListingPage({
   if (!l) notFound();
 
   const retired = l.status === "excluded";
+  const topic = getScholarshipTopic(TOPIC_BY_TYPE[l.type])!;
   const saved = retired ? false : await isMeritSaved(l.slug).catch(() => false);
   const hint = retired ? null : coverageHint(l);
   const steps = retired ? [] : timelineSteps(l);
@@ -91,12 +92,14 @@ export default async function ListingPage({
 
   return (
     <div className="m-page">
+      {!retired && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(listingStructuredData(l)) }} />}
       <SiteHeader />
       <main className="m-main">
         <div className="m-wrap">
           <nav className="m-crumb" aria-label="Breadcrumb">
+            <Link href="/">Home</Link> <span aria-hidden="true">/</span>{" "}
             <Link href="/scholarships">Browse</Link> <span aria-hidden>/</span>{" "}
-            <Link href={`/scholarships?type=${l.type}`}>{TYPE_LABEL[l.type]}s</Link>
+            <Link href={topicPath(topic.slug)}>{topic.title}</Link>
           </nav>
 
           <header className="m-detail-head">

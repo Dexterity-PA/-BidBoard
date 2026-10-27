@@ -7,7 +7,7 @@ export const onboardingSchema = z.object({
   gradeLevel:          z.enum([
     "freshman", "sophomore", "junior", "senior",
     "college_freshman", "college_sophomore", "college_junior", "college_senior",
-  ], { required_error: "Grade level is required" }),
+  ], { error: "Grade level is required" }),
   zipCode:             z.string().regex(/^\d{5}$/, "Must be a 5-digit zip code").optional().or(z.literal("")),
   state:               z.string().optional(),
   city:                z.string().optional(),

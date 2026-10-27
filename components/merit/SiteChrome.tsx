@@ -49,6 +49,7 @@ export function SiteFooter() {
         </span>
         <nav className="m-footer-links" aria-label="Footer">
           <Link href="/scholarships">Browse</Link>
+          <Link href="/scholarships/directory">Full directory</Link>
           <Link href="/#about">About</Link>
           <Link href="/#updates">Email updates</Link>
           <Link href="/privacy">Privacy</Link>
