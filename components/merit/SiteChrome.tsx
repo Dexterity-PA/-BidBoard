@@ -52,6 +52,7 @@ export function SiteFooter() {
           <Link href="/scholarships">Browse</Link>
           <Link href="/scholarships/directory">Full directory</Link>
           <Link href="/blog">Scholarship guides</Link>
+          <Link href="/for-counselors">For counselors</Link>
           <Link href="/#about">About</Link>
           <Link href="/#updates">Email updates</Link>
           <Link href="/privacy">Privacy</Link>

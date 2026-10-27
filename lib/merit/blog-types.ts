@@ -8,6 +8,8 @@ export type GuideSection = {
 };
 
 export type Guide = {
+  publishedAt?: string;
+  updatedAt?: string;
   slug: string;
   title: string;
   description: string;

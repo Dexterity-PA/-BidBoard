@@ -842,3 +842,10 @@
   .m-guide-meta { font-size: 13px; }
   .m-guide-p, .m-guide-list { font-size: 16px; }
 }
+
+.m-copy-control { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 20px 0; }
+.m-counselor-activity { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; padding: 32px 0; border-top: 1px solid var(--m-rule); border-bottom: 1px solid var(--m-rule); }
+.m-numbered-list { list-style: decimal; margin-top: 0; }
+.m-share-blurb { padding: 24px; border-left: 3px solid var(--m-green); background: var(--m-paper); font-size: 17px; line-height: 1.8; overflow-wrap: anywhere; margin: 24px 0; }
+.m-counselor-share { scroll-margin-top: 140px; max-width: 850px; }
+@media (max-width: 700px) { .m-counselor-activity { grid-template-columns: 1fr; gap: 20px; } }

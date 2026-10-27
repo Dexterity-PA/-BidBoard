@@ -11,7 +11,7 @@ vi.mock("next/navigation", () => ({ notFound: () => { throw new Error("Not found
 import BlogPage from "@/app/blog/page";
 import GuidePage, { generateMetadata } from "@/app/blog/[slug]/page";
 import { GET } from "@/app/blog/feed.xml/route";
-import { GUIDES, GUIDE_PUBLISHED_AT, guidePath, inlineParts, xmlEscape } from "@/lib/merit/blog";
+import { GUIDES, guidePublishedAt, guidePath, inlineParts, xmlEscape } from "@/lib/merit/blog";
 import { getScholarshipTopic } from "@/lib/merit/topics";
 import { SITE_URL } from "@/lib/merit/seo";
 
@@ -46,7 +46,7 @@ it("renders complete articles with working contents, sources, related links and 
     }
     const metadata = await generateMetadata({ params });
     expect(metadata.alternates?.canonical).toBe(guidePath(guide.slug));
-    expect(metadata.openGraph).toMatchObject({ type: "article", publishedTime: GUIDE_PUBLISHED_AT });
+    expect(metadata.openGraph).toMatchObject({ type: "article", publishedTime: guidePublishedAt(guide) });
     const schema = JSON.parse(document.querySelector('script[type="application/ld+json"]')!.textContent!);
     expect(schema["@graph"][0]).toMatchObject({ headline: guide.title, url: `${SITE_URL}${guidePath(guide.slug)}`, author: { "@type": "Organization", name: "Meritously" } });
   }
