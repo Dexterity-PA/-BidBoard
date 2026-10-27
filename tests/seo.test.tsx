@@ -17,6 +17,7 @@ import manifest from "@/app/manifest";
 import { LISTINGS, MERIT_RECORDS } from "@/lib/merit/catalog";
 import { SITE_URL, listingStructuredData, serializeJsonLd, siteStructuredData } from "@/lib/merit/seo";
 import { SCHOLARSHIP_TOPICS, TOPIC_BY_TYPE, topicPath, topicListings } from "@/lib/merit/topics";
+import { GUIDES, guidePath } from "@/lib/merit/blog";
 
 it("links every public award from server-rendered HTML and excludes retired awards", () => {
   const html = renderToStaticMarkup(<DirectoryPage />);
@@ -31,6 +32,7 @@ it("includes exactly the public catalog and directory in the production sitemap"
   expect(new Set(urls).size).toBe(urls.length);
   expect(new Set(urls)).toEqual(new Set([
     SITE_URL, `${SITE_URL}/scholarships`, `${SITE_URL}/scholarships/directory`,
+    `${SITE_URL}/blog`, ...GUIDES.map((guide) => `${SITE_URL}${guidePath(guide.slug)}`),
     ...SCHOLARSHIP_TOPICS.map((topic) => `${SITE_URL}${topicPath(topic.slug)}`),
     ...LISTINGS.map((listing) => `${SITE_URL}/scholarships/${listing.slug}`),
   ]));

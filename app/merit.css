@@ -76,6 +76,11 @@
   border-radius: 8px;
 }
 .m-nav-link:hover { color: var(--m-ink); background: var(--m-paper); }
+@media (max-width: 540px) {
+  .m-header-row { height: auto; min-height: 60px; flex-wrap: wrap; gap: 2px 12px; padding-top: 10px; padding-bottom: 8px; }
+  .m-nav { flex-wrap: wrap; }
+  .m-nav-link { min-height: 44px; display: inline-flex; align-items: center; }
+}
 .m-only-sm { display: none; }
 @media (max-width: 640px) {
   .m-only-sm { display: inline; }
@@ -785,4 +790,55 @@
 @media (max-width: 680px) {
   .m-topic-links, .m-topic-awards { grid-template-columns: 1fr; }
   .m-topic-awards > li { padding: 20px; }
+}
+
+/* Scholarship guides */
+.m-guide-index { padding-top: 60px; padding-bottom: 64px; }
+.m-guide-index-head { max-width: 790px; margin-bottom: 56px; }
+.m-guide-index-title { font-size: clamp(38px, 6vw, 64px); line-height: 1.08; letter-spacing: -0.045em; font-weight: 600; margin: 12px 0 24px; }
+.m-guide-categories { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.m-guide-category { margin-bottom: 56px; scroll-margin-top: 140px; }
+.m-guide-cards { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.m-guide-card { border-top: 2px solid var(--m-green); padding: 24px 0 8px; }
+.m-guide-card-title { margin: 10px 0 14px; font-size: 23px; line-height: 1.3; letter-spacing: -0.025em; font-weight: 600; }
+.m-guide-card-title a { text-decoration: none; }
+.m-guide-card-title a:hover { color: var(--m-green); text-decoration: underline; text-underline-offset: 4px; }
+.m-guide-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 30px; background: var(--m-paper); border-radius: 12px; margin: 40px 0; }
+.m-guide-shell { padding-bottom: 64px; }
+.m-guide-article { max-width: 760px; margin: 0 auto; }
+.m-guide-header { padding: 32px 0 16px; }
+.m-guide-title { font-size: clamp(34px, 5vw, 52px); font-weight: 600; line-height: 1.12; letter-spacing: -0.035em; margin: 18px 0 24px; text-wrap: balance; }
+.m-guide-meta { font-size: 14px; color: var(--m-muted); line-height: 1.7; margin-bottom: 28px; }
+.m-guide-intro { font-size: 20px; line-height: 1.65; margin: 0 0 18px; }
+.m-guide-toc { background: var(--m-paper); padding: 24px 28px; border-radius: 10px; margin: 18px 0 48px; }
+.m-guide-toc-list { padding-left: 22px; margin: 14px 0 0; display: grid; gap: 10px; font-size: 15px; line-height: 1.5; }
+.m-guide-toc-list a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.m-guide-section { scroll-margin-top: 140px; margin-bottom: 42px; }
+.m-guide-h2 { font-size: clamp(24px, 3vw, 29px); line-height: 1.25; letter-spacing: -0.02em; font-weight: 600; margin: 0 0 20px; }
+.m-guide-p { font-size: 17px; line-height: 1.8; margin: 0 0 20px; overflow-wrap: break-word; }
+.m-guide-list { font-size: 17px; line-height: 1.75; padding-left: 24px; margin: 20px 0; display: grid; gap: 12px; }
+.m-guide-link { color: var(--m-green) !important; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.m-guide-link:hover { text-decoration-thickness: 2px; }
+.m-guide-table-wrap { overflow-x: auto; margin: 24px 0; border: 1px solid var(--m-rule); border-radius: 8px; }
+.m-guide-table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.6; text-align: left; }
+.m-guide-table th, .m-guide-table td { padding: 14px 16px; border-bottom: 1px solid var(--m-rule); vertical-align: top; min-width: 130px; }
+.m-guide-table thead { background: var(--m-paper); }
+.m-guide-table th { font-weight: 500; }
+.m-guide-table tr:last-child td, .m-guide-table tr:last-child th { border-bottom: 0; }
+.m-guide-note { border-top: 1px solid var(--m-rule); padding-top: 24px; margin-top: 48px; font-size: 14px; line-height: 1.7; color: var(--m-muted); }
+.m-guide-note p { margin: 0 0 14px; }
+.m-guide-more { max-width: 760px; margin: 40px auto 0; padding-top: 32px; border-top: 1px solid var(--m-rule); display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.m-guide-more-list { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 16px; font-size: 16px; line-height: 1.5; }
+@media (max-width: 850px) { .m-guide-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .m-guide-index { padding-top: 36px; }
+  .m-guide-index-head { margin-bottom: 36px; }
+  .m-guide-cards, .m-guide-tools, .m-guide-more { grid-template-columns: 1fr; }
+  .m-guide-cards { gap: 16px; }
+  .m-guide-tools { padding: 24px; gap: 8px; }
+  .m-guide-header { padding-top: 18px; }
+  .m-guide-intro { font-size: 18px; }
+  .m-guide-toc { padding: 20px; }
+  .m-guide-meta { font-size: 13px; }
+  .m-guide-p, .m-guide-list { font-size: 16px; }
 }

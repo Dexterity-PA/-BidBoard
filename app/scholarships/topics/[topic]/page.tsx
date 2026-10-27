@@ -4,6 +4,7 @@ import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import ScholarshipTopics from "@/components/merit/ScholarshipTopics";
 import { collectionStructuredData, pageMetadata, serializeJsonLd } from "@/lib/merit/seo";
 import { getScholarshipTopic, SCHOLARSHIP_TOPICS, topicListings, topicPath } from "@/lib/merit/topics";
+import { GUIDES, guidePath } from "@/lib/merit/blog";
 
 type Props = { params: Promise<{ topic: string }> };
 
@@ -63,6 +64,10 @@ export default async function ScholarshipTopicPage({ params }: Props) {
               ))}
             </ul>
           </section>
+          {GUIDES.some((guide) => guide.topics.includes(topic.slug)) && <section className="m-directory-section" aria-labelledby="topic-guides-title">
+            <h2 id="topic-guides-title" className="m-h3">Guides for your search</h2>
+            <ul className="m-guide-more-list">{GUIDES.filter((guide) => guide.topics.includes(topic.slug)).slice(0, 3).map((guide) => <li key={guide.slug}><Link href={guidePath(guide.slug)} className="m-guide-link">{guide.title}</Link></li>)}</ul>
+          </section>}
           <section className="m-directory-section" aria-labelledby="more-topics">
             <h2 id="more-topics" className="m-h3">Explore other scholarship types</h2>
             <ScholarshipTopics current={topic.slug} />
