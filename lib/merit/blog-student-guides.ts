@@ -3,6 +3,8 @@ import type { Guide } from "./blog-types";
 const guides: Guide[] = [
   {
     "slug": "scholarships-for-current-college-students",
+    "seoTitle": "Scholarships for current college students",
+    "updatedAt": "2026-10-27T22:59:00Z",
     "title": "Scholarships for current college students: where to look after freshman year",
     "description": "Find scholarships while already enrolled, including department awards, continuing-student applications and funding tied to your next academic year.",
     "category": "Finding scholarships",
@@ -10,13 +12,9 @@ const guides: Guide[] = [
       "college-merit-scholarships",
       "outside-scholarships"
     ],
-    "related": [
-      "community-college-scholarships",
-      "scholarship-resume",
-      "scholarship-renewal-requirements"
-    ],
+    "related": ["study-abroad-scholarships", "engineering-scholarships", "nursing-scholarships", "community-college-scholarships", "scholarship-resume", "scholarship-renewal-requirements"],
     "intro": [
-      "You don't have to wait until you transfer or start another degree to look for scholarships. But the search changes once you're enrolled: the award for incoming freshmen may be closed to you, while a department application you have never heard of may fit your work much better.",
+      "Once you are enrolled in college, look for scholarships through your department, college foundation and relevant professional organizations. Incoming-freshman awards may no longer fit, while a continuing-student application could match the work you are doing now.",
       "Start with the college you attend. You already have a student record, a major or a direction, and people who can help you find the right application."
     ],
     "sections": [
@@ -66,13 +64,15 @@ const guides: Guide[] = [
         "paragraphs": [
           "A tuition scholarship, research allowance and conference travel award can all be useful, but they solve different problems. Check allowed expenses, payment timing and whether you must pay first and request reimbursement.",
           "Before relying on a new award in your budget, ask the financial aid office how it would fit with your existing package. If you need help with an immediate bill, contact the relevant campus office now; a competitive award for next year may not address this month's problem.",
-          "Choose one current opportunity, identify the missing material and put that task in your [deadline tracker](/blog/scholarship-deadline-tracker). A complete application is a better stopping point than another evening of collecting links."
+          "Put the next unfinished task in your [deadline tracker](/blog/scholarship-deadline-tracker). If your search is moving toward a specific field, the [engineering](/blog/engineering-scholarships) and [nursing](/blog/nursing-scholarships) guides explain the program and enrollment questions to ask."
         ]
       }
     ]
   },
   {
     "slug": "first-generation-college-student-scholarships",
+    "seoTitle": "First-generation college student scholarships",
+    "updatedAt": "2026-10-27T22:59:00Z",
     "title": "First-generation scholarships: check the definition before you apply",
     "description": "Understand first-generation eligibility, find campus and outside scholarship leads, and separate recognition programs from actual funding.",
     "category": "Finding scholarships",
@@ -80,13 +80,9 @@ const guides: Guide[] = [
       "college-merit-scholarships",
       "outside-scholarships"
     ],
-    "related": [
-      "how-to-find-local-scholarships",
-      "merit-vs-need-based-scholarships",
-      "scholarship-financial-need-statement"
-    ],
+    "related": ["scholarship-essay-about-yourself", "how-to-find-local-scholarships", "merit-vs-need-based-scholarships", "scholarship-financial-need-statement"],
     "intro": [
-      "A scholarship asks whether you are a first-generation college student. Your parent attended community college but never finished. Or earned a degree abroad. Or went back to school after you did. A single checkbox can hide several questions.",
+      "A scholarship asks whether you are a first-generation college student. Your parent attended community college but never finished, or earned a degree abroad. The program's definition determines how you should answer that checkbox.",
       "Use the definition supplied by the program you are applying to. If your circumstances do not fit its wording neatly, get an answer before you submit."
     ],
     "sections": [
@@ -137,6 +133,8 @@ const guides: Guide[] = [
   },
   {
     "slug": "stem-scholarships",
+    "seoTitle": "STEM scholarships: finding the right funding",
+    "updatedAt": "2026-10-27T22:59:00Z",
     "title": "STEM scholarships: search by your field and the work you actually do",
     "description": "Find engineering, science, technology and math scholarship leads by checking degree requirements, application routes and the purpose of each award.",
     "category": "Finding scholarships",
@@ -144,13 +142,9 @@ const guides: Guide[] = [
       "stem-scholarships",
       "scholarship-competitions"
     ],
-    "related": [
-      "scholarships-for-current-college-students",
-      "scholarship-resume",
-      "scholarship-interview-preparation"
-    ],
+    "related": ["engineering-scholarships", "scholarships-for-current-college-students", "scholarship-resume", "scholarship-interview-preparation"],
     "intro": [
-      "A search for STEM scholarships can return a high school science competition, an engineering tuition award and a grant for a summer research project. All three may belong in your search. They do not fund the same thing or accept the same applicants.",
+      "A STEM scholarship search can return a high school science competition, an engineering tuition award and a summer research grant. Sort them by what they fund and who can apply before comparing the amounts.",
       "Begin with your field, education level and intended use of the money. That gives you a better filter than the STEM label alone."
     ],
     "sections": [
@@ -219,13 +213,15 @@ const guides: Guide[] = [
         "title": "Build a short list you can explain",
         "paragraphs": [
           "For each promising award, write one sentence saying why you qualify and another saying what remains to be done. If you cannot write the first sentence yet, resolve eligibility before requesting letters.",
-          "Browse our [STEM scholarship and competition collection](/scholarships/topics/stem-scholarships) for leads, then verify each one with its provider. Keep project funding separate from tuition funding in your budget, and set reminders for materials that depend on a teacher, adviser or team member."
+          "Browse our [STEM scholarship and competition collection](/scholarships/topics/stem-scholarships) for leads. For degree-specific applications, the [engineering scholarship guide](/blog/engineering-scholarships) covers department awards, accreditation and describing technical work."
         ]
       }
     ]
   },
   {
     "slug": "art-scholarship-portfolio",
+    "seoTitle": "How to build an art scholarship portfolio",
+    "updatedAt": "2026-10-27T22:59:00Z",
     "title": "Art scholarship portfolios: choose work, explain your role and check the files",
     "description": "Prepare an arts scholarship portfolio with a clear selection process, useful captions, honest authorship and a final upload check.",
     "category": "Applications",
@@ -233,13 +229,9 @@ const guides: Guide[] = [
       "scholarship-competitions",
       "college-merit-scholarships"
     ],
-    "related": [
-      "scholarship-resume",
-      "how-to-write-a-scholarship-essay",
-      "scholarship-deadline-tracker"
-    ],
+    "related": ["scholarship-essay-about-yourself", "scholarship-resume", "how-to-write-a-scholarship-essay", "scholarship-deadline-tracker"],
     "intro": [
-      "Your favorite piece may belong in your scholarship portfolio. It still has to fit the submission rules. Ten images, ten works and ten pages are different requests, and a strong piece can be hard to judge in a dark photograph.",
+      "Before choosing pieces for an art scholarship portfolio, read the requested format. Ten images, ten works and ten pages are different submissions. Leave time to photograph or export the work clearly as well as select it.",
       "Before polishing a statement, make a list of the actual deliverables. Then choose the work that meets those requirements and says something clear about your practice."
     ],
     "sections": [
@@ -292,6 +284,8 @@ const guides: Guide[] = [
   },
   {
     "slug": "scholarship-resume",
+    "seoTitle": "Scholarship résumé: what to include",
+    "updatedAt": "2026-10-27T22:59:00Z",
     "title": "How to write a scholarship résumé when you don't have a long list of awards",
     "description": "Build a scholarship résumé around real responsibilities, paid work, projects and activities, with examples of clear descriptions and honest numbers.",
     "category": "Applications",
@@ -299,13 +293,9 @@ const guides: Guide[] = [
       "outside-scholarships",
       "college-merit-scholarships"
     ],
-    "related": [
-      "scholarship-recommendation-letter",
-      "how-to-write-a-scholarship-essay",
-      "art-scholarship-portfolio"
-    ],
+    "related": ["leadership-community-service-scholarships", "scholarship-recommendation-letter", "how-to-write-a-scholarship-essay", "art-scholarship-portfolio"],
     "intro": [
-      "A blank résumé can make a normal student life look empty. School, a weekend job, helping at home and one activity may not feel like a list of achievements. They can still give a scholarship reader useful evidence about how you spend your time.",
+      "A blank résumé can make a normal student life look empty. School, a weekend job, helping at home and one activity may not feel like a list of achievements. Described clearly, those commitments can show a scholarship reader how you spend your time.",
       "The task is to make that evidence easy to understand. You do not need to invent a leadership title to fill the page."
     ],
     "sections": [
@@ -380,13 +370,15 @@ const guides: Guide[] = [
         "paragraphs": [
           "Use a readable font and enough spacing for a quick scan. If you need tiny text to fit the limit, cut less relevant material first. Follow the required file format and reopen the exported file to check page breaks.",
           "Compare the résumé with your essays and application fields. Dates, titles and numbers should agree. Give the same current version to a [recommender](/blog/scholarship-recommendation-letter) when it would help them prepare an accurate letter.",
-          "If you are early in high school, the document may be short. Clear descriptions of a few real commitments give a reader more to work with than a full page of inflated language."
+          "An early high school résumé may be short. A few precise descriptions are enough. If an award emphasizes leadership or service, the [service scholarship guide](/blog/leadership-community-service-scholarships) shows how to explain your role in a shared project."
         ]
       }
     ]
   },
   {
     "slug": "scholarship-financial-need-statement",
+    "seoTitle": "How to write a financial-need statement",
+    "updatedAt": "2026-10-27T22:59:00Z",
     "title": "How to write a scholarship financial-need statement clearly",
     "description": "Explain an education funding gap with accurate costs, confirmed resources and relevant context, without exaggerating hardship or replacing required aid forms.",
     "category": "Applications",
@@ -394,14 +386,10 @@ const guides: Guide[] = [
       "outside-scholarships",
       "college-merit-scholarships"
     ],
-    "related": [
-      "merit-vs-need-based-scholarships",
-      "how-to-write-a-scholarship-essay",
-      "compare-scholarship-offers"
-    ],
+    "related": ["scholarships-for-middle-income-families", "merit-vs-need-based-scholarships", "how-to-write-a-scholarship-essay", "compare-scholarship-offers"],
     "intro": [
-      "A financial-need statement can feel awkward. You are being asked to explain a money problem to people you have not met, often in very few words.",
-      "You can be direct. Describe the relevant costs, the resources you can actually use and what the scholarship would make possible. You do not need to turn the answer into a competition over who has suffered most."
+      "A financial-need statement asks you to explain the gap between educational costs and the resources available to pay them. That can feel awkward, especially when you have very few words to discuss a private family matter.",
+      "Describe the relevant costs, what you can contribute and what the scholarship would help cover. Share the context needed to explain those numbers without feeling obliged to disclose every personal detail."
     ],
     "sections": [
       {
@@ -473,13 +461,15 @@ const guides: Guide[] = [
         "paragraphs": [
           "Read the draft beside your budget note. Check that the dates match, estimates are labeled and money described as available really is available. Make sure the amount discussed relates to an expense the award can support.",
           "Then read it aloud. Replace language you would never use with a straightforward explanation. You can express gratitude for consideration without promising a life-changing outcome you cannot predict.",
-          "Keep a copy of the statement and the figures behind it. If you adapt it for another award, revisit both the prompt and the budget instead of changing only the scholarship's name."
+          "Keep a copy of the statement and the figures behind it. If you adapt the answer, revisit both the prompt and the budget. Families unsure where to begin can also use our [middle-income scholarship guide](/blog/scholarships-for-middle-income-families) to compare merit and need-based routes."
         ]
       }
     ]
   },
   {
     "slug": "scholarship-thank-you-letter",
+    "seoTitle": "How to write a scholarship thank-you letter",
+    "updatedAt": "2026-10-27T22:59:00Z",
     "title": "How to write a scholarship thank-you letter that sounds like you",
     "description": "Write a clear scholarship thank-you letter with a specific, truthful note about your studies, plus a fictional example you can learn from.",
     "category": "Applications",
@@ -487,14 +477,10 @@ const guides: Guide[] = [
       "college-merit-scholarships",
       "outside-scholarships"
     ],
-    "related": [
-      "scholarship-renewal-requirements",
-      "compare-scholarship-offers",
-      "scholarship-interview-preparation"
-    ],
+    "related": ["how-scholarship-money-is-paid", "scholarship-renewal-requirements", "compare-scholarship-offers", "scholarship-interview-preparation"],
     "intro": [
-      "You received the scholarship. Now there is one more message to write, and 'thank you for your generous support' may be the only sentence that comes to mind.",
-      "That is a fine beginning. Add a little truthful context about what you are studying and how the award will help, then stop before it becomes another application essay."
+      "You received the scholarship. Now there is one more message to write, and 'thank you for your support' may be all you have so far. Add a few truthful details about your studies and what the award will help you pay for.",
+      "Follow any instructions about the recipient and submission format. A short, personal note is enough unless the provider asks for something more."
     ],
     "sections": [
       {
@@ -544,13 +530,15 @@ const guides: Guide[] = [
         "paragraphs": [
           "Check the scholarship's spelling, the recipient's name and the facts about your program. Read the note aloud once. If a sentence sounds like a speech you would never give, simplify it.",
           "Remove any leftover placeholders before sending. Follow the requested format, upload route and deadline, and save the confirmation if the portal provides one.",
-          "Then return to the [award's acceptance and renewal requirements](/blog/scholarship-renewal-requirements). Sending a thoughtful letter does not automatically complete the other steps needed to receive or keep the scholarship."
+          "Then review the [acceptance and renewal requirements](/blog/scholarship-renewal-requirements). The [payment guide](/blog/how-scholarship-money-is-paid) explains what to confirm between an award notice and money reaching your college account."
         ]
       }
     ]
   },
   {
     "slug": "scholarships-for-adults-returning-to-college",
+    "seoTitle": "Scholarships for adults returning to college",
+    "updatedAt": "2026-10-27T22:59:00Z",
     "title": "Scholarships for adults returning to college: start with the degree plan",
     "description": "Find funding for a return to college by checking reentry eligibility, credit requirements, prior coursework and the timing of tuition support.",
     "category": "Finding scholarships",
@@ -558,13 +546,9 @@ const guides: Guide[] = [
       "outside-scholarships",
       "college-merit-scholarships"
     ],
-    "related": [
-      "community-college-scholarships",
-      "transfer-student-scholarships",
-      "scholarship-financial-need-statement"
-    ],
+    "related": ["nursing-scholarships", "community-college-scholarships", "transfer-student-scholarships", "scholarship-financial-need-statement"],
     "intro": [
-      "Returning to college often starts with a practical question: can this degree fit around the rest of your life? A scholarship helps only if its requirements fit the classes you can take and the credential you need.",
+      "If you are returning to college, look for scholarships that fit the degree, schedule and course load you can manage. An award requiring full-time attendance may need a closer look if you plan to study around a job or family responsibilities.",
       "Before collecting awards, confirm your enrollment plan. The number of credits, program type and timing of payments can matter as much as the scholarship's advertised value."
     ],
     "sections": [

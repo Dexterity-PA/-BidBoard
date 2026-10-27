@@ -3,13 +3,15 @@ import type { Guide } from "./blog-types";
 const guides: Guide[] = [
   {
     slug: "trade-school-scholarships",
+    seoTitle: "Trade school scholarships",
+    updatedAt: "2026-10-27T22:59:00Z",
     title: "Trade school scholarships: find funding for the program you actually plan to attend",
     description: "Search for vocational and technical scholarships, check approved programs, and budget for tools, fees and expenses beyond tuition.",
     category: "Finding scholarships",
     topics: ["outside-scholarships", "college-merit-scholarships"],
-    related: ["community-college-scholarships", "scholarships-for-adults-returning-to-college", "compare-scholarship-offers"],
+    related: ["how-scholarship-money-is-paid", "community-college-scholarships", "scholarships-for-adults-returning-to-college", "compare-scholarship-offers"],
     intro: [
-      "You have found a welding, electrical or automotive program that fits your plans. Now you need to know what it will cost, which expenses a scholarship can cover and whether that particular program qualifies. A list headed 'trade school scholarships' only gets you part of the way there.",
+      "You have found a welding, electrical or automotive program that fits your plans. Begin the scholarship search with its financial aid office and foundation, then investigate outside awards that support that credential. Ask which expenses each award can cover.",
       "Start with the exact school, credential and start date. Those details make the funding search much more useful."
     ],
     sections: [
@@ -53,14 +55,16 @@ const guides: Guide[] = [
   },
   {
     slug: "scholarships-for-homeschool-students",
+    seoTitle: "Scholarships for homeschool students",
+    updatedAt: "2026-10-27T22:59:00Z",
     title: "Scholarships for homeschool students: eligibility, transcripts and recommendations",
     description: "Find scholarship opportunities as a homeschool student and handle school fields, academic records and recommendation requirements accurately.",
     category: "Finding scholarships",
     topics: ["outside-scholarships", "national-scholarships", "college-merit-scholarships"],
-    related: ["scholarships-for-high-school-juniors", "scholarship-recommendation-letter", "automatic-merit-scholarships"],
+    related: ["scholarships-by-gpa", "scholarships-for-high-school-juniors", "scholarship-recommendation-letter", "automatic-merit-scholarships"],
     intro: [
-      "A scholarship form asks for a school counselor, class rank and a transcript upload. Your education includes home instruction, an online course and a class at a local college. The form looks as though it was built for somebody else.",
-      "Before ruling yourself out, look for the provider's homeschool instructions. Some programs explain exactly how to complete those fields."
+      "A scholarship form asks for a school counselor, class rank and a transcript upload. Your education includes home instruction, an online course and a class at a local college. Look for homeschool instructions before deciding how to fill those fields.",
+      "If the provider does not explain a field, ask how it wants your records reported. Save the answer with your application materials."
     ],
     sections: [
       {
@@ -99,13 +103,15 @@ const guides: Guide[] = [
   },
   {
     slug: "study-abroad-scholarships",
+    seoTitle: "Study abroad scholarships",
+    updatedAt: "2026-10-27T22:59:00Z",
     title: "Study abroad scholarships: match the funding to your program and timeline",
     description: "Find study abroad funding, distinguish exchange programs from full degrees overseas, and plan around eligibility, certification and payment dates.",
     category: "Finding scholarships",
     topics: ["outside-scholarships", "college-merit-scholarships"],
-    related: ["scholarships-for-current-college-students", "scholarships-for-international-students", "scholarship-deadline-tracker"],
+    related: ["how-scholarship-money-is-paid", "scholarships-for-current-college-students", "scholarships-for-international-students", "scholarship-deadline-tracker"],
     intro: [
-      "The program fee looks manageable until you add airfare, a deposit and the expenses that are not included. A study abroad scholarship can help, but only if it supports your kind of program and arrives when you can use it.",
+      "A study abroad budget can change quickly once you add airfare, deposits and costs outside the program fee. Look for scholarships that support your destination and program, then compare their payment dates with the bills due before departure.",
       "Before writing an essay, identify the destination, dates, academic credit and home-college approval for the program you want to attend."
     ],
     sections: [
@@ -153,13 +159,15 @@ const guides: Guide[] = [
   },
   {
     slug: "national-merit-scholarships",
+    seoTitle: "National Merit scholarships explained",
+    updatedAt: "2026-10-27T22:59:00Z",
     title: "National Merit scholarships: understand recognition, awards and college packages",
     description: "Separate National Merit recognition from scholarship awards and compare the additional requirements attached to college-sponsored funding.",
     category: "Understanding awards",
     topics: ["national-scholarships", "college-merit-scholarships", "full-tuition-scholarships"],
-    related: ["automatic-merit-scholarships", "full-ride-vs-full-tuition", "scholarship-renewal-requirements"],
+    related: ["merit-scholarship-deadlines", "automatic-merit-scholarships", "full-ride-vs-full-tuition", "scholarship-renewal-requirements"],
     intro: [
-      "A college advertises a National Merit package, and suddenly several terms seem to mean the same thing: Commended Student, Semifinalist, Finalist and Scholar. They describe different stages or outcomes. The distinction matters when you are estimating what college will cost.",
+      "Commended Student, Semifinalist, Finalist and Scholar are different National Merit designations. A college scholarship tied to one designation may not be available to students with another, so check the wording before adding a package to your budget.",
       "Use your actual designation and the instructions for your entry year. A promising score or an expected status belongs on a planning list, not in the confirmed-scholarship column."
     ],
     sections: [
@@ -199,13 +207,15 @@ const guides: Guide[] = [
   },
   {
     slug: "can-you-combine-scholarships",
+    seoTitle: "Can you combine scholarships?",
+    updatedAt: "2026-10-27T22:59:00Z",
     title: "Can you combine scholarships? Find out what another award changes",
     description: "Understand scholarship stacking, ask how outside awards affect your aid offer, and compare the actual savings before counting a new scholarship.",
     category: "Understanding awards",
     topics: ["college-merit-scholarships", "outside-scholarships"],
-    related: ["compare-scholarship-offers", "merit-vs-need-based-scholarships", "scholarship-thank-you-letter"],
+    related: ["how-scholarship-money-is-paid", "compare-scholarship-offers", "merit-vs-need-based-scholarships", "scholarship-thank-you-letter"],
     intro: [
-      "You receive a local scholarship after your college sends its financial aid offer. Can you keep both? The useful answer is in two sets of rules: the outside provider's terms and the college's policy for adding that money to your package.",
+      "You receive a local scholarship after your college sends its financial aid offer. Whether you can combine them depends on the outside provider's terms and the college's policy. Ask how the new award changes each line of your existing package.",
       "The award's face value and the reduction in your remaining cost may be different. Ask for an updated breakdown before changing your budget."
     ],
     sections: [
@@ -245,20 +255,22 @@ const guides: Guide[] = [
         id: "message", title: "Give the office enough information to answer",
         paragraphs: [
           "A useful request names the scholarship, amount, payment term and restrictions: 'I received this outside award for the coming academic year. Could you explain which lines of my current aid offer would change and what documents you need to update it?' Attach the award notice only through the process the office requests.",
-          "Ask again if the amount or timing later changes. Keep the revised offer with the original award letter, and use the [comparison worksheet](/resources/award-comparison.csv) to update your confirmed costs. You can still appreciate winning an award while checking carefully what it does for your budget."
+          "Keep the revised offer with the original award letter and update your [comparison worksheet](/resources/award-comparison.csv). If the amount is settled but you are waiting for the money, use the [payment guide](/blog/how-scholarship-money-is-paid) to identify which office to contact."
         ]
       }
     ]
   },
   {
     slug: "merit-scholarship-appeal",
+    seoTitle: "How to appeal a merit scholarship offer",
+    updatedAt: "2026-10-27T22:59:00Z",
     title: "How to request a merit scholarship review without assuming an appeal is available",
     description: "Check whether a college permits merit reconsideration, distinguish it from need-based or renewal appeals, and prepare a clear request with relevant evidence.",
     category: "Applications",
     topics: ["college-merit-scholarships", "automatic-merit-scholarships"],
-    related: ["compare-scholarship-offers", "scholarship-renewal-requirements", "scholarship-financial-need-statement"],
+    related: ["out-of-state-merit-scholarships", "compare-scholarship-offers", "scholarship-renewal-requirements", "scholarship-financial-need-statement"],
     intro: [
-      "Your scholarship offer is smaller than you hoped, or a new grade or test score arrived after the decision. It is reasonable to check whether the college will review the award. The first step is finding out whether that kind of review exists.",
+      "If your merit offer is smaller than you hoped, check whether the college accepts requests for reconsideration. Its process may allow an updated grade, test score or other evidence, or it may state that awards are final.",
       "Colleges use the word 'appeal' for different processes. Sending a persuasive letter to the wrong one will not fix the mismatch."
     ],
     sections: [
@@ -311,13 +323,15 @@ const guides: Guide[] = [
   },
   {
     slug: "scholarships-for-high-school-freshmen-and-sophomores",
+    seoTitle: "Scholarships for freshmen and sophomores",
+    updatedAt: "2026-10-27T22:59:00Z",
     title: "Scholarships for high school freshmen and sophomores: a practical early start",
     description: "Find age-appropriate scholarship opportunities, separate current applications from future leads, and prepare without turning every activity into an award hunt.",
     category: "Finding scholarships",
     topics: ["outside-scholarships", "scholarship-competitions"],
-    related: ["scholarships-for-high-school-juniors", "art-scholarship-portfolio", "scholarship-resume"],
+    related: ["how-to-find-new-scholarships", "scholarships-for-high-school-juniors", "art-scholarship-portfolio", "scholarship-resume"],
     intro: [
-      "You search for scholarships in ninth or tenth grade and keep finding awards for graduating seniors. That does not mean you started at the wrong time. It means your search needs a grade and age filter.",
+      "In ninth or tenth grade, filter scholarship searches by age and graduation year. That helps separate applications you can submit now from the senior-only awards that keep appearing in the results.",
       "Use two lists: opportunities you can apply for now and programs to revisit later. A small, accurate list is enough to give you a useful start."
     ],
     sections: [
@@ -355,20 +369,22 @@ const guides: Guide[] = [
         ],
         paragraphsAfter: [
           "Paid work, family responsibilities and informal projects can belong in your notes too. You do not need to invent a club title to describe something useful you did. When a later application asks for activities, our [scholarship résumé guide](/blog/scholarship-resume) can help you select the relevant details.",
-          "Before submitting your first application, review the provider and any consent requirements with a parent, guardian or another trusted adult. Then finish one eligible application. You can build a sustainable routine without making every month of high school revolve around scholarship deadlines."
+          "Review the provider and any consent requirements with a parent, guardian or another trusted adult before submitting. Finish one eligible application, then choose a time to look again. The [new-scholarship guide](/blog/how-to-find-new-scholarships) offers a routine for revisiting sources without searching every evening."
         ]
       }
     ]
   },
   {
     slug: "scholarships-through-employers",
+    seoTitle: "Scholarships through employers",
+    updatedAt: "2026-10-27T22:59:00Z",
     title: "Scholarships through employers: check your job and your family's benefits",
     description: "Look for employee and dependent scholarships, distinguish them from tuition reimbursement, and ask the right questions about eligibility and payment.",
     category: "Finding scholarships",
     topics: ["outside-scholarships", "national-scholarships"],
-    related: ["scholarships-for-adults-returning-to-college", "can-you-combine-scholarships", "scholarship-deadline-tracker"],
+    related: ["scholarships-for-middle-income-families", "scholarships-for-adults-returning-to-college", "can-you-combine-scholarships", "scholarship-deadline-tracker"],
     intro: [
-      "An employer's education program may be listed under benefits, a company foundation or a separate scholarship administrator. If you only search for scholarships by your intended major, you may never see it.",
+      "Look for employer scholarships in the benefits information, company foundation and scholarship administrator's pages. A search by major alone can miss an award tied to where you or a family member works.",
       "Check your own employer and, where relevant, a parent's or guardian's employer. Ask for the current eligibility rules before assuming your connection qualifies."
     ],
     sections: [
