@@ -1,6 +1,7 @@
 import { GUIDES as ORIGINAL_GUIDES } from "./blog-content";
 import { EXPANSION_GUIDES } from "./blog-expansion";
 import { STUDENT_GUIDES } from "./blog-student-guides";
+import { FUNDING_GUIDES } from "./blog-funding-guides";
 import { pageMetadata, SITE_URL } from "./seo";
 import type { Guide } from "./blog-types";
 
@@ -9,7 +10,7 @@ export const GUIDE_DATE = "2026-10-27";
 export const GUIDE_CATEGORIES = ["Finding scholarships", "Applications", "Understanding awards"] as const;
 export const BLOG_TITLE = "Scholarship guides | Meritously";
 export const BLOG_DESCRIPTION = "Practical scholarship guides on finding awards, writing applications and comparing college costs. Official sources, worked examples and free templates.";
-export const GUIDES: Guide[] = [...ORIGINAL_GUIDES, ...EXPANSION_GUIDES, ...STUDENT_GUIDES];
+export const GUIDES: Guide[] = [...ORIGINAL_GUIDES, ...EXPANSION_GUIDES, ...STUDENT_GUIDES, ...FUNDING_GUIDES];
 export const guidePublishedAt = (guide: Guide) => guide.publishedAt ?? GUIDE_PUBLISHED_AT;
 export const guideModifiedAt = (guide: Guide) => guide.updatedAt ?? guidePublishedAt(guide);
 export const BLOG_UPDATED_AT = GUIDES.map(guideModifiedAt).sort().at(-1)!;
