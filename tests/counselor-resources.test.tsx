@@ -49,5 +49,5 @@ it("preserves original publication dates when new guides are added", () => {
   expect(BLOG_UPDATED_AT).toBe(GUIDES.map(guideModifiedAt).sort().at(-1));
   const feed = new DOMParser().parseFromString(guideFeed(), "text/xml");
   const dates = [...feed.querySelectorAll("item pubDate")].map((node) => node.textContent);
-  expect(new Set(dates).size).toBe(2);
+  expect(dates).toEqual(GUIDES.map((guide) => new Date(guidePublishedAt(guide)).toUTCString()));
 });
