@@ -4,3 +4,4 @@ Disallow: /api/
 Disallow: /dashboard/
 
 Sitemap: https://meritously.com/sitemap.xml
+Sitemap: https://meritously.com/blog/sitemap.xml
