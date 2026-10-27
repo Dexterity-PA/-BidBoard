@@ -2,15 +2,18 @@ import { GUIDES as ORIGINAL_GUIDES } from "./blog-content";
 import { EXPANSION_GUIDES } from "./blog-expansion";
 import { STUDENT_GUIDES } from "./blog-student-guides";
 import { FUNDING_GUIDES } from "./blog-funding-guides";
+import { MERIT_SEARCH_GUIDES } from "./blog-merit-search-guides";
+import { APPLICATION_GUIDES } from "./blog-application-guides";
 import { pageMetadata, SITE_URL } from "./seo";
 import type { Guide } from "./blog-types";
+import { TOPIC_GUIDE_PICKS } from "./blog-discovery";
 
 export const GUIDE_PUBLISHED_AT = "2026-10-27T15:53:33Z";
 export const GUIDE_DATE = "2026-10-27";
 export const GUIDE_CATEGORIES = ["Finding scholarships", "Applications", "Understanding awards"] as const;
-export const BLOG_TITLE = "Scholarship guides | Meritously";
-export const BLOG_DESCRIPTION = "Practical scholarship guides on finding awards, writing applications and comparing college costs. Official sources, worked examples and free templates.";
-export const GUIDES: Guide[] = [...ORIGINAL_GUIDES, ...EXPANSION_GUIDES, ...STUDENT_GUIDES, ...FUNDING_GUIDES];
+export const BLOG_TITLE = "Scholarship guides: merit aid and applications | Meritously";
+export const BLOG_DESCRIPTION = "Find merit scholarships, check GPA and deadline rules, write stronger applications and compare offers. Practical guides with official sources and free templates.";
+export const GUIDES: Guide[] = [...ORIGINAL_GUIDES, ...EXPANSION_GUIDES, ...STUDENT_GUIDES, ...FUNDING_GUIDES, ...MERIT_SEARCH_GUIDES, ...APPLICATION_GUIDES];
 export const guidePublishedAt = (guide: Guide) => guide.publishedAt ?? GUIDE_PUBLISHED_AT;
 export const guideModifiedAt = (guide: Guide) => guide.updatedAt ?? guidePublishedAt(guide);
 export const BLOG_UPDATED_AT = GUIDES.map(guideModifiedAt).sort().at(-1)!;
@@ -18,6 +21,15 @@ export const guideDisplayDate = (guide: Guide) => new Date(guidePublishedAt(guid
 export const guidePath = (slug: string) => `/blog/${slug}`;
 export const categoryId = (category: string) => category.toLowerCase().replaceAll(" ", "-");
 export const getGuide = (slug: string) => GUIDES.find((guide) => guide.slug === slug);
+
+export function getTopicGuides(topic: string) {
+  const matches = GUIDES.filter((guide) => guide.topics.includes(topic));
+  const preferred = (TOPIC_GUIDE_PICKS[topic] ?? []).flatMap((slug) => {
+    const guide = matches.find((entry) => entry.slug === slug);
+    return guide ? [guide] : [];
+  });
+  return [...preferred, ...matches.filter((guide) => !preferred.includes(guide))].slice(0, 6);
+}
 
 /** Only text and explicit https or root-relative links are supported. No raw HTML. */
 export function inlineParts(text: string): { text: string; href?: string }[] {
@@ -44,7 +56,7 @@ export const readingMinutes = (guide: Guide) => Math.max(1, Math.ceil(guideText(
 
 export function guideMetadata(guide: Guide) {
   const path = guidePath(guide.slug);
-  const metadata = pageMetadata(path, `${guide.title} | Meritously`, guide.description);
+  const metadata = pageMetadata(path, `${guide.seoTitle ?? guide.title} | Meritously`, guide.description);
   return {
     ...metadata,
     authors: [{ name: "Meritously", url: SITE_URL }],

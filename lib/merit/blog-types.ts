@@ -13,6 +13,7 @@ export type Guide = {
   slug: string;
   title: string;
   description: string;
+  seoTitle?: string;
   category: "Finding scholarships" | "Applications" | "Understanding awards";
   topics: string[];
   related: string[];

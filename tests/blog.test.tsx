@@ -11,7 +11,8 @@ vi.mock("next/navigation", () => ({ notFound: () => { throw new Error("Not found
 import BlogPage from "@/app/blog/page";
 import GuidePage, { generateMetadata } from "@/app/blog/[slug]/page";
 import { GET } from "@/app/blog/feed.xml/route";
-import { GUIDES, guidePublishedAt, guidePath, inlineParts, xmlEscape } from "@/lib/merit/blog";
+import { GUIDES, guidePublishedAt, guideModifiedAt, guideMetadata, guidePath, inlineParts, xmlEscape } from "@/lib/merit/blog";
+import { GUIDE_READING_PATHS } from "@/lib/merit/blog-discovery";
 import { getScholarshipTopic } from "@/lib/merit/topics";
 import { SITE_URL } from "@/lib/merit/seo";
 
@@ -21,6 +22,12 @@ it("makes each guide discoverable from the rendered index", () => {
   const links = new Set([...document.querySelectorAll("h3 a")].map((link) => link.getAttribute("href")));
   expect(links).toEqual(new Set(GUIDES.map((guide) => guidePath(guide.slug))));
   expect(new Set(GUIDES.map((guide) => guide.slug)).size).toBe(GUIDES.length);
+  for (const path of GUIDE_READING_PATHS) {
+    for (const slug of path.slugs) {
+      expect(GUIDES.some((guide) => guide.slug === slug)).toBe(true);
+      expect(document.querySelector(`.m-guide-paths a[href="${guidePath(slug)}"]`)).not.toBeNull();
+    }
+  }
 });
 
 it("renders complete articles with working contents, sources, related links and matching metadata", async () => {
@@ -45,11 +52,21 @@ it("renders complete articles with working contents, sources, related links and 
       for (const row of table.querySelectorAll("tbody tr")) expect(row.children).toHaveLength(width);
     }
     const metadata = await generateMetadata({ params });
+    expect(metadata.title).toBe(`${guide.seoTitle ?? guide.title} | Meritously`);
     expect(metadata.alternates?.canonical).toBe(guidePath(guide.slug));
-    expect(metadata.openGraph).toMatchObject({ type: "article", publishedTime: guidePublishedAt(guide) });
+    expect(metadata.openGraph).toMatchObject({ type: "article", publishedTime: guidePublishedAt(guide), modifiedTime: guideModifiedAt(guide) });
     const schema = JSON.parse(document.querySelector('script[type="application/ld+json"]')!.textContent!);
-    expect(schema["@graph"][0]).toMatchObject({ headline: guide.title, url: `${SITE_URL}${guidePath(guide.slug)}`, author: { "@type": "Organization", name: "Meritously" } });
+    expect(schema["@graph"][0]).toMatchObject({ headline: guide.title, url: `${SITE_URL}${guidePath(guide.slug)}`, datePublished: guidePublishedAt(guide), dateModified: guideModifiedAt(guide), author: { "@type": "Organization", name: "Meritously" } });
+    expect(new Set(guide.related).size).toBe(guide.related.length);
+    expect(guide.related).not.toContain(guide.slug);
   }
+});
+
+it("keeps the article headline as the search-title fallback and preserves the publication date on edits", () => {
+  const guide = { ...GUIDES[0], seoTitle: undefined, publishedAt: "2026-10-20T15:00:00Z", updatedAt: "2026-10-27T18:00:00Z" };
+  const metadata = guideMetadata(guide);
+  expect(metadata.title).toBe(`${guide.title} | Meritously`);
+  expect(metadata.openGraph).toMatchObject({ publishedTime: guide.publishedAt, modifiedTime: guide.updatedAt });
 });
 
 it("rejects missing guides instead of publishing empty articles", async () => {

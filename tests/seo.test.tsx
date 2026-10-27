@@ -17,7 +17,8 @@ import manifest from "@/app/manifest";
 import { LISTINGS, MERIT_RECORDS } from "@/lib/merit/catalog";
 import { SITE_URL, listingStructuredData, serializeJsonLd, siteStructuredData } from "@/lib/merit/seo";
 import { SCHOLARSHIP_TOPICS, TOPIC_BY_TYPE, topicPath, topicListings } from "@/lib/merit/topics";
-import { GUIDES, guidePath } from "@/lib/merit/blog";
+import { GUIDES, getTopicGuides, guidePath } from "@/lib/merit/blog";
+import { TOPIC_GUIDE_PICKS } from "@/lib/merit/blog-discovery";
 
 it("links every public award from server-rendered HTML and excludes retired awards", () => {
   const html = renderToStaticMarkup(<DirectoryPage />);
@@ -95,6 +96,12 @@ it("renders every topic with indexable links, matching schema, and unique metada
     expect(metadata.robots).toBeUndefined();
     titles.add(metadata.title);
     expect(html).toContain("official sources");
+    const guideLinks = [...html.matchAll(/href="(\/blog\/[^"?#]+)"/g)].map((match) => match[1]);
+    expect(guideLinks).toEqual(getTopicGuides(topic.slug).map((guide) => guidePath(guide.slug)));
+    for (const slug of TOPIC_GUIDE_PICKS[topic.slug] ?? []) {
+      expect(GUIDES.find((guide) => guide.slug === slug)?.topics).toContain(topic.slug);
+      expect(guideLinks).toContain(guidePath(slug));
+    }
   }
   expect(titles.size).toBe(SCHOLARSHIP_TOPICS.length);
   for (const listing of LISTINGS) {
