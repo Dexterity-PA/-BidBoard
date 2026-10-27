@@ -37,6 +37,13 @@
 }
 .m-wrap { width: 100%; max-width: var(--m-max); margin: 0 auto; padding: 0 var(--m-gutter); }
 .m-main { flex: 1; }
+.m-directory { padding-bottom: 56px; }
+.m-directory-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.m-directory-section { scroll-margin-top: 80px; margin-bottom: 40px; }
+.m-directory-list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0 28px; }
+.m-directory-link { display: flex; flex-direction: column; gap: 6px; padding: 16px 0; height: 100%; border-bottom: 1px solid var(--m-rule); text-decoration: none; overflow-wrap: anywhere; }
+.m-directory-link:hover .m-directory-name { color: var(--m-green); text-decoration: underline; }
+.m-directory-name { font-size: 16px; font-weight: 500; line-height: 1.4; }
 .m-page a { color: inherit; }
 .m-page :focus-visible { outline: 2px solid var(--m-green); outline-offset: 2px; border-radius: 6px; }
 
@@ -758,4 +765,24 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .lp-row { transition: none; }
+}
+
+/* Public scholarship collections. */
+.m-topic-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; margin: 16px 0 28px; }
+.m-topic-links a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--m-rule); color: var(--m-ink); font-size: 15px; font-weight: 600; }
+.m-topic-links a:hover, .m-topic-awards h3 a:hover { color: var(--m-green); text-decoration: underline; text-underline-offset: 3px; }
+.m-topic-links .m-fine { flex-shrink: 0; font-weight: 400; }
+.m-topic-guidance { max-width: 76ch; margin: 28px 0 36px; line-height: 1.7; }
+.m-topic-guidance ul { list-style: disc; padding-left: 22px; }
+.m-topic-guidance li { margin-top: 12px; }
+.m-topic-awards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; list-style: none; padding: 0; margin: 24px 0; }
+.m-topic-awards > li { padding: 24px; border: 1px solid var(--m-rule); border-radius: 12px; overflow-wrap: anywhere; }
+.m-topic-awards h3 { font-size: 19px; font-weight: 600; line-height: 1.4; margin: 6px 0 18px; }
+.m-topic-awards dl { font-size: 14px; line-height: 1.65; margin-bottom: 18px; }
+.m-topic-awards dt { font-weight: 600; margin-top: 12px; }
+.m-topic-awards dd { margin: 3px 0 0; }
+.m-crumb { flex-wrap: wrap; }
+@media (max-width: 680px) {
+  .m-topic-links, .m-topic-awards { grid-template-columns: 1fr; }
+  .m-topic-awards > li { padding: 20px; }
 }

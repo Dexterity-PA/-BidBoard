@@ -28,7 +28,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://meritously.com"),
   title,
   description,
-  icons: { icon: "/icon.svg" },
+  applicationName: "Meritously",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
+      { url: "/favicon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     title,
     description,

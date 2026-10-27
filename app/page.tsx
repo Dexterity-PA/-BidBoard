@@ -2,6 +2,9 @@ import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import DeadlineBoard, { type BoardRow } from "@/components/merit/DeadlineBoard";
 import NewsletterForm from "@/components/merit/NewsletterForm";
+import ScholarshipTopics from "@/components/merit/ScholarshipTopics";
+import { TOPIC_BY_TYPE, topicPath } from "@/lib/merit/topics";
+import { serializeJsonLd, siteStructuredData } from "@/lib/merit/seo";
 import { LISTINGS, awardTier, coverageHint, maxDollars, type MeritListing } from "@/lib/merit/catalog";
 
 export const metadata = { alternates: { canonical: "/" } };
@@ -80,6 +83,7 @@ export default function HomePage() {
 
   return (
     <div className="m-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteStructuredData) }} />
       <SiteHeader />
       <main className="m-main">
         <section className="lp-hero">
@@ -167,7 +171,7 @@ export default function HomePage() {
             <ul className="lp-links">
               {KINDS.map((k) => (
                 <li key={k.type}>
-                  <Link href={`/scholarships?type=${k.type}`}>
+                  <Link href={topicPath(TOPIC_BY_TYPE[k.type])}>
                     {k.label}
                     <span className="lp-count">
                       {LISTINGS.filter((l) => l.type === k.type).length}
@@ -186,6 +190,16 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="lp-section" aria-labelledby="lp-topics-title">
+          <div className="m-wrap">
+            <div className="lp-head">
+              <h2 id="lp-topics-title" className="lp-section-title">Explore scholarships by type</h2>
+              <Link href="/scholarships/directory" className="lp-head-link">Full directory</Link>
+            </div>
+            <ScholarshipTopics />
           </div>
         </section>
 

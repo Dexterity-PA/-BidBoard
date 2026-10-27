@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import CatalogBrowser, { type BrowserInitial } from "@/components/merit/CatalogBrowser";
 import { LISTINGS, type MeritType } from "@/lib/merit/catalog";
+import { pageMetadata } from "@/lib/merit/seo";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/scholarships" },
-  title: "Browse merit scholarships | Meritously",
-  description:
-    "Search college merit programs, national scholarships and competitions. Filter by deadline, how you apply and who is eligible.",
-};
+export const metadata = pageMetadata(
+  "/scholarships",
+  "Browse merit scholarships and competitions | Meritously",
+  "Search college merit programs, national scholarships and competitions. Filter by deadline, how you apply and who is eligible.",
+);
 
 const TYPES: MeritType[] = ["college-program", "scholarship", "competition"];
 
@@ -37,6 +37,7 @@ export default async function BrowsePage({
               College full rides, national awards and competitions. Every listing links to its
               official source.
             </p>
+            <Link href="/scholarships/directory" className="m-arrow-link">See the full directory</Link>
           </div>
           <CatalogBrowser listings={LISTINGS} initial={initial} />
         </div>
