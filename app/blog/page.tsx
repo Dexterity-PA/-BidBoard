@@ -18,6 +18,7 @@ export default function BlogPage() {
         <h1 className="m-guide-index-title">Scholarships, explained.</h1>
         <p className="m-lede">Find awards that fit. Write an application that sounds like you. Understand what an offer would actually cover.</p>
         <p className="m-fine">Practical guides with official sources, examples and free templates.</p>
+        <p className="m-body">Helping a group of students? <Link href="/for-counselors" className="m-guide-link">Get counselor resources and sharing text</Link>.</p>
         <nav className="m-guide-categories" aria-label="Guide categories">{GUIDE_CATEGORIES.map((category) => <a key={category} href={`#${categoryId(category)}`} className="m-btn m-btn-ghost">{category}</a>)}</nav>
       </header>
       {GUIDE_CATEGORIES.map((category) => <section key={category} id={categoryId(category)} className="m-guide-category" aria-labelledby={`${categoryId(category)}-title`}>
@@ -29,8 +30,8 @@ export default function BlogPage() {
         </li>)}</ul>
       </section>)}
       <section className="m-guide-tools" aria-labelledby="tools-title">
-        <div><p className="m-eyebrow">Keep it simple</p><h2 id="tools-title" className="m-h2">Two free spreadsheet templates</h2><p className="m-body">Open the CSV files in your preferred spreadsheet app.</p></div>
-        <ul className="m-guide-list"><li><a href="/resources/scholarship-tracker.csv" className="m-guide-link" download>Scholarship deadline tracker</a></li><li><a href="/resources/award-comparison.csv" className="m-guide-link" download>Award comparison worksheet</a></li></ul>
+        <div><p className="m-eyebrow">Keep it simple</p><h2 id="tools-title" className="m-h2">Free planning tools</h2><p className="m-body">Open the CSV files in your preferred spreadsheet app, or start with a plain text checklist.</p></div>
+        <ul className="m-guide-list"><li><a href="/resources/scholarship-tracker.csv" className="m-guide-link" download>Scholarship deadline tracker</a></li><li><a href="/resources/award-comparison.csv" className="m-guide-link" download>Award comparison worksheet</a></li><li><a href="/resources/scholarship-starter-kit.txt" className="m-guide-link" download>Student search checklist</a></li></ul>
       </section>
       <p className="m-fine">Published by Meritously. Provider examples link to their official sources. Check the current award terms before applying. <Link href="/blog/feed.xml" className="m-guide-link">Follow the RSS feed</Link>.</p>
     </main>

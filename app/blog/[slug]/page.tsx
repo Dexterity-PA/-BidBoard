@@ -2,8 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import { GuideInline, GuideSectionContent } from "@/components/merit/GuideContent";
-import { GUIDES, GUIDE_DATE, categoryId, getGuide, guideMetadata, guidePath, guideStructuredData, readingMinutes } from "@/lib/merit/blog";
-import { serializeJsonLd } from "@/lib/merit/seo";
+import CopyText from "@/components/merit/CopyText";
+import { GUIDES, categoryId, getGuide, guideDisplayDate, guideMetadata, guidePath, guidePublishedAt, guideStructuredData, readingMinutes } from "@/lib/merit/blog";
+import { serializeJsonLd, SITE_URL } from "@/lib/merit/seo";
 import { getScholarshipTopic, topicPath } from "@/lib/merit/topics";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -26,12 +27,12 @@ export default async function GuidePage({ params }: Props) {
         <header className="m-guide-header">
           <Link href={`/blog#${categoryId(guide.category)}`} className="m-eyebrow m-guide-link">{guide.category}</Link>
           <h1 className="m-guide-title">{guide.title}</h1>
-          <p className="m-guide-meta">By <Link href="/#about" className="m-guide-link">Meritously</Link> · <time dateTime={GUIDE_DATE}>October 27, 2026</time> · {readingMinutes(guide)} min read</p>
+          <p className="m-guide-meta">By <Link href="/#about" className="m-guide-link">Meritously</Link> · <time dateTime={guidePublishedAt(guide)}>{guideDisplayDate(guide)}</time> · {readingMinutes(guide)} min read</p>
           {guide.intro.map((paragraph) => <p key={paragraph} className="m-guide-intro"><GuideInline text={paragraph} /></p>)}
         </header>
         <nav className="m-guide-toc" aria-label="In this guide"><p className="m-eyebrow">In this guide</p><ol className="m-guide-toc-list">{guide.sections.map((section) => <li key={section.id}><a href={`#${section.id}`}>{section.title}</a></li>)}</ol></nav>
         {guide.sections.map((section) => <GuideSectionContent key={section.id} section={section} />)}
-        <footer className="m-guide-note"><p>Written for students and families by Meritously. Official sources are linked where provider policies are discussed. Examples labeled fictional are for explanation; award terms can change.</p><p>Found a detail that needs correcting? <a href="mailto:hello@meritously.com" className="m-guide-link">Let us know</a>.</p></footer>
+        <footer className="m-guide-note"><CopyText text={`${SITE_URL}${guidePath(guide.slug)}`} label="Copy link to this guide" fallback="Copy isn't available. Copy the page address from your browser instead." /><p>Written for students and families by Meritously. Official sources are linked where provider policies are discussed. Examples labeled fictional are for explanation; award terms can change.</p><p>Sharing with a class or advising group? <Link href="/for-counselors" className="m-guide-link">Get counselor resources and sharing text</Link>.</p><p>Found a detail that needs correcting? <a href="mailto:hello@meritously.com" className="m-guide-link">Let us know</a>.</p></footer>
       </article>
       <aside className="m-guide-more" aria-labelledby="related-title">
         <section><h2 id="related-title" className="m-h3">Keep reading</h2><ul className="m-guide-more-list">{guide.related.map((slug) => {

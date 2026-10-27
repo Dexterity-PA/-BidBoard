@@ -1,4 +1,5 @@
-import { GUIDES } from "./blog-content";
+import { GUIDES as ORIGINAL_GUIDES } from "./blog-content";
+import { EXPANSION_GUIDES } from "./blog-expansion";
 import { pageMetadata, SITE_URL } from "./seo";
 import type { Guide } from "./blog-types";
 
@@ -7,7 +8,11 @@ export const GUIDE_DATE = "2026-10-27";
 export const GUIDE_CATEGORIES = ["Finding scholarships", "Applications", "Understanding awards"] as const;
 export const BLOG_TITLE = "Scholarship guides | Meritously";
 export const BLOG_DESCRIPTION = "Practical scholarship guides on finding awards, writing applications and comparing college costs. Official sources, worked examples and free templates.";
-export { GUIDES };
+export const GUIDES: Guide[] = [...ORIGINAL_GUIDES, ...EXPANSION_GUIDES];
+export const guidePublishedAt = (guide: Guide) => guide.publishedAt ?? GUIDE_PUBLISHED_AT;
+export const guideModifiedAt = (guide: Guide) => guide.updatedAt ?? guidePublishedAt(guide);
+export const BLOG_UPDATED_AT = GUIDES.map(guideModifiedAt).sort().at(-1)!;
+export const guideDisplayDate = (guide: Guide) => new Date(guidePublishedAt(guide)).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "America/Phoenix" });
 export const guidePath = (slug: string) => `/blog/${slug}`;
 export const categoryId = (category: string) => category.toLowerCase().replaceAll(" ", "-");
 export const getGuide = (slug: string) => GUIDES.find((guide) => guide.slug === slug);
@@ -43,7 +48,7 @@ export function guideMetadata(guide: Guide) {
     authors: [{ name: "Meritously", url: SITE_URL }],
     openGraph: {
       ...metadata.openGraph, type: "article" as const,
-      publishedTime: GUIDE_PUBLISHED_AT, modifiedTime: GUIDE_PUBLISHED_AT,
+      publishedTime: guidePublishedAt(guide), modifiedTime: guideModifiedAt(guide),
       authors: [SITE_URL], section: guide.category,
       images: [{ url: `${SITE_URL}${path}/opengraph-image`, width: 1200, height: 630, alt: guide.title }],
     },
@@ -59,7 +64,7 @@ export function guideStructuredData(guide: Guide) {
       {
         "@type": "BlogPosting", "@id": `${url}#article`, url, mainEntityOfPage: url,
         headline: guide.title, description: guide.description, articleSection: guide.category,
-        datePublished: GUIDE_PUBLISHED_AT, dateModified: GUIDE_PUBLISHED_AT,
+        datePublished: guidePublishedAt(guide), dateModified: guideModifiedAt(guide),
         author: { "@type": "Organization", name: "Meritously", url: SITE_URL },
         publisher: { "@id": `${SITE_URL}/#organization`, "@type": "Organization", name: "Meritously", url: SITE_URL,
           logo: { "@type": "ImageObject", url: `${SITE_URL}/meritously-mark.png` } },
@@ -93,12 +98,12 @@ export function xmlEscape(text: string) {
 }
 
 export function guideFeed() {
-  const date = new Date(GUIDE_PUBLISHED_AT).toUTCString();
+  const date = new Date(BLOG_UPDATED_AT).toUTCString();
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>${BLOG_TITLE}</title><link>${SITE_URL}/blog</link><description>${xmlEscape(BLOG_DESCRIPTION)}</description>
 <language>en-us</language><lastBuildDate>${date}</lastBuildDate>
 <atom:link href="${SITE_URL}/blog/feed.xml" rel="self" type="application/rss+xml"/>
-${GUIDES.map((guide) => `<item><title>${xmlEscape(guide.title)}</title><link>${SITE_URL}${guidePath(guide.slug)}</link><guid isPermaLink="true">${SITE_URL}${guidePath(guide.slug)}</guid><description>${xmlEscape(guide.description)}</description><pubDate>${date}</pubDate><category>${xmlEscape(guide.category)}</category></item>`).join("\n")}
+${GUIDES.map((guide) => `<item><title>${xmlEscape(guide.title)}</title><link>${SITE_URL}${guidePath(guide.slug)}</link><guid isPermaLink="true">${SITE_URL}${guidePath(guide.slug)}</guid><description>${xmlEscape(guide.description)}</description><pubDate>${new Date(guidePublishedAt(guide)).toUTCString()}</pubDate><category>${xmlEscape(guide.category)}</category></item>`).join("\n")}
 </channel></rss>`;
 }

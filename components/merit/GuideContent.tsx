@@ -4,7 +4,9 @@ import type { GuideSection } from "@/lib/merit/blog-types";
 
 export function GuideInline({ text }: { text: string }) {
   return inlineParts(text).map((part, index) => part.href
-    ? part.href.startsWith("/")
+    ? part.href.startsWith("/resources/")
+      ? <a key={index} href={part.href} download className="m-guide-link">{part.text}</a>
+      : part.href.startsWith("/")
       ? <Link key={index} href={part.href} className="m-guide-link">{part.text}</Link>
       : <a key={index} href={part.href} className="m-guide-link">{part.text}</a>
     : part.text);

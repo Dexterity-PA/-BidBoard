@@ -207,6 +207,7 @@ export default function HomePage() {
         <section className="lp-section" aria-labelledby="lp-guides-title">
           <div className="m-wrap">
             <div className="lp-head"><h2 id="lp-guides-title" className="lp-section-title">Make your next application easier</h2><Link href="/blog" className="lp-head-link">All scholarship guides</Link></div>
+            <p className="m-body">Sharing with students or families? <Link href="/for-counselors" className="lp-inline-link">Use our free counselor resource kit</Link>.</p>
             <ul className="m-guide-cards">{["how-to-find-scholarships", "how-to-write-a-scholarship-essay", "compare-scholarship-offers"].map((slug) => {
               const guide = GUIDES.find((entry) => entry.slug === slug)!;
               return <li key={slug} className="m-guide-card"><p className="m-eyebrow">{guide.category}</p><h3 className="m-guide-card-title"><Link href={guidePath(slug)}>{guide.title}</Link></h3><p className="m-body">{guide.description}</p></li>;
