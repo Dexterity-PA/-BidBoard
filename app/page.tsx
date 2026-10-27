@@ -5,6 +5,7 @@ import NewsletterForm from "@/components/merit/NewsletterForm";
 import ScholarshipTopics from "@/components/merit/ScholarshipTopics";
 import { TOPIC_BY_TYPE, topicPath } from "@/lib/merit/topics";
 import { serializeJsonLd, siteStructuredData } from "@/lib/merit/seo";
+import { GUIDES, guidePath } from "@/lib/merit/blog";
 import { LISTINGS, awardTier, coverageHint, maxDollars, type MeritListing } from "@/lib/merit/catalog";
 
 export const metadata = { alternates: { canonical: "/" } };
@@ -200,6 +201,16 @@ export default function HomePage() {
               <Link href="/scholarships/directory" className="lp-head-link">Full directory</Link>
             </div>
             <ScholarshipTopics />
+          </div>
+        </section>
+
+        <section className="lp-section" aria-labelledby="lp-guides-title">
+          <div className="m-wrap">
+            <div className="lp-head"><h2 id="lp-guides-title" className="lp-section-title">Make your next application easier</h2><Link href="/blog" className="lp-head-link">All scholarship guides</Link></div>
+            <ul className="m-guide-cards">{["how-to-find-scholarships", "how-to-write-a-scholarship-essay", "compare-scholarship-offers"].map((slug) => {
+              const guide = GUIDES.find((entry) => entry.slug === slug)!;
+              return <li key={slug} className="m-guide-card"><p className="m-eyebrow">{guide.category}</p><h3 className="m-guide-card-title"><Link href={guidePath(slug)}>{guide.title}</Link></h3><p className="m-body">{guide.description}</p></li>;
+            })}</ul>
           </div>
         </section>
 

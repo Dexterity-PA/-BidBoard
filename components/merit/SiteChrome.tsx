@@ -18,6 +18,7 @@ export function SiteHeader() {
           <Link href="/scholarships" className="m-nav-link">
             Browse
           </Link>
+          <Link href="/blog" className="m-nav-link">Guides</Link>
           <SignedOut>
             <Link href="/sign-in" className="m-nav-link">
               Sign in
@@ -50,6 +51,7 @@ export function SiteFooter() {
         <nav className="m-footer-links" aria-label="Footer">
           <Link href="/scholarships">Browse</Link>
           <Link href="/scholarships/directory">Full directory</Link>
+          <Link href="/blog">Scholarship guides</Link>
           <Link href="/#about">About</Link>
           <Link href="/#updates">Email updates</Link>
           <Link href="/privacy">Privacy</Link>
