@@ -134,11 +134,13 @@ export default function CatalogBrowser({
     );
     return out.sort((a, b) => {
       if (sort === "name") return a.name.localeCompare(b.name);
+      const earlierA = today && a.deadlineDate && a.deadlineDate < today ? 1 : 0;
+      const earlierB = today && b.deadlineDate && b.deadlineDate < today ? 1 : 0;
       const ad = a.deadlineDate ?? "9999";
       const bd = b.deadlineDate ?? "9999";
-      return ad.localeCompare(bd) || a.name.localeCompare(b.name);
+      return earlierA - earlierB || ad.localeCompare(bd) || a.name.localeCompare(b.name);
     });
-  }, [filteredListings, sort, profile, onlyMatches, verdicts]);
+  }, [filteredListings, sort, profile, onlyMatches, verdicts, today]);
 
   // Start from the first page whenever the result set changes.
   useEffect(() => setLimit(PAGE), [results]);
@@ -410,7 +412,7 @@ function monthLabel(key: string) {
   });
 }
 
-export function DateBlock({ iso, today, emptyLabel = "No confirmed date" }: { iso: string | null; today: string | null; emptyLabel?: string }) {
+export function DateBlock({ iso, today, emptyLabel = "No confirmed date", pastLabel = "Date passed" }: { iso: string | null; today: string | null; emptyLabel?: string; pastLabel?: string }) {
   if (!iso) return <div className="m-date m-date-none">{emptyLabel}</div>;
   const { month, day } = monthDay(iso);
   const left = today ? daysUntil(iso, today) : null;
@@ -421,7 +423,7 @@ export function DateBlock({ iso, today, emptyLabel = "No confirmed date" }: { is
       <div className="m-date-day">{day}</div>
       {left !== null && (
         <div className={`m-date-left${left >= 0 && left <= 14 ? " m-date-soon" : ""}`}>
-          {left < 0 ? "Date passed" : left === 0 ? "Today" : left === 1 ? "1 day" : `${left} days`}
+          {left < 0 ? pastLabel : left === 0 ? "Today" : left === 1 ? "1 day" : `${left} days`}
         </div>
       )}
     </div>
@@ -446,11 +448,12 @@ function Row({
   const hint = coverageHint(l);
   return (
     <Link href={`/scholarships/${l.slug}`} className={`m-row ${comparisonStyles.listingLink}`}>
-      <DateBlock iso={l.deadlineDate} today={today} />
+      <DateBlock iso={l.deadlineDate} today={today} pastLabel={today && hasUpcomingListedDate(l, today) ? "Earlier date" : "Date passed"} />
       <div className="m-row-main">
         <span className="m-row-provider">{l.provider}</span>
         <span className="m-row-name">{l.name}</span>
         <span className="m-row-value">{l.value}</span>
+        {today && l.deadlineDate && l.deadlineDate < today && hasUpcomingListedDate(l, today) && <span className="m-fine">Earlier milestone shown. Check later rounds and any prior-application requirement.</span>}
       </div>
       <div className="m-row-side">
         <StatusBadge l={l} />

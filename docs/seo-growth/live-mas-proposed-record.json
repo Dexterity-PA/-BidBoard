@@ -1,0 +1,32 @@
+{
+  "status": "independently-reviewed-applied",
+  "checkedAt": "2026-10-29",
+  "path": "data/merit/outside-2.json",
+  "id": "P101",
+  "replacement": {
+    "id": "P101",
+    "provider": "Taco Bell Foundation",
+    "name": "Live Mas Scholarship",
+    "type": "scholarship",
+    "status": "mixed-need",
+    "value": "$5,000, $10,000 or $25,000 for eligible education expenses. Renewals require reapplication, may differ in amount, and are not guaranteed.",
+    "deadline": "January 5, 2027 at 5:00 p.m. Pacific Standard Time",
+    "deadlineDate": "2027-01-05",
+    "apply": "Choose an original 30-second to 2-minute video or a 250-500-word essay with photo(s), addressing passion, community and impact. Submit one English application online. Minors need parent or guardian permission.",
+    "eligibility": "New applicants must be 16-26 as of January 5, 2027, and legal residents located in the 50 US states or DC, or dependent children of active-duty US military. Applicants must be on track for or enrolled in accredited postsecondary education. Prior recipients use the separate renewal program. Financial need is considered but is not required.",
+    "notes": "The 2027 terms permit limited disclosed generative-AI assistance for organization, clarity or grammar, but prohibit generated or substantially outsourced authorship and fabricated experiences. Read all content and rights restrictions. First-time applicants and returning scholars use separate programs. Selected recipients must accept within six months, begin using funds by September 30, 2028 and use them fully within five years. Renewal requires reapplication and amounts may change.",
+    "tags": [
+      "need-considered",
+      "separate-application"
+    ],
+    "sources": [
+      "https://apply.mykaleidoscope.com/program/livemas2027",
+      "https://tacobellfoundation.org/live-mas-scholarship/",
+      "https://tacobellfoundation.org/wp-content/uploads/2027_Live_Mas_Scholarship_New_Applicant_TC.pdf"
+    ],
+    "minGpa": null,
+    "gpaScale": null,
+    "citizenship": null
+  },
+  "independentReview": "Coordinator read all 2027 PDF terms plus official program and application pages; corrected current prompt topics and essay-photo requirement before applying."
+}

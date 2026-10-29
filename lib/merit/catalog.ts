@@ -250,9 +250,16 @@ function explicitISO(match: RegExpMatchArray, rangeEnd = false): string | null {
 /** A past first date does not establish closure when a later published stage exists. */
 export function hasUpcomingListedDate(r: MeritRecord, today: string): boolean {
   if (r.deadlineDate && r.deadlineDate >= today) return true;
-  return [...r.deadline.matchAll(new RegExp(DATE_RE.source, "gi"))].some((match) => {
-    const iso = explicitISO(match, true);
-    return iso !== null && iso >= today;
+  return r.deadline.split(/;\s*/).some((part) => {
+    // An announcement or event after selection is not another application opportunity.
+    // Preserve explicit later rounds/document deadlines and multi-region application dates.
+    const event = /announc|notifi|interview|ceremony|programme|orientation|winners?|final selection|scholars\s|funds\s/i.test(part);
+    const application = /due|deadline|clos(?:e|es|ing)|applications?|submit|nominat|documents?|materials?|credentials?|recommendations?/i.test(part);
+    if (event && !application) return false;
+    return [...part.matchAll(new RegExp(DATE_RE.source, "gi"))].some((match) => {
+      const iso = explicitISO(match, true);
+      return iso !== null && iso >= today;
+    });
   });
 }
 

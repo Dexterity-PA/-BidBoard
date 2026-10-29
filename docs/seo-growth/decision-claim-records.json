@@ -130,8 +130,9 @@
     ],
     "checked": "2026-10-29",
     "author": "demand worker",
-    "status": "author-checked; independent design review in progress",
-    "unresolved": "Award-specific cohort or exception requires university confirmation."
+    "status": "independently reviewed by design worker; see review-decision-batch-2.md",
+    "unresolved": "Award-specific cohort or exception requires university confirmation.",
+    "reviewer": "design worker"
   },
   {
     "id": "major",
@@ -145,8 +146,9 @@
     ],
     "checked": "2026-10-29",
     "author": "demand worker",
-    "status": "author-checked; independent design review in progress",
-    "unresolved": "Award-specific cohort or exception requires university confirmation."
+    "status": "independently reviewed by design worker; see review-decision-batch-2.md",
+    "unresolved": "Award-specific cohort or exception requires university confirmation.",
+    "reviewer": "design worker"
   },
   {
     "id": "credits",
@@ -159,8 +161,9 @@
     ],
     "checked": "2026-10-29",
     "author": "demand worker",
-    "status": "author-checked; independent design review in progress",
-    "unresolved": "Award-specific cohort or exception requires university confirmation."
+    "status": "independently reviewed by design worker; see review-decision-batch-2.md",
+    "unresolved": "Award-specific cohort or exception requires university confirmation.",
+    "reviewer": "design worker"
   },
   {
     "id": "dual",
@@ -175,8 +178,9 @@
     ],
     "checked": "2026-10-29",
     "author": "demand worker",
-    "status": "author-checked; independent design review in progress",
-    "unresolved": "Award-specific cohort or exception requires university confirmation."
+    "status": "independently reviewed by design worker; see review-decision-batch-2.md",
+    "unresolved": "Award-specific cohort or exception requires university confirmation.",
+    "reviewer": "design worker"
   },
   {
     "id": "residency",
@@ -189,8 +193,9 @@
     ],
     "checked": "2026-10-29",
     "author": "demand worker",
-    "status": "author-checked; independent design review in progress",
-    "unresolved": "Award-specific cohort or exception requires university confirmation."
+    "status": "independently reviewed by design worker; see review-decision-batch-2.md",
+    "unresolved": "Award-specific cohort or exception requires university confirmation.",
+    "reviewer": "design worker"
   },
   {
     "id": "abroad",
@@ -203,8 +208,9 @@
     ],
     "checked": "2026-10-29",
     "author": "demand worker",
-    "status": "author-checked; independent design review in progress",
-    "unresolved": "Award-specific cohort or exception requires university confirmation."
+    "status": "independently reviewed by design worker; see review-decision-batch-2.md",
+    "unresolved": "Award-specific cohort or exception requires university confirmation.",
+    "reviewer": "design worker"
   },
   {
     "id": "waiver",
@@ -217,8 +223,9 @@
     ],
     "checked": "2026-10-29",
     "author": "demand worker",
-    "status": "author-checked; independent design review in progress",
-    "unresolved": "Award-specific cohort or exception requires university confirmation."
+    "status": "independently reviewed by design worker; see review-decision-batch-2.md",
+    "unresolved": "Award-specific cohort or exception requires university confirmation.",
+    "reviewer": "design worker"
   },
   {
     "id": "gap",
@@ -231,7 +238,68 @@
     ],
     "checked": "2026-10-29",
     "author": "demand worker",
-    "status": "author-checked; independent design review in progress",
-    "unresolved": "Award-specific cohort or exception requires university confirmation."
+    "status": "independently reviewed by design worker; see review-decision-batch-2.md",
+    "unresolved": "Award-specific cohort or exception requires university confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "final-parttime",
+    "program": "RIT; WVU",
+    "cycle": "Current published policy; individual award terms govern",
+    "claim": "Finalparttime exception differs by award; approval and proration require confirmation.",
+    "official_urls": [
+      "https://www.rit.edu/admissions/aid/merit-based-scholarships",
+      "https://hub.wvu.edu/types-of-aid/scholarships/renewal-reqs"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "reviewer": "outside_articles worker",
+    "status": "independently reviewed; see independent-decision-final-review.md",
+    "unresolved": "Individual exception and award amount require office confirmation."
+  },
+  {
+    "id": "campus",
+    "program": "Arizona; Missouri",
+    "cycle": "Current published policy; individual award terms govern",
+    "claim": "Campus/online change can cancel or adjust institutional awards; remainingeligibility needs confirmation.",
+    "official_urls": [
+      "https://financialaid.arizona.edu/policies/campus-change",
+      "https://financialaid.missouri.edu/receiving-aid/terms-conditions/"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "reviewer": "outside_articles worker",
+    "status": "independently reviewed; see independent-decision-final-review.md",
+    "unresolved": "Individual exception and award amount require office confirmation."
+  },
+  {
+    "id": "institution-stacking",
+    "program": "RIT; Arkansas",
+    "cycle": "Current published policy; individual award terms govern",
+    "claim": "Higherreplacement differs from designatedstackableaward.",
+    "official_urls": [
+      "https://www.rit.edu/admissions/aid/merit-based-scholarships",
+      "https://scholarships.uark.edu/guide-to-academic-freshman-scholarships/renewability-information.php"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "reviewer": "outside_articles worker",
+    "status": "independently reviewed; see independent-decision-final-review.md",
+    "unresolved": "Individual exception and award amount require office confirmation."
+  },
+  {
+    "id": "term-payment",
+    "program": "MIT; TexasA&M",
+    "cycle": "Current published policy; individual award terms govern",
+    "claim": "Annualamount may split byterms absent donorinstructions.",
+    "official_urls": [
+      "https://sfs.mit.edu/undergraduate-students/types-of-aid/outside-scholarships-grants/",
+      "https://financialaid.tamu.edu/policies-and-compliance/scholarship-policy.html"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "reviewer": "outside_articles worker",
+    "status": "independently reviewed; see independent-decision-final-review.md",
+    "unresolved": "Individual exception and award amount require office confirmation."
   }
 ]

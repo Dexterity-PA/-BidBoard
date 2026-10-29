@@ -2347,17 +2347,17 @@
     ]
   },
   "C102": {
-    "checkedAt": "2026-09-29",
+    "checkedAt": "2026-10-29",
     "sourceUrls": [
       "https://admissions.uconn.edu/stamps-applicants/",
       "https://admissions.uconn.edu/cost-aid/scholarship/"
     ],
-    "notes": "Official sources confirm this program. The published award, application process, deadline and eligibility were checked.",
+    "notes": "Official fall 2027 instructions distinguish November 1 admission and required documents from the November 8 Stamps supplement. The enrichment award is one-time; selection is competitive.",
     "outcome": "verified",
     "checks": {
       "identity": "supported",
-      "value": "supported",
-      "deadline": "supported",
+      "value": "corrected",
+      "deadline": "corrected",
       "application": "supported",
       "eligibility": "supported"
     },
@@ -8011,24 +8011,22 @@
     ]
   },
   "P101": {
-    "checkedAt": "2026-10-01",
+    "checkedAt": "2026-10-29",
     "sourceUrls": [
-      "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
-      "https://tacobellfoundation.org/live-mas-scholarship/",
-      "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+      "https://tacobellfoundation.org/wp-content/uploads/2027_Live_Mas_Scholarship_New_Applicant_TC.pdf",
+      "https://apply.mykaleidoscope.com/program/livemas2027",
+      "https://tacobellfoundation.org/live-mas-scholarship/"
     ],
-    "notes": "Taco Bell Foundation confirms Live Más. 2027 amounts unpublished; linked terms still for 2026. FAQ gives fall 2026 opening only, no exact closing date. FAQ supports video or essay; linked 2026 terms bar generative AI and substantive third-party rewriting. Public FAQ supports age/residence/education; returning scholars use separate invitation renewal.",
-    "outcome": "partial",
+    "notes": "Official 2027 new-applicant terms identify Taco Bell Foundation Live Mas. 2027 terms list $5,000, $10,000 and $25,000; renewal requires reapplication and can differ. 2027 terms and application page agree on January 5, 2027, 5 p.m. PST. Current terms support video or essay with photos, passion/community/impact prompts, English submission and limited disclosed AI assistance; no substantive outsourced authorship. Current terms support deadline-day ages16-26, residence/military-dependent rule, eligible postsecondary study, new-applicant restriction, minor consent and financial need considered rather than mandatory.",
+    "outcome": "verified",
     "checks": {
       "identity": "supported",
-      "value": "unconfirmed",
-      "deadline": "unconfirmed",
-      "application": "supported",
-      "eligibility": "supported"
+      "value": "corrected",
+      "deadline": "corrected",
+      "application": "corrected",
+      "eligibility": "corrected"
     },
-    "unresolved": [
-      "The 2027 award amounts and application closing date have not been published."
-    ]
+    "unresolved": []
   },
   "P107": {
     "checkedAt": "2026-09-29",

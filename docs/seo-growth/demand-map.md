@@ -4,7 +4,9 @@
 
 This is a public, non-sensitive research and commissioning record. It contains no private traffic figures or account information. Public search results were inspected on October 29, 2026 for automatic merit, National Merit, full-ride, high-school senior, current-cycle deadline, test-optional, renewal and Arizona funding queries. Results establish existing coverage and useful student questions, **not measured search volumes or Meritously rankings**. No paid keyword-volume source was available. Google Trends Explore could not be retrieved, so this map includes no Trends index or seasonality claim derived from Trends. Publication timing is driven by verified provider deadlines, not invented demand peaks.
 
-The starting source contains **50 existing blog slugs** and eight topic collections. `editorial-queue.csv` holds **260 candidate net-new blog briefs**: 110 institution analyses, 50 state research comparisons, 30 subject comparisons, 40 decision comparisons and 30 application analyses. They are candidates requiring source verification and intent review, not completed articles. Source links copied from the catalog are **research leads**, not proof of a current verification. Reject or merge candidates when research cannot support a genuinely different reader decision. State articles must compare actual local eligibility and application routes; never fill a template by changing the state name.
+The starting source contains **50 existing blog slugs** and eight topic collections. `editorial-queue.csv` retains **259 historical candidate rows**. The latest intent reconciliation consolidates ten overlapping rows, leaving **249 active canonical targets: 69 mapped to authored source and 180 remaining research candidates**. This is not a count of publication-ready or live articles. Other distinct articles commissioned during production are tracked in `intent-reconciliation.md`, which records all source slugs and the registry snapshot separately.
+
+The original candidate families included institution analyses, state comparisons, subject comparisons, student decisions and application processes. Source links copied from the catalog are research leads, not proof of a current verification. Reject or merge candidates when research cannot support a genuinely different reader decision. State articles must compare actual local eligibility and application routes; never fill a template by changing the state name. Subject candidates must identify real subject-specific programs rather than produce a renamed STEM list. The final queue audit found overlaps in Houston/UConn/Toledo applications, housing, renewal credits and broad coverage explanations and consolidated them into existing canonical owners.
 
 ## Priority keyword-to-page map
 
@@ -39,3 +41,19 @@ Competitor pages observed in search included CollegeTracker automatic-merit dire
 ## Commissioning and acceptance
 
 Each candidate receives a clear canonical intent, current official claim records, one author and a different reviewer. A material unresolved cycle/eligibility fact blocks a current recommendation or is explicitly labeled unconfirmed. Examples and calculations must be labeled hypothetical. No source-derived wording is copied mechanically. Catalog listing refreshes, revised guides, tools, briefs and drafts never count as net-new published blogs. Publication and Google indexing are separate states.
+
+
+## Reviewed program-decision batch
+
+Eight additional program articles were authored and independently reviewed on October 29, 2026. Their specific queries and page decisions are below; these are content opportunities supported by verified provider information, not measured volume estimates. Source records are in `demand-program-claims.json`; deployment is recorded by the release ledger.
+
+| Priority | Query intent | Canonical | Provider evidence and reader benefit |
+|---|---|---|---|
+| P1 | Houston Tier One deadline and coverage | `/blog/houston-tier-one-scholarship-2027-application` | November 2 application and November 9 recommendation; two-year living benefit versus four-year tuition changes budget. |
+| P1 | UConn Stamps application | `/blog/uconn-stamps-scholarship-2027-application` | November 1 admission and November 8 supplement; portal lead time and recommendation distinction. |
+| P1 | NCWIT eligibility and deadline | `/blog/ncwit-aspirations-computing-award-eligibility` | October 28 extension has passed; November 5 endorsement is not an application reopening. Recognition is not assumed tuition funding. |
+| P1 | Daniels scholarship amount and colleges | `/blog/daniels-scholarship-partner-college-funding` | Closed cycle; partner and two non-partner limits mean college choice changes the calculation. |
+| P1 | Boston College Presidential scholarship | `/blog/boston-college-gabelli-presidential-scholarship` | November 1 across admission plans; full tuition is distinct from guaranteed housing availability. |
+| P2 | Robertson separate application | `/blog/robertson-scholarship-duke-separate-application` | Official Duke exception to usual merit route; 2027 calendar explicitly unconfirmed because application site unavailable. |
+
+Two further reviewed routes: `/blog/ut-austin-forty-acres-scholarship-2027` distinguishes automatic consideration from the optional interest form and preserves the remaining December 1, 2026 application opportunity. `/blog/morehead-cain-nomination-admissions-referral-2027` distinguishes the closed standard application from the separate, selective admissions referral route and the January 1, 2027 UNC requirement for ongoing Regular Decision participants. These supersede the broad UT Austin and UNC institutional briefs rather than creating competing canonical targets.

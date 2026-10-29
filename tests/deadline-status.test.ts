@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { LISTINGS } from "@/lib/merit/catalog";
+import { LISTINGS, hasUpcomingListedDate } from "@/lib/merit/catalog";
 import { deadlineLabel, deadlineOrder, expiredBeforeDate, listedDeadlineState } from "@/lib/merit/deadline-status";
 import { listingDescription } from "@/lib/merit/seo";
 
@@ -17,10 +17,16 @@ describe("date-only scholarship deadlines", () => {
     expect(deadlineLabel(multiStage, "2026-10-29")).toBe("Earlier application milestone");
     expect(listedDeadlineState(multiStage, "2026-11-03")).toBe("past");
   });
-  it("ranks upcoming stages ahead of unknown and expired cycles", () => {
+  it("ranks future primary deadlines ahead of unknown and earlier milestones", () => {
     expect(deadlineOrder({ ...listing, deadlineDate: "2026-11-01" }, "2026-10-29")).toBe(0);
     expect(deadlineOrder({ ...listing, deadlineDate: null }, "2026-10-29")).toBe(1);
     expect(deadlineOrder(listing, "2026-10-29")).toBe(2);
+    expect(deadlineOrder({ ...listing, deadline: "Apply October 15, 2026; finalists submit November 2, 2026" }, "2026-10-29")).toBe(2);
+  });
+  it("does not treat a future programme or award announcement as an open application", () => {
+    expect(hasUpcomingListedDate({ ...listing, deadline: "Application October 6, 2026; distinction programme in Miami January 9-17, 2027" }, "2026-10-29")).toBe(false);
+    expect(hasUpcomingListedDate({ ...listing, deadline: "Applications close October 15, 2026; winners announced December 1, 2026" }, "2026-10-29")).toBe(false);
+    expect(hasUpcomingListedDate({ ...listing, deadline: "Round 1 due October 15, 2026; Round 2 due January 18, 2027" }, "2026-10-29")).toBe(true);
   });
   it("keeps the date and eligibility visible when award terms are long", () => {
     const description = listingDescription({ ...listing, name: "Example award", value: "An award with detailed annual and renewal terms. ".repeat(20), eligibility: "Arizona high school seniors" });
