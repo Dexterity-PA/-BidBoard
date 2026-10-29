@@ -68,7 +68,7 @@ export const ARIZONA_GUIDES: Guide[] = [
   },
   {
     slug: "university-arizona-merit-scholarships-fall-2027",
-    title: "University of Arizona merit aid for fall 2027: what November 1 does;and does not;secure",
+    title: "University of Arizona merit aid for fall 2027: what the November 1 deadline means",
     seoTitle: "University of Arizona merit aid: fall 2027 application priorities",
     description: "Understand Arizona's November 1 merit-priority date, competitive tuition awards, FAFSA timing and the difference between admission and a funded offer.",
     category: "Applications", topics: ["college-merit-scholarships"],
