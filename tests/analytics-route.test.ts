@@ -113,6 +113,16 @@ describe("public analytics endpoint boundaries", () => {
     expect(response.headers.get("cache-control")).toBe("no-store");
   });
 
+  it.each([
+    ["/blog", "/blog"],
+    ["/for-counselors", "/for-counselors"],
+    ["/blog/scholarship-application-checklist", "/blog/[guide]"],
+  ])("accepts public editorial route %s without retaining article slugs", async (path, category) => {
+    const response = await POST(request({ ...body, path }));
+    expect(response.status).toBe(204);
+    expect(mocks.page).toHaveBeenCalledExactlyOnceWith(attribution, category, { country: null, region: null, device: null, browser: null, os: null });
+  });
+
   it("stops before event writes when the transient network quota is full", async () => {
     mocks.allowed.mockResolvedValue(false);
     expect((await POST(request())).status).toBe(429);

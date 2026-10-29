@@ -5,6 +5,9 @@ import ScholarshipTopics from "@/components/merit/ScholarshipTopics";
 import { collectionStructuredData, pageMetadata, serializeJsonLd } from "@/lib/merit/seo";
 import { getScholarshipTopic, SCHOLARSHIP_TOPICS, topicListings, topicPath } from "@/lib/merit/topics";
 import { getTopicGuides, guidePath } from "@/lib/merit/blog";
+import { deadlineLabel } from "@/lib/merit/deadline-status";
+
+export const revalidate = 3600;
 
 type Props = { params: Promise<{ topic: string }> };
 
@@ -49,7 +52,7 @@ export default async function ScholarshipTopicPage({ params }: Props) {
           </section>
           <section id="awards" className="m-directory-section" aria-labelledby="awards-title">
             <h2 id="awards-title" className="m-h3">Explore {topic.title.toLowerCase()}</h2>
-            <p className="m-fine">Listed alphabetically. Some dates are unconfirmed or belong to a previous cycle. Open an award for application details and official sources; the provider&apos;s current rules control.</p>
+            <p className="m-fine">Awards with an upcoming listed date or stage appear first, followed by unconfirmed and past dates. An upcoming date does not establish that an application is open. Open an award for application details and official sources; the provider&apos;s current rules control.</p>
             <ul className="m-topic-awards">
               {listings.map((listing) => (
                 <li key={listing.id}>
@@ -57,7 +60,7 @@ export default async function ScholarshipTopicPage({ params }: Props) {
                   <h3><Link href={`/scholarships/${listing.slug}`} prefetch={false}>{listing.name}</Link></h3>
                   <dl>
                     <dt>Award</dt><dd>{listing.value}</dd>
-                    <dt>Listed deadline</dt><dd>{listing.deadline}</dd>
+                    <dt>{deadlineLabel(listing)}</dt><dd>{listing.deadline}</dd>
                     <dt>Who can apply</dt><dd>{listing.eligibility}</dd>
                   </dl>
                   <Link href={`/scholarships/${listing.slug}`} prefetch={false} className="m-arrow-link" aria-label={`Details and official sources for ${listing.name}`}>Details and official sources</Link>

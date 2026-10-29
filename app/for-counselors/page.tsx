@@ -5,10 +5,14 @@ import { COUNSELOR_BLURB, COUNSELOR_DESCRIPTION, COUNSELOR_PATH, COUNSELOR_TITLE
 import { GUIDES, guidePath } from "@/lib/merit/blog";
 import { LISTINGS } from "@/lib/merit/catalog";
 import { pageMetadata, serializeJsonLd, SITE_URL } from "@/lib/merit/seo";
+import { PLANNING_AWARDS, PLANNER_CHECKED_AT, PLANNER_PATH, planningDeadlineStatus } from "@/lib/merit/seasonal-planner";
+import plannerStyles from "./SeasonalPlanner.module.css";
 
 export const metadata = pageMetadata(COUNSELOR_PATH, COUNSELOR_TITLE, COUNSELOR_DESCRIPTION);
+export const revalidate = 3600;
 
 export default function CounselorResourcesPage() {
+  const today = new Date().toISOString().slice(0, 10);
   const schema = {
     "@context": "https://schema.org", "@type": "CollectionPage", url: `${SITE_URL}${COUNSELOR_PATH}`,
     name: COUNSELOR_TITLE, description: COUNSELOR_DESCRIPTION,
@@ -25,6 +29,32 @@ export default function CounselorResourcesPage() {
         <p className="m-body">Explore {LISTINGS.length} scholarship and competition listings and {GUIDES.length} guides. Browsing, guides and downloads are free and don&apos;t require an account. Students can optionally create a free account to save awards and track application tasks.</p>
         <div className="m-guide-categories"><Link href="/scholarships/directory" className="m-btn m-btn-primary">Browse the directory</Link><a href="#share" className="m-btn m-btn-ghost">Get sharing text</a><a href="/resources/scholarship-starter-kit.txt" download className="m-btn m-btn-ghost">Download student checklist</a></div>
       </header>
+      <section id="seasonal-planner" className={plannerStyles.section} aria-labelledby="seasonal-planner-title">
+        <div className={plannerStyles.intro}>
+          <p className="m-eyebrow">Fall 2026 planning sheet</p>
+          <h2 id="seasonal-planner-title" className="m-h2">Five application routes to discuss before winter break</h2>
+          <p className="m-body">Start with fit, then work backward from the deadline. This small shortlist covers need-sensitive awards, leadership competitions and college merit applications for 2027 entry. It is a teaching selection, not a ranking or a complete list. Use the official links for full eligibility and application instructions.</p>
+          <p className="m-body">Sources checked <time dateTime={PLANNER_CHECKED_AT}>October 29, 2026</time>. Date labels use UTC and do not establish whether an application is still accepting submissions on its closing day. Recheck the exact time with the provider.</p>
+        </div>
+        <div className={plannerStyles.actions}>
+          <a href="/for-counselors/seasonal-planner.csv" download className="m-guide-link">Download the filled-in planner (CSV)</a>
+          <a href="/resources/fall-2026-planning-activity.txt" download className="m-guide-link">Download the 20-minute activity</a>
+          <CopyText text={`${SITE_URL}${PLANNER_PATH}`} label="Copy planning sheet link" fallback="Copy the page address and add #seasonal-planner." />
+        </div>
+        <p className="m-body">The CSV includes blank columns for your target date, next step and completion status. Keep completed student copies private. Downloaded copies do not update automatically.</p>
+        <div className={plannerStyles.tableWrap} role="region" aria-label="Seasonal scholarship planning table, scroll horizontally on small screens" tabIndex={0}>
+          <table className={plannerStyles.table}>
+            <caption>Official deadlines and a practical first action</caption>
+            <thead><tr><th scope="col">Opportunity</th><th scope="col">Published deadline</th><th scope="col">Who should check it</th><th scope="col">Start here</th></tr></thead>
+            <tbody>{PLANNING_AWARDS.map((award) => <tr key={award.name}>
+              <th scope="row"><a href={award.officialUrl} className="m-guide-link">{award.name}</a><span className={plannerStyles.note}>{award.cycle}</span></th>
+              <td>{award.deadline}<span className={plannerStyles.note}>{planningDeadlineStatus(award.deadlineDate, today)}</span></td>
+              <td>{award.audience}</td><td>{award.firstAction}</td>
+            </tr>)}</tbody>
+          </table>
+        </div>
+        <p className="m-body">For a broader search, <Link href="/scholarships" className="m-guide-link">browse and filter the directory</Link>. Once an opportunity fits, use the provider&apos;s application route. These awards are not interchangeable, and meeting initial criteria does not guarantee an award.</p>
+      </section>
       <section className="m-guide-category" aria-labelledby="student-paths-title">
         <h2 id="student-paths-title" className="m-h2">Choose a starting point</h2>
         <ul className="m-guide-cards">{STUDENT_PATHS.map((path) => <li key={path.slug} className="m-guide-card"><h3 className="m-guide-card-title"><Link href={guidePath(path.slug)}>{path.title}</Link></h3><p className="m-body">{path.description}</p></li>)}</ul>

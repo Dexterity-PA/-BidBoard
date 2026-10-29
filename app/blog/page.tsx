@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GuideLibrary from "@/components/merit/GuideLibrary";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import { BLOG_DESCRIPTION, BLOG_TITLE, GUIDES, GUIDE_CATEGORIES, blogStructuredData, categoryId, getGuide, guidePath, readingMinutes } from "@/lib/merit/blog";
 import { GUIDE_READING_PATHS } from "@/lib/merit/blog-discovery";
@@ -10,7 +11,7 @@ export const metadata = {
 };
 
 export default function BlogPage() {
-  return <div className="m-page">
+  return <div className="m-page m-editorial">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(blogStructuredData()) }} />
     <SiteHeader />
     <main className="m-main m-wrap m-guide-index">
@@ -20,7 +21,7 @@ export default function BlogPage() {
         <p className="m-lede">Find awards that fit. Write an application that sounds like you. Understand what an offer would actually cover.</p>
         <p className="m-fine">{GUIDES.length} practical guides with official sources, examples and free templates.</p>
         <p className="m-body">Helping a group of students? <Link href="/for-counselors" className="m-guide-link">Get counselor resources and sharing text</Link>.</p>
-        <nav className="m-guide-categories" aria-label="Guide categories">{GUIDE_CATEGORIES.map((category) => <a key={category} href={`#${categoryId(category)}`} className="m-btn m-btn-ghost">{category}</a>)}</nav>
+        <nav className="m-guide-categories" aria-label="Guide categories"><a href="#guide-library-title" className="m-guide-category-link">Search all guides</a>{GUIDE_CATEGORIES.map((category) => <a key={category} href={`#${categoryId(category)}`} className="m-guide-category-link">{category}</a>)}</nav>
       </header>
       <section className="m-guide-paths" aria-labelledby="reading-paths-title">
         <h2 id="reading-paths-title" className="m-h2">What are you working on?</h2>
@@ -33,14 +34,7 @@ export default function BlogPage() {
           })}</ul>
         </section>)}</div>
       </section>
-      {GUIDE_CATEGORIES.map((category) => <section key={category} id={categoryId(category)} className="m-guide-category" aria-labelledby={`${categoryId(category)}-title`}>
-        <h2 id={`${categoryId(category)}-title`} className="m-h2">{category}</h2>
-        <ul className="m-guide-cards">{GUIDES.filter((guide) => guide.category === category).map((guide) => <li key={guide.slug} className="m-guide-card">
-          <p className="m-fine">{readingMinutes(guide)} min read</p>
-          <h3 className="m-guide-card-title"><Link href={guidePath(guide.slug)}>{guide.title}</Link></h3>
-          <p className="m-body">{guide.description}</p>
-        </li>)}</ul>
-      </section>)}
+      <GuideLibrary categories={GUIDE_CATEGORIES} guides={GUIDES.map((guide) => ({ slug: guide.slug, title: guide.title, description: guide.description, category: guide.category, minutes: readingMinutes(guide) }))} />
       <section className="m-guide-tools" aria-labelledby="tools-title">
         <div><p className="m-eyebrow">Keep it simple</p><h2 id="tools-title" className="m-h2">Free planning tools</h2><p className="m-body">Open the CSV files in your preferred spreadsheet app, or start with a plain text checklist.</p></div>
         <ul className="m-guide-list"><li><a href="/resources/scholarship-tracker.csv" className="m-guide-link" download>Scholarship deadline tracker</a></li><li><a href="/resources/award-comparison.csv" className="m-guide-link" download>Award comparison worksheet</a></li><li><a href="/resources/scholarship-starter-kit.txt" className="m-guide-link" download>Student search checklist</a></li><li><a href="/resources/scholarship-application-checklist.txt" className="m-guide-link" download>Application submission checklist</a></li></ul>

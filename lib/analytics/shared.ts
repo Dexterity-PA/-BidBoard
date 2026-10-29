@@ -10,9 +10,11 @@ const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{1
 
 /** Only public discovery pages are measured. Never accept queries or arbitrary paths. */
 export function analyticsPath(value: unknown): string | null {
-  if (value === "/" || value === "/scholarships") return value;
+  if (value === "/" || value === "/scholarships" || value === "/blog" || value === "/for-counselors") return value;
   // Aggregate award detail pages, without storing user-supplied slugs.
   if (typeof value === "string" && /^\/scholarships\/[a-z0-9-]{1,160}$/.test(value)) return "/scholarships/[award]";
+  // Editorial discovery is grouped too; do not persist a requested article slug.
+  if (typeof value === "string" && /^\/blog\/[a-z0-9-]{1,160}$/.test(value)) return "/blog/[guide]";
   return null;
 }
 

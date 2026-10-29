@@ -1,0 +1,13 @@
+.section { margin: 3rem 0; padding: 2rem 0; border-top: 1px solid #cbd5d1; border-bottom: 1px solid #cbd5d1; }
+.intro { max-width: 72ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.25rem 0; }
+.tableWrap { overflow-x: auto; margin-top: 1.5rem; }
+.tableWrap:focus-visible { outline: 3px solid #17644c; outline-offset: 4px; }
+.table { width: 100%; border-collapse: collapse; min-width: 680px; font-size: .95rem; line-height: 1.6; text-align: left; }
+.table caption { text-align: left; font-weight: 600; margin-bottom: .75rem; }
+.table th, .table td { padding: 1rem .8rem; border-bottom: 1px solid #dce3df; vertical-align: top; }
+.table thead th { background: #f0f4f1; font-weight: 600; }
+.table tbody th { min-width: 180px; font-weight: 600; }
+.note { display: block; margin-top: .4rem; font-size: .82rem; font-weight: 400; }
+@media (max-width: 640px) { .section { margin: 2rem 0; padding: 1.5rem 0; } .table { font-size: .9rem; } }
+@media print { .actions { display: none; } .tableWrap { overflow: visible; } .table { min-width: 0; font-size: 9pt; } .table a::after { content: " (" attr(href) ")"; font-size: 7pt; overflow-wrap: anywhere; } .section { break-inside: auto; } .table tr { break-inside: avoid; } }

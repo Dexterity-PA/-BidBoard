@@ -28,12 +28,17 @@ beforeEach(() => {
 afterEach(() => { vi.unstubAllEnvs(); vi.useRealTimers(); });
 
 describe("analytics data minimization", () => {
-  it.each(["/settings", "/tracker", "/essays/private", "/newsletter/confirm", "/sign-in", "/admin/analytics", "/?token=secret", "/scholarships/test?email=a@b.com"])("does not measure sensitive or query-bearing path %s", (path) => {
+  it.each(["/settings", "/tracker", "/essays/private", "/newsletter/confirm", "/sign-in", "/admin/analytics", "/?token=secret", "/scholarships/test?email=a@b.com", "/blog/guide?email=a@b.com", "/blog/guide#private", "/for-counselors?student=private", "/for-counselors/student", "/blog/feed.xml", "/blog/a/b", "/blog/%2Fprivate", `/blog/${"a".repeat(161)}`])("does not measure sensitive or query-bearing path %s", (path) => {
     expect(analyticsPath(path)).toBeNull();
   });
   it("groups award detail paths without retaining slugs", () => {
     expect(analyticsPath("/scholarships/example-award")).toBe("/scholarships/[award]");
     expect(analyticsPath("/scholarships")).toBe("/scholarships");
+  });
+  it("measures public editorial entry points while aggregating article identity", () => {
+    expect(analyticsPath("/blog")).toBe("/blog");
+    expect(analyticsPath("/for-counselors")).toBe("/for-counselors");
+    expect(analyticsPath("/blog/scholarship-application-checklist")).toBe("/blog/[guide]");
   });
   it.each(["a@example.com", "https://example.com/a", "secret-code", "a".repeat(64), "hello world", "a".repeat(49)])("rejects unsafe source labels: %s", (value) => {
     expect(campaignLabel(value)).toBeNull();

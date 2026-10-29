@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import SaveMeritButton from "@/components/merit/SaveMeritButton";
 import MatchNote from "@/components/merit/MatchNote";
+import DeadlineExport from "@/components/merit/DeadlineExport";
+import { deadlineLabel, deadlineOrder, expiredBeforeDate, listedDeadlineState } from "@/lib/merit/deadline-status";
 import { isMeritSaved } from "@/app/actions/merit";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import { listingDescription, listingStructuredData, pageMetadata, serializeJsonLd } from "@/lib/merit/seo";
@@ -43,6 +45,7 @@ export async function generateMetadata({
 
 /** Up to three related listings: same type, sharing a state or program tag, soonest first. */
 function related(l: MeritListing): MeritListing[] {
+  const today = expiredBeforeDate();
   const keyTags = l.tags.filter((t) => t.startsWith("state:") || t === "stamps" || t.startsWith("major:"));
   const pool = LISTINGS.filter(
     (o) => o.id !== l.id && o.type === l.type && (o.status === "live" || o.status === "mixed-need"),
@@ -51,7 +54,7 @@ function related(l: MeritListing): MeritListing[] {
     (o.provider === l.provider ? 3 : 0) + keyTags.filter((t) => o.tags.includes(t)).length * 2 + (coverageHint(o) && coverageHint(l) ? 1 : 0);
   return pool
     .map((o) => ({ o, s: score(o) }))
-    .sort((a, b) => b.s - a.s || (a.o.deadlineDate ?? "9999").localeCompare(b.o.deadlineDate ?? "9999"))
+    .sort((a, b) => deadlineOrder(a.o, today) - deadlineOrder(b.o, today) || b.s - a.s || (a.o.deadlineDate ?? "9999").localeCompare(b.o.deadlineDate ?? "9999"))
     .slice(0, 3)
     .map((x) => x.o);
 }
@@ -117,10 +120,12 @@ export default async function ListingPage({
 
           <div className="m-detail">
             <aside className="m-card m-detail-actions" aria-label={retired ? "Program status" : "Apply and save"}>
-              <span className="m-card-label">{retired ? "Program status" : "Next deadline"}</span>
+              <span className="m-card-label">{retired ? "Program status" : deadlineLabel(l)}</span>
               <span className="m-card-deadline">
                 {retired ? "No longer offered" : l.deadlineDate ? formatISODate(l.deadlineDate) : "No confirmed date"}
               </span>
+              {!retired && listedDeadlineState(l) === "past" && <p className="m-fine">This listed date has passed. The next cycle is not confirmed here. Check the provider before preparing an application.</p>}
+              {!retired && listedDeadlineState(l) === "later-stage" && <p className="m-fine">An earlier milestone has passed. Read the full timeline below: a later stage may require an earlier application.</p>}
               {!retired && freshness === "stale" && verification?.outcome !== "unavailable" && <p className="m-fine">It’s been at least 90 days since we checked this award. Check the current dates and rules before applying.</p>}
               {l.sources[0] && (
                 <a
@@ -134,6 +139,13 @@ export default async function ListingPage({
               )}
               {!retired && (
                 <>
+                  <DeadlineExport deadline={{
+                    id: l.id, name: l.name, provider: l.provider, deadlineDate: l.deadlineDate,
+                    deadlineConfirmed: freshness === "current" && verification?.outcome !== "unavailable" && verification?.outcome !== "retired" && ["supported", "corrected"].includes(verification?.checks?.deadline ?? ""),
+                    deadlineDescription: l.deadline,
+                    officialUrl: verification?.sourceUrls[0] ?? l.sources[0] ?? null,
+                    eligibilityUrl: `https://meritously.com/scholarships/${l.slug}#eligibility`, eligibility: l.eligibility,
+                  }} />
                   <MatchNote record={l} />
                   <SignedIn>
                     <SaveMeritButton slug={l.slug} initiallySaved={saved} />
@@ -214,7 +226,7 @@ export default async function ListingPage({
                   </div>
                 )}
                 {l.eligibility && (
-                  <div className="m-fact">
+                  <div className="m-fact" id="eligibility">
                     <dt>{retired ? "Former eligibility" : "Who can apply"}</dt>
                     <dd>{l.eligibility}</dd>
                   </div>
