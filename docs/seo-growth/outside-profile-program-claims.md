@@ -1,0 +1,9 @@
+# Three outside program decisions
+
+Author outside_articles, official sources checked2026-10-29. Status authored and independently approved by state_articles on 2026-10-29 after reopening all four official pages. No factual corrections required. File `lib/merit/blog-outside-profile-programs.ts`, export OUTSIDE_PROFILE_PROGRAM_GUIDES. Distinct programintents, not broad profilecomparisons.
+
+- APIA2027–28: https://apiascholars.org/scholarships/ directly opened. NewcycleNov15,2026–Jan15,2027 5pmEST confirmed;2.5koneyear–20kmultiyear;associate/bacheloronly,nobacheloralready;highfinancialneed;citizen/national/permanentresidentUS/MarshallIslands/FSM/Palau;allbackgrounds expresslywelcome. LinkedFAQ/tips stilllabeledold2026–27 so no extrapolatedGPA/fulltime rules. Text explicitlypreopening.
+- HHFYouthAwards2026spring2027graduates: https://youthawards.hispanicheritage.org/2026/forms/welcome.php confirmsgrade/GPA3.0UW,27–28college,homeschool,categoriesUSterritories. https://youthawards.hispanicheritage.org/2026/forms/faqs.php confirmsUSresidence,GEDunder21route,Nov1,2026 11:59:59PSTwording,oneletter,officialorunofficialtranscript,alluploadedbysamedeadline,mandatoryvirtualceremony,one-timeupto4kcategorydependent. No assumedheritagegate notlistedincurrenteligibility; no speculativeodds.
+- HSFstatus-vs-funding: https://www.hsf.net/scholarship/ directlyopened. 2026closedJan5–Feb15historical, NO2027dateclaim. MeritScholarselectionservicesnotcashguarantee;500–5000relative needandfunds;FundAScholarconditionnoted. Historicaleligibility3.0HS2.5collegegrad,fulltime4yr/graduate,USCitizenpermanentresidentDACA,Hispanicheritage;clearlylabeled2026notfuture. DoesnotmakeunverifiedDACAFAFSAassertion,insteadreaderconfirmapplicableformswhennewcycleopens.
+
+Original costexamples hypothetical andchecked:7000gapminuspotential5000wouldbe2000onlyifconfirmed;otherwise7000basecase. No privatepersonaldata included. Rootowns integration/checks/release.

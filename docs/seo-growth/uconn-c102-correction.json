@@ -1,0 +1,77 @@
+{
+  "recordId": "C102",
+  "checkedAt": "2026-10-29",
+  "reviewer": "verification/growth worker",
+  "sourceUrls": [
+    "https://admissions.uconn.edu/stamps-applicants/",
+    "https://admissions.uconn.edu/cost-aid/scholarship/"
+  ],
+  "oldRecord": {
+    "id": "C102",
+    "provider": "University of Connecticut",
+    "name": "Stamps Scholarship",
+    "type": "college-program",
+    "status": "live",
+    "value": "Full cost-of-attendance scholarship renewable for four years (eight semesters), plus $12,000 for research and experiential learning. Storrs campus only.",
+    "deadline": "Common App or Coalition Application by November 1, 2026. Stamps Scholarship Supplemental Application and all required documents by November 8, 2026.",
+    "deadlineDate": "2026-11-08",
+    "apply": "Supplemental application in the UConn applicant portal: three short answers of 100, 200 and 100 words, detailed resume and two recommendation letters. Selected applicants interview with UConn and Stamps. Early Decision Stamps results come in early February.",
+    "eligibility": "Students graduating secondary school and entering UConn Storrs in Fall 2027, with leadership and community service. Expected GPA 3.8 on a 4.0 scale and top 10% rank if available; test optional, with expected 1420 SAT or 32 ACT if submitted. Apply to only one of Stamps, Nutmeg or Day of Pride.",
+    "notes": "",
+    "tags": [
+      "separate-application",
+      "short-essay",
+      "recommendations",
+      "interview",
+      "early-deadline",
+      "test-optional",
+      "score-threshold",
+      "stamps"
+    ],
+    "sources": [
+      "https://admissions.uconn.edu/stamps-applicants/",
+      "https://admissions.uconn.edu/cost-aid/scholarship/"
+    ],
+    "minGpa": 3.8,
+    "gpaScale": "any",
+    "citizenship": null
+  },
+  "newRecord": {
+    "id": "C102",
+    "provider": "University of Connecticut",
+    "name": "Stamps Scholarship",
+    "type": "college-program",
+    "status": "live",
+    "value": "Full cost-of-attendance scholarship renewable for four years (eight semesters), plus a one-time $12,000 enrichment award for research and experiential learning. Storrs campus only.",
+    "deadline": "Undergraduate admission application and required admission documents by November 1, 2026. Stamps Scholarship Supplemental Application by November 8, 2026.",
+    "deadlineDate": "2026-11-01",
+    "apply": "Supplemental application in the UConn applicant portal: three short answers of 100, 200 and 100 words, detailed resume and two recommendation letters. Selected applicants interview with UConn and Stamps. Early Decision Stamps results come in early February.",
+    "eligibility": "Students graduating secondary school and entering UConn Storrs in Fall 2027, with leadership and community service. Expected GPA 3.8 on a 4.0 scale and top 10% rank if available; test optional, with expected 1420 SAT or 32 ACT if submitted. Apply to only one of Stamps, Nutmeg or Day of Pride.",
+    "notes": "The listed deadline is the earlier admission requirement. Students who meet it have until November 8, 2026 to submit the Stamps supplement. Check the applicant portal for document receipt; the later supplement deadline does not extend the admission deadline.",
+    "tags": [
+      "separate-application",
+      "short-essay",
+      "recommendations",
+      "interview",
+      "early-deadline",
+      "test-optional",
+      "score-threshold",
+      "stamps"
+    ],
+    "sources": [
+      "https://admissions.uconn.edu/stamps-applicants/",
+      "https://admissions.uconn.edu/cost-aid/scholarship/"
+    ],
+    "minGpa": 3.8,
+    "gpaScale": "any",
+    "citizenship": null
+  },
+  "previousHash": "024c7e7a3a9b1a03528bb6bfd2d11f09f58faae6762b8189cb3d5050af7360c8",
+  "finalHash": "51a914bc3d033bee0a14dfd23b14133717d69caadff7aeb683b11375950e38a4",
+  "auditFiles": [
+    "data/merit/audit-2026-10-01-round5.json",
+    "data/merit/verification.json"
+  ],
+  "manifest": "Existing previousDeadline 2026-11-08 retained to protect user-edited saved deadlines during audited sync.",
+  "pending": "Coordinator independently reread both official pages and confirmed deadline distinction; local catalog audit passes800; release pending. No production database command run."
+}

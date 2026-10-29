@@ -1,0 +1,10 @@
+# Institutional articles batch 3
+
+Author college_articles; checked2026-10-29. Four new complete articles, independent review pending. Source-file timestamps require release normalization. No deployment claim.
+
+| Slug | Sources | Verified claims and boundaries |
+|---|---|---|
+| mizzou-merit-scholarships-core-gpa-2027 | https://admissions.missouri.edu/costs-aid/scholarships/freshman-scholarships/ | ExplicitFall2027;coreGPA+rigor;homeschoolGEDHiSETunaccreditedscoreexceptions;MarkTwain$21.5k/$8.5kannual4yearsconditions/nonresidentcharge/citizenPR/onlineexclusion;Dec1appfee/Dec15materials. No tier formula invented. |
+| clemson-national-scholars-vs-national-merit | https://www.clemson.edu/academics/programs/national-scholars/scholar-selection/ ; https://www.clemson.edu/cuhonors/admissions/first-year-student.html ; https://www.clemson.edu/financial-aid/types-of-aid/clemson-scholarships/named-scholarships.html | Distinctprograms;NSPEA+HonorsPriority+finalistactivities;allresidenciesinclinternational;Oct15/Oct22applications alreadypastOct29;Nov1materialsnotlateapp;NSPcoveragetuitionfeeshousingfoodother. No misleadingsourceclaimNMSCisCollegeBoard copied;no alreadyselectedcohort inference. |
+| arkansas-scholarships-vs-honors-fellowships | https://scholarships.uark.edu/faq.php ; https://honors.uark.edu/find-funding/fellowship-interviews.php ; https://scholarships.uark.edu/guide-to-academic-freshman-scholarships/ ; https://honors.uark.edu/find-funding/ | Fellowshiprecsinterview;replacesacademicscholarship;48hrportal;recurringNov15/Feb1 explicitlycycleunconfirmed;15min2–4interviewpanel. Olderhomepage2026/2027context and staleDec14testdate not advanced. |
+| pitt-rolling-admission-merit-scholarship-deadline | https://catalog.upp.pitt.edu/content.php?catoid=210&navoid=20692 ; https://www.engineering.pitt.edu/academics/undergraduate-admissions/undergraduate-financial-aid/ | RollingadmissiondistinctDec1completefilemerit;holisticreview;notguaranteed;noawardamount/renewalGPA claimed;generalsourcecyclecaveat. |

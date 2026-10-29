@@ -13,8 +13,8 @@
     "carriedForwardReviews": 771,
     "changedListings": 29,
     "outcomes": {
-      "verified": 322,
-      "partial": 475,
+      "verified": 323,
+      "partial": 474,
       "retired": 1,
       "unavailable": 2
     }
@@ -13358,54 +13358,52 @@
     "C102": {
       "id": "C102",
       "file": "data/merit/colleges-3.json",
-      "reviewedAt": "2026-09-29",
+      "reviewedAt": "2026-10-29",
       "outcome": "verified",
       "sources": [
         {
           "url": "https://admissions.uconn.edu/stamps-applicants/",
-          "accessedAt": "2026-09-29T01:04:47Z",
-          "method": "direct-public-http-content",
+          "accessedAt": "2026-10-29T10:43:04Z",
+          "method": "independent-official-source-read",
           "supports": [
-            "identity: University of Connecticut confirms Stamps Scholarship.",
-            "value: Full cost-of-attendance scholarship renewable for four years (eight semesters), plus $12,000 for research and experiential learning. Storrs campus only.",
-            "deadline: Common App or Coalition Application by November 1, 2026. Stamps Scholarship Supplemental Application and all required documents by November 8, 2026.",
-            "application: Supplemental application in the UConn applicant portal: three short answers of 100, 200 and 100 words, detailed resume and two recommendation letters. Selected applicants interview with UConn and Stamps. Early Decision Stamps results come in early February.",
-            "eligibility: Students graduating secondary school and entering UConn Storrs in Fall 2027, with leadership and community service. Expected GPA 3.8 on a 4.0 scale and top 10% rank if available; test optional, with expected 1420 SAT or 32 ACT if submitted. Apply to only one of Stamps, Nutmeg or Day of Pride."
+            "UConn identifies its Stamps Scholarship.",
+            "Fall 2027 applicant page lists November 1, 2026 admission and November 8, 2026 supplement; merit page explicitly requires admission and all required documents by November 1. Use November 1 as the earliest required action.",
+            "Portal supplement includes 100/200/100-word responses, resume and two recommendations. Required interviews and Early Decision scholarship selection in early February are confirmed.",
+            "Fall 2027 secondary-school graduates; leadership/service; expected 3.8 GPA and top decile if available. Test optional, with 1420 SAT or 32 ACT if provided. Choose one of Stamps, Nutmeg or Day of Pride."
           ]
         },
         {
           "url": "https://admissions.uconn.edu/cost-aid/scholarship/",
-          "accessedAt": "2026-09-29T01:04:47Z",
-          "method": "direct-public-http-content",
+          "accessedAt": "2026-10-29T10:43:04Z",
+          "method": "independent-official-source-read",
           "supports": [
-            "identity: University of Connecticut confirms Stamps Scholarship.",
-            "value: Full cost-of-attendance scholarship renewable for four years (eight semesters), plus $12,000 for research and experiential learning. Storrs campus only.",
-            "deadline: Common App or Coalition Application by November 1, 2026. Stamps Scholarship Supplemental Application and all required documents by November 8, 2026.",
-            "application: Supplemental application in the UConn applicant portal: three short answers of 100, 200 and 100 words, detailed resume and two recommendation letters. Selected applicants interview with UConn and Stamps. Early Decision Stamps results come in early February.",
-            "eligibility: Students graduating secondary school and entering UConn Storrs in Fall 2027, with leadership and community service. Expected GPA 3.8 on a 4.0 scale and top 10% rank if available; test optional, with expected 1420 SAT or 32 ACT if submitted. Apply to only one of Stamps, Nutmeg or Day of Pride."
+            "UConn identifies its Stamps Scholarship.",
+            "Storrs-only full cost of attendance for eight undergraduate semesters plus a one-time $12,000 enrichment award.",
+            "Fall 2027 applicant page lists November 1, 2026 admission and November 8, 2026 supplement; merit page explicitly requires admission and all required documents by November 1. Use November 1 as the earliest required action.",
+            "Portal supplement includes 100/200/100-word responses, resume and two recommendations. Required interviews and Early Decision scholarship selection in early February are confirmed.",
+            "Fall 2027 secondary-school graduates; leadership/service; expected 3.8 GPA and top decile if available. Test optional, with 1420 SAT or 32 ACT if provided. Choose one of Stamps, Nutmeg or Day of Pride."
           ]
         }
       ],
       "checks": {
         "identity": {
           "status": "supported",
-          "note": "University of Connecticut confirms Stamps Scholarship.",
+          "note": "UConn identifies its Stamps Scholarship.",
           "sourceUrls": [
             "https://admissions.uconn.edu/stamps-applicants/",
             "https://admissions.uconn.edu/cost-aid/scholarship/"
           ]
         },
         "value": {
-          "status": "supported",
-          "note": "Full cost-of-attendance scholarship renewable for four years (eight semesters), plus $12,000 for research and experiential learning. Storrs campus only.",
+          "status": "corrected",
+          "note": "Storrs-only full cost of attendance for eight undergraduate semesters plus a one-time $12,000 enrichment award.",
           "sourceUrls": [
-            "https://admissions.uconn.edu/stamps-applicants/",
             "https://admissions.uconn.edu/cost-aid/scholarship/"
           ]
         },
         "deadline": {
-          "status": "supported",
-          "note": "Common App or Coalition Application by November 1, 2026. Stamps Scholarship Supplemental Application and all required documents by November 8, 2026.",
+          "status": "corrected",
+          "note": "Fall 2027 applicant page lists November 1, 2026 admission and November 8, 2026 supplement; merit page explicitly requires admission and all required documents by November 1. Use November 1 as the earliest required action.",
           "sourceUrls": [
             "https://admissions.uconn.edu/stamps-applicants/",
             "https://admissions.uconn.edu/cost-aid/scholarship/"
@@ -13413,7 +13411,7 @@
         },
         "application": {
           "status": "supported",
-          "note": "Supplemental application in the UConn applicant portal: three short answers of 100, 200 and 100 words, detailed resume and two recommendation letters. Selected applicants interview with UConn and Stamps. Early Decision Stamps results come in early February.",
+          "note": "Portal supplement includes 100/200/100-word responses, resume and two recommendations. Required interviews and Early Decision scholarship selection in early February are confirmed.",
           "sourceUrls": [
             "https://admissions.uconn.edu/stamps-applicants/",
             "https://admissions.uconn.edu/cost-aid/scholarship/"
@@ -13421,17 +13419,106 @@
         },
         "eligibility": {
           "status": "supported",
-          "note": "Students graduating secondary school and entering UConn Storrs in Fall 2027, with leadership and community service. Expected GPA 3.8 on a 4.0 scale and top 10% rank if available; test optional, with expected 1420 SAT or 32 ACT if submitted. Apply to only one of Stamps, Nutmeg or Day of Pride.",
+          "note": "Fall 2027 secondary-school graduates; leadership/service; expected 3.8 GPA and top decile if available. Test optional, with 1420 SAT or 32 ACT if provided. Choose one of Stamps, Nutmeg or Day of Pride.",
           "sourceUrls": [
             "https://admissions.uconn.edu/stamps-applicants/",
             "https://admissions.uconn.edu/cost-aid/scholarship/"
           ]
         }
       },
-      "changes": [],
+      "changes": [
+        "value",
+        "deadline",
+        "deadlineDate",
+        "notes"
+      ],
       "unresolved": [],
-      "publicNote": "Official sources confirm this program. The published award, application process, deadline and eligibility were checked.",
-      "finalRecordHash": "024c7e7a3a9b1a03528bb6bfd2d11f09f58faae6762b8189cb3d5050af7360c8"
+      "publicNote": "Official fall 2027 instructions distinguish November 1 admission and required documents from the November 8 Stamps supplement. The enrichment award is one-time; selection is competitive.",
+      "finalRecordHash": "51a914bc3d033bee0a14dfd23b14133717d69caadff7aeb683b11375950e38a4",
+      "amendments": [
+        {
+          "checkedAt": "2026-10-29",
+          "reason": "Correct admission-document deadline and distinguish the later supplement; clarify one-time enrichment. Full record rechecked against both official sources.",
+          "previousReview": {
+            "id": "C102",
+            "file": "data/merit/colleges-3.json",
+            "reviewedAt": "2026-09-29",
+            "outcome": "verified",
+            "sources": [
+              {
+                "url": "https://admissions.uconn.edu/stamps-applicants/",
+                "accessedAt": "2026-09-29T01:04:47Z",
+                "method": "direct-public-http-content",
+                "supports": [
+                  "identity: University of Connecticut confirms Stamps Scholarship.",
+                  "value: Full cost-of-attendance scholarship renewable for four years (eight semesters), plus $12,000 for research and experiential learning. Storrs campus only.",
+                  "deadline: Common App or Coalition Application by November 1, 2026. Stamps Scholarship Supplemental Application and all required documents by November 8, 2026.",
+                  "application: Supplemental application in the UConn applicant portal: three short answers of 100, 200 and 100 words, detailed resume and two recommendation letters. Selected applicants interview with UConn and Stamps. Early Decision Stamps results come in early February.",
+                  "eligibility: Students graduating secondary school and entering UConn Storrs in Fall 2027, with leadership and community service. Expected GPA 3.8 on a 4.0 scale and top 10% rank if available; test optional, with expected 1420 SAT or 32 ACT if submitted. Apply to only one of Stamps, Nutmeg or Day of Pride."
+                ]
+              },
+              {
+                "url": "https://admissions.uconn.edu/cost-aid/scholarship/",
+                "accessedAt": "2026-09-29T01:04:47Z",
+                "method": "direct-public-http-content",
+                "supports": [
+                  "identity: University of Connecticut confirms Stamps Scholarship.",
+                  "value: Full cost-of-attendance scholarship renewable for four years (eight semesters), plus $12,000 for research and experiential learning. Storrs campus only.",
+                  "deadline: Common App or Coalition Application by November 1, 2026. Stamps Scholarship Supplemental Application and all required documents by November 8, 2026.",
+                  "application: Supplemental application in the UConn applicant portal: three short answers of 100, 200 and 100 words, detailed resume and two recommendation letters. Selected applicants interview with UConn and Stamps. Early Decision Stamps results come in early February.",
+                  "eligibility: Students graduating secondary school and entering UConn Storrs in Fall 2027, with leadership and community service. Expected GPA 3.8 on a 4.0 scale and top 10% rank if available; test optional, with expected 1420 SAT or 32 ACT if submitted. Apply to only one of Stamps, Nutmeg or Day of Pride."
+                ]
+              }
+            ],
+            "checks": {
+              "identity": {
+                "status": "supported",
+                "note": "University of Connecticut confirms Stamps Scholarship.",
+                "sourceUrls": [
+                  "https://admissions.uconn.edu/stamps-applicants/",
+                  "https://admissions.uconn.edu/cost-aid/scholarship/"
+                ]
+              },
+              "value": {
+                "status": "supported",
+                "note": "Full cost-of-attendance scholarship renewable for four years (eight semesters), plus $12,000 for research and experiential learning. Storrs campus only.",
+                "sourceUrls": [
+                  "https://admissions.uconn.edu/stamps-applicants/",
+                  "https://admissions.uconn.edu/cost-aid/scholarship/"
+                ]
+              },
+              "deadline": {
+                "status": "supported",
+                "note": "Common App or Coalition Application by November 1, 2026. Stamps Scholarship Supplemental Application and all required documents by November 8, 2026.",
+                "sourceUrls": [
+                  "https://admissions.uconn.edu/stamps-applicants/",
+                  "https://admissions.uconn.edu/cost-aid/scholarship/"
+                ]
+              },
+              "application": {
+                "status": "supported",
+                "note": "Supplemental application in the UConn applicant portal: three short answers of 100, 200 and 100 words, detailed resume and two recommendation letters. Selected applicants interview with UConn and Stamps. Early Decision Stamps results come in early February.",
+                "sourceUrls": [
+                  "https://admissions.uconn.edu/stamps-applicants/",
+                  "https://admissions.uconn.edu/cost-aid/scholarship/"
+                ]
+              },
+              "eligibility": {
+                "status": "supported",
+                "note": "Students graduating secondary school and entering UConn Storrs in Fall 2027, with leadership and community service. Expected GPA 3.8 on a 4.0 scale and top 10% rank if available; test optional, with expected 1420 SAT or 32 ACT if submitted. Apply to only one of Stamps, Nutmeg or Day of Pride.",
+                "sourceUrls": [
+                  "https://admissions.uconn.edu/stamps-applicants/",
+                  "https://admissions.uconn.edu/cost-aid/scholarship/"
+                ]
+              }
+            },
+            "changes": [],
+            "unresolved": [],
+            "publicNote": "Official sources confirm this program. The published award, application process, deadline and eligibility were checked.",
+            "finalRecordHash": "024c7e7a3a9b1a03528bb6bfd2d11f09f58faae6762b8189cb3d5050af7360c8"
+          }
+        }
+      ]
     },
     "C103": {
       "id": "C103",
@@ -46847,81 +46934,191 @@
     "P101": {
       "id": "P101",
       "file": "data/merit/outside-2.json",
-      "reviewedAt": "2026-10-01",
-      "outcome": "partial",
+      "reviewedAt": "2026-10-29",
+      "outcome": "verified",
       "sources": [
         {
-          "url": "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
-          "accessedAt": "2026-10-01",
-          "method": "current-official-page-full-text-review",
+          "url": "https://apply.mykaleidoscope.com/program/livemas2027",
+          "accessedAt": "2026-10-29T10:22:00Z",
+          "method": "independent-official-source-read",
           "supports": [
-            "FAQ gives fall 2026, early 2027 selection, spring 2027 notifications; no exact deadline or amounts."
+            "Official 2027 new-applicant terms identify Taco Bell Foundation Live Mas.",
+            "2027 terms list $5,000, $10,000 and $25,000; renewal requires reapplication and can differ.",
+            "2027 terms and application page agree on January 5, 2027, 5 p.m. PST.",
+            "Current terms support video or essay with photos, passion/community/impact prompts, English submission and limited disclosed AI assistance; no substantive outsourced authorship.",
+            "Current terms support deadline-day ages16-26, residence/military-dependent rule, eligible postsecondary study, new-applicant restriction, minor consent and financial need considered rather than mandatory."
           ]
         },
         {
-          "url": "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf",
-          "accessedAt": "2026-10-01",
-          "method": "current-official-page-full-text-review",
+          "url": "https://tacobellfoundation.org/live-mas-scholarship/",
+          "accessedAt": "2026-10-29T10:22:00Z",
+          "method": "independent-official-source-read",
           "supports": [
-            "Linked formal terms remain for 2025-2026; specify original work without generative AI or substantive third-party editing."
+            "Official 2027 new-applicant terms identify Taco Bell Foundation Live Mas.",
+            "2027 terms list $5,000, $10,000 and $25,000; renewal requires reapplication and can differ.",
+            "2027 terms and application page agree on January 5, 2027, 5 p.m. PST.",
+            "Current terms support video or essay with photos, passion/community/impact prompts, English submission and limited disclosed AI assistance; no substantive outsourced authorship.",
+            "Current terms support deadline-day ages16-26, residence/military-dependent rule, eligible postsecondary study, new-applicant restriction, minor consent and financial need considered rather than mandatory."
+          ]
+        },
+        {
+          "url": "https://tacobellfoundation.org/wp-content/uploads/2027_Live_Mas_Scholarship_New_Applicant_TC.pdf",
+          "accessedAt": "2026-10-29T10:22:00Z",
+          "method": "independent-official-source-read",
+          "supports": [
+            "Official 2027 new-applicant terms identify Taco Bell Foundation Live Mas.",
+            "2027 terms list $5,000, $10,000 and $25,000; renewal requires reapplication and can differ.",
+            "2027 terms and application page agree on January 5, 2027, 5 p.m. PST.",
+            "Current terms support video or essay with photos, passion/community/impact prompts, English submission and limited disclosed AI assistance; no substantive outsourced authorship.",
+            "Current terms support deadline-day ages16-26, residence/military-dependent rule, eligible postsecondary study, new-applicant restriction, minor consent and financial need considered rather than mandatory."
           ]
         }
       ],
       "checks": {
         "identity": {
           "status": "supported",
-          "note": "Taco Bell Foundation confirms Live Más.",
+          "note": "Official 2027 new-applicant terms identify Taco Bell Foundation Live Mas.",
           "sourceUrls": [
-            "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
-            "https://tacobellfoundation.org/live-mas-scholarship/",
-            "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+            "https://tacobellfoundation.org/wp-content/uploads/2027_Live_Mas_Scholarship_New_Applicant_TC.pdf",
+            "https://apply.mykaleidoscope.com/program/livemas2027",
+            "https://tacobellfoundation.org/live-mas-scholarship/"
           ]
         },
         "value": {
-          "status": "unconfirmed",
-          "note": "2027 amounts unpublished; linked terms still for 2026.",
+          "status": "corrected",
+          "note": "2027 terms list $5,000, $10,000 and $25,000; renewal requires reapplication and can differ.",
           "sourceUrls": [
-            "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
-            "https://tacobellfoundation.org/live-mas-scholarship/",
-            "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+            "https://tacobellfoundation.org/wp-content/uploads/2027_Live_Mas_Scholarship_New_Applicant_TC.pdf",
+            "https://apply.mykaleidoscope.com/program/livemas2027",
+            "https://tacobellfoundation.org/live-mas-scholarship/"
           ]
         },
         "deadline": {
-          "status": "unconfirmed",
-          "note": "FAQ gives fall 2026 opening only, no exact closing date.",
+          "status": "corrected",
+          "note": "2027 terms and application page agree on January 5, 2027, 5 p.m. PST.",
           "sourceUrls": [
-            "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
-            "https://tacobellfoundation.org/live-mas-scholarship/",
-            "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+            "https://tacobellfoundation.org/wp-content/uploads/2027_Live_Mas_Scholarship_New_Applicant_TC.pdf",
+            "https://apply.mykaleidoscope.com/program/livemas2027",
+            "https://tacobellfoundation.org/live-mas-scholarship/"
           ]
         },
         "application": {
-          "status": "supported",
-          "note": "FAQ supports video or essay; linked 2026 terms bar generative AI and substantive third-party rewriting.",
+          "status": "corrected",
+          "note": "Current terms support video or essay with photos, passion/community/impact prompts, English submission and limited disclosed AI assistance; no substantive outsourced authorship.",
           "sourceUrls": [
-            "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
-            "https://tacobellfoundation.org/live-mas-scholarship/",
-            "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+            "https://tacobellfoundation.org/wp-content/uploads/2027_Live_Mas_Scholarship_New_Applicant_TC.pdf",
+            "https://apply.mykaleidoscope.com/program/livemas2027",
+            "https://tacobellfoundation.org/live-mas-scholarship/"
           ]
         },
         "eligibility": {
-          "status": "supported",
-          "note": "Public FAQ supports age/residence/education; returning scholars use separate invitation renewal.",
+          "status": "corrected",
+          "note": "Current terms support deadline-day ages16-26, residence/military-dependent rule, eligible postsecondary study, new-applicant restriction, minor consent and financial need considered rather than mandatory.",
           "sourceUrls": [
-            "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
-            "https://tacobellfoundation.org/live-mas-scholarship/",
-            "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+            "https://tacobellfoundation.org/wp-content/uploads/2027_Live_Mas_Scholarship_New_Applicant_TC.pdf",
+            "https://apply.mykaleidoscope.com/program/livemas2027",
+            "https://tacobellfoundation.org/live-mas-scholarship/"
           ]
         }
       },
       "changes": [
-        "notes"
+        "value",
+        "deadline",
+        "deadlineDate",
+        "apply",
+        "eligibility",
+        "notes",
+        "tags",
+        "sources"
       ],
-      "unresolved": [
-        "The 2027 award amounts and application closing date have not been published."
-      ],
-      "publicNote": "Taco Bell Foundation confirms Live Más. 2027 amounts unpublished; linked terms still for 2026. FAQ gives fall 2026 opening only, no exact closing date. FAQ supports video or essay; linked 2026 terms bar generative AI and substantive third-party rewriting. Public FAQ supports age/residence/education; returning scholars use separate invitation renewal.",
-      "finalRecordHash": "3a3bc1fedbfdf86844d50076b52186b17a8e82d4f3883aa267591ff365e05ad6"
+      "unresolved": [],
+      "publicNote": "Official 2027 new-applicant terms identify Taco Bell Foundation Live Mas. 2027 terms list $5,000, $10,000 and $25,000; renewal requires reapplication and can differ. 2027 terms and application page agree on January 5, 2027, 5 p.m. PST. Current terms support video or essay with photos, passion/community/impact prompts, English submission and limited disclosed AI assistance; no substantive outsourced authorship. Current terms support deadline-day ages16-26, residence/military-dependent rule, eligible postsecondary study, new-applicant restriction, minor consent and financial need considered rather than mandatory.",
+      "finalRecordHash": "2ba6c55c03fbd9e08d5a1908dac7d8453401e0c9ef0bd11bef43b1ab065a0575",
+      "amendments": [
+        {
+          "checkedAt": "2026-10-29",
+          "reason": "2027 terms now published; independent second-worker source review completed.",
+          "previousReview": {
+            "id": "P101",
+            "file": "data/merit/outside-2.json",
+            "reviewedAt": "2026-10-01",
+            "outcome": "partial",
+            "sources": [
+              {
+                "url": "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
+                "accessedAt": "2026-10-01",
+                "method": "current-official-page-full-text-review",
+                "supports": [
+                  "FAQ gives fall 2026, early 2027 selection, spring 2027 notifications; no exact deadline or amounts."
+                ]
+              },
+              {
+                "url": "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf",
+                "accessedAt": "2026-10-01",
+                "method": "current-official-page-full-text-review",
+                "supports": [
+                  "Linked formal terms remain for 2025-2026; specify original work without generative AI or substantive third-party editing."
+                ]
+              }
+            ],
+            "checks": {
+              "identity": {
+                "status": "supported",
+                "note": "Taco Bell Foundation confirms Live Más.",
+                "sourceUrls": [
+                  "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
+                  "https://tacobellfoundation.org/live-mas-scholarship/",
+                  "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+                ]
+              },
+              "value": {
+                "status": "unconfirmed",
+                "note": "2027 amounts unpublished; linked terms still for 2026.",
+                "sourceUrls": [
+                  "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
+                  "https://tacobellfoundation.org/live-mas-scholarship/",
+                  "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+                ]
+              },
+              "deadline": {
+                "status": "unconfirmed",
+                "note": "FAQ gives fall 2026 opening only, no exact closing date.",
+                "sourceUrls": [
+                  "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
+                  "https://tacobellfoundation.org/live-mas-scholarship/",
+                  "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+                ]
+              },
+              "application": {
+                "status": "supported",
+                "note": "FAQ supports video or essay; linked 2026 terms bar generative AI and substantive third-party rewriting.",
+                "sourceUrls": [
+                  "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
+                  "https://tacobellfoundation.org/live-mas-scholarship/",
+                  "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+                ]
+              },
+              "eligibility": {
+                "status": "supported",
+                "note": "Public FAQ supports age/residence/education; returning scholars use separate invitation renewal.",
+                "sourceUrls": [
+                  "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
+                  "https://tacobellfoundation.org/live-mas-scholarship/",
+                  "https://tacobellfoundation.org/files/4.-2026-LMS-New-Applicant-TAC_Final_10092522.pdf"
+                ]
+              }
+            },
+            "changes": [
+              "notes"
+            ],
+            "unresolved": [
+              "The 2027 award amounts and application closing date have not been published."
+            ],
+            "publicNote": "Taco Bell Foundation confirms Live Más. 2027 amounts unpublished; linked terms still for 2026. FAQ gives fall 2026 opening only, no exact closing date. FAQ supports video or essay; linked 2026 terms bar generative AI and substantive third-party rewriting. Public FAQ supports age/residence/education; returning scholars use separate invitation renewal.",
+            "finalRecordHash": "3a3bc1fedbfdf86844d50076b52186b17a8e82d4f3883aa267591ff365e05ad6"
+          }
+        }
+      ]
     },
     "P107": {
       "id": "P107",

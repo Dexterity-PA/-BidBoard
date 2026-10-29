@@ -52,7 +52,7 @@ export default async function ScholarshipTopicPage({ params }: Props) {
           </section>
           <section id="awards" className="m-directory-section" aria-labelledby="awards-title">
             <h2 id="awards-title" className="m-h3">Explore {topic.title.toLowerCase()}</h2>
-            <p className="m-fine">Awards with an upcoming listed date or stage appear first, followed by unconfirmed and past dates. An upcoming date does not establish that an application is open. Open an award for application details and official sources; the provider&apos;s current rules control.</p>
+            <p className="m-fine">Awards with a future primary date appear first, followed by unconfirmed dates and earlier milestones. A later round may require a prior application. Open an award for application details and official sources; the provider&apos;s current rules control.</p>
             <ul className="m-topic-awards">
               {listings.map((listing) => (
                 <li key={listing.id}>

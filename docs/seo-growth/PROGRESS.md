@@ -1,46 +1,47 @@
 # Search and editorial production checkpoint
 
-Updated October 29, 2026. This ledger contains public implementation evidence only. No private site analytics or account details belong here.
+Updated October 29, 2026. Public implementation evidence only; no private analytics or account details.
 
-## Baseline and release
+## Exact counts and releases
 
-- Source baseline: main `05f8447945a1b7cb13c6478f561a3d848699894c` with 50 existing blog guides. Existing catalog records do not count as new blogs.
-- Working branch: `codex/meritously-search-growth-2026-10-29`; PR https://github.com/Dexterity-PA/-BidBoard/pull/39.
-- First foundation snapshot: `9ca97a9c2a894a9e08e1594976d284fc95a1868b`. GitHub quality run 40855243481 passed; Vercel preview build succeeded. Preview requires Vercel authentication in the available browser, so this is not a completed visual review.
-- First content batch: 30 net-new blog articles independently source-reviewed and integrated; 3 existing articles materially expanded. Publication/live confirmation is still pending the content release checks. No new Google indexing or traffic result is claimed.
+- Baseline main `05f8447945a1b7cb13c6478f561a3d848699894c`: 50 existing blogs. Catalog listings, revisions, tools and briefs do not count as new blogs.
+- 119 net-new blog articles written, independently source-reviewed by a different automated worker, and integrated in source. Exact slugs are in `new-article-manifest.json`.
+- 30 new blogs confirmed live from PR39; the remaining 89 are awaiting the second release at this checkpoint. Total source blogs:169; first-release live total:80. No Google indexing, ranking or traffic outcome is claimed.
+- Seven existing blogs substantially revised: automatic merit, out-of-state merit, National Merit, full tuition versus full ride, international students, no SAT/ACT and high school seniors. First three live in PR39; four await second release.
+- No new standalone scholarship landing pages are counted. Two dated November/December comparisons are actual blog articles and included in119.
+- PR39: https://github.com/Dexterity-PA/-BidBoard/pull/39, merged as `cfede02521947c7d00c6a0203fe0a542b75f920c`; source head `e8c486bdf6310083240b65004b1dcda11edf80be`. GitHub quality run40856899540 and Vercel production status passed. Production index/sitemap and representative new articles verified.
+- Continuing branch: `codex/meritously-search-growth-2026-10-29`. Second release details will be recorded after exact-head checks and production verification.
 
-## Reviewed article modules
+## Independent review coverage
 
-| Module | New blogs | Independent reviewer evidence |
-|---|---:|---|
-| blog-college-growth.ts | 8 | independent-college-review.md |
-| blog-arizona-guides.ts | 8 | independent-arizona-review.md |
-| blog-outside-growth.ts | 8 | outside-claims.md, separate state-author review and requested corrections applied |
-| blog-decision-growth.ts | 4 | review-decision-batch-1.md |
-| blog-process-growth.ts | 2 | independent-design-process-review.md |
+40 institutional analyses;24 demand/decision guides;24 Arizona/state/profile articles;23 outside/program articles;4 application-process guides;2 design-authored decision guides;2 seasonal comparisons. Separate claim ledgers and independent review records accompany these batches. Authorship is labeled Meritously; no human credentials or firsthand experience are invented.
 
-Existing automatic merit, out-of-state merit and National Merit guides received additional current-policy comparison sections. They are revisions, not new articles. Review is recorded in independent-design-process-review.md. Reviewers are separate automated workers, not invented human experts.
+Material program facts use current official sources, with unresolved cycles expressly labeled. Automatic consideration is separated from guaranteed awards, annual values from totals, full tuition from cost of attendance, admission dates from scholarship submissions, and closed applications from later selection stages. Different worker review is an automated independent check, not a claim of human editorial review.
 
-## Implemented foundations
+## Implemented improvements
 
-- Searchable editorial index, readable article layout, accessible scrolling comparison tables, restrained styling and truthful published/updated dates.
-- Selectively integrated PR30 comparison and calendar tools, preserving current dependencies and newer source work. PR30 itself was not blindly merged.
-- Past listed deadlines and earlier milestones are labeled honestly. Topic and related-award ordering favors upcoming listed stages without promising applications are open.
-- Listing descriptions reserve space for date and eligibility rather than letting long award descriptions obscure both.
-- Removed homepage counts that disagreed with filtered browse results.
-- Verified five-program counselor planning sheet, CSV export and classroom activity; shared typed facts keep the page and export consistent. No student information is put in shared URLs.
-- Existing privacy-conscious visit collection extended to public blog/counselor categories. Article slugs, sensitive pages and query strings remain excluded; existing opt-outs remain intact.
+- Professional searchable editorial index, readable article width/type hierarchy, restrained styling, section navigation, accessible scrolling comparison tables, useful related reading, published/updated dates and print styles.
+- Selectively reconciled PR30 comparison and calendar features while retaining current dependencies and newer work. Compare up to three awards without signup; calendar download guards require usable dates. PR30 itself remains open.
+- Past deadline/earlier milestone labels; topic and browse sorting prioritize future primary dates. Event-only dates are excluded from the application-date fallback. This scoped text parser does not prove every catalog application is open.
+- Concise listing descriptions preserve deadline and eligibility information. Removed misleading homepage counts that disagreed with default browse filtering; added contextual seasonal reading links.
+- Live Mas2027 and UConn Stamps catalog corrections maintain audit archives, compact verification records and canonical record hashes.
+- Five-program counselor planning sheet, CSV export and printable activity; source facts shared between HTML/export. No student information in shared URLs. See `non-email-growth.md` for unsent distribution materials.
+- Existing privacy-conscious visit analytics extended to blog/counselor categories with article paths aggregated; no query strings or new paid vendor. Existing opt-outs preserved.
 
 ## Validation and limits
 
-Release types/tests run locally; the first full expanded run passed 408 tests. Catalog audit validates 800 records without database writes outside production. Dependency audit has no high-severity production findings; five low-severity existing transitive findings remain. No security gate or migration guard was weakened.
+Final local release types/tests passed409 tests with169 total guides registered. The catalog audit validates800 records without database writes outside production. Production dependency audit reports no high-severity findings; five existing low-severity transitive findings remain. No CI/security/migration guard was weakened.
 
-Local production compilation succeeded, but complete local build validation is limited by absent real database configuration and a separate pre-existing webpack route-props type error in the admin analytics page. The existing Vercel build is the deployment verification path. Local Chromium download was unavailable; preview authentication blocked cloud visual inspection. Production visual checks remain required after deployment. No production cron endpoint was called.
+First release passed existing GitHub quality and Vercel builds. Desktop production QA covered the index/search/empty state, Alabama and NAU articles including comparison tables, no-account award comparison, and Daniels expired-date/calendar behavior. See `editorial-design-validation.md`. Mobile viewport screenshots and authenticated saving remain unverified. No production cron endpoint was called.
 
-## Continuing queue
+Full local production compilation was limited by absent real database configuration; a separate webpack attempt exposed a pre-existing admin route-props type error. Vercel remains the deployment build verification path. Preview protection was preserved. No real email/reminder delivery was tested.
 
-`editorial-queue.csv` contains 260 candidate intents, not completed or verified articles. `demand-map.md` separates qualitative SERP evidence from unmeasured search volume; Google Trends data was unavailable. Match commissioned slugs to the existing canonical intent before writing. New candidates must not create competing copies of the existing 50 guides.
+## Research and continuing queue
 
-Second author batches are in progress in separate modules. Keep every unpublished/unreviewed module out of the central GUIDES export until independent claim/table review passes. The 200+ new-blog target is a stretch goal, not a completed count. Update the exact written/reviewed/live counts and release SHAs after each batch.
+`editorial-queue.csv` contains259 historical rows, including10 consolidated duplicates:249 active canonical targets,69 mapped authored and180 unverified research candidates. Another50 authored slugs came from later commissioning. See `intent-reconciliation.md`; these numbers are not a publication count. Demand evidence is qualitative SERP/provider/competitor coverage, not measured volume or ranking. Google Trends and fresh Search Console access were unavailable. See `demand-map.md` for canonical priorities and evidence limits. Source leads must be verified before new commissions; merge overlapping intents into existing canonical pages.
 
-Non-email growth research and unsent reusable copy are in `non-email-growth.md`. No outreach, posts, purchases or external submissions were made.
+The200+ new-blog stretch target is not reached:119 reviewed source articles,81 short of200 at this checkpoint. Remaining candidates are not a verified ready-to-publish backlog. All integrated articles are reviewed; unverified Boren and western-college leads remain research leads, not countable drafts.
+
+Next pass: refresh remote head, PRs, checks and this ledger; preserve concurrent work. Verify second release if still pending, then commission distinct remaining high-value candidates with official-source records and different-worker review. Avoid mechanically scaled state/major variants. Keep actual written/reviewed/live counts separate.
+
+No outreach, posts, purchases, external submissions or additional automations were made.

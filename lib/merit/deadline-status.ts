@@ -16,8 +16,8 @@ export function deadlineLabel(listing: MeritListing, today = expiredBeforeDate()
   return state === "past" ? "Past listed deadline" : state === "later-stage" ? "Earlier application milestone" : "Listed deadline";
 }
 
-/** Upcoming published stages first, then unknown dates, then historical cycles. Never infer an open application. */
+/** Future primary dates first. Later stages can require an earlier application, so do not promote them as fresh leads. */
 export function deadlineOrder(listing: MeritListing, today = expiredBeforeDate()) {
   const state = listedDeadlineState(listing, today);
-  return state === "past" ? 2 : state === "unconfirmed" ? 1 : 0;
+  return state === "listed" ? 0 : state === "unconfirmed" ? 1 : 2;
 }

@@ -1,0 +1,10 @@
+# Independent seasonal blog review
+
+Two new articles in `lib/merit/blog-seasonal-growth.ts` were independently reviewed on October 29, 2026 by a different automated worker from the author. Both are cleared for integration, subject to normal release checks; this is not a claim of human review or production publication.
+
+- `november-2026-scholarship-deadlines`: independently retrieved Cooke how-to-apply, Elks official MVS FAQ and Alabama timeline. Verified November 11 Cooke, November 12 at 11:59 p.m. PST Elks, November 2 Alabama spring-2027 first-time main-campus priority. Confirmed Cooke 3.75 unweighted GPA, required score without minimum, financial-need screen, school history, two academic/one counselor recommendation. Confirmed Elks citizen-only rule and submitted versus complete status. The article makes its three-program selection limits and entry-term distinction clear.
+- `december-2026-scholarship-deadlines`: independently retrieved Vanderbilt application and program pages, Alabama timeline and Science Ambassador official page. Verified December 1 Vanderbilt, December 4 Alabama summer/fall-2027 priority, December 14 at 11:59 p.m. US Central Science Ambassador. Confirmed MyAppVU two-to-three-business-day access expectation, Science Ambassador five one-time $20,000 undergraduate-STEM tuition awards, public three-minute-or-less YouTube video (not Shorts), current student/major/location rules and no production-value judging factor. No full-tuition claim is used for the current Science Ambassador cycle.
+
+Checked the related guide slugs in current source and the `seasonal-planner` counselor anchor. Category and topic IDs exist. Titles do not promise exhaustive lists or measured popularity; past-date caveats prevent portraying these dated articles as perpetually open opportunities. No substantive corrections required.
+
+Official source URLs are embedded at the relevant table rows and paragraphs. Both articles preserve the distinction between scholarship selection, admission, priority consideration and confirmed funding.

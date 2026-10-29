@@ -1,9 +1,9 @@
 /** Editorial reading paths, ordered by the question a student is trying to answer. */
 export const GUIDE_READING_PATHS = [
   {
-    title: "Find your next award",
-    description: "Start with eligibility, then narrow the search.",
-    slugs: ["how-to-find-new-scholarships", "scholarships-by-gpa", "scholarships-without-sat-act", "how-to-find-local-scholarships"],
+    title: "Plan your scholarship shortlist",
+    description: "Compare current deadlines, published award rules and remaining costs.",
+    slugs: ["november-2026-scholarship-deadlines", "december-2026-scholarship-deadlines", "automatic-merit-scholarships", "out-of-state-merit-scholarships"],
   },
   {
     title: "Finish an application",
