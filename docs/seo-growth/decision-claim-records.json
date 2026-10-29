@@ -1,0 +1,237 @@
+[
+  {
+    "id": "housing-nau",
+    "program": "NAU",
+    "cycle": "2027\u201328 freshmen",
+    "claim": "First-year campus housing and meal plan condition; tuition-only awards.",
+    "official_url": "https://nau.edu/financial-aid/scholarships/freshman/",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "housing-bu",
+    "program": "Boston University",
+    "cycle": "Current renewal policy, entry cohort unspecified",
+    "claim": "Trustee/full-tuition housing requirement applies to Charles River or Fenway university housing.",
+    "official_url": "https://www.bu.edu/finaid/how-aid-works/types-of-aid/scholarships-grants/merit-based/how-scholarships-are-renewed/",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "score-ua",
+    "program": "University of Alabama",
+    "cycle": "2027 freshman awards",
+    "claim": "No scholarship superscore; official single-test scores.",
+    "official_url": "https://afford.ua.edu/scholarships/faq/",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "score-uah",
+    "program": "UAH",
+    "cycle": "2026\u201327 application cycle",
+    "claim": "ACT highest English/Math/Reading across submitted sittings; excludes Science.",
+    "official_url": "https://www.uah.edu/admissions/undergraduate/apply-for-admission/freshmen",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "score-ua-deadline",
+    "program": "University of Alabama",
+    "cycle": "Summer/fall2027",
+    "claim": "December4 application/officialscores priority; junior-year GPA; funds-available late consideration.",
+    "official_url": "https://afford.ua.edu/scholarships/oos-international-freshman/",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "national-merit-ua",
+    "program": "University of Alabama",
+    "cycle": "2027 entrants",
+    "claim": "Tuition10semesters; housing4years; undergraduate supplement4years; researchallowance once; Finalist/GPA3.5/collegechoice beforeMay1 conditions.",
+    "official_url": "https://afford.ua.edu/scholarships/national-merit/",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "amp-extension-ua",
+    "program": "University of Alabama",
+    "cycle": "Current policy",
+    "claim": "Conditional resident AMP extension request; approval not guaranteed; certain packages extend tuition only.",
+    "official_url": "https://afford.ua.edu/scholarships/policies/",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "outside-mit",
+    "program": "MIT",
+    "cycle": "Current policy",
+    "claim": "First5400 replaces studentcontribution; excess institutionalgrant; parentoffset only after MITgrant zero.",
+    "official_url": "https://sfs.mit.edu/undergraduate-students/types-of-aid/outside-scholarships-grants/",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "outside-stanford",
+    "program": "Stanford",
+    "cycle": "Current policy",
+    "claim": "StudentResponsibility first then institutionalgrant; no parent replacement while needaid; federal/state exceptions.",
+    "official_url": "https://financialaid.stanford.edu/aid/outside/index.html",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "outside-harvard",
+    "program": "Harvard",
+    "cycle": "Current policy",
+    "claim": "Termtimework first then Harvardgrant; not parentcontribution.",
+    "official_url": "https://college.harvard.edu/resources/faq/what-your-outside-award-policy",
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "independently reviewed by design worker; see review-decision-batch-1.md",
+    "unresolved": "Individual award letters and exceptions require provider confirmation.",
+    "reviewer": "design worker"
+  },
+  {
+    "id": "coop",
+    "program": "Cincinnati and RIT",
+    "cycle": "Current policy",
+    "claim": "Classroom-term scholarship disbursement differs from co-op treatment.",
+    "official_urls": [
+      "https://www.uc.edu/about/financial-aid/manage-aid/year-round-aid/co-op.html",
+      "https://www.rit.edu/admissions/aid/policies/co-op-and-financial-aid"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "author-checked; independent design review in progress",
+    "unresolved": "Award-specific cohort or exception requires university confirmation."
+  },
+  {
+    "id": "major",
+    "program": "Purdue; Iowa State; Texas A&M",
+    "cycle": "Current processes; A&M spring2027majorchange",
+    "claim": "Changing major can require new questions or delayed opening per specificportal.",
+    "official_urls": [
+      "https://www.purdue.edu/dfa/scholarship-centralization/",
+      "https://financialaid.iastate.edu/types-of-aid/scholarships/scholarships-faq/",
+      "https://uwide.tamu.edu/"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "author-checked; independent design review in progress",
+    "unresolved": "Award-specific cohort or exception requires university confirmation."
+  },
+  {
+    "id": "credits",
+    "program": "WVU and Arkansas",
+    "cycle": "Current renewalpolicy",
+    "claim": "Annual earnedcredits differs from fulltime payment and priorcredit treatment.",
+    "official_urls": [
+      "https://hub.wvu.edu/types-of-aid/scholarships/renewal-reqs",
+      "https://scholarships.uark.edu/guide-to-academic-freshman-scholarships/renewability-information.php"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "author-checked; independent design review in progress",
+    "unresolved": "Award-specific cohort or exception requires university confirmation."
+  },
+  {
+    "id": "dual",
+    "program": "MSU and Arkansas",
+    "cycle": "MSU current; Arkansas NRTA2026\u201327",
+    "claim": "Highschool collegecredits need not change freshmanclassification; award-specificreviews differ.",
+    "official_urls": [
+      "https://admissions.msu.edu/apply/first-year",
+      "https://admissions.msu.edu/apply/first-year/how-to-apply",
+      "https://admissions.msu.edu/cost-aid/scholarships/transfer",
+      "https://scholarships.uark.edu/nrta/"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "author-checked; independent design review in progress",
+    "unresolved": "Award-specific cohort or exception requires university confirmation."
+  },
+  {
+    "id": "residency",
+    "program": "Missouri and Arizona",
+    "cycle": "Missouri current; Arizona2026\u201327 not2027\u201328",
+    "claim": "Residenttuition transition can change nonresidentawards.",
+    "official_urls": [
+      "https://financialaid.missouri.edu/receiving-aid/terms-conditions/",
+      "https://financialaid.arizona.edu/2026-2027-terms-and-conditions"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "author-checked; independent design review in progress",
+    "unresolved": "Award-specific cohort or exception requires university confirmation."
+  },
+  {
+    "id": "abroad",
+    "program": "NAU and Purdue",
+    "cycle": "Current programrules",
+    "claim": "Programbilling and semester govern institutional scholarshipportability.",
+    "official_urls": [
+      "https://in.nau.edu/office-scholarships-financial-aid/types-aid/study-abroad/",
+      "https://www.purdue.edu/dfa/scholarship-centralization/"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "author-checked; independent design review in progress",
+    "unresolved": "Award-specific cohort or exception requires university confirmation."
+  },
+  {
+    "id": "waiver",
+    "program": "Texas A&M and Arkansas",
+    "cycle": "A&M current; Arkansas2026\u201327",
+    "claim": "Nonresidenttuition reduction differs from fulltuitioncoverage and fixedcash.",
+    "official_urls": [
+      "https://financialaid.tamu.edu/policies-and-compliance/scholarship-policy.html",
+      "https://scholarships.uark.edu/nrta/"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "author-checked; independent design review in progress",
+    "unresolved": "Award-specific cohort or exception requires university confirmation."
+  },
+  {
+    "id": "gap",
+    "program": "OU and Arkansas",
+    "cycle": "Currentpolicy",
+    "claim": "Admissiondeferral and awardcomponents require distinct approvals; enrolledstudentleave differs.",
+    "official_urls": [
+      "https://www.ou.edu/admissions/admitted/post-admission-resources",
+      "https://scholarships.uark.edu/guide-to-academic-freshman-scholarships/renewability-information.php"
+    ],
+    "checked": "2026-10-29",
+    "author": "demand worker",
+    "status": "author-checked; independent design review in progress",
+    "unresolved": "Award-specific cohort or exception requires university confirmation."
+  }
+]

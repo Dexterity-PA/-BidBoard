@@ -19,7 +19,7 @@ it("provides a public counselor kit with real guide and downloadable resource li
   expect(metadata.alternates?.canonical).toBe("/for-counselors");
   expect(document.querySelectorAll("h1")).toHaveLength(1);
   expect(document.body.textContent).toContain(COUNSELOR_BLURB);
-  expect(document.querySelectorAll('a[download]')).toHaveLength(4);
+  expect(document.querySelectorAll('a[download]')).toHaveLength(6);
   for (const link of document.querySelectorAll('a[href^="/resources/"]')) expect(existsSync(`public${link.getAttribute("href")}`)).toBe(true);
   for (const path of STUDENT_PATHS) expect(getGuide(path.slug)).toBeDefined();
 });

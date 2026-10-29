@@ -1,3 +1,8 @@
+import { PROCESS_GROWTH_GUIDES } from "./blog-process-growth";
+import { OUTSIDE_GROWTH_GUIDES } from "./blog-outside-growth";
+import { DECISION_GROWTH_GUIDES } from "./blog-decision-growth";
+import { COLLEGE_GROWTH_GUIDES } from "./blog-college-growth";
+import { ARIZONA_GUIDES } from "./blog-arizona-guides";
 import { GUIDES as ORIGINAL_GUIDES } from "./blog-content";
 import { EXPANSION_GUIDES } from "./blog-expansion";
 import { STUDENT_GUIDES } from "./blog-student-guides";
@@ -13,7 +18,7 @@ export const GUIDE_DATE = "2026-10-27";
 export const GUIDE_CATEGORIES = ["Finding scholarships", "Applications", "Understanding awards"] as const;
 export const BLOG_TITLE = "Scholarship guides: merit aid and applications | Meritously";
 export const BLOG_DESCRIPTION = "Find merit scholarships, check GPA and deadline rules, write stronger applications and compare offers. Practical guides with official sources and free templates.";
-export const GUIDES: Guide[] = [...ORIGINAL_GUIDES, ...EXPANSION_GUIDES, ...STUDENT_GUIDES, ...FUNDING_GUIDES, ...MERIT_SEARCH_GUIDES, ...APPLICATION_GUIDES];
+export const GUIDES: Guide[] = [...ORIGINAL_GUIDES, ...EXPANSION_GUIDES, ...STUDENT_GUIDES, ...FUNDING_GUIDES, ...MERIT_SEARCH_GUIDES, ...APPLICATION_GUIDES, ...COLLEGE_GROWTH_GUIDES, ...ARIZONA_GUIDES, ...DECISION_GROWTH_GUIDES, ...OUTSIDE_GROWTH_GUIDES, ...PROCESS_GROWTH_GUIDES];
 export const guidePublishedAt = (guide: Guide) => guide.publishedAt ?? GUIDE_PUBLISHED_AT;
 export const guideModifiedAt = (guide: Guide) => guide.updatedAt ?? guidePublishedAt(guide);
 export const BLOG_UPDATED_AT = GUIDES.map(guideModifiedAt).sort().at(-1)!;

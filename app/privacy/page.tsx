@@ -239,7 +239,7 @@ export default function PrivacyPage() {
 
             <p style={subHeading}>Usage Data</p>
             <p style={prose()}>
-              We measure visits to the home page and public scholarship pages, returning
+              We measure visits to the home page, public scholarship pages, blog and counselor resources, returning
               browsers, account creation, saved awards and confirmed weekly digest opt-ins.
               We store page categories, limited campaign/source labels and referring
               hostnames, using random browser identifiers and keyed hashes. These identifiers

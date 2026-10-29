@@ -21,7 +21,7 @@ export default function BlogPage() {
         <p className="m-lede">Find awards that fit. Write an application that sounds like you. Understand what an offer would actually cover.</p>
         <p className="m-fine">{GUIDES.length} practical guides with official sources, examples and free templates.</p>
         <p className="m-body">Helping a group of students? <Link href="/for-counselors" className="m-guide-link">Get counselor resources and sharing text</Link>.</p>
-        <nav className="m-guide-categories" aria-label="Guide categories">{GUIDE_CATEGORIES.map((category) => <a key={category} href={`#${categoryId(category)}`} className="m-guide-category-link">{category}</a>)}</nav>
+        <nav className="m-guide-categories" aria-label="Guide categories"><a href="#guide-library-title" className="m-guide-category-link">Search all guides</a>{GUIDE_CATEGORIES.map((category) => <a key={category} href={`#${categoryId(category)}`} className="m-guide-category-link">{category}</a>)}</nav>
       </header>
       <section className="m-guide-paths" aria-labelledby="reading-paths-title">
         <h2 id="reading-paths-title" className="m-h2">What are you working on?</h2>
