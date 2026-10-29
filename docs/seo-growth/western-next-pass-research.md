@@ -1,0 +1,11 @@
+# Western institution research leads — held for next pass
+
+Research checkpoint: 2026-10-29. Production frozen by coordinator before drafting. **Zero articles written or reviewed from this queue.** These leads are not published content, measured search-volume evidence, or completed claim verification. College writing worker confirmed no ownership overlap.
+
+| Candidate intent | Primary source | Evidence and unresolved work |
+| --- | --- | --- |
+| University of Utah merit versus WUE for fall 2027 | https://admissions.utah.edu/financial-aid-scholarships/scholarships/ and https://scholarships.utah.edu/types-of-aid/scholarships/freshman/ | Admissions direct read confirms unweighted GPA grid, residency-based WUE/cash-merit split and December 1 priority. It retains a 2026 processing paragraph beside the grid. Before writing, directly recheck the explicitly 2027–28 financial-aid page and annual-versus-total award basis; do not transplant older processing details. Homeschool/GED/HiSET/unaccredited-school score exception prevents a universal test-free claim. |
+| Oregon State fall-2027 WUE versus Provost | https://scholarships.oregonstate.edu/scholarships-new-osu-students | Official search retrieval describes new 3.4 unweighted first-year threshold, February 1 application deadline, WUE for eligible residents and minimum annual Provost award for non-WUE students. Generic competitive language remains elsewhere. Direct-read current subsection, FAQ, renewal and nonstacking terms before drafting; distinguish first-year from transfer rules and tuition discount from scholarship cash. |
+| Washington State fall-2027 Cougar Advantage versus WUE/Cougar | https://financialaid.wsu.edu/scholarship-terms-conditions/ | Official search retrieval identifies new fall-2027 Cougar Advantage, GPA band, four-year duration, campus/enrollment restrictions and nonstacking. Direct-read all relevant lower sections before publishing exact amounts, WUE threshold, renewal, date or study-abroad restrictions. Distinct decision value: campus mobility and lower-GPA funding route rather than another broad WUE explainer. |
+
+These are institution-specific policy decisions. Audit existing canonical intents again before commissioning, obtain a different worker's independent review, and keep source conflicts visible rather than selecting the most generous interpretation.

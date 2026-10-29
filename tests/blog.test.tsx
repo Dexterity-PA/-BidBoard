@@ -30,36 +30,35 @@ it("makes each guide discoverable from the rendered index", () => {
   }
 });
 
-it("renders complete articles with working contents, sources, related links and matching metadata", async () => {
-  for (const guide of GUIDES) {
-    const params = Promise.resolve({ slug: guide.slug });
-    const document = new DOMParser().parseFromString(renderToStaticMarkup(await GuidePage({ params })), "text/html");
-    expect(document.querySelector("h1")?.textContent).toBe(guide.title);
-    expect(document.querySelectorAll("h1")).toHaveLength(1);
-    const ids = [...document.querySelectorAll("[id]")].map((node) => node.id);
-    expect(new Set(ids).size).toBe(ids.length);
-    for (const link of document.querySelectorAll<HTMLAnchorElement>("a")) {
-      const href = link.getAttribute("href")!;
-      if (href.startsWith("#")) expect(document.getElementById(href.slice(1))).not.toBeNull();
-      if (href.startsWith("/blog/")) expect(GUIDES.some((entry) => guidePath(entry.slug) === href)).toBe(true);
-      if (href.startsWith("/scholarships/topics/")) expect(getScholarshipTopic(href.split("/").pop()!)).toBeDefined();
-      if (href.startsWith("/resources/")) expect(existsSync(`public${href}`)).toBe(true);
-    }
-    expect(document.querySelectorAll('article a[href^="https://"]').length).toBeGreaterThan(0);
-    expect(document.querySelector("article")?.textContent).not.toMatch(/\]\(https?:|—|–/);
-    for (const table of document.querySelectorAll("table")) {
-      const width = table.querySelectorAll("thead th").length;
-      for (const row of table.querySelectorAll("tbody tr")) expect(row.children).toHaveLength(width);
-    }
-    const metadata = await generateMetadata({ params });
-    expect(metadata.title).toBe(`${guide.seoTitle ?? guide.title} | Meritously`);
-    expect(metadata.alternates?.canonical).toBe(guidePath(guide.slug));
-    expect(metadata.openGraph).toMatchObject({ type: "article", publishedTime: guidePublishedAt(guide), modifiedTime: guideModifiedAt(guide) });
-    const schema = JSON.parse(document.querySelector('script[type="application/ld+json"]')!.textContent!);
-    expect(schema["@graph"][0]).toMatchObject({ headline: guide.title, url: `${SITE_URL}${guidePath(guide.slug)}`, datePublished: guidePublishedAt(guide), dateModified: guideModifiedAt(guide), author: { "@type": "Organization", name: "Meritously" } });
-    expect(new Set(guide.related).size).toBe(guide.related.length);
-    expect(guide.related).not.toContain(guide.slug);
+// Each guide keeps its own timeout and failure identity as the library grows.
+it.each(GUIDES)("renders $slug with complete links, tables and matching metadata", async (guide) => {
+  const params = Promise.resolve({ slug: guide.slug });
+  const document = new DOMParser().parseFromString(renderToStaticMarkup(await GuidePage({ params })), "text/html");
+  expect(document.querySelector("h1")?.textContent).toBe(guide.title);
+  expect(document.querySelectorAll("h1")).toHaveLength(1);
+  const ids = [...document.querySelectorAll("[id]")].map((node) => node.id);
+  expect(new Set(ids).size).toBe(ids.length);
+  for (const link of document.querySelectorAll<HTMLAnchorElement>("a")) {
+    const href = link.getAttribute("href")!;
+    if (href.startsWith("#")) expect(document.getElementById(href.slice(1))).not.toBeNull();
+    if (href.startsWith("/blog/")) expect(GUIDES.some((entry) => guidePath(entry.slug) === href)).toBe(true);
+    if (href.startsWith("/scholarships/topics/")) expect(getScholarshipTopic(href.split("/").pop()!)).toBeDefined();
+    if (href.startsWith("/resources/")) expect(existsSync(`public${href}`)).toBe(true);
   }
+  expect(document.querySelectorAll('article a[href^="https://"]').length).toBeGreaterThan(0);
+  expect(document.querySelector("article")?.textContent).not.toMatch(/\]\(https?:|—|–/);
+  for (const table of document.querySelectorAll("table")) {
+    const width = table.querySelectorAll("thead th").length;
+    for (const row of table.querySelectorAll("tbody tr")) expect(row.children).toHaveLength(width);
+  }
+  const metadata = await generateMetadata({ params });
+  expect(metadata.title).toBe(`${guide.seoTitle ?? guide.title} | Meritously`);
+  expect(metadata.alternates?.canonical).toBe(guidePath(guide.slug));
+  expect(metadata.openGraph).toMatchObject({ type: "article", publishedTime: guidePublishedAt(guide), modifiedTime: guideModifiedAt(guide) });
+  const schema = JSON.parse(document.querySelector('script[type="application/ld+json"]')!.textContent!);
+  expect(schema["@graph"][0]).toMatchObject({ headline: guide.title, url: `${SITE_URL}${guidePath(guide.slug)}`, datePublished: guidePublishedAt(guide), dateModified: guideModifiedAt(guide), author: { "@type": "Organization", name: "Meritously" } });
+  expect(new Set(guide.related).size).toBe(guide.related.length);
+  expect(guide.related).not.toContain(guide.slug);
 });
 
 it("keeps the article headline as the search-title fallback and preserves the publication date on edits", () => {
