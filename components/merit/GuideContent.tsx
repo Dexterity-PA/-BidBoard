@@ -18,7 +18,7 @@ export function GuideSectionContent({ section }: { section: GuideSection }) {
       <h2 id={`${section.id}-title`} className="m-guide-h2">{section.title}</h2>
       {section.paragraphs?.map((paragraph, index) => <p key={index} className="m-guide-p"><GuideInline text={paragraph} /></p>)}
       {section.list && <ul className="m-guide-list">{section.list.map((item) => <li key={item}><GuideInline text={item} /></li>)}</ul>}
-      {section.table && <div className="m-guide-table-wrap" tabIndex={0} role="region" aria-label={`${section.title}: comparison table`}>
+      {section.table && <><p className="m-guide-table-hint" id={`${section.id}-table-help`}>On a smaller screen, scroll the table sideways to see every column.</p><div className="m-guide-table-wrap" tabIndex={0} role="region" aria-label={`${section.title}: comparison table`} aria-describedby={`${section.id}-table-help`}>
         <table className="m-guide-table">
           <caption className="sr-only">{section.title}</caption>
           <thead><tr>{section.table.headers.map((header) => <th key={header} scope="col">{header}</th>)}</tr></thead>
@@ -26,7 +26,7 @@ export function GuideSectionContent({ section }: { section: GuideSection }) {
             ? <th key={cellIndex} scope="row"><GuideInline text={cell} /></th>
             : <td key={cellIndex}><GuideInline text={cell} /></td>)}</tr>)}</tbody>
         </table>
-      </div>}
+      </div></>}
       {section.paragraphsAfter?.map((paragraph, index) => <p key={index} className="m-guide-p"><GuideInline text={paragraph} /></p>)}
     </section>
   );

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import ProfileForm from "@/components/merit/ProfileForm";
+import { AwardComparisonProvider, AwardComparisonTray, CompareAwardButton } from "@/components/merit/AwardComparison";
+import comparisonStyles from "./AwardComparison.module.css";
 import {
   EMPTY_PROFILE,
   clearProfile,
@@ -114,8 +116,7 @@ export default function CatalogBrowser({
     [listings],
   );
 
-  const results = useMemo(() => {
-    const out = listings.filter((l) => {
+  const filteredListings = useMemo(() => listings.filter((l) => {
       if (type !== "all" && l.type !== type) return false;
       if (!includeNeed && l.status === "mixed-need") return false;
       if (size && awardTier(l) < size) return false;
@@ -124,23 +125,27 @@ export default function CatalogBrowser({
       if (state && !stateTags(l).includes(state)) return false;
       if (month && !(l.deadlineDate ?? "").startsWith(month)) return false;
       if (hideClosed && today && l.deadlineDate && !hasUpcomingListedDate(l, today)) return false;
-      if (profile && onlyMatches && verdicts.get(l.id)?.verdict === "no") return false;
       return matchesQuery(l, q);
-    });
+    }), [listings, type, size, includeNeed, how, elig, state, month, hideClosed, today, q]);
+
+  const results = useMemo(() => {
+    const out = filteredListings.filter((l) =>
+      !(profile && onlyMatches && verdicts.get(l.id)?.verdict === "no"),
+    );
     return out.sort((a, b) => {
       if (sort === "name") return a.name.localeCompare(b.name);
       const ad = a.deadlineDate ?? "9999";
       const bd = b.deadlineDate ?? "9999";
       return ad.localeCompare(bd) || a.name.localeCompare(b.name);
     });
-  }, [listings, type, size, includeNeed, how, elig, state, month, hideClosed, today, q, sort, profile, onlyMatches, verdicts]);
+  }, [filteredListings, sort, profile, onlyMatches, verdicts]);
 
   // Start from the first page whenever the result set changes.
   useEffect(() => setLimit(PAGE), [results]);
 
   const hiddenByProfile = useMemo(
-    () => (profile ? listings.filter((l) => verdicts.get(l.id)?.verdict === "no").length : 0),
-    [listings, profile, verdicts],
+    () => (profile ? filteredListings.filter((l) => verdicts.get(l.id)?.verdict === "no").length : 0),
+    [filteredListings, profile, verdicts],
   );
 
   function clearAll() {
@@ -153,9 +158,11 @@ export default function CatalogBrowser({
     setState("");
     setIncludeNeed(false);
     setHideClosed(true);
+    setOnlyMatches(false);
   }
 
   return (
+    <AwardComparisonProvider listings={listings}>
     <div className="m-browse">
       <aside className="m-filters" aria-label="Filters">
         <button
@@ -165,21 +172,33 @@ export default function CatalogBrowser({
           aria-controls="filter-body"
           onClick={() => setFiltersOpen((o) => !o)}
         >
-          {filtersOpen ? "Hide filters" : "Show filters"}
+          <svg className="m-filters-toggle-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+            <path d="M3 5h14M3 15h14M7 2v6m6 4v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+          <span>{filtersOpen ? "Hide filters" : "Show filters"}</span>
+          <svg className="m-filters-toggle-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+            <path d="m6 8 4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </button>
         <div id="filter-body" className={`m-filters-body${filtersOpen ? " m-filters-body-open" : ""}`}>
         <div className="m-filter-group">
           <label className="m-filter-label" htmlFor="q">
             Search
           </label>
-          <input
-            id="q"
-            className="m-input"
-            type="search"
-            placeholder="Award, college or topic"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-          />
+          <div className="m-filter-search">
+            <svg className="m-filter-search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+              <circle cx="8.75" cy="8.75" r="5.25" stroke="currentColor" strokeWidth="1.5" />
+              <path d="m12.5 12.5 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <input
+              id="q"
+              className="m-input"
+              type="search"
+              placeholder="Award, college or topic"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+            />
+          </div>
         </div>
 
         <fieldset className="m-filter-group">
@@ -257,7 +276,7 @@ export default function CatalogBrowser({
           </select>
         </div>
 
-        <fieldset className="m-filter-group">
+        <fieldset className="m-filter-group m-filter-options">
           <legend className="m-filter-label">Show</legend>
           <label className="m-toggle">
             <input type="checkbox" checked={hideClosed} onChange={(e) => setHideClosed(e.target.checked)} />
@@ -278,7 +297,7 @@ export default function CatalogBrowser({
         </div>
       </aside>
 
-      <section aria-live="polite">
+      <section aria-label="Scholarship results">
         {editing ? (
           <ProfileForm
             initial={profile ?? EMPTY_PROFILE}
@@ -294,7 +313,7 @@ export default function CatalogBrowser({
           <div className="m-matchbar">
             <span>
               {onlyMatches
-                ? `Based on your answers, we’ve hidden ${hiddenByProfile} awards that may not fit. Check each award’s full requirements.`
+                ? `Based on your answers, we’ve hidden ${hiddenByProfile} ${hiddenByProfile === 1 ? "award" : "awards"} that may not fit. Check each award’s full requirements.`
                 : "Showing all awards, including ones that may not fit your answers."}
             </span>
             <span className="m-matchbar-actions">
@@ -325,7 +344,7 @@ export default function CatalogBrowser({
           </div>
         )}
         <div className="m-results-bar">
-          <span>
+          <span role="status" aria-atomic="true">
             {results.length === 1 ? "1 listing" : `${results.length} listings`}
             {month && (
               <>
@@ -348,6 +367,8 @@ export default function CatalogBrowser({
           </label>
         </div>
 
+        <AwardComparisonTray />
+
         {results.length === 0 ? (
           <div className="m-empty">
             <p className="m-body">No awards match these filters. Try clearing one to see more.</p>
@@ -358,8 +379,11 @@ export default function CatalogBrowser({
         ) : (
           <ul className="m-rows">
             {results.slice(0, limit).map((l) => (
-              <li key={l.id}>
+              <li key={l.id} className={comparisonStyles.catalogRow}>
                 <Row l={l} today={today} verdict={verdicts.get(l.id)} />
+                <div className={comparisonStyles.catalogRowAction}>
+                  <CompareAwardButton listing={l} />
+                </div>
               </li>
             ))}
           </ul>
@@ -373,6 +397,7 @@ export default function CatalogBrowser({
         )}
       </section>
     </div>
+    </AwardComparisonProvider>
   );
 }
 
@@ -420,7 +445,7 @@ function Row({
 }) {
   const hint = coverageHint(l);
   return (
-    <Link href={`/scholarships/${l.slug}`} className="m-row">
+    <Link href={`/scholarships/${l.slug}`} className={`m-row ${comparisonStyles.listingLink}`}>
       <DateBlock iso={l.deadlineDate} today={today} />
       <div className="m-row-main">
         <span className="m-row-provider">{l.provider}</span>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { MeritListing } from "./catalog";
 import { getScholarshipTopic, TOPIC_BY_TYPE, topicPath } from "./topics";
+import { deadlineLabel } from "./deadline-status";
 
 export const SITE_URL = "https://meritously.com";
 
@@ -17,10 +18,20 @@ export function pageMetadata(path: string, title: string, description: string): 
 }
 
 export function listingDescription(listing: MeritListing): string {
-  const text = `${listing.name} from ${listing.provider}. ${listing.value} Deadline: ${listing.deadline} Eligibility: ${listing.eligibility}`
-    .replace(/\s+/g, " ").trim();
-  if (text.length <= 300) return text;
-  return `${text.slice(0, 297).replace(/\s+\S*$/, "")}...`;
+  const compact = (value: string, limit: number) => {
+    if (limit < 2) return "";
+    const text = value.replace(/\s+/g, " ").trim();
+    return text.length <= limit ? text : `${text.slice(0, limit - 1).replace(/\s+\S*$/, "")}…`;
+  };
+  // Give each decision field room instead of letting a long award description hide the deadline.
+  const date = listing.deadlineDate
+    ? `${deadlineLabel(listing)}: ${listing.deadlineDate}.`
+    : "Current deadline unconfirmed.";
+  const lead = `${listing.name}. ${date}`;
+  const budget = Math.max(0, 299 - lead.length);
+  const award = compact(listing.value, Math.min(88, Math.floor(budget * 0.55)));
+  const eligibility = compact(listing.eligibility, Math.max(0, budget - award.length - 15));
+  return `${lead} ${award}${eligibility ? ` Eligibility: ${eligibility}` : ""}`.trim();
 }
 
 /** Escape catalog text before embedding it in an HTML script element. */

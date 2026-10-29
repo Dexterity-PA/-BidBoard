@@ -1,4 +1,5 @@
 import { coverageHint, LISTINGS, type MeritListing, type MeritType } from "./catalog";
+import { deadlineOrder, expiredBeforeDate } from "./deadline-status";
 
 export type ScholarshipTopic = {
   slug: string;
@@ -125,6 +126,8 @@ export function getScholarshipTopic(slug: string) {
 }
 
 export function topicListings(topic: ScholarshipTopic): MeritListing[] {
+  const today = expiredBeforeDate();
   return LISTINGS.filter(topic.includes)
-    .sort((a, b) => a.name.localeCompare(b.name, "en") || a.provider.localeCompare(b.provider, "en"));
+    .sort((a, b) => deadlineOrder(a, today) - deadlineOrder(b, today) ||
+      a.name.localeCompare(b.name, "en") || a.provider.localeCompare(b.provider, "en"));
 }

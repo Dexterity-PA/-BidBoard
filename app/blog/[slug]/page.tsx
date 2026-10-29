@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "@/components/merit/SiteChrome";
 import { GuideInline, GuideSectionContent } from "@/components/merit/GuideContent";
 import CopyText from "@/components/merit/CopyText";
-import { GUIDES, categoryId, getGuide, guideDisplayDate, guideMetadata, guidePath, guidePublishedAt, guideStructuredData, readingMinutes } from "@/lib/merit/blog";
+import { GUIDES, categoryId, getGuide, guideDisplayDate, guideMetadata, guideModifiedAt, guidePath, guidePublishedAt, guideStructuredData, readingMinutes } from "@/lib/merit/blog";
 import { serializeJsonLd, SITE_URL } from "@/lib/merit/seo";
 import { getScholarshipTopic, topicPath } from "@/lib/merit/topics";
 
@@ -18,7 +18,10 @@ export async function generateMetadata({ params }: Props) {
 export default async function GuidePage({ params }: Props) {
   const guide = getGuide((await params).slug);
   if (!guide) notFound();
-  return <div className="m-page">
+  const modified = guideModifiedAt(guide);
+  const wasUpdated = modified !== guidePublishedAt(guide);
+  const displayDate = wasUpdated ? new Date(modified).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "America/Phoenix" }) : guideDisplayDate(guide);
+  return <div className="m-page m-editorial">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(guideStructuredData(guide)) }} />
     <SiteHeader />
     <main className="m-main m-wrap m-guide-shell">
@@ -27,12 +30,12 @@ export default async function GuidePage({ params }: Props) {
         <header className="m-guide-header">
           <Link href={`/blog#${categoryId(guide.category)}`} className="m-eyebrow m-guide-link">{guide.category}</Link>
           <h1 className="m-guide-title">{guide.title}</h1>
-          <p className="m-guide-meta">By <Link href="/#about" className="m-guide-link">Meritously</Link> · <time dateTime={guidePublishedAt(guide)}>{guideDisplayDate(guide)}</time> · {readingMinutes(guide)} min read</p>
+          <p className="m-guide-meta">By <Link href="/#about" className="m-guide-link">Meritously</Link> · <span>{wasUpdated ? "Updated" : "Published"} <time dateTime={modified}>{displayDate}</time></span> · {readingMinutes(guide)} min read</p>
           {guide.intro.map((paragraph) => <p key={paragraph} className="m-guide-intro"><GuideInline text={paragraph} /></p>)}
         </header>
-        <nav className="m-guide-toc" aria-label="In this guide"><p className="m-eyebrow">In this guide</p><ol className="m-guide-toc-list">{guide.sections.map((section) => <li key={section.id}><a href={`#${section.id}`}>{section.title}</a></li>)}</ol></nav>
+        {guide.sections.length > 2 && <nav className="m-guide-toc" aria-label="In this guide"><p className="m-eyebrow">In this guide</p><ol className="m-guide-toc-list">{guide.sections.map((section) => <li key={section.id}><a href={`#${section.id}`}>{section.title}</a></li>)}</ol></nav>}
         {guide.sections.map((section) => <GuideSectionContent key={section.id} section={section} />)}
-        <footer className="m-guide-note"><CopyText text={`${SITE_URL}${guidePath(guide.slug)}`} label="Copy link to this guide" fallback="Copy isn't available. Copy the page address from your browser instead." /><p>Written for students and families by Meritously. Official sources are linked where provider policies are discussed. Examples labeled fictional are for explanation; award terms can change.</p><p>Sharing with a class or advising group? <Link href="/for-counselors" className="m-guide-link">Get counselor resources and sharing text</Link>.</p><p>Found a detail that needs correcting? <a href="mailto:hello@meritously.com" className="m-guide-link">Let us know</a>.</p></footer>
+        <footer className="m-guide-note"><CopyText text={`${SITE_URL}${guidePath(guide.slug)}`} label="Copy link to this guide" fallback="Copy isn't available. Copy the page address from your browser instead." /><p>Published by Meritously. The date above reflects this article’s publication or revision. Check the linked official sources for current eligibility, award terms and application dates.</p><p>Sharing with a class or advising group? <Link href="/for-counselors" className="m-guide-link">Get counselor resources and sharing text</Link>.</p><p>Found a detail that needs correcting? <a href="mailto:hello@meritously.com" className="m-guide-link">Let us know</a>.</p></footer>
       </article>
       <aside className="m-guide-more" aria-labelledby="related-title">
         <section><h2 id="related-title" className="m-h3">Keep reading</h2><ul className="m-guide-more-list">{guide.related.map((slug) => {

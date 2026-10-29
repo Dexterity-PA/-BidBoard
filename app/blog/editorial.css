@@ -1,0 +1,99 @@
+/* The journal uses the existing brand colors with a quieter reading rhythm. */
+.m-editorial { --m-editorial-serif: Georgia, "Times New Roman", serif; }
+.m-editorial .m-guide-index { padding-top: 56px; padding-bottom: 64px; }
+.m-editorial .m-guide-index-head { max-width: none; padding-bottom: 32px; margin-bottom: 40px; border-bottom: 1px solid var(--m-rule-strong); }
+.m-editorial .m-guide-index-title { font-family: var(--m-editorial-serif); font-weight: 400; font-size: clamp(42px, 6vw, 70px); letter-spacing: -.045em; line-height: 1.08; margin: 18px 0 24px; }
+.m-editorial .m-guide-index-head .m-lede { max-width: 680px; font-size: 20px; line-height: 1.6; margin-bottom: 16px; }
+.m-editorial .m-guide-index-head .m-body { margin-top: 8px; font-size: 14px; }
+.m-editorial .m-fine { color: var(--m-muted); }
+.m-editorial .m-guide-categories { gap: 12px 28px; margin-top: 28px; }
+.m-guide-category-link { display: inline-flex; min-height: 44px; align-items: center; font-size: 14px; font-weight: 500; color: var(--m-green); text-decoration: underline; text-decoration-color: var(--m-rule-strong); text-underline-offset: 7px; }
+.m-guide-category-link:hover { text-decoration-color: currentColor; }
+.m-editorial .m-guide-paths { margin-bottom: 56px; }
+.m-editorial .m-guide-paths > .m-h2 { font-size: 22px; letter-spacing: -.025em; }
+.m-editorial .m-guide-path-grid { gap: 32px; margin-top: 24px; }
+.m-editorial .m-guide-path { padding: 0 24px 0 0; border-radius: 0; background: transparent; border-right: 1px solid var(--m-rule); }
+.m-editorial .m-guide-path:last-child { border-right: 0; padding-right: 0; }
+.m-editorial .m-guide-path .m-h3 { font-size: 17px; }
+.m-editorial .m-guide-path .m-body { font-size: 14px; line-height: 1.6; }
+.m-editorial .m-guide-path .m-guide-more-list { font-size: 15px; gap: 12px; }
+.m-guide-library { scroll-margin-top: 90px; }
+.m-guide-library-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 24px; border-top: 2px solid var(--m-ink); padding-top: 28px; }
+.m-guide-library-head .m-h2 { margin-top: 8px; font-family: var(--m-editorial-serif); font-size: 36px; font-weight: 400; letter-spacing: -.025em; }
+.m-guide-search { width: min(100%, 380px); }
+.m-guide-search label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; }
+.m-guide-search input { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid var(--m-rule-strong); border-radius: 3px; font-size: 15px; background: white; color: var(--m-ink); }
+.m-guide-search input::placeholder { color: var(--m-muted); }
+.m-editorial :is(a, button, input, [tabindex]):focus-visible { outline: 2px solid var(--m-green); outline-offset: 4px; }
+.m-guide-result-count { margin: 16px 0 32px; color: var(--m-muted); font-size: 13px; line-height: 1.6; }
+.m-editorial .m-guide-category { margin-bottom: 48px; scroll-margin-top: 88px; }
+.m-guide-category-title { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--m-rule-strong); font-size: 19px; font-weight: 600; letter-spacing: -.015em; }
+.m-guide-category-title span { font-size: 13px; font-weight: 400; color: var(--m-muted); letter-spacing: 0; }
+.m-editorial .m-guide-cards { margin-top: 0; gap: 0 36px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.m-editorial .m-guide-card { border-top: 0; border-bottom: 1px solid var(--m-rule); padding: 26px 0; }
+.m-editorial .m-guide-card-title { margin: 0 0 12px; font-family: var(--m-editorial-serif); font-weight: 400; font-size: 25px; line-height: 1.3; letter-spacing: -.02em; }
+.m-editorial .m-guide-card .m-body { font-size: 15px; line-height: 1.7; }
+.m-editorial .m-guide-card .m-fine { margin-top: 14px; font-size: 12px; }
+.m-guide-empty { padding: 24px 0 48px; font-size: 16px; line-height: 1.7; }
+.m-guide-empty .m-btn { margin: 16px 0; }
+.m-editorial .m-guide-tools { border-top: 1px solid var(--m-rule-strong); border-bottom: 1px solid var(--m-rule-strong); border-radius: 0; background: transparent; padding: 28px 0; gap: 48px; }
+.m-editorial .m-guide-tools .m-h2 { margin: 10px 0; font-family: var(--m-editorial-serif); font-weight: 400; font-size: 32px; }
+.m-editorial .m-crumb { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; line-height: 1.6; padding-top: 28px; }
+.m-editorial .m-guide-article { max-width: 740px; }
+.m-editorial .m-guide-header { padding: 44px 0 12px; }
+.m-editorial .m-guide-header > .m-eyebrow { text-decoration: none; }
+.m-editorial .m-guide-title { font-family: var(--m-editorial-serif); font-weight: 400; font-size: clamp(36px, 4.7vw, 56px); line-height: 1.12; letter-spacing: -.035em; margin: 18px 0 24px; }
+.m-editorial .m-guide-meta { margin-bottom: 28px; font-size: 13px; }
+.m-editorial .m-guide-intro { font-size: 19px; line-height: 1.75; margin-bottom: 18px; }
+.m-editorial .m-guide-toc { background: transparent; padding: 22px 0; border-top: 1px solid var(--m-rule-strong); border-bottom: 1px solid var(--m-rule-strong); border-radius: 0; margin: 14px 0 40px; }
+.m-editorial .m-guide-toc-list { padding-left: 18px; margin-top: 14px; font-size: 14px; gap: 9px; }
+.m-editorial .m-guide-toc-list a { text-decoration: none; }
+.m-editorial .m-guide-toc-list a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.m-editorial .m-guide-section { margin-bottom: 42px; scroll-margin-top: 90px; }
+.m-editorial .m-guide-h2 { font-family: var(--m-editorial-serif); font-weight: 400; font-size: clamp(27px, 3vw, 33px); line-height: 1.25; letter-spacing: -.02em; margin-bottom: 20px; }
+.m-editorial .m-guide-p, .m-editorial .m-guide-list { font-size: 17px; line-height: 1.85; }
+.m-editorial .m-guide-list { gap: 14px; padding-left: 22px; }
+.m-editorial .m-guide-table-wrap { border-radius: 0; border: 0; border-top: 2px solid var(--m-green); border-bottom: 1px solid var(--m-rule-strong); margin-top: 12px; }
+.m-editorial .m-guide-table { font-size: 14px; line-height: 1.7; }
+.m-editorial .m-guide-table th, .m-editorial .m-guide-table td { padding: 16px; min-width: 145px; }
+.m-editorial .m-guide-table thead { background: #f0f4f1; }
+.m-editorial .m-guide-table thead th { font-weight: 600; color: var(--m-green-ink); }
+.m-editorial .m-guide-table tbody th { font-weight: 500; }
+.m-guide-table-hint { font-size: 12px; color: var(--m-muted); margin: 20px 0 0; }
+.m-editorial .m-guide-note { font-size: 13px; }
+.m-editorial .m-guide-more { max-width: 740px; gap: 48px; }
+.m-editorial .m-guide-more .m-h3 { font-family: var(--m-editorial-serif); font-size: 25px; font-weight: 400; }
+@media (max-width: 850px) {
+  .m-editorial .m-guide-path-grid { grid-template-columns: 1fr; gap: 24px; }
+  .m-editorial .m-guide-path { padding: 0 0 24px; border-right: 0; border-bottom: 1px solid var(--m-rule); }
+  .m-editorial .m-guide-path:last-child { padding-bottom: 0; border-bottom: 0; }
+  .m-editorial .m-guide-path .m-guide-more-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
+}
+@media (max-width: 600px) {
+  .m-editorial .m-guide-index { padding-top: 32px; }
+  .m-editorial .m-guide-index-head { margin-bottom: 32px; }
+  .m-editorial .m-guide-index-head .m-lede { font-size: 18px; }
+  .m-editorial .m-guide-categories { gap: 4px 22px; }
+  .m-editorial .m-guide-paths { margin-bottom: 36px; }
+  .m-editorial .m-guide-path .m-guide-more-list { grid-template-columns: 1fr; }
+  .m-guide-search { width: 100%; }
+  .m-editorial .m-guide-cards { grid-template-columns: 1fr; }
+  .m-editorial .m-guide-card { padding: 22px 0; }
+  .m-editorial .m-guide-card-title { font-size: 24px; }
+  .m-editorial .m-guide-tools, .m-editorial .m-guide-more { grid-template-columns: 1fr; gap: 24px; }
+  .m-editorial .m-guide-header { padding-top: 30px; }
+  .m-editorial .m-guide-title { text-wrap: pretty; }
+  .m-editorial .m-guide-intro { font-size: 18px; }
+  .m-editorial .m-guide-p, .m-editorial .m-guide-list { font-size: 16px; line-height: 1.85; }
+  .m-editorial .m-guide-table th, .m-editorial .m-guide-table td { min-width: 150px; padding: 12px; }
+}
+@media print {
+  .m-editorial .m-header, .m-editorial .m-footer, .m-editorial .m-guide-toc, .m-editorial .m-copy-control, .m-editorial .m-guide-more, .m-editorial .m-guide-table-hint { display: none; }
+  .m-editorial .m-guide-article { max-width: none; }
+  .m-editorial .m-guide-title { font-size: 28pt; }
+  .m-editorial .m-guide-table-wrap { overflow: visible; }
+  .m-editorial .m-guide-table th, .m-editorial .m-guide-table td { min-width: 0; padding: 8px; font-size: 9pt; }
+  .m-editorial .m-guide-h2 { break-after: avoid; }
+  .m-editorial .m-guide-table tr { break-inside: avoid; }
+  .m-editorial .m-guide-p, .m-editorial .m-guide-list { font-size: 11pt; }
+}
